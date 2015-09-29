@@ -1,20 +1,48 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>SnipeGo - Try Your Luck and Win skins!</title>
-    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
+    <script type="text/javascript" src="./js/angular/app.js"></script>
+    <script type="text/javascript" src="./js/angular/controller/MainCtrl.js"></script>
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript"  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
-  <body>
 
-    <h1><a href="#/">SnipeGo</a></h1>
-
-    <div class="main">
-
+  <body ng-app="SnipeGo">
+    <div class="navigation">
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">SnipeGo</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Support</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">How To Play <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Guide</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">About Us</li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/users/auth/steam"><img src="./img/sits_small.png" /></a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
     </div>
 
-  <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
+    <div ui-view></div>
+
   </body>
 </html>
