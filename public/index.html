@@ -4,6 +4,7 @@
   <head>
     <title>SnipeGo - Try Your Luck and Win skins!</title>
     <link href="./css/style.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
@@ -19,30 +20,33 @@
       <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">SnipeGo</a>
+            <a class="navbar-brand navi-text" href="#"><span class="header-text">SnipeGo</span></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Support</a></li>
+              <li><a href="#"><div class="navi-text"><span class="nav-text">Home</span></div></a></li>
+              <li><a href="#"><div class="navi-text"><span class="nav-text">Support</span></div></a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">How To Play <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><div class="navi-text"><span class="nav-text">How To Play</span><span class="caret"></span></div></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Guide</a></li>
+                  <li class="dropdown-header"><span class="dropdown-text">Guide</span></a></li>
                   <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">About Us</li>
+                  <li class="dropdown-header"><span class="dropdown-text">About Us</span></li>
                 </ul>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="/users/auth/steam"><img src="./img/sits_small.png" /></a></li>
+              <li><a href="/users/auth/steam"><img src="./img/sits_large_border.png" /></a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
     </div>
 
-    <div ui-view></div>
-
+    <div class="container-container">
+      <div class="ui-view-container">
+        <div ui-view></div>
+      </div>
+    </div>
   </body>
 </html>

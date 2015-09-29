@@ -1,7 +1,46 @@
 body {
-  min-height: 2000px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.header-text {
+  font-size: 30px;
+}
+
+.navi-text {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.nav-text {
+  font-size: 20px;
+}
+
+.dropdown-text {
+  font-size: 14px;
+  margin-top: 50%;
+  margin-bottom: 50%;
 }
 
 .navbar-static-top {
   margin-bottom: 19px;
 }
+
+.progress-container {
+    width: 100%;
+    max-width: 960px;
+    margin:50px auto;
+    text-align: center;
+}
+.progress-wrapper {
+    position: relative;
+    margin: 20px auto;
+    font-size: 40px;
+}
+
+.progress-text {
+    position: absolute;
+    color: #bbb;
+    font-weight: 100;
+    line-height: 1;
+}
+
