@@ -13,7 +13,7 @@ router.get('/auth/steam', passport.authenticate('steam'), function(req, res, nex
 });
 
 router.get('/auth/steam-callback', passport.authenticate('steam'), function(req, res) {
-  // console.log('steam auth callback... what is the req session?', req.session);
+  console.log('steam auth callback... what is the req session?', req.session);
   res.send('success');
 });
 
