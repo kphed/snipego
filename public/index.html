@@ -22,7 +22,7 @@
 
   <body ng-app="SnipeGo">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavCtrl">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -38,17 +38,25 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                      <a href="#"><span id="nav-text">How To Play</span></a>
+                      <a href="#"><span id="nav-text-left">How To Play</span></a>
                     </li>
                     <li>
-                      <a href="#"><span id="nav-text">Get Free Skins</span></a>
+                      <a href="#"><span id="nav-text-left">Get Free Skins</span></a>
                     </li>
                     <li>
-                      <a href="#"><span id="nav-text">Support</span></a>
+                      <a href="#"><span id="nav-text-left">Support</span></a>
                     </li>
-                    <li>
+                    <li ng-show="!isAuth">
                       <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
                     </li>
+                    <li ng-show="isAuth" style="margin-top: -5px">
+                      <a href="#/deposit"><button type="button" class="btn btn-success">Play Now</button></a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="navbar-right" ng-show="isAuth">
+                  <li>
+                    <a href=""><span id="nav-text-right">Welcome, {{firstName}}!</span><img id="profilePic" src="{{profilePic}}" /></a>
+                  </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -69,17 +77,19 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
 
-    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
     <script src="/bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
 
     <script src="js/angular/app.js"></script>
 
+    <script src="js/angular/services/Auth.js"></script>
+
     <script src="js/angular/controller/MainCtrl.js"></script>
 
-    <script src="js/angular/services/AuthService.js"></script>
+    <script src="js/angular/controller/NavCtrl.js"></script>
 
   </body>
 </html>

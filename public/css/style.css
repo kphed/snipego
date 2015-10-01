@@ -19,9 +19,25 @@ html, body {
   min-height: 100%;
 }
 
-#nav-text {
+#nav-text-left {
   font-size: 1.15em;
   color: white;
+}
+
+#nav-text-right {
+  font-size: 1.15em;
+  color: white;
+}
+
+#navbar-right {
+  margin-top: -5px;
+}
+
+#profilePic {
+  border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+  margin-left: 10px;
 }
 
 #ui-view-wrapper {
