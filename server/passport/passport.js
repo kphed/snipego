@@ -15,18 +15,17 @@ module.exports = function(passport) {
   });
 
   var checkDatabase = function(done, profile) {
-    console.log('connecting to database now...');
     pg.connect(connectionString, function(err, client) {
       if (err) {
-        console.log('there is an error ', err);
+        console.log('error: ', err);
       }
       client.query('SELECT EXISTS(SELECT steamid FROM users WHERE steamid = ' + profile.id + ')', function(err, result) {
         if (result.rows[0].exists) {
-          console.log('the user exists, no need to remake');
+          console.log('the user exists');
           finish(done, profile);
         } else {
           client.query('INSERT INTO users(steamid, avatar) values ($1, $2)', [profile.id, profile.photos[0].value], function(err, result) {
-            console.log('user does not exist, making him');
+            console.log('user does not exist');
             finish(done, profile);
           });
         }
@@ -35,7 +34,6 @@ module.exports = function(passport) {
   };
 
   var finish = function(done, profile) {
-    console.log('FINISHED');
     return done(null, profile);
   };
 
