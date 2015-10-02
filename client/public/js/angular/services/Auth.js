@@ -3,7 +3,6 @@
 angular.module('SnipeGo.Services', ['SnipeGo'])
   .factory('Auth', ['$http', function($http) {
     var checkSession = function() {
-      console.log('checking for session');
       return $http.get('/users/auth/is-authenticated');
     };
 

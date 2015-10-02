@@ -50,12 +50,12 @@
                       <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
                     </li>
                     <li ng-show="isAuth" style="margin-top: -5px">
-                      <a href="#/deposit"><button type="button" class="btn btn-success">Play Now</button></a>
+                      <a href="#/deposit"><button type="button" class="btn" id="btn">Play Now</button></a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="navbar-right" ng-show="isAuth">
                   <li>
-                    <a href=""><span id="nav-text-right">Welcome, {{firstName}}!</span><img id="profilePic" src="{{profilePic}}" /></a>
+                    <a href=""><img id="profilePic" src="{{profilePic}}" /></a>
                   </li>
                 </ul>
             </div>
@@ -68,20 +68,20 @@
     <div class="container-fluid fill">
 
 
-        <div id="ui-view-wrapper" ui-view></div>
+        <div ui-view></div>
         <!-- /.row -->
 
     </div>
 
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <script src="/bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
 
-    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
-    <script src="/bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
+    <script src="bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
 
     <script src="js/angular/app.js"></script>
 
@@ -90,6 +90,8 @@
     <script src="js/angular/controller/MainCtrl.js"></script>
 
     <script src="js/angular/controller/NavCtrl.js"></script>
+
+    <script src="js/angular/controller/DepositCtrl.js"></script>
 
   </body>
 </html>

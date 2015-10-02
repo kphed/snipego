@@ -3,14 +3,10 @@
 angular.module('SnipeGo',
   ['SnipeGo.MainCtrl',
   'SnipeGo.NavCtrl',
+  'SnipeGo.DepositCtrl',
   'SnipeGo.Services',
   'ui.router',
   'angular-svg-round-progress'])
-  // .run(['$rootScope', '$location', '$http', function($rootScope, $location, $http) {
-  //   $rootScope.$on('$stateChangeStart', function(e, toState){
-
-  //   });
-  // }])
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 
@@ -19,5 +15,10 @@ angular.module('SnipeGo',
         url: '/',
         templateUrl: 'js/template/main.html',
         controller: 'MainCtrl'
+      })
+      .state('deposit', {
+        url: '/deposit',
+        templateUrl: 'js/template/deposit.html',
+        controller: 'DepositCtrl'
       });
   });

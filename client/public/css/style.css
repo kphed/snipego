@@ -3,10 +3,6 @@ html, body {
   height: 100%;
 }
 
-.ui-view-container {
-  background-color: black;
-}
-
 .jackpot {
   font-size: 20px;
   color: #32cd32;
@@ -17,6 +13,17 @@ html, body {
   background: black;
   height: 100%;
   min-height: 100%;
+}
+
+.itemBox {
+  border: 1px solid white;
+  padding: 0 10px 5px 0;
+}
+
+#itemBox {
+  background-color: gray;
+  height: 100px;
+  width: 100px;
 }
 
 #nav-text-left {
@@ -33,17 +40,17 @@ html, body {
   margin-top: -5px;
 }
 
+#btn {
+  background-color: #45ccce;
+  color: white;
+  font-size: 1.15em;
+}
+
 #profilePic {
   border-style: solid;
   border-width: 1px;
   border-color: gray;
   margin-left: 10px;
-}
-
-#ui-view-wrapper {
-  height: 100%;
-  min-height: 100%;
-  display: block;
 }
 
 .progress-container {

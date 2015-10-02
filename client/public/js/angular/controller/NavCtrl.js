@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
-  .controller('NavCtrl', ['$scope', 'Auth', function($scope, Auth) {
+  .controller('NavCtrl', ['$scope', '$rootScope', 'Auth', function($scope, $rootScope, Auth) {
 
     $scope.isAuth = false;
-
-    $scope.firstName = "Khoa";
 
     $scope.profilePic = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/626d9a8ffbe54581cb92c7a9e0cd7b2dba730e14.jpg';
 
@@ -14,9 +12,11 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
       Auth.checkSession().success(function(resp) {
         console.log('resp is ', resp);
         if (resp) {
+          $scope.profilePic = resp.photos[0].value;
           $scope.isAuth = true;
+          $rootScope.user = resp;
         } else {
-          console.log('no resp');
+          console.log('there was no resp');
         }
       });
     };
