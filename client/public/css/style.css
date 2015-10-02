@@ -41,6 +41,7 @@ html, body {
 }
 
 #btn {
+  border: 1px solid white;
   background-color: #45ccce;
   color: white;
   font-size: 1.15em;

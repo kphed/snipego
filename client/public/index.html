@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SnipeGo - Try Your Luck and Win skins!</title>
+    <title>SnipeGo - Win CS:GO Skins</title>
 
     <link href="css/style.css" rel="stylesheet">
 
@@ -49,11 +49,11 @@
                     <li ng-show="!isAuth">
                       <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
                     </li>
-                    <li ng-show="isAuth" style="margin-top: -5px">
-                      <a href="#/deposit"><button type="button" class="btn" id="btn">Play Now</button></a>
-                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="navbar-right" ng-show="isAuth">
+                  <li ng-show="isAuth">
+                    <a href="#/deposit"><button type="button" class="btn" id="btn">Play Now</button></a>
+                  </li>
                   <li>
                     <a href=""><img id="profilePic" src="{{profilePic}}" /></a>
                   </li>
