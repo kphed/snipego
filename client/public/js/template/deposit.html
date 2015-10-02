@@ -1,10 +1,31 @@
-<div>
+<div class="inventory">
   <button type="button" class="btn" id="btn" ng-click="grabInventory()">Refresh Inventory</button>
-<div class="table-responsive">
-    <table style="margin-top: 100px">
-      <tr>
-        <td class="itemBox"><div id="itemBox"><img id="itemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbupIgthwczLZAJF7dC_mIGZqOf1Ia_YlWdU-_p9g-7J4cKt3wfmrUVoN2zwcNTGe1Q-Ml_T-Fe6wOjqgMK46pTAyHBn7ihxtCyOgVXp1nGGEdIU" /></div></td>
-      </tr>
-    </table>
+  <div class="inventory">
+      <table class="item-table">
+        <tbody>
+          <tr ng-repeat="item in items">
+            <td class="itemBox" data-toggle="popover" data-container="body" data-content="{{i.market_hash_name}}" ng-repeat="i in item">
+              <div id="itemContainer">
+                <img id="itemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/{{i.icon_url}}" />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
 </div>
-</div>
+  <script>
+  $(document).ready(function() {
+      $('.item-table').on('mouseenter', '[data-toggle=popover]', function(e) {
+        $(this).popover('show');
+      });
+
+      $('.item-table').on('mouseleave', '[data-toggle=popover]', function(e) {
+        $(this).popover('hide');
+      });
+  });
+
+      // $('[data-toggle=popover]').on('hover', function (e) {
+      //    $('[data-toggle=popover]').not(this).popover('hide');
+      // });
+  </script>
