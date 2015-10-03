@@ -1,7 +1,8 @@
-<div class="inventory">
-  <button type="button" class="btn" id="btn" ng-click="grabInventory()">Refresh Inventory</button>
-  <div class="inventory">
-      <table class="item-table">
+<div class="inventory" ng-init="grabInventory()">
+  <button type="button" class="btn refresh-btn" id="btn" ng-click="updateInventory()"><span class="glyphicon glyphicon-refresh" style="color: white" aria-hidden="true"></span> Refresh Inventory</button>
+  <div>
+      <img src="../../img/loading.gif" ng-show="inventoryLoading"/>
+      <table class="item-table table-responsive" ng-show="!inventoryLoading">
         <tbody>
           <tr ng-repeat="item in items">
             <td class="itemBox" data-toggle="popover" data-container="body" data-content="{{i.market_hash_name}}" ng-repeat="i in item">
@@ -14,18 +15,14 @@
       </table>
   </div>
 </div>
-  <script>
+<script>
   $(document).ready(function() {
-      $('.item-table').on('mouseenter', '[data-toggle=popover]', function(e) {
-        $(this).popover('show');
-      });
+    $('.item-table').on('mouseenter', '[data-toggle=popover]', function(e) {
+      $(this).popover('show');
+    });
 
-      $('.item-table').on('mouseleave', '[data-toggle=popover]', function(e) {
-        $(this).popover('hide');
-      });
+    $('.item-table').on('mouseleave', '[data-toggle=popover]', function(e) {
+      $(this).popover('hide');
+    });
   });
-
-      // $('[data-toggle=popover]').on('hover', function (e) {
-      //    $('[data-toggle=popover]').not(this).popover('hide');
-      // });
-  </script>
+</script>
