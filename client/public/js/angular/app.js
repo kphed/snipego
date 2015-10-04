@@ -6,7 +6,8 @@ angular.module('SnipeGo',
   'SnipeGo.DepositCtrl',
   'SnipeGo.Services',
   'ui.router',
-  'angular-svg-round-progress'])
+  'angular-svg-round-progress',
+  'snap'])
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 

@@ -17,54 +17,55 @@
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet'>
 
+    <link href="bower_components/angular-snap/angular-snap.css" rel="stylesheet">
+
 
   </head>
 
   <body ng-app="SnipeGo">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavCtrl">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#/">SnipeGo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                      <a href="#"><span id="nav-text-left">How To Play</span></a>
-                    </li>
-                    <li>
-                      <a href="#"><span id="nav-text-left">Get Free Skins</span></a>
-                    </li>
-                    <li>
-                      <a href="#"><span id="nav-text-left">Support</span></a>
-                    </li>
-                    <li ng-show="!isAuth">
-                      <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right" id="navbar-right" ng-show="isAuth">
-                  <li ng-show="isAuth">
-                    <a href="#/deposit"><button type="button" class="btn" id="btn">Play Now</button></a>
+    <div ng-controller="NavCtrl">
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+              <div class="navbar-header nav-item">
+                <a href="#" class="btn btn-default navbar-btn nav-text" ng-show="isAuth" snap-toggle=""><i class="glyphicon glyphicon-chevron-right"></i> <span class="hidden-xs">Play Now</span></a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right" id="navbar-right">
+                  <li class="nav-item">
+                    <a href="#"><span class="nav-text">How To Play</span></a>
                   </li>
-                  <li>
+                  <li class="nav-item">
+                    <a href="#"><span class="nav-text">Get Free Skins</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#"><span class="nav-text">Support</span></a>
+                  </li>
+                  <li class="nav-item" ng-show="!isAuth">
+                    <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
+                  </li>
+                  <li ng-show="isAuth">
                     <a href=""><img id="profilePic" src="{{profilePic}}" /></a>
                   </li>
                 </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container-fluid fill">
-
-        <div ui-view></div>
-
+              </div>
+          </div>
+      </nav>
     </div>
+
+    <snap-drawer class="sidebar-content">
+
+      <p>Item content goes here!</p>
+
+    </snap-drawer>
+
+    <snap-content class="main-view">
+
+      <div class="container-fluid fill">
+        <div ui-view></div>
+      </div>
+
+    </snap-content>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -73,6 +74,10 @@
     <script src="bower_components/angular/angular.js"></script>
 
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <script src="bower_components/snapjs/snap.js"></script>
+
+    <script src="bower_components/angular-snap/angular-snap.js"></script>
 
     <script src="bower_components/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
 

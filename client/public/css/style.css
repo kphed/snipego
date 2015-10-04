@@ -16,17 +16,6 @@ html, body {
   overflow: scroll;
 }
 
-.itemBox {
-  border: 1px solid white;
-  padding: 5px;
-}
-
-.item-table {
-  margin-top: 2em;
-  border-spacing: 10px;
-  border-collapse: separate;
-}
-
 .refresh-btn {
   margin-left: 10px;
 }
@@ -45,37 +34,28 @@ html, body {
   line-height: 1;
 }
 
-.inventory {
-  margin-top: 2em;
-}
-
-#itemContainer {
-  background-color: gray;
-  height: 74px;
-  width: 74px;
-}
-
-#itemBox {
-  height: 60px;
-  width: 74px;
-}
-
-#nav-text-left {
-  font-size: 1.15em;
+.nav-text {
+  font-size: 1em;
   color: white;
 }
 
-#navbar-right {
-  margin-top: -5px;
-}
-
-#btn {
-  border: 1px solid white;
-  background-color: #45ccce;
-  color: white;
-  font-size: 1.15em;
+.nav-item {
+  margin-top: 5px;
 }
 
 #profilePic {
   margin-left: 10px;
+}
+
+.sidebar-content {
+  margin-top: 5em;
+}
+
+.main-view {
+  margin-top: 2em;
+}
+
+snap-content {
+  background-color: #fff;
+  border-left: 1px solid #ccc;
 }

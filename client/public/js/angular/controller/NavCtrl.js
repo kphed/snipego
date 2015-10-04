@@ -5,10 +5,10 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.isAuth = false;
 
-    $scope.profilePic = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/626d9a8ffbe54581cb92c7a9e0cd7b2dba730e14.jpg';
+    $scope.profilePic = '';
 
     $scope.checkAuth = function() {
-      console.log('calling check auth');
+      console.log('calling check auth...');
       Auth.checkSession().success(function(resp) {
         console.log('resp is ', resp);
         if (resp) {
