@@ -8,7 +8,7 @@ angular.module('SnipeGo',
   'ui.router',
   'angular-svg-round-progress',
   'snap'])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, snapRemoteProvider) {
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
@@ -22,4 +22,12 @@ angular.module('SnipeGo',
         templateUrl: 'js/template/deposit.html',
         controller: 'DepositCtrl'
       });
+
+    snapRemoteProvider.globalOptions = {
+      disable: 'right',
+      touchToDrag:false,
+      tapToClose:false,
+      maxPosition: 351,
+      minPosition: -351
+    };
   });
