@@ -24,7 +24,7 @@ module.exports = function(passport) {
           console.log('the user exists');
           finish(done, profile);
         } else {
-          client.query('INSERT INTO users(steamid, avatar) values ($1, $2)', [profile.id, profile.photos[0].value], function(err, result) {
+          client.query('INSERT INTO users(steamid, avatar) values ($1, $2)', [profile.id, profile.photos[1].value], function(err, result) {
             console.log('user does not exist');
             finish(done, profile);
           });
