@@ -24,61 +24,14 @@
 
   <body ng-app="SnipeGo">
 
-    <div ng-controller="NavCtrl">
+    <div>
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-          <div class="container">
-              <div class="navbar-header nav-item">
-                <button class="btn btn-{{successDanger}} navbar-btn play-button nav-popover" ng-show="isAuth" ng-click="togglePlay()" snap-toggle="" data-toggle="popover" data-container="body" data-content="Play & Win Skins"><i class="glyphicon glyphicon-{{playStop}} play-text"></i></button>
-              </div>
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right" id="navbar-right">
-                  <li class="nav-item">
-                    <button class="btn btn-info navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
-                  </li>
-                  <li class="nav-item">
-                    <button class="btn btn-warning navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
-                  </li>
-                  <li class="nav-item">
-                    <button class="btn btn-danger navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
-                  </li>
-                  <li class="nav-item" ng-show="!isAuth">
-                    <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
-                  </li>
-                  <li ng-show="isAuth">
-                    <a href="" class="nav-popover" data-toggle="popover" data-container="body" data-content="Profile"><img id="profilePic" src="{{profilePic}}" /></a>
-                  </li>
-                </ul>
-              </div>
-          </div>
+        <div ui-view="nav"></div>
       </nav>
     </div>
 
-    <snap-drawer class="snap-drawer" ng-controller="DepositCtrl">
-      <div class="sidebar-content">
-        <div>
-          <button class="btn btn-success" id="inventory-btn"><span class="inventory-btn">Bet 5 Items</span></button>
-          <button class="btn btn-info" id="inventory-refresh-btn" ng-click="updateInventory()"><i class="glyphicon glyphicon-refresh inventory-refresh-btn"></i></button>
-        </div>
-        <div id="total-value">
-          <span>Total value of bet: $100</span>
-        </div>
-        <div>
-          <div>
-            <img src="../img/loading.gif" ng-show="inventoryLoading"/>
-            <table class="item-table table-responsive" ng-show="!inventoryLoading">
-              <tbody>
-                <tr ng-repeat="item in items">
-                  <td class="itemBox" data-toggle="popover" data-container="body" data-content="{{i.market_hash_name}}" ng-repeat="i in item">
-                    <div class="itemContainer">
-                      <img id="itemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/{{i.icon_url}}" />
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <snap-drawer class="snap-drawer">
+      <div ui-view="deposit"></div>
     </snap-drawer>
 
     <snap-content class="main-content">
@@ -112,8 +65,6 @@
     <script src="js/angular/controller/NavCtrl.js"></script>
 
     <script src="js/angular/controller/DepositCtrl.js"></script>
-
-    <script src="js/jquery.js"></script>
 
   </body>
 </html>

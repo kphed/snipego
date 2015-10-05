@@ -14,17 +14,23 @@ angular.module('SnipeGo',
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'js/template/main.html',
-        controller: 'MainCtrl'
-      })
-      .state('deposit', {
-        url: '/deposit',
-        templateUrl: 'js/template/deposit.html',
-        controller: 'DepositCtrl'
+        views: {
+          '': {
+          templateUrl: 'js/template/main.html',
+          controller: 'MainCtrl'
+          },
+          'deposit': {
+            templateUrl: 'js/template/deposit.html',
+            controller: 'DepositCtrl'
+          },
+          'nav': {
+            templateUrl: 'js/template/nav.html',
+            controller: 'NavCtrl'
+          }
+        }
       });
 
     snapRemoteProvider.globalOptions = {
-      disable: 'right',
       touchToDrag:false,
       tapToClose:false,
       maxPosition: 351,
