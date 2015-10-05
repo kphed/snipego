@@ -3,9 +3,8 @@ html, body {
   height: 100%;
 }
 
-.jackpot {
-  font-size: 20px;
-  color: #32cd32;
+snap-content {
+  border-left: 1px solid black;
 }
 
 .fill {
@@ -13,7 +12,7 @@ html, body {
   background: black;
   height: 100%;
   min-height: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .refresh-btn {
@@ -23,39 +22,32 @@ html, body {
 .progress-container {
   text-align: center;
   position: relative;
-  padding-top: 5%;
 }
 
 .progress-text {
-  margin-top: 2.5%;
   position: absolute;
-  color: #45ccce;
-  font-weight: 100;
+  color: white;
+  font-weight: 50;
   line-height: 1;
 }
 
-.nav-text {
-  font-size: 1em;
-  color: white;
+.play-text {
+  font-size: 3.55em;
+}
+
+.nav-button {
+  font-size: 3.55em;
 }
 
 .nav-item {
   margin-top: 5px;
-}
-
-#profilePic {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .sidebar-content {
+  margin-top: 10em;
+}
+
+.main-content {
   margin-top: 5em;
-}
-
-.main-view {
-  margin-top: 2em;
-}
-
-snap-content {
-  background-color: #fff;
-  border-left: 1px solid #ccc;
 }

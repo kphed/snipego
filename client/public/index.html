@@ -28,24 +28,24 @@
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div class="container">
               <div class="navbar-header nav-item">
-                <a href="#" class="btn btn-default navbar-btn nav-text" ng-show="isAuth" snap-toggle=""><i class="glyphicon glyphicon-chevron-right"></i> <span class="hidden-xs">Play Now</span></a>
+                <button class="btn btn-{{successDanger}} navbar-btn play-button nav-popover" ng-show="isAuth" ng-click="togglePlay()" snap-toggle="" data-toggle="popover" data-container="body" data-content="Play & Win Skins"><i class="glyphicon glyphicon-{{playStop}} play-text"></i></button>
               </div>
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right" id="navbar-right">
                   <li class="nav-item">
-                    <a href="#"><span class="nav-text">How To Play</span></a>
+                    <button class="btn btn-info navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
                   </li>
                   <li class="nav-item">
-                    <a href="#"><span class="nav-text">Get Free Skins</span></a>
+                    <button class="btn btn-warning navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
                   </li>
                   <li class="nav-item">
-                    <a href="#"><span class="nav-text">Support</span></a>
+                    <button class="btn btn-danger navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-usd nav-button"></i></button>
                   </li>
                   <li class="nav-item" ng-show="!isAuth">
                     <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
                   </li>
                   <li ng-show="isAuth">
-                    <a href=""><img id="profilePic" src="{{profilePic}}" /></a>
+                    <a href="" class="nav-popover" data-toggle="popover" data-container="body" data-content="Profile"><img id="profilePic" src="{{profilePic}}" /></a>
                   </li>
                 </ul>
               </div>
@@ -53,13 +53,13 @@
       </nav>
     </div>
 
-    <snap-drawer class="sidebar-content">
+    <snap-drawer>
 
-      <p>Item content goes here!</p>
+      <p class="sidebar-content">Item content goes here!</p>
 
     </snap-drawer>
 
-    <snap-content class="main-view">
+    <snap-content class="main-content">
 
       <div class="container-fluid fill">
         <div ui-view></div>
@@ -91,5 +91,16 @@
 
     <script src="js/angular/controller/DepositCtrl.js"></script>
 
+    <script>
+      $(document).ready(function() {
+        $('.nav-popover').on('mouseenter', function(e) {
+          $(this).popover('show');
+        });
+
+        $('.nav-popover').on('mouseleave', function(e) {
+          $(this).popover('hide');
+        });
+      });
+    </script>
   </body>
 </html>
