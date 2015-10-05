@@ -1,14 +1,13 @@
 <div class="sidebar-content">
   <div>
     <button class="btn btn-success" id="inventory-btn"><span class="inventory-btn">Bet 5 Items</span></button>
-    <button class="btn btn-info" id="inventory-refresh-btn" ng-click="updateInventory()"><i class="glyphicon glyphicon-refresh inventory-refresh-btn"></i></button>
+    <button class="btn btn-info" id="inventory-refresh-btn" ng-click="updateInventory()"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
   </div>
   <div id="total-value">
     <span>Total value of bet: $124</span>
   </div>
   <div>
     <div>
-      <img src="../img/loading.gif" ng-show="inventoryLoading"/>
       <table class="item-table table-responsive" ng-show="!inventoryLoading">
         <tbody>
           <tr ng-repeat="item in items">
