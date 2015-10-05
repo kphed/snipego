@@ -6,13 +6,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right" id="navbar-right">
         <li class="nav-item">
-          <button class="btn btn-info navbar-btn nav-popover" data-toggle="modal" data-target="#myModal" data-toggle="popover" data-container="body" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
+          <button class="btn btn-info navbar-btn nav-popover" data-toggle="modal" data-target="#info" data-toggle="popover" data-container="body" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
         </li>
         <li class="nav-item">
-          <button class="btn btn-warning navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
+          <button class="btn btn-warning navbar-btn nav-popover" data-toggle="modal" data-target="#support" data-toggle="popover" data-container="body" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
         </li>
         <li class="nav-item">
-          <button class="btn btn-danger navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
+          <button class="btn btn-danger navbar-btn nav-popover" data-toggle="modal" data-target="#free" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
         </li>
         <li class="nav-item" ng-show="!isAuth">
           <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
@@ -25,22 +25,49 @@
   </div>
 </nav>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">How To Play</h4>
       </div>
       <div class="modal-body">
         ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 
-<script src="js/jquery-nav.js"></script>
+<div class="modal fade" id="support" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Need Help or Have Questions/Suggestions?</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="free" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Earn Free Spins!</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var url = "js/jquery-nav.js";
+  $.getScript(url);
+</script>
