@@ -51,3 +51,7 @@ snap-content {
 .main-content {
   margin-top: 5em;
 }
+
+.snap-drawer {
+  width: 350px;
+}
