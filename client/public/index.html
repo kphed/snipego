@@ -39,7 +39,7 @@
                     <button class="btn btn-warning navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
                   </li>
                   <li class="nav-item">
-                    <button class="btn btn-danger navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-usd nav-button"></i></button>
+                    <button class="btn btn-danger navbar-btn nav-popover" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
                   </li>
                   <li class="nav-item" ng-show="!isAuth">
                     <a href="/users/auth/steam"><img src="img/sits_small.png" /></a>
@@ -113,28 +113,7 @@
 
     <script src="js/angular/controller/DepositCtrl.js"></script>
 
-    <script>
-      $(document).ready(function() {
-        $('.nav-popover').on('mouseenter', function(e) {
-          $(this).popover('show');
-        });
+    <script src="js/jquery.js"></script>
 
-        $('.nav-popover').on('mouseleave', function(e) {
-          $(this).popover('hide');
-        });
-
-        $('.item-table').on('mouseenter', '[data-toggle=popover]', function(e) {
-          $(this).popover('show');
-        });
-
-        $('.item-table').on('mouseleave', '[data-toggle=popover]', function(e) {
-          $(this).popover('hide');
-        });
-
-        $('.item-table').on('mousedown', '[data-toggle=popover]', function(){
-          $(this).toggleClass('highlightCell');
-        });
-      });
-    </script>
   </body>
 </html>
