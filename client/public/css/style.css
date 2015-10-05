@@ -7,12 +7,9 @@ html, body {
    outline: none !important;
 }
 
-snap-content {
-  border-left: 1px solid black;
-}
-
-snap-drawer {
+.snap-drawer {
   background-color: #212121;
+  width: 350px;
 }
 
 .fill {
@@ -61,10 +58,6 @@ snap-drawer {
   margin-top: 5em;
 }
 
-.snap-drawer {
-  width: 350px;
-}
-
 .inventory-btn {
   font-size: 1.8em;
 }
@@ -80,7 +73,7 @@ snap-drawer {
 #inventory-refresh-btn {
   float: right;
   width: 10em;
-  margin-right: 15px;
+  margin-right: 5px;
 }
 
 .itemContainer {
