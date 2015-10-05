@@ -10,19 +10,20 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     $scope.selectedItems = {};
 
     $scope.selectedQuantity = function() {
-      var itemLength = Object.keys($scope.selectedItems).length
+      var itemLength = Object.keys($scope.selectedItems).length;
       return ' ' + itemLength + ' Items';
     };
 
     $scope.selectItem = function(item) {
+      var itemLength = Object.keys($scope.selectedItems).length;
       if ($scope.selectedItems[item.assetid]) {
-        console.log('deselected item is ', item);
         delete $scope.selectedItems[item.assetid];
-        console.log('deselected items object is ', $scope.selectedItems);
       } else {
-        console.log('selected item is ', item);
-        $scope.selectedItems[item.assetid] = item;
-        console.log('selected items object is ', $scope.selectedItems);
+        if (itemLength === 20) {
+          console.log('You can\'t add anymore items');
+        } else {
+          $scope.selectedItems[item.assetid] = item;
+        }
       }
     }
 
