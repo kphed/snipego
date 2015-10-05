@@ -53,10 +53,32 @@
       </nav>
     </div>
 
-    <snap-drawer>
-
-      <p class="sidebar-content">Item content goes here!</p>
-
+    <snap-drawer class="snap-drawer" ng-controller="DepositCtrl">
+      <div class="sidebar-content">
+        <div>
+          <button class="btn btn-success" id="inventory-btn"><span class="inventory-btn">Bet 5 Items</span></button>
+          <button class="btn btn-info" id="inventory-refresh-btn" ng-click="updateInventory()"><i class="glyphicon glyphicon-refresh inventory-refresh-btn"></i></button>
+        </div>
+        <div id="total-value">
+          <span>Total value of bet: $100</span>
+        </div>
+        <div>
+          <div>
+            <img src="../img/loading.gif" ng-show="inventoryLoading"/>
+            <table class="item-table table-responsive" ng-show="!inventoryLoading">
+              <tbody>
+                <tr ng-repeat="item in items">
+                  <td class="itemBox" data-toggle="popover" data-container="body" data-content="{{i.market_hash_name}}" ng-repeat="i in item">
+                    <div class="itemContainer">
+                      <img id="itemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/{{i.icon_url}}" />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </snap-drawer>
 
     <snap-content class="main-content">
@@ -99,6 +121,18 @@
 
         $('.nav-popover').on('mouseleave', function(e) {
           $(this).popover('hide');
+        });
+
+        $('.item-table').on('mouseenter', '[data-toggle=popover]', function(e) {
+          $(this).popover('show');
+        });
+
+        $('.item-table').on('mouseleave', '[data-toggle=popover]', function(e) {
+          $(this).popover('hide');
+        });
+
+        $('.item-table').on('mousedown', '[data-toggle=popover]', function(){
+          $(this).toggleClass('highlightCell');
         });
       });
     </script>

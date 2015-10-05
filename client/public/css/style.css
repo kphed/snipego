@@ -7,6 +7,10 @@ snap-content {
   border-left: 1px solid black;
 }
 
+snap-drawer {
+  background-color: #212121;
+}
+
 .fill {
   padding-top: 50px;
   background: black;
@@ -45,7 +49,8 @@ snap-content {
 }
 
 .sidebar-content {
-  margin-top: 10em;
+  margin-top: 8em;
+  margin-left: 0.5em;
 }
 
 .main-content {
@@ -54,4 +59,47 @@ snap-content {
 
 .snap-drawer {
   width: 350px;
+}
+
+.inventory-btn {
+  font-size: 1.8em;
+}
+
+#inventory-btn {
+  margin-left: 5px;
+}
+
+.inventory-refresh-btn {
+  font-size: 2.15em;
+}
+
+#inventory-refresh-btn {
+  float: right;
+  width: 10em;
+  margin-right: 15px;
+}
+
+.itemContainer {
+  margin: 5px;
+  height: 69px;
+  width: 69px;
+  border: 1px solid black;
+  background-color: #d3d3d3;
+}
+
+#itemBox {
+  padding: 5px;
+  height: 55px;
+  width: 69px;
+}
+
+#total-value {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+  color: white;
+}
+
+.highlightCell {
+  background-color: #eaeaea;
 }

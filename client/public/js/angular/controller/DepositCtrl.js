@@ -7,6 +7,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     $scope.items = [];
 
     $scope.addItems = function(items, descriptions) {
+      console.log('calling add items');
       var row = [];
       var tempObj = {};
       return Object.keys(items).map(function(id) {
@@ -20,7 +21,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         tempObj.icon_url = item.icon_url;
         row.push(tempObj);
         tempObj = {};
-        if (row.length === 5) {
+        if (row.length === 4) {
           $scope.items.push(row);
           row = [];
         }
@@ -29,15 +30,15 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       });
     };
 
-    $scope.grabInventory = function() {
-      console.log('grabbing inventory');
-      $scope.inventoryLoading = true;
-      $http.post('/users/inventory', {steamid: $rootScope.user.id})
-        .success(function(resp) {
-          console.log('inventory: ', resp);
-          $scope.addItems(resp.rgInventory, resp.rgDescriptions);
-        });
-    };
+    // $scope.grabInventory = function() {
+    //   console.log('grabbing inventory');
+    //   $scope.inventoryLoading = true;
+    //   $http.post('/users/inventory', {steamid: $rootScope.user.id})
+    //     .success(function(resp) {
+    //       console.log('inventory: ', resp);
+    //       $scope.addItems(resp.rgInventory, resp.rgDescriptions);
+    //     });
+    // };
 
     $scope.updateInventory = function() {
       console.log('updating inventory');
