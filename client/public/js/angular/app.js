@@ -34,7 +34,7 @@ angular.module('SnipeGo',
       disable: 'right',
       touchToDrag:false,
       tapToClose:false,
-      maxPosition: 351,
-      minPosition: -351
+      maxPosition: 350,
+      minPosition: -350
     };
   });
