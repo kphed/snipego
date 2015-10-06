@@ -56,16 +56,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       });
     };
 
-    // $scope.grabInventory = function() {
-    //   console.log('grabbing inventory');
-    //   $scope.inventoryLoading = true;
-    //   $http.post('/users/inventory', {steamid: $rootScope.user.id})
-    //     .success(function(resp) {
-    //       console.log('inventory: ', resp);
-    //       $scope.addItems(resp.rgInventory, resp.rgDescriptions);
-    //     });
-    // };
-
     $scope.updateInventory = function() {
       console.log('updating inventory');
       $scope.inventoryLoading = true;

@@ -133,7 +133,7 @@ html, body {
 }
 
 .snap-drawer {
-  background-color: #212121;
+  background-color: black;
   width: 350px;
 }
 
@@ -161,16 +161,15 @@ html, body {
 
 .itemContainer {
   margin: 5px;
-  height: 79px;
-  width: 69px;
-  border: 1px solid black;
-  background-color: #d3d3d3;
+  height: 74px;
+  width: 64px;
+  background-color: #212121;
 }
 
 #itemBox {
   padding: 5px;
-  height: 55px;
-  width: 69px;
+  height: 50px;
+  width: 64px;
 }
 
 .itemBox {
@@ -178,13 +177,24 @@ html, body {
 }
 
 .itemBoxPrice {
-  color: black;
+  color: #5FB760;
   font-size: 14px;
 }
 
+.items-shown {
+  margin-left: 0.5em;
+  color: white;
+}
+
 #total-value-text {
-  margin-top: 0.5em;
+  margin-top: 1em;
   margin-bottom: 0.5em;
   margin-left: 0.5em;
   color: white;
 }
+
+#deposit-table td {
+  border-color: black;
+  border-width: 5px;
+}
+
