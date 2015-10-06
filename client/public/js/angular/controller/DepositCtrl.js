@@ -19,18 +19,19 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       if ($scope.selectedItems[item.assetid]) {
         delete $scope.selectedItems[item.assetid];
       } else {
-        if (itemLength === 20) {
+        if (itemLength > 20) {
           console.log('You can\'t add anymore items');
         } else {
           $scope.selectedItems[item.assetid] = item;
         }
       }
-    }
+    };
 
     $scope.addItems = function(items, descriptions) {
       console.log('calling add items');
       var row = [];
       var tempObj = {};
+      var itemCount = 0;
       return Object.keys(items).map(function(id) {
         var item = items[id];
         var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
@@ -45,7 +46,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         tempObj.icon_url = item.icon_url;
         row.push(tempObj);
         tempObj = {};
-        if (row.length === 4) {
+        itemCount++;
+        if (row.length === 4 || itemCount === (Object.keys(items).length - 1)) {
           $scope.items.push(row);
           row = [];
         }
