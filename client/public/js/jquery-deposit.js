@@ -10,4 +10,12 @@ $(document).ready(function() {
   $('.item-table').on('mousedown', '[data-toggle=popover]', function(){
     $(this).toggleClass('highlightCell');
   });
+
+  $('.btn-popover').on('mouseenter', function(e) {
+    $(this).popover('show');
+  });
+
+  $('.btn-popover').on('mouseleave', function(e) {
+    $(this).popover('hide');
+  });
 });

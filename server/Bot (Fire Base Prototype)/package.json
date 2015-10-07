@@ -1,0 +1,24 @@
+{
+  "name": "steam_backpack",
+  "version": "1.0.0",
+  "description": "a bot that creates a backpack for steam items locally",
+  "main": "bot 1.0.js",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "firebase": "^2.3.1",
+    "mysql": "^2.9.0",
+    "randomstring": "^1.0.7",
+    "steam": "^1.1.0",
+    "steam-tradeoffers": "^2.0.2",
+    "steam-user": "^1.6.1",
+    "steam-web-api-key": "^0.0.1",
+    "winston": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AlexNabu",
+  "license": "ISC"
+}

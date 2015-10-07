@@ -16,7 +16,7 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
       Auth.checkSession().success(function(resp) {
         console.log('resp is ', resp);
         if (resp) {
-          $scope.profilePic = resp.photos[1].value;
+          $scope.profilePic = resp.photos[1];
           $scope.isAuth = true;
           $rootScope.user = resp;
         } else {

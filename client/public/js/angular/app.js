@@ -6,8 +6,10 @@ angular.module('SnipeGo',
   'SnipeGo.DepositCtrl',
   'SnipeGo.Services',
   'ui.router',
+  'firebase',
   'angular-svg-round-progress',
-  'snap'])
+  'snap',
+  'irontec.simpleChat'])
   .config(function($stateProvider, $urlRouterProvider, snapRemoteProvider) {
     $urlRouterProvider.otherwise("/");
 
@@ -17,7 +19,7 @@ angular.module('SnipeGo',
         views: {
           '': {
           templateUrl: 'js/template/main.html',
-          controller: 'MainCtrl'
+          controller: 'MainCtrl',
           },
           'deposit': {
             templateUrl: 'js/template/deposit.html',
@@ -34,7 +36,7 @@ angular.module('SnipeGo',
       disable: 'right',
       touchToDrag:false,
       tapToClose:false,
-      maxPosition: 351,
-      minPosition: -351
+      maxPosition: 350,
+      minPosition: -350
     };
   });
