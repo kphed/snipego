@@ -7,7 +7,8 @@ angular.module('SnipeGo',
   'SnipeGo.Services',
   'ui.router',
   'angular-svg-round-progress',
-  'snap'])
+  'snap',
+  'irontec.simpleChat'])
   .config(function($stateProvider, $urlRouterProvider, snapRemoteProvider) {
     $urlRouterProvider.otherwise("/");
 
@@ -17,7 +18,7 @@ angular.module('SnipeGo',
         views: {
           '': {
           templateUrl: 'js/template/main.html',
-          controller: 'MainCtrl'
+          controller: 'MainCtrl',
           },
           'deposit': {
             templateUrl: 'js/template/deposit.html',
