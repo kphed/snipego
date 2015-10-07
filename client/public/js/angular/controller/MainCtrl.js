@@ -26,7 +26,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       console.log($scope.messages);
       if(message && message !== '' && $rootScope.user) {
         $scope.messages.$add({
-          'username': $rootScope.user.photos[0].value,
+          'username': $rootScope.user.photos[0],
           'content': message
         });
       } else {
