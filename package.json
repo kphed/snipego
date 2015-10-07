@@ -11,6 +11,7 @@
     "debug": "~2.2.0",
     "express": "~4.12.4",
     "express-session": "^1.11.3",
+    "firebase": "^2.3.1",
     "morgan": "~1.5.3",
     "passport": "^0.3.0",
     "passport-steam": "^0.1.6",
