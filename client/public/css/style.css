@@ -37,9 +37,7 @@ html, body {
 }
 
 #jackpot-table {
-  /*float: left;*/
   font-family: "Open Sans";
-  /*text-align: center;*/
 }
 
 #jackpot-table td {
@@ -72,7 +70,7 @@ html, body {
 /* General */
 
 .btn:focus,.btn:active {
-   outline: none !important;
+  outline: none !important;
 }
 
 
@@ -89,8 +87,8 @@ html, body {
 }
 
 .glyphicon-refresh-animate {
-    -animation: spin .7s infinite linear;
-    -webkit-animation: spin2 .7s infinite linear;
+  -animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
 }
 
 @-webkit-keyframes spin2 {

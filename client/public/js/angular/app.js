@@ -6,6 +6,7 @@ angular.module('SnipeGo',
   'SnipeGo.DepositCtrl',
   'SnipeGo.Services',
   'ui.router',
+  'firebase',
   'angular-svg-round-progress',
   'snap',
   'irontec.simpleChat'])
