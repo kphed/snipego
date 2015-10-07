@@ -16,8 +16,8 @@ app.use(session({secret: 'csgo'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-var routes = require('/routes/index');
-var users = require('/routes/users');
+var routes = require('./routes/index');
+var users = require('./routes/users');
 app.use(favicon(__dirname + '/client/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
