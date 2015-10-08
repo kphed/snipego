@@ -1,13 +1,11 @@
 'use strict';
 
 angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
-  .controller('DepositCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+  .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', function($scope, $http, $rootScope, $window) {
 
     $scope.inventoryLoading = false;
 
     $scope.items = [];
-
-    $scope.totalValue = 0;
 
     $scope.selectedItems = {};
 
@@ -16,17 +14,23 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       return ' ' + itemLength + ' Items';
     };
 
+    $scope.totalValue = function(bool, value) {
+      var num = 0;
+      for (var key in $scope.selectedItems) {
+        num += parseFloat($scope.selectedItems[key]['market_price'].slice(1));
+      }
+      return Math.round(num * 100) / 100;
+    };
+
     $scope.selectItem = function(item) {
       var itemLength = Object.keys($scope.selectedItems).length;
       if ($scope.selectedItems[item.assetid]) {
         delete $scope.selectedItems[item.assetid];
-        $scope.totalValue -= parseFloat(item.market_price.slice(1)).toFixed(2);
       } else {
         if (itemLength > 20) {
-          console.log('You can\'t add anymore items');
+          $window.alert('You can\'t add more than 20 items');
         } else {
           $scope.selectedItems[item.assetid] = item;
-          $scope.totalValue += parseFloat(item.market_price.slice(1)).toFixed(2);
         }
       }
     };
