@@ -71,6 +71,21 @@ html, body {
   text-align: center;
 }
 
+.jackpot-player-cell-header {
+  min-width: 75px;
+  min-height: 75px;
+}
+
+.jackpot-player-cell-text {
+  color: #5FB760;
+  font-size: 12px;
+}
+
+#jackpotPlayerBox {
+  height: 65px;
+  width: 65px;
+}
+
 /* General */
 
 .btn:focus,.btn:active {
