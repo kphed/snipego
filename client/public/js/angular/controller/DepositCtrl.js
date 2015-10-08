@@ -17,7 +17,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     $scope.totalValue = function(bool, value) {
       var num = 0;
       for (var key in $scope.selectedItems) {
-        num += parseFloat($scope.selectedItems[key]['market_price'].slice(1));
+        num += parseFloat($scope.selectedItems[key]['market_price']);
       }
       return Math.round(num * 100) / 100;
     };
@@ -35,24 +35,26 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       }
     };
 
-    $scope.addItems = function(items, descriptions) {
-      console.log('calling add items');
+    $scope.fetchItems = function(items, descriptions) {
       var tempObj = {};
       var itemCount = 0;
       return Object.keys(items).map(function(id) {
         var item = items[id];
         var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
         for (var key in description) {
+          if (!description.market_price) {
+            continue;
+          }
           item[key] = description[key];
         }
-        if (item.market_hash_name !== 'Operation Bloodhound Challenge Coin') {
+        if (item.icon_url) {
           item.contextid = 2;
           tempObj.assetid = item.id;
           tempObj.appid = item.appid;
           tempObj.contextid = item.contextid;
           tempObj.market_hash_name = item.market_hash_name;
           tempObj.icon_url = item.icon_url;
-          tempObj.market_price = item.market_price;
+          tempObj.market_price = item.market_price.slice(1);
           $scope.items.push(tempObj);
           tempObj = {};
         }
@@ -69,13 +71,13 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       });
     };
 
-    $scope.updateInventory = function() {
+    $scope.fetchInventory = function() {
       console.log('updating inventory', $rootScope.user.id);
       $scope.inventoryLoading = true;
       $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
         .success(function(resp) {
           console.log('inventory: ', resp);
-          $scope.addItems(resp.rgInventory, resp.rgDescriptions);
+          $scope.fetchItems(resp.rgInventory, resp.rgDescriptions);
         });
     };
   }]

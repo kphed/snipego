@@ -9,6 +9,10 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.visible = true;
     $scope.expandOnNew = true;
 
+    $scope.messages.$watch(function(event) {
+      console.log(event);
+    });
+
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';
       return {
@@ -23,8 +27,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     };
 
     $scope.sendMessage = function(message) {
-      console.log($scope.messages);
-      if(message && message !== '' && $rootScope.user) {
+      if (message && message !== '' && $rootScope.user) {
         $scope.messages.$add({
           'username': $rootScope.user.photos[0],
           'content': message
