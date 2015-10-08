@@ -5,6 +5,7 @@ angular.module('SnipeGo',
   'SnipeGo.NavCtrl',
   'SnipeGo.DepositCtrl',
   'SnipeGo.Services',
+  'SnipeGo.Directives',
   'ui.router',
   'firebase',
   'angular-svg-round-progress',
@@ -36,7 +37,7 @@ angular.module('SnipeGo',
       disable: 'right',
       touchToDrag:false,
       tapToClose:false,
-      maxPosition: 350,
-      minPosition: -350
+      maxPosition: 365,
+      minPosition: -365
     };
   });

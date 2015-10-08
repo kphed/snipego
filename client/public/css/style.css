@@ -5,6 +5,10 @@ html, body {
 
 /* Jackpot Info Right-Side Table */
 
+.btn {
+  font-family: "Open Sans" !important;
+}
+
 .panel {
   background-color: #212121 !important;
   border: 1px solid black !important;
@@ -82,10 +86,6 @@ html, body {
   overflow: auto;
 }
 
-.highlightCell {
-  background-color: #5FB760;
-}
-
 .glyphicon-refresh-animate {
   -animation: spin .7s infinite linear;
   -webkit-animation: spin2 .7s infinite linear;
@@ -143,7 +143,7 @@ html, body {
 
 .snap-drawer {
   background-color: black;
-  width: 350px;
+  width: 365px;
 }
 
 /* Deposit View Buttons */
@@ -162,37 +162,44 @@ html, body {
 
 #inventory-refresh-btn {
   float: right;
-  margin-right: 15px;
+  margin-right: 5px;
   width: 10em;
 }
 
 /* Deposit View Items */
 
 .itemContainer {
-  margin: 5px;
-  height: 74px;
-  width: 64px;
   background-color: #212121;
-}
-
-#itemBox {
-  padding: 5px;
-  height: 50px;
-  width: 64px;
-}
-
-.itemBox {
+  margin: 5px;
+  height: 84px;
+  width: 74px;
+  display: inline-block;
   text-align: center;
 }
 
-.itemBoxPrice {
+.highlightSelected {
+  border: 1px solid #5FB760;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.itemBox {
+  padding: 5px;
+  height: 60px;
+  width: 74px;
+}
+
+.itemPrice {
   color: #5FB760;
   font-size: 14px;
+  font-family: "Open Sans";
 }
 
 .items-shown {
-  margin-left: 0.5em;
   color: white;
+  font-size: 12px;
+  font-family: "Open Sans";
 }
 
 #total-value-text {
@@ -200,11 +207,7 @@ html, body {
   margin-bottom: 0.5em;
   margin-left: 0.5em;
   color: white;
-}
-
-#deposit-table td {
-  border-color: black;
-  border-width: 5px;
+  font-family: "Open Sans";
 }
 
 /* Chat */

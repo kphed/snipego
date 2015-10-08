@@ -1,25 +1,15 @@
 <div class="sidebar-content">
-  <div>
     <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Bet Selected Items"><span class="inventory-btn">Bet{{selectedQuantity()}}</span></button>
     <button class="btn btn-info btn-popover" id="inventory-refresh-btn" ng-click="updateInventory()" data-toggle="popover" data-container="body" data-content="Refresh Inventory"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
-  </div>
   <div id="total-value-text">
-    <span>Total value of bet: $124</span>
+    <span>Total value of bet: ${{totalValue}}</span>
+    <div class="items-shown" ng-show="!items.length">Get your up-to-date inventory with the refresh button!</div>
   </div>
   <div>
-    <span class="items-shown" ng-show="!items.length">Get your up-to-date inventory with the refresh button!</span>
-    <table class="table-bordered item-table panel" id="deposit-table" ng-show="!inventoryLoading">
-      <tbody>
-        <tr ng-repeat="item in items">
-          <td class="itemBox" data-toggle="popover" data-container="body" data-content="{{i.market_hash_name}}" ng-repeat="i in item" ng-click="selectItem(i)">
-            <div class="itemContainer">
-              <img id="itemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/{{i.icon_url}}" />
-              <span class="itemBoxPrice">$26.92</span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="itemContainer" popover toggle-class ng-repeat="item in items" data-trigger="hover" data-content="{{item.market_hash_name}}">
+      <img class="itemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+      <div class="itemPrice">{{item.market_price}}</div>
+    </div>
   </div>
 </div>
 
