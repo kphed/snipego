@@ -27,8 +27,7 @@ var getMarketPrice = function(market_hash_name) {
       return null;
     } else {
       if (body.median_price) {
-        var formatted = market_hash_name.replace(/[.#$]/g, "");
-        marketPricesRef.child(formatted).set({
+        marketPricesRef.child(market_hash_name).set({
           market_hash_name: market_hash_name,
           market_price: body.median_price,
         });
@@ -41,7 +40,7 @@ var getMarketPrice = function(market_hash_name) {
 router.post('/update-inventory', function(req, res) {
     var marketPricesRef = new Firebase('https://flickering-inferno-567.firebaseio.com/market_prices');
     var url = 'http://steamcommunity.com/profiles/' + req.body.steamid + '/inventory/json/730/2';
-
+    var formatted = '';
     marketPricesRef.once('value', function(data) {
       var marketPricesObj = data.val();
       request({
@@ -50,10 +49,12 @@ router.post('/update-inventory', function(req, res) {
       }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
           for (var key in body.rgDescriptions) {
-            if (!marketPricesObj || !marketPricesObj[body.rgDescriptions[key].market_hash_name] || !marketPricesObj[body.rgDescriptions[key].market_hash_name].market_price) {
-              body.rgDescriptions[key].market_price = getMarketPrice(body.rgDescriptions[key].market_hash_name);
+            formatted = body.rgDescriptions[key].market_hash_name.replace(/[.#$]/g, "");
+            console.log('formatted market hash ', formatted);
+            if (!marketPricesObj || !marketPricesObj[formatted] || !marketPricesObj[formatted].market_price) {
+              body.rgDescriptions[key].market_price = getMarketPrice(formatted);
             } else {
-              body.rgDescriptions[key].market_price = marketPricesObj[body.rgDescriptions[key].market_hash_name].market_price;
+              body.rgDescriptions[key].market_price = marketPricesObj[formatted].market_price;
             }
           }
           res.json(body);

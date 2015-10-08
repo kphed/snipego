@@ -12,7 +12,7 @@ require('./passport/passport')(passport);
 
 var app = express();
 
-app.use(session({secret: 'csgo'}));
+app.use(session({secret: 'csgo', resave: false, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
