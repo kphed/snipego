@@ -9,10 +9,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.visible = true;
     $scope.expandOnNew = true;
 
-    $scope.messages.$watch(function(event) {
-      console.log(event);
-    });
-
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';
       return {

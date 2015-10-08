@@ -7,7 +7,6 @@ angular.module('SnipeGo.Directives', ['SnipeGo'])
         link: function(scope, elem, attrs) {
             $(elem).click(function() {
                 $(elem).toggleClass("highlightSelected");
-                // $(elem).toggleClass("itemContainer");
             });
         }
     };

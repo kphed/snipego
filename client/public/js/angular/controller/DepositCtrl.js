@@ -72,7 +72,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.fetchInventory = function() {
-      console.log('updating inventory', $rootScope.user.id);
+      console.log('updating inventory for ', $rootScope.user.id);
       $scope.inventoryLoading = true;
       $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
         .success(function(resp) {

@@ -1,7 +1,5 @@
 var SteamStrategy = require('passport-steam').Strategy;
 var Firebase = require('firebase');
-var pg = require('pg');
-var connectionString = require('../db/config');
 
 module.exports = function(passport) {
 

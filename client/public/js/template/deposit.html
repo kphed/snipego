@@ -1,16 +1,20 @@
 <div class="sidebar-content">
     <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Bet Selected Items"><span class="inventory-btn">Bet{{selectedQuantity()}}</span></button>
+
     <button class="btn btn-info btn-popover" id="inventory-refresh-btn" ng-click="fetchInventory()" data-toggle="popover" data-container="body" data-content="Refresh Inventory"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
+
   <div id="total-value-text">
     <span>Total Bet Value: {{totalValue()}} | Min. 5 Value Total | 20 Item Limit</span>
     <div class="items-shown" ng-show="!items.length">Get your up-to-date inventory with the refresh button!</div>
   </div>
+
   <div>
     <div class="itemContainer" popover toggle-class ng-repeat="item in items" ng-click="selectItem(item)" data-trigger="hover" data-content="{{item.market_hash_name}}">
       <img class="itemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
       <div class="itemPrice">{{item.market_price}}</div>
     </div>
   </div>
+
 </div>
 
 <script>
