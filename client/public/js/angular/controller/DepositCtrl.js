@@ -10,8 +10,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     $scope.selectedItems = {};
 
     $scope.selectedQuantity = function() {
-      var itemLength = Object.keys($scope.selectedItems).length;
-      return ' ' + itemLength + ' Items';
+      $rootScope.itemsSelected = Object.keys($scope.selectedItems).length;
+      return ' ' + $rootScope.itemsSelected + ' Items';
     };
 
     $scope.totalValue = function(bool, value) {
@@ -23,11 +23,10 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.selectItem = function(item) {
-      var itemLength = Object.keys($scope.selectedItems).length;
       if ($scope.selectedItems[item.assetid]) {
         delete $scope.selectedItems[item.assetid];
       } else {
-        if (itemLength > 20) {
+        if ($rootScope.itemsSelected === 20) {
           $window.alert('You can\'t add more than 20 items');
         } else {
           $scope.selectedItems[item.assetid] = item;
