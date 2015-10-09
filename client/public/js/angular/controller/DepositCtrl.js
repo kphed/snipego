@@ -34,6 +34,20 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       }
     };
 
+    $scope.betItems = function() {
+      var itemData = {
+        value: $scope.totalValue(),
+        selected: $scope.selectedItems,
+      };
+      var betData = {
+        items: itemData,
+        user: $rootScope.user,
+      };
+      $http.post('/jackpot/bet', betData).success(function() {
+        console.log('successfully posted items to backend');
+      });
+    };
+
     $scope.fetchItems = function(items, descriptions) {
       var tempObj = {};
       var itemCount = 0;
@@ -71,6 +85,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.fetchInventory = function() {
+      $scope.items = [];
       console.log('updating inventory for ', $rootScope.user.id);
       $scope.inventoryLoading = true;
       $http.post('/users/update-inventory', {steamid: $rootScope.user.id})

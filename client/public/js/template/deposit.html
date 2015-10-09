@@ -1,5 +1,5 @@
 <div class="sidebar-content">
-    <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Bet Selected Items"><span class="inventory-btn">Bet{{selectedQuantity()}}</span></button>
+    <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Bet Selected Items" ng-click="betItems()"><span class="inventory-btn">Bet{{selectedQuantity()}}</span></button>
 
     <button class="btn btn-info btn-popover" id="inventory-refresh-btn" ng-click="fetchInventory()" data-toggle="popover" data-container="body" data-content="Refresh Inventory"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
 
