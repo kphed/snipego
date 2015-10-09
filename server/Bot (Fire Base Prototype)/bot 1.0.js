@@ -33,9 +33,9 @@ var context = {
 
 // == BOT INFO == //
 var bot_info = {
-	username : 'steamid',
-	password : 'password',
-	api_key : 'steamapiKey',
+	username : 'alexnabu',
+	password : 'Myselfmyselftoodeepinsidetosharethislifewithany1else',
+	api_key : '460AC825048FDBFCFBB211C623F78AD9',
 	id : 1,
 	name : "nickname",
 	port : 3017,
@@ -54,11 +54,7 @@ var bot_info = {
 
 // == db db_info and table whhere we will be storing our user data/backpack == //
 var db_info = {
-	db : 'test',
-	host : 'localhost',
-	item_table : 'backpack',
-	db_username : 'mysqluser',
-	db_password : 'mysqluserpassword'
+	FireBase : new FireBase("https://flickering-inferno-567.firebaseio.com/")
 }
 
 // == Define Our Core Objects == //
@@ -180,83 +176,6 @@ offer_server.post('/add', function(req, resp) {
 
 	send_deposit_offer();
 });
-
-
-// == send a request to withdraw items from invnetory == //
-offer_server.post('/retrieve', function(req, resp) {
-		var user_info = req.body;
-		var owner_ids = [];
-
-		// == db check the Id of each item in our requested items list to make sure they belong to requesting user == //
-		function check_owner(owner_id) {
-			owner_ids.push(owner_id);
-
-			// if we have now have the owner info for all our items
-			if(owner_ids.length === user_info.items.length) {
-				for(var i = 0;  i<owner_ids.length; i++) {
-					if(owner_ids[i] !== user_info.id) {
-						logger.log("error", "Item being retrieved does not belong to user :",user_info.id );
-						resp.json({"error" : "There was an error retrieving your item. Please make sure the item(s) are availible in your backpack and try again later"});
-						resp.end();
-						return;
-					}
-				}
-
-				// ok all is good so send the retrieval offer
-				send_withdraw_offer();
-			}
-		}
-
-		// == funciton to send the offer == //
-		function send_withdraw_offer() {
-			logger.log("info", 'Sending withdraw offer to user : '+user_info.id+' trade_token : '+user_info.trade_token);
-			var protection_code = randomstring.generate(5).toUpperCase();
-
-			tradeoffers_api.makeOffer({
-				partnerSteamId : user_info.id,
-				itemsFromMe : user_info.items,
-				itemsFromThem : [],
-				accessToken : user_info.trade_token,
-				message : protection_code
-			}, function(err, response) {
-				if(err) {
-					logger.log("info", err);
-					resp.json({"error" : "There was an error sending your request. Please try again"});
-					resp.end();
-					make_offer_error(err);
-					return;
-				}
-
-				// == tell backpacklogger to watch this trade offer
-				backpack_logger.que.push(response.tradeofferid);
-				resp.json({"success": "withdrawial offer sent. PROTECTION CODE : "+protection_code, "protection_code" : protection_code});
-				resp.end();
-			});
-		}
-
-		// select the owner id for each item in our list of items we want to retrieve
-		user_info.items.forEach(function(item, item_index) {
-
-		// create the db connection
-		var connection = mysql.createConnection({host: db_info.host, database: db_info.db, user: db_info.db_username, password: db_info.db_password, supportBigNumbers: true});
-
-		connection.query("SELECT `owner` FROM `backpack` WHERE assetid = ? and appid = ? and contextid = ?", [item.assetid, item.appid, item.contextid], function(query_error, results, feilds){
-
-		if(query_error) {
-			connection.destroy();
-			resp.json({"error" : "There was an error retrieving your item. Please make sure the item(s) are availible in your backpack and try again later"});
-			return;
-		}
-			connection.end();
-			if(typeof results[0] !== 'undefined') {
-				check_owner(results[0].owner);
-			} else {
-				check_owner(null);
-			}
-		});
-	});
-});
-
 
 // [if we dont receive a route we can handle]
 offer_server.all('*', function(req, resp) {
