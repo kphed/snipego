@@ -33,9 +33,9 @@ var context = {
 
 // == BOT INFO == //
 var bot_info = {
-	username : 'alexnabu',
-	password : 'Myselfmyselftoodeepinsidetosharethislifewithany1else',
-	api_key : '460AC825048FDBFCFBB211C623F78AD9',
+	username : 'bot_name',
+	password : 'password',
+	api_key : 'api_key',
 	id : 1,
 	name : "nickname",
 	port : 3017,

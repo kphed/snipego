@@ -1,6 +1,6 @@
 node_modules
 server/Bot (Fire Base Prototype)/node_modules/*
-!server/Bot (Fire Base Prototype)/node_modules/steam_backpack/*
+!server/Bot (Fire Base Prototype)/node_modules/steam_backpack/
 server/Bot (Fire Base Prototype)/sentry/*
 !server/Bot (Fire Base Prototype)/sentry/ssfn/
 server/Bot (Fire Base Prototype)/sentry/ssfn/*
