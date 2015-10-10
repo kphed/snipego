@@ -11,7 +11,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.selectedQuantity = function() {
       $rootScope.itemsSelected = Object.keys($scope.selectedItems).length;
-      return ' ' + $rootScope.itemsSelected + ' Items';
+      return ' ' + $rootScope.itemsSelected + ' Skins';
     };
 
     $scope.totalValue = function(bool, value) {

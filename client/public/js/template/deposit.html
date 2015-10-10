@@ -1,10 +1,11 @@
 <div class="sidebar-content">
-    <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Bet Selected Items" ng-click="betItems()"><span class="inventory-btn">Bet{{selectedQuantity()}}</span></button>
+  <div class="deposit-buttons">
+    <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Bet Selected Items" ng-click="betItems()"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
 
     <button class="btn btn-info btn-popover" id="inventory-refresh-btn" ng-click="fetchInventory()" data-toggle="popover" data-container="body" data-content="Refresh Inventory"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
-
+  </div>
   <div id="total-value-text">
-    <span>Total Bet: {{totalValue()}} | Min. 5 Value Total | 20 Items Max</span>
+    <span>Total Value: {{totalValue()}} | Min. 5 Value Total | 20 Items Max</span>
     <div class="items-shown" ng-show="!items.length">Get your up-to-date inventory with the refresh button!</div>
   </div>
 

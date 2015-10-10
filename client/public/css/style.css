@@ -177,20 +177,21 @@ html, body {
 /* Deposit View Buttons */
 
 .inventory-btn {
-  font-size: 1.8em;
+  font-size: 1.5em;
+}
+
+.deposit-buttons {
+  text-align: center;
 }
 
 #inventory-btn {
-  margin-left: 5px;
 }
 
 .inventory-refresh-btn {
-  font-size: 2.15em;
+  font-size: 1.85em;
 }
 
 #inventory-refresh-btn {
-  float: right;
-  margin-right: 5px;
   width: 10em;
 }
 
