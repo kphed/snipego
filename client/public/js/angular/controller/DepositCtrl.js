@@ -30,7 +30,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           $window.alert('You can\'t add more than 20 items');
         } else {
           $scope.selectedItems[item.assetid] = item;
-          console.log($scope.selectedItems[item.assetid]);
         }
       }
     };

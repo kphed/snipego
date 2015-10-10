@@ -34,7 +34,7 @@ var context = {
 var bot_info = {
 	username : 'khoa_phan',
 	password : 'snipego123$',
-	api_key : '49F43DF2D78801407F56520B9195E7F6',
+	api_key : '246A470ECF68BF35DA0E3E2B8671F24D',
 	id : 1,
 	name : "khoa_phan",
 	port : 3017,
@@ -53,8 +53,8 @@ var bot_info = {
 
 // == db db_info and table whhere we will be storing our user data/backpack == //
 var db_info = {
-	FireBase : new FireBase("https://flickering-inferno-567.firebaseio.com/")
-}
+	firebaseRef : new FireBase("https://flickering-inferno-567.firebaseio.com/")
+};
 
 // == Define Our Core Objects == //
 var bot = new SteamUser(new Steam.SteamClient);
@@ -148,7 +148,7 @@ offer_server.post('/add', function(req, resp) {
 	var user_info = req.body;
 
 	function send_deposit_offer() {
-		logger.log("info", 'Sending trade offer to user : '+user_info.id+' trade_token : '+user_info.trade_token);
+		logger.log("info", 'Sending trade offer to user : '+ user_info.id + ' trade_token : ' + user_info.trade_token);
 		var protection_code = randomstring.generate(5).toUpperCase();
 
 		tradeoffers_api.makeOffer({
