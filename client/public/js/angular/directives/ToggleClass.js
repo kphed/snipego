@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SnipeGo.Directives', ['SnipeGo'])
+angular.module('SnipeGo.Directives.ToggleClass', ['SnipeGo'])
   .directive("toggleClass", function($rootScope) {
     return {
         restrict: "A",
