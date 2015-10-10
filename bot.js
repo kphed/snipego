@@ -145,6 +145,7 @@ function start_offer_server() {
 
 // == send a request to deposit items to inventory == //
 offer_server.post('/add', function(req, resp) {
+	console.log('CALLING BOT ADD METHOD 2', req.body, resp.body);
 	var user_info = req.body;
 
 	function send_deposit_offer() {

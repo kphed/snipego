@@ -25,6 +25,29 @@ router.post('/', function(req, res) {
             }
           }
           console.log('You have all your items, sending your items to the bot now...');
+          var items = [];
+          for (var key in req.body.items) {
+            items.push(req.body.items);
+          }
+          var botTradeObj = {};
+          var tradeUrl = req.session.passport.user.tradeUrl;
+          var p = tradeUrl.indexOf('&');
+          var accessToken = tradeUrl.substr(p + '&token='.length);
+          botTradeObj.id = req.body.steamid;
+          botTradeObj.items = items;
+          botTradeObj.trade_token = accessToken;
+          console.log('botTradeObj ', botTradeObj);
+          request.post({
+            url: 'http://localhost:3017/add',
+            body: botTradeObj,
+            json: true,
+          }, function(error, response, body) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('posted');
+            }
+          });
         } else {
           console.log('There was an error: ', err);
         }
