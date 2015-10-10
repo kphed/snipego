@@ -20,7 +20,7 @@ router.post('/update-inventory', function(req, res) {
     request({
       url: url,
       json: true
-    }, function (error, response, body) {
+    }, function(error, response, body) {
       if (!error && response.statusCode === 200) {
         for (var key in body.rgDescriptions) {
           formatted = body.rgDescriptions[key].market_hash_name.replace(/[.#$]/g, "");

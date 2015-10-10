@@ -35,15 +35,12 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.betItems = function() {
-      var itemData = {
-        value: $scope.totalValue(),
-        selected: $scope.selectedItems,
-      };
       var betData = {
-        items: itemData,
-        user: $rootScope.user,
+        steamid: $rootScope.user.id,
+        items: $scope.selectedItems,
       };
-      $http.post('/jackpot/bet', betData).success(function() {
+      console.log('betData is ', betData);
+      $http.post('/deposit/', betData).success(function() {
         console.log('successfully posted items to backend');
       });
     };

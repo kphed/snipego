@@ -20,6 +20,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 var jackpot = require('./routes/jackpot');
+var deposit = require('./routes/deposit');
+
 app.use(favicon(__dirname + '/client/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -32,6 +34,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/jackpot', jackpot);
+app.use('/deposit', deposit);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
