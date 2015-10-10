@@ -14,19 +14,21 @@ module.exports = function(passport) {
   });
 
   passport.use(new SteamStrategy({
-    returnURL: 'http://localhost:3000/users/auth/steam-callback',
+    returnURL: 'http://localhost:3000/auth/steam-callback',
     realm: 'http://localhost:3000/',
     apiKey: '246A470ECF68BF35DA0E3E2B8671F24D'
   }, function(identifier, profile, done) {
+      console.log(' profile is ', profile);
       var steam = {
         id: profile.id,
         photos: [profile.photos[0].value, profile.photos[1].value],
       };
-      var userRef = new Firebase('https://flickering-inferno-567.firebaseio.com/users');
+      var userRef = new Firebase('https://snipego.firebaseio.com/users');
       userRef.once('value', function(data) {
-        if (data.val() && data.val()[steam.id]) {
+        var dataValue = data.val();
+        if (dataValue && dataValue[steam.id]) {
           console.log('this user exists in firebase!');
-          return done(null, data.val()[steam.id]);
+          return done(null, dataValue[steam.id]);
         } else {
           console.log('user does not exist, adding to database');
           userRef.child(steam.id).set({

@@ -3,7 +3,7 @@
 angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
   .controller('MainCtrl', ['$scope', '$firebaseArray', '$rootScope', '$window', function($scope, $firebaseArray, $rootScope, $window) {
 
-    var ref = new Firebase('https://flickering-inferno-567.firebaseio.com/messages');
+    var ref = new Firebase('https://snipego.firebaseio.com/messages');
 
     $scope.messages = $firebaseArray(ref);
     $scope.visible = true;

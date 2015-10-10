@@ -18,6 +18,7 @@ app.use(passport.session());
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var auth = require('./routes/auth');
 var jackpot = require('./routes/jackpot');
 app.use(favicon(__dirname + '/client/public/favicon.ico'));
 app.use(logger('dev'));
@@ -29,6 +30,7 @@ app.use('/bower_components', express.static(__dirname + '/client/bower_component
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/auth', auth);
 app.use('/jackpot', jackpot);
 
 // catch 404 and forward to error handler

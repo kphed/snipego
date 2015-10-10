@@ -53,7 +53,7 @@ var bot_info = {
 
 // == db db_info and table whhere we will be storing our user data/backpack == //
 var db_info = {
-	firebaseRef : new FireBase("https://flickering-inferno-567.firebaseio.com/")
+	firebaseRef : new FireBase("https://snipego.firebaseio.com/")
 };
 
 // == Define Our Core Objects == //
