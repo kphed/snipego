@@ -1,13 +1,48 @@
 'use strict';
 
 angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
-  .controller('MainCtrl', ['$scope', '$firebaseArray', '$rootScope', '$window', function($scope, $firebaseArray, $rootScope, $window) {
+  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window) {
 
-    var ref = new Firebase('https://snipego.firebaseio.com/messages');
+    var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 
-    $scope.messages = $firebaseArray(ref);
+    var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
+
+    $scope.messages = $firebaseArray(messagesRef);
     $scope.visible = true;
     $scope.expandOnNew = true;
+
+    $scope.jackpot = [];
+
+    $scope.jackRef = $firebaseObject(jackpotRef);
+
+    $scope.handleJackpotPlayers = function(players) {
+      $scope.jackpot = [];
+      var count = 0;
+      var temp = [];
+      for (var key in players) {
+        count++;
+        temp.push(players[key]);
+        if (count % 3) {
+          if (count === Object.keys(players).length) {
+            $scope.jackpot.push(temp);
+          }
+        } else {
+          $scope.jackpot.push(temp);
+          temp = [];
+        }
+      }
+    };
+
+
+    $scope.jackRef.$watch(function(qwe, web) {
+      $scope.jackRef.$loaded().then(function() {
+        var obj = {};
+        for (var key in $scope.jackRef.players) {
+          obj[key] = $scope.jackRef.players[key];
+        }
+        $scope.handleJackpotPlayers(obj);
+      });
+    });
 
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';

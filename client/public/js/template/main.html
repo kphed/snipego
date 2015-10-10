@@ -24,16 +24,8 @@
       <thead>
         <th id="jackpotHeader" colspan="3">Jackpot Players</th>
       </thead>
-      <tr>
-        <td>
-          <div class="jackpot-player-cell-header"><img id="jackpotPlayerBox" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/626d9a8ffbe54581cb92c7a9e0cd7b2dba730e14_medium.jpg" /></div>
-          <span class="jackpot-player-cell-text">supremekp</span>
-        </td>
-        <td>
-          <div class="jackpot-player-cell-header"><img id="jackpotPlayerBox" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/626d9a8ffbe54581cb92c7a9e0cd7b2dba730e14_medium.jpg" /></div>
-          <span class="jackpot-player-cell-text">supremekp</span>
-        </td>
-        <td>
+      <tr ng-repeat="items in jackpot">
+        <td ng-repeat="player in items">
           <div class="jackpot-player-cell-header"><img id="jackpotPlayerBox" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/626d9a8ffbe54581cb92c7a9e0cd7b2dba730e14_medium.jpg" /></div>
           <span class="jackpot-player-cell-text">supremekp</span>
         </td>
