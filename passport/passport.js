@@ -19,6 +19,7 @@ module.exports = function(passport) {
       console.log('Steam profile data: ', profile);
       var steam = {
         id: profile.id,
+        displayName: profile.displayName,
         photos: [profile.photos[0].value, profile.photos[1].value],
       };
       var userRef = new Firebase('https://snipego.firebaseio.com/users');
@@ -31,6 +32,7 @@ module.exports = function(passport) {
           console.log('User does not exist, adding to database');
           userRef.child(steam.id).set({
               id: steam.id,
+              displayName: steam.displayName,
               photos: steam.photos,
               tradeUrl: '',
           }, function() {
