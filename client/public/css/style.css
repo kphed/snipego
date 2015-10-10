@@ -232,9 +232,9 @@ html, body {
 }
 
 #total-value-text {
+  font-size: 12px;
   margin-top: 1em;
-  margin-bottom: 0.5em;
-  margin-left: 0.5em;
+  margin-bottom: 1em;
   color: white;
   font-family: "Open Sans";
   text-align: center;
