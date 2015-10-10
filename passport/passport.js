@@ -16,7 +16,7 @@ module.exports = function(passport) {
   passport.use(new SteamStrategy({
     returnURL: 'http://localhost:3000/users/auth/steam-callback',
     realm: 'http://localhost:3000/',
-    apiKey: '49F43DF2D78801407F56520B9195E7F6'
+    apiKey: '246A470ECF68BF35DA0E3E2B8671F24D'
   }, function(identifier, profile, done) {
       var steam = {
         id: profile.id,
@@ -26,7 +26,7 @@ module.exports = function(passport) {
       userRef.once('value', function(data) {
         if (data.val() && data.val()[steam.id]) {
           console.log('this user exists in firebase!');
-          return done(null, steam);
+          return done(null, data.val()[steam.id]);
         } else {
           console.log('user does not exist, adding to database');
           userRef.child(steam.id).set({

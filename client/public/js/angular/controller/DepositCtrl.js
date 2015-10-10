@@ -30,6 +30,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           $window.alert('You can\'t add more than 20 items');
         } else {
           $scope.selectedItems[item.assetid] = item;
+          console.log($scope.selectedItems[item.assetid]);
         }
       }
     };
@@ -90,7 +91,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       $scope.inventoryLoading = true;
       $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
         .success(function(resp) {
-          console.log('inventory: ', resp);
           $scope.fetchItems(resp.rgInventory, resp.rgDescriptions);
         });
     };
