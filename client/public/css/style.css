@@ -145,6 +145,19 @@ html, body {
   margin-left: 15px;
 }
 
+.tradeUrl {
+  margin-top: 5px;
+  margin-left: -3em;
+}
+
+#tradeUrlText {
+  color: white;
+}
+
+#tradeUrlInput {
+  width: 22em;
+}
+
 /* Snap.js */
 
 .sidebar-content {

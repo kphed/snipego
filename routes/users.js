@@ -37,6 +37,13 @@ var getMarketPrice = function(market_hash_name) {
   });
 };
 
+router.post('/update-trade-url', function(req, res) {
+  var userRef = new Firebase('https://flickering-inferno-567.firebaseio.com/users/' + req.session.passport.user.id);
+  userRef.update({tradeUrl: req.body.tradeUrl}, function() {
+    res.json(req.body.tradeUrl);
+  });
+});
+
 router.post('/update-inventory', function(req, res) {
     var marketPricesRef = new Firebase('https://flickering-inferno-567.firebaseio.com/market_prices');
     var url = 'http://steamcommunity.com/profiles/' + req.body.steamid + '/inventory/json/730/2';
