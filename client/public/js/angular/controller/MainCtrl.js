@@ -11,28 +11,13 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.visible = true;
     $scope.expandOnNew = true;
 
-    $scope.jackpot = [];
+    $scope.jackpotPlayers = {};
 
     $scope.jackRef = $firebaseObject(jackpotRef);
 
     $scope.handleJackpotPlayers = function(players) {
-      $scope.jackpot = [];
-      var count = 0;
-      var temp = [];
-      for (var key in players) {
-        count++;
-        temp.push(players[key]);
-        if (count % 3) {
-          if (count === Object.keys(players).length) {
-            $scope.jackpot.push(temp);
-          }
-        } else {
-          $scope.jackpot.push(temp);
-          temp = [];
-        }
-      }
+      $scope.jackpotPlayers = players;
     };
-
 
     $scope.jackRef.$watch(function(qwe, web) {
       $scope.jackRef.$loaded().then(function() {
@@ -47,7 +32,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';
       return {
-        'top': '33%',
+        'top': '36%',
         'bottom': 'auto',
         'left': '50%',
         'transform': transform,

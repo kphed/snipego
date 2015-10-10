@@ -26,14 +26,13 @@ html, body {
 
 .main-table-cell-header {
   color: white;
-  font-size: 18px;
-  min-width: 150px;
+  font-size: 28px;
   min-height: 1.5em;
 }
 
 .main-table-cell-text {
   color: #5FB760;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 #jackpot-table {
@@ -69,21 +68,28 @@ html, body {
   color: white;
   border: 5px solid black;
   text-align: center;
+  font-family: "Open Sans";
 }
 
-.jackpot-player-cell-header {
-  min-width: 75px;
-  min-height: 75px;
+.jackpot-player-cell-photo {
+  min-width: 268px;
+  min-height: 40px;
+  margin-left: 3px;
+}
+
+.player-table {
+  margin-left: 5px;
 }
 
 .jackpot-player-cell-text {
   color: #5FB760;
   font-size: 12px;
+  font-family: "Open Sans";
 }
 
 #jackpotPlayerBox {
-  height: 65px;
-  width: 65px;
+  height: 58px;
+  width: 58px;
 }
 
 /* General */
@@ -144,11 +150,6 @@ html, body {
   margin-top: 5px;
   margin-left: 15px;
 }
-/*
-.tradeUrl {
-  margin-top: 5px;
-  margin-left: -3em;
-}*/
 
 #tradeUrlText {
   color: white;
