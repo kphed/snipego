@@ -37,7 +37,7 @@ var bot_info = {
 	api_key : '5763057DCDBBE10EEE1B2E26FEA61939',
 	id : 1,
 	name : "khoa_phan",
-	port : process.env.PORT || 3017,
+	port : process.env.PORT,
 	sentry : function() {
 		if(fs.existsSync(__dirname+'/sentry/ssfn/'+bot_info.username+'.ssfn')) {
 			var sha = require('crypto').createHash('sha1');
@@ -139,7 +139,7 @@ function init_app() {
 // =============== the offer server and its command routes ================ //
 
 function start_offer_server() {
-	var offer_server_handle = offer_server.listen(bot_info.port, '127.0.0.1', 30);
+	var offer_server_handle = offer_server.listen(bot_info.port);
 	return offer_server_handle;
 }
 
