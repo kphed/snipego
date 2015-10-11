@@ -34,7 +34,7 @@ var context = {
 var bot_info = {
 	username : 'khoa_phan',
 	password : 'snipego123$',
-	api_key : '246A470ECF68BF35DA0E3E2B8671F24D',
+	api_key : '5763057DCDBBE10EEE1B2E26FEA61939',
 	id : 1,
 	name : "khoa_phan",
 	port : 3017,
