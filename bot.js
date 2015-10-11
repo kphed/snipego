@@ -37,7 +37,7 @@ var bot_info = {
 	api_key : '5763057DCDBBE10EEE1B2E26FEA61939',
 	id : 1,
 	name : "khoa_phan",
-	port : 3017,
+	port : process.env.PORT || 3017,
 	sentry : function() {
 		if(fs.existsSync(__dirname+'/sentry/ssfn/'+bot_info.username+'.ssfn')) {
 			var sha = require('crypto').createHash('sha1');
