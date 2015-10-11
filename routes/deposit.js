@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
           var items = [];
           for (var key in req.body.items) {
             console.log('items are ', req.body.items[key]);
-            items.push(req.body.items);
+            items.push(req.body.items[key]);
           }
           var botTradeObj = {};
           var tradeUrl = req.session.passport.user.tradeUrl;
