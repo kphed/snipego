@@ -27,6 +27,7 @@ router.post('/', function(req, res) {
           console.log('You have all your items, sending your items to the bot now...');
           var items = [];
           for (var key in req.body.items) {
+            console.log('items are ', req.body.items[key]);
             items.push(req.body.items);
           }
           var botTradeObj = {};
