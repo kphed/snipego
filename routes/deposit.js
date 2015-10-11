@@ -38,7 +38,7 @@ router.post('/', function(req, res) {
           botTradeObj.trade_token = accessToken;
           console.log('botTradeObj ', botTradeObj);
           request.post({
-            url: 'https://snipego3.herokuapp.com:3017/add',
+            url: 'https://snipego3.herokuapp.com/add',
             body: botTradeObj,
             json: true,
           }, function(error, response, body) {
