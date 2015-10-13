@@ -15,30 +15,19 @@ var queueRef = new Firebase('https://snipego.firebaseio.com/queue');
 
 // == setup winston logger interfaces == //
 var logger = new (Winston.Logger)({
-        transports: [
-            new (Winston.transports.Console)({
-                colorize: true,
-                level: 'debug'
-            }),
-            new (Winston.transports.File)({
-                level: 'info',
-                timestamp: true,
-                filename: 'cratedump.log',
-                json: false
-            })
-        ]
+  transports: [
+    new (Winston.transports.Console)({
+      colorize: true,
+      level: 'debug'
+    }),
+    new (Winston.transports.File)({
+      level: 'info',
+      timestamp: true,
+      filename: 'cratedump.log',
+      json: false
+    })
+  ]
 });
-
-// == define some constants for our app == //
-var appid = {
-  CSGO : 730,
-  Steam : 753
-};
-
-var contextid = {
-  CSGO : 2,
-  Steam : 6
-};
 
 // Initialize the Steam client and our trading library
 var client = new SteamUser();
@@ -73,10 +62,10 @@ var botInfo = {
 
 fs.readFile('polldata.json', function (err, data) {
   if (err) {
-      logger.warn('Error reading polldata.json. If this is the first run, this is expected behavior: '+err);
+    logger.warn('Error reading polldata.json. If this is the first run, this is expected behavior: '+err);
   } else {
-      logger.debug("Found previous trade offer poll data.  Importing it to keep things running smoothly.");
-      offers.pollData = JSON.parse(data);
+    logger.debug("Found previous trade offer poll data.  Importing it to keep things running smoothly.");
+    offers.pollData = JSON.parse(data);
   }
 });
 
@@ -103,8 +92,8 @@ client.on('webSession', function (sessionID, cookies) {
   client.friends.setPersonaState(SteamUser.Steam.EPersonaState.Online);
   offers.setCookies(cookies, function (err){
     if (err) {
-        logger.error('Unable to set trade offer cookies: ' + err);
-        process.exit(1);
+      logger.error('Unable to set trade offer cookies: ' + err);
+      process.exit(1);
     }
     init_app();
     logger.debug("Trade offer cookies set.  Got API Key: " + offers.apiKey);
@@ -131,12 +120,12 @@ offers.on('newOffer', function (offer) {
   logger.info("New offer #" + offer.id + " from " + offer.partner.getSteam3RenderedID());
   logger.info("User " + offer.partner.getSteam3RenderedID() + " offered an invalid trade.  Declining offer.");
   offer.decline(function (err) {
-      if (err) {
-        logger.error("Unable to decline offer "+ offer.id +": " + err.message);
-      } else {
-        logger.debug("Offer declined");
-        // Message the user
-      }
+    if (err) {
+      logger.error("Unable to decline offer "+ offer.id +": " + err.message);
+    } else {
+      logger.debug("Offer declined");
+      // Message the user
+    }
   });
 });
 
