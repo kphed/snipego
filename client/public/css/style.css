@@ -3,6 +3,10 @@ html, body {
   height: 100%;
 }
 
+.main-content {
+  margin-top: 6em;
+}
+
 .btn {
   font-family: "Open Sans" !important;
 }
@@ -245,7 +249,9 @@ html, body {
 /* Chat */
 
 .chat {
-  min-width: 150px;
+  min-width: 100px;
   height: 500px;
+  border: 3px solid black;
+
 }
 

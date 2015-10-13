@@ -1,34 +1,5 @@
 <div class="container-fluid">
 
-  <div class="col-md-4">
-    <table class="table table-responsive table-bordered panel" id="deposits-table">
-      <thead>
-        <th id="deposits-header" colspan="2">Jackpot Deposits</th>
-        <th id="deposits-header" colspan="1">Chance</th>
-        <th id="deposits-header" colspan="1">Value</th>
-      </thead>
-      <tr ng-repeat="player in jackpotPlayers">
-        <td>
-          <div class="jackpot-player-photo">
-            <img class="deposits-player-photo" src="{{player.avatar}}" />
-          </div>
-          <div id="deposits-player">{{player.displayName}}</div>
-        </td>
-        <td>
-          <div class="deposits-item">
-            <img popover id="deposits-item" ng-repeat="item in player.items" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-          </div>
-        </td>
-        <td>
-          <div class="deposits-value">{{player.itemsValue}}</div>
-        </td>
-        <td>
-          <div class="deposits-value">{{player.itemsValue}}</div>
-        </td>
-      </tr>
-    </table>
-  </div>
-
   <div class="progress-container col-md-5">
     <div class="progress-text" ng-style="getStyle()">{{jackRef.itemsCount}}/50</div>
     <div
@@ -57,7 +28,36 @@
     </table>
   </div>
 
-  <div class="chat col-md-3">
+  <div class="col-md-5">
+    <table class="table table-responsive table-bordered panel" id="deposits-table">
+      <thead>
+        <th id="deposits-header" colspan="2">Jackpot Deposits</th>
+        <th id="deposits-header" colspan="1">Chance</th>
+        <th id="deposits-header" colspan="1">Value</th>
+      </thead>
+      <tr ng-repeat="player in jackpotPlayers">
+        <td>
+          <div class="jackpot-player-photo">
+            <img class="deposits-player-photo" src="{{player.avatar}}" />
+          </div>
+          <div id="deposits-player">{{player.displayName}}</div>
+        </td>
+        <td>
+          <div class="deposits-item">
+            <img popover id="deposits-item" ng-repeat="item in player.items" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+          </div>
+        </td>
+        <td>
+          <div class="deposits-value">{{player.itemsValue}}</div>
+        </td>
+        <td>
+          <div class="deposits-value">{{player.itemsValue}}</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="chat col-md-2">
     <irontec-simple-chat
       messages="messages"
       username="username"

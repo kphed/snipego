@@ -34,7 +34,7 @@ module.exports = function(passport) {
             id: steam.id,
             displayName: steam.displayName,
             photos: steam.photos,
-            tradeUrl: '',
+            tradeUrl: '',g
           }, function() {
             return done(null, steam);
           });

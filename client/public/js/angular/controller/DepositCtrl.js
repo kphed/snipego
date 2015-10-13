@@ -30,8 +30,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       if ($scope.selectedItems[item.assetid]) {
         delete $scope.selectedItems[item.assetid];
       } else {
-        if ($rootScope.itemsSelected === 20) {
-          $window.alert('You can\'t add more than 20 items');
+        if ($rootScope.itemsSelected === 10) {
+          $window.alert('You can\'t add more than 10 items');
         } else {
           $scope.selectedItems[item.assetid] = item;
         }
@@ -40,7 +40,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.depositItems = function() {
       console.log('$rootScope', $rootScope.user);
-      if ($scope.totalValue() < 5) {
+      if ($scope.totalValue() < 2) {
         $window.alert('You need at least 5 value in skins to play, please select more skins');
       } else {
         $scope.depositingItems = true;
