@@ -4,57 +4,64 @@ var passport = require('passport');
 var Firebase = require('firebase');
 var request = require('request');
 
+var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
+
 router.post('/', function(req, res) {
-  var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
+  console.log('depositing items', req.body);
   jackpotRef.once('value', function(data) {
     var jackpotData = data.val();
-    if (jackpotData[jackpotData.length - 1].players[req.body.steamid]) {
-      console.log('You are already in the jackpot!');
-    } else {
-      console.log('You are not in the jackpot, but we are checking your items first');
-      var url = 'http://steamcommunity.com/profiles/' + req.body.steamid + '/inventory/json/730/2';
-      request({
-      url: url,
-      json: true
-      }, function(err, response, body) {
-        if (!err && response.statusCode === 200) {
-          for (var key in req.body.items) {
-            if (!body.rgInventory[key]) {
-              console.log('You are missing an item from your inventory!');
-              return;
-            }
-          }
-          console.log('You have all your items, sending your items to the bot now...');
-          var items = [];
-          for (var key in req.body.items) {
-            console.log('items are ', req.body.items[key]);
-            items.push(req.body.items[key]);
-          }
-          var botTradeObj = {};
-          var tradeUrl = req.session.passport.user.tradeUrl;
-          var p = tradeUrl.indexOf('&');
-          var accessToken = tradeUrl.substr(p + '&token='.length);
-          botTradeObj.id = req.body.steamid;
-          botTradeObj.items = items;
-          botTradeObj.trade_token = accessToken;
-          console.log('botTradeObj ', botTradeObj);
-          request.post({
-            url: 'https://localhost:3017/add',
-            body: botTradeObj,
-            json: true,
-          }, function(error, response, body) {
-            if (error) {
-              console.log(error);
-            } else {
-              console.log('posted');
-            }
-          });
-        } else {
-          console.log('There was an error: ', err);
-        }
-      });
-      //call bot function here to make trade request
+    for (var i = 0; i < jackpotData.players.length; i++) {
+      if (jackpotData.players[i][req.body.steamid]) {
+        console.log('You are already in the jackpot!');
+        return;
+      }
     }
+    console.log('You are not in the jackpot, but we are checking your items first');
+    var url = 'http://steamcommunity.com/profiles/' + req.body.steamid + '/inventory/json/730/2';
+    request({
+    url: url,
+    json: true
+    }, function(err, response, body) {
+      if (!err && response.statusCode === 200) {
+        for (var key in req.body.items) {
+          if (!body.rgInventory[key]) {
+            console.log('You are missing an item from your inventory!');
+            res.json({'error': 'User is missing an item from their inventory'});
+          }
+        }
+        console.log('You have all your items, sending your items to the bot now...');
+        var items = [];
+        for (var item in req.body.items) {
+          items.push(req.body.items[item]);
+        }
+        var botTradeObj = {};
+        var tradeUrl = req.session.passport.user.tradeUrl;
+        var p = tradeUrl.indexOf('&');
+        var accessToken = tradeUrl.substr(p + '&token='.length);
+        botTradeObj.id = req.body.steamid;
+        botTradeObj.items = items;
+        botTradeObj.trade_token = accessToken;
+        botTradeObj.itemsValue = req.body.itemsValue;
+        botTradeObj.itemsCount = req.body.itemsCount;
+        console.log('botTradeObj ', botTradeObj);
+        res.json(botTradeObj);
+        request.post({
+          url: 'http://localhost:3017/user-deposit',
+          body: botTradeObj,
+          json: true,
+        }, function(error, response, body) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Trade posted successfully, here is the body: ', body);
+            res.json(body);
+          }
+        });
+      } else {
+        console.log('There was an error: ', err);
+        res.json({'error': err});
+      }
+    });
   });
 });
 

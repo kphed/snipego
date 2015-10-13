@@ -16,13 +16,12 @@
     "passport": "^0.3.0",
     "passport-steam": "^0.1.6",
     "pg": "^4.4.2",
+    "randomstring": "^1.0.7",
     "request": "^2.64.0",
     "serve-favicon": "~2.2.1",
-    "randomstring": "^1.0.7",
     "steam": "^1.1.0",
-    "steam-tradeoffers": "^2.0.2",
-    "steam-user": "^1.6.1",
-    "steam-web-api-key": "^0.0.1",
+    "steam-tradeoffer-manager": "^1.8.5",
+    "steam-user": "^1.10.0",
     "winston": "^1.0.1"
   }
 }

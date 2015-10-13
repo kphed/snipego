@@ -38,20 +38,20 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       }
     };
 
-    $scope.betItems = function() {
+    $scope.depositItems = function() {
       if ($scope.totalValue() < 5) {
         $window.alert('You need at least 5 value in skins to play');
       } else {
         $scope.depositingItems = true;
-        var betData = {
+        var depositData = {
           steamid: $rootScope.user.id,
           items: $scope.selectedItems,
           itemsValue: $scope.totalValue(),
           itemsCount: $rootScope.itemsSelected,
         };
-        console.log('betData is ', betData);
-        $http.post('/deposit/', betData).success(function(resp) {
-          console.log('Posted data to backend... and here is the response', resp);
+        console.log('depositData is ', depositData);
+        $http.post('/deposit/', depositData).success(function(resp) {
+          console.log('Posted data to backend... and here is the response ', resp);
         });
       }
     };

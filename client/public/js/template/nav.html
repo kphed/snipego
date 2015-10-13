@@ -55,7 +55,7 @@
       </div>
       <div class="modal-body">
           <div class="deposit-buttons">
-            <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Bet Selected Items" ng-click="betItems()" ng-disabled="depositingItems"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
+            <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Deposit Selected Items Into Jackpot" ng-click="depositItems()" ng-disabled="depositingItems"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
 
             <button class="btn btn-info btn-popover" id="inventory-refresh-btn" data-toggle="popover" data-container="body" data-content="Refresh Inventory" ng-click="fetchInventory()" ng-disabled="inventoryLoading"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
           </div>

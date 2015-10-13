@@ -1,0 +1,14 @@
+2015-10-13T16:29:34.325Z - warn: Error reading polldata.json. If this is the first run, this is expected behavior: Error: ENOENT: no such file or directory, open 'polldata.json'
+2015-10-13T16:29:35.764Z - info: Logged into Steam as [U:1:217853273]
+2015-10-13T16:29:37.289Z - info: Bot is now fully logged in
+2015-10-13T16:30:49.494Z - info:  Error: There was an error sending your trade offer.  Please try again later. (15)
+    at makeAnError (/Users/khoa_phan/csgo/node_modules/steam-tradeoffer-manager/lib/classes/TradeOffer.js:567:12)
+    at TradeOffer.<anonymous> (/Users/khoa_phan/csgo/node_modules/steam-tradeoffer-manager/lib/classes/TradeOffer.js:343:4)
+    at Request.self.callback (/Users/khoa_phan/csgo/node_modules/request/request.js:198:22)
+    at emitTwo (events.js:87:13)
+    at Request.emit (events.js:172:7)
+    at Request.<anonymous> (/Users/khoa_phan/csgo/node_modules/request/request.js:1063:14)
+    at emitOne (events.js:82:20)
+    at Request.emit (events.js:169:7)
+    at IncomingMessage.<anonymous> (/Users/khoa_phan/csgo/node_modules/request/request.js:1009:12)
+    at emitNone (events.js:72:20)
