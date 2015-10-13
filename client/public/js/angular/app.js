@@ -10,7 +10,6 @@ angular.module('SnipeGo',
   'ui.router',
   'firebase',
   'angular-svg-round-progress',
-  'snap',
   'irontec.simpleChat'])
   .config(function($stateProvider, $urlRouterProvider, snapRemoteProvider) {
     $urlRouterProvider.otherwise("/");
