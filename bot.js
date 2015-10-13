@@ -7,7 +7,7 @@ var Winston = require('winston');
 var randomstring = require('randomstring');
 var express = require('express');
 var bodyParser = require('body-parser');
-var FireBase = require('firebase');
+var Firebase = require('firebase');
 
 var waitingRef = new Firebase('https://snipego.firebaseio.com/pending_offers');
 
