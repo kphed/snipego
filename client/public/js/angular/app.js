@@ -32,12 +32,4 @@ angular.module('SnipeGo',
           }
         }
       });
-
-    snapRemoteProvider.globalOptions = {
-      disable: 'right',
-      touchToDrag:false,
-      tapToClose:false,
-      maxPosition: 365,
-      minPosition: -365
-    };
   });
