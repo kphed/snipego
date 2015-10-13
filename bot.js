@@ -100,6 +100,7 @@ client.on('error', function (e) {
 
 client.on('webSession', function (sessionID, cookies) {
   logger.debug("Got web session");
+  client.friends.setPersonaState(SteamUser.Steam.EPersonaState.Online);
   offers.setCookies(cookies, function (err){
     if (err) {
         logger.error('Unable to set trade offer cookies: ' + err);
@@ -212,28 +213,15 @@ offer_server.post('/user-deposit', function(req, res) {
   var trade = offers.createOffer(userInfo.id);
   var protectionCode = randomstring.generate(7).toUpperCase();
 
-  trade.loadPartnerInventory(730, 2, function() {
-
+  trade.addTheirItems(userInfo.items);
+  trade.send('Deposit for SnipeGo jackpot, could be a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
     if (err) {
-
       logger.log('info', err);
       offerError(err);
       res.json({'error' : 'There was an error sending your request. Please try again'});
-
     } else {
-
-      trade.addTheirItems(userInfo.items);
-      trade.send('Deposit for SnipeGo jackpot, could be a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
-        if (err) {
-          logger.log('info', err);
-          offerError(err);
-          res.json({'error' : 'There was an error sending your request. Please try again'});
-        } else {
-          waitingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue});
-          res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
-        }
-      });
-
+      waitingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue});
+      res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });
 
@@ -271,7 +259,7 @@ function offerError(err) {
 
   // == cookies expired. just relogon == //
   if(err.indexOf('401') > -1) {
-    client.logOn();
+    client.webLogOn();
   }
 }
 
