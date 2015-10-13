@@ -12,9 +12,9 @@ module.exports = function(passport) {
   });
 
   passport.use(new SteamStrategy({
-    returnURL: 'https://snipego2.herokuapp.com/auth/steam-callback',
-    realm: 'https://snipego2.herokuapp.com/',
-    apiKey: '5763057DCDBBE10EEE1B2E26FEA61939'
+    returnURL: 'http://localhost:3000/auth/steam-callback',
+    realm: 'http://localhost:3000/',
+    apiKey: '6C95A22EBF8BB2513FE729CD75F15A77'
   }, function(identifier, profile, done) {
       console.log('Steam profile data: ', profile);
       var steam = {

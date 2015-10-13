@@ -5,6 +5,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.inventoryLoading = false;
 
+    $scope.depositingItems = false;
+
     $scope.items = [];
 
     $scope.selectedItems = {};
@@ -14,15 +16,16 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       return ' ' + $rootScope.itemsSelected + ' Skins';
     };
 
-    $scope.totalValue = function(bool, value) {
+    $scope.totalValue = function() {
       var num = 0;
       for (var key in $scope.selectedItems) {
-        num += parseFloat($scope.selectedItems[key]['market_price']);
+        num += parseFloat($scope.selectedItems[key].market_price);
       }
       return Math.round(num * 100) / 100;
     };
 
     $scope.selectItem = function(item) {
+      console.log('item is ', item);
       if ($scope.selectedItems[item.assetid]) {
         delete $scope.selectedItems[item.assetid];
       } else {
@@ -35,20 +38,22 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.betItems = function() {
+      $scope.depositingItems = true;
       var betData = {
         steamid: $rootScope.user.id,
         items: $scope.selectedItems,
+        itemsValue: $scope.totalValue(),
+        itemsCount: $rootScope.itemsSelected,
       };
       console.log('betData is ', betData);
-      $http.post('/deposit/', betData).success(function() {
-        console.log('successfully posted items to backend');
+      $http.post('/deposit/', betData).success(function(resp) {
+        console.log('Posted data to backend... and here is the response', resp);
       });
     };
 
     $scope.fetchItems = function(items, descriptions) {
       var tempObj = {};
-      var itemCount = 0;
-      return Object.keys(items).map(function(id) {
+      Object.keys(items).map(function(id) {
         var item = items[id];
         var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
         for (var key in description) {
@@ -79,6 +84,15 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         });
         return item;
       });
+      $scope.sortItems();
+    };
+
+    $scope.sortItems = function() {
+      $scope.items = $scope.items.sort(function(a, b) {
+        return b.market_price - a.market_price;
+      });
+      $scope.inventoryLoading = false;
+      return;
     };
 
     $scope.fetchInventory = function() {
@@ -87,7 +101,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       $scope.inventoryLoading = true;
       $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
         .success(function(resp) {
-          console.log('items: ', resp);
           $scope.fetchItems(resp.rgInventory, resp.rgDescriptions);
         });
     };

@@ -5,7 +5,7 @@ var Firebase = require('firebase');
 var request = require('request');
 
 router.post('/', function(req, res) {
-  var jackpotRef = new Firebase('https://snipego.firebaseio.com/jackpot');
+  var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
   jackpotRef.once('value', function(data) {
     var jackpotData = data.val();
     if (jackpotData[jackpotData.length - 1].players[req.body.steamid]) {
@@ -39,7 +39,7 @@ router.post('/', function(req, res) {
           botTradeObj.trade_token = accessToken;
           console.log('botTradeObj ', botTradeObj);
           request.post({
-            url: 'https://snipego3.herokuapp.com/add',
+            url: 'https://localhost:3017/add',
             body: botTradeObj,
             json: true,
           }, function(error, response, body) {

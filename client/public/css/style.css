@@ -3,8 +3,6 @@ html, body {
   height: 100%;
 }
 
-/* Jackpot Info Right-Side Table */
-
 .btn {
   font-family: "Open Sans" !important;
 }
@@ -14,32 +12,65 @@ html, body {
   border: 1px solid black !important;
 }
 
-.main-table {
+.modal-body {
+  background-color: #212121;
+}
+
+.modal-header {
+  background-color: #212121;
+  color: white;
+}
+
+.modal-close-btn {
+  float: right;
+}
+
+/* Deposits Table */
+
+#deposits-table td {
+  border-color: black;
+  border-width: 5px;
+  font-family: "Open Sans";
+}
+
+#deposits-header {
+  font-size: 16px;
+  color: white;
+  border: 5px solid black;
+  text-align: center;
+  font-family: "Open Sans";
+}
+
+#deposits-player {
+  color: #5FB760;
+  font-size: 12px;
+}
+
+.deposits-player-photo {
+  height: 50px;
+  width: 50px;
+  margin-left: 5px;
+}
+
+#deposits-item {
+  height: 40px;
+  width: 40px;
+}
+
+.deposits-item {
+  width: 175px;
+}
+
+.deposits-value {
+  color: white;
   font-family: "Open Sans";
   text-align: center;
 }
 
-#main-table td {
-  border-color: black;
-  border-width: 5px;
-}
-
-.main-table-cell-header {
-  color: white;
-  font-size: 28px;
-  min-height: 1.5em;
-}
-
-.main-table-cell-text {
-  color: #5FB760;
-  font-size: 24px;
-}
+/* Jackpot Table */
 
 #jackpot-table {
-  margin-top: 15px;
-}
-
-#jackpot-table {
+  margin-top: 25px;
   font-family: "Open Sans";
 }
 
@@ -48,48 +79,17 @@ html, body {
   border-width: 5px;
 }
 
-.jackpot-table-cell-header {
-  min-width: 75px;
-  min-height: 75px;
-}
-
-.jackpot-table-cell-text {
-  color: #5FB760;
-  font-size: 16px;
-}
-
-#jackpotItemBox {
-  height: 61px;
-  width: 75px;
-}
-
-#jackpotHeader {
-  font-size: 16px;
+#jackpot-header {
   color: white;
-  border: 5px solid black;
+  font-size: 22px;
+  border-color: black;
+  border-width: 5px;
   text-align: center;
-  font-family: "Open Sans";
 }
 
-.jackpot-player-cell-photo {
-  min-width: 268px;
-  min-height: 40px;
-  margin-left: 3px;
-}
-
-.player-table {
-  margin-left: 5px;
-}
-
-.jackpot-player-cell-text {
+#jackpot-value {
   color: #5FB760;
-  font-size: 12px;
-  font-family: "Open Sans";
-}
-
-#jackpotPlayerBox {
-  height: 58px;
-  width: 58px;
+  font-size: 36px;
 }
 
 /* General */
@@ -181,30 +181,37 @@ html, body {
   font-size: 1.5em;
 }
 
-.deposit-buttons {
+/*.deposit-buttons {
   text-align: center;
-}
+}*/
 
 #inventory-btn {
+  margin-top: 2px;
 }
 
 .inventory-refresh-btn {
-  font-size: 1.85em;
+  font-size: 2.25em;
+  float: left;
 }
 
 #inventory-refresh-btn {
-  width: 10em;
+  float: right;
 }
 
 /* Deposit View Items */
 
 .itemContainer {
-  background-color: #212121;
+  background-color: black;
+  border: 2px solid white;
+  display: inline-block;
+  text-align: center;
   margin: 5px;
   height: 84px;
   width: 74px;
-  display: inline-block;
-  text-align: center;
+}
+
+.userItems {
+  margin-left: 25px;
 }
 
 .highlightSelected {
@@ -233,12 +240,16 @@ html, body {
 }
 
 #total-value-text {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 1em;
   margin-bottom: 1em;
   color: white;
   font-family: "Open Sans";
   text-align: center;
+}
+
+.deposit-header {
+  height: 30px;
 }
 
 /* Chat */

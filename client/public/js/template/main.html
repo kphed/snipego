@@ -1,46 +1,36 @@
 <div class="container-fluid">
 
-  <div class="col-md-3">
-    <table class="main-table table table-responsive table-bordered panel" id="main-table">
+  <div class="col-md-4">
+    <table class="table table-responsive table-bordered panel" id="deposits-table">
       <thead>
-        <th id="jackpotHeader" colspan="3">Top Jackpot Skins</th>
-      </thead>
-      <tr>
-        <td>
-          <div class="jackpot-table-cell-header"><img id="jackpotItemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpopbuyLgNv1fX3eSR97t27lo-EqP3hPbzdk1RT5MRygdbN_Iv9nBrsqEBoZm_1LNCcJgBsMFHW-we5w7i7g5HvuJ3MmHo27iJxsymLyxHkn1gSOctrpo8e" /></div>
-          <span class="jackpot-table-cell-text">54.10</span>
-        </td>
-        <td>
-          <div class="jackpot-table-cell-header"><img id="jackpotItemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0uL3djFN79fnzL-Nm_b5NqjulGdE7fp8j-3I4IG72ADkrRdpZTr3I9PBI1c7ZViDrgS-xOi5hMTu7czLwXJgvHJw7SzVngv3308koXSX8A" /></div>
-          <span class="jackpot-table-cell-text">26.92</span>
-        </td>
-        <td>
-          <div class="jackpot-table-cell-header"><img id="jackpotItemBox" src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo7e1f1JfwOP3dTxS_NCzq4yCkP_gfbqDw2gIusF32L_A9t323wS3_UZrZ2iiJIHBe1JvaQrQrlG5yevvh5Si_MOecRXE-L0" /></div>
-          <span class="jackpot-table-cell-text">5.26</span>
-        </td>
-      </tr>
-    </table>
-
-    <table class="table table-responsive table-bordered panel" id="main-table">
-      <thead>
-        <th id="jackpotHeader" colspan="3">Jackpot Players</th>
+        <th id="deposits-header" colspan="2">Jackpot Deposits</th>
+        <th id="deposits-header" colspan="1">Value</th>
       </thead>
       <tr ng-repeat="player in jackpotPlayers">
-        <td class="player-table">
-          <div class="jackpot-player-cell-text">supremekp</div>
-          <div class="jackpot-player-cell-photo"><img id="jackpotPlayerBox" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/626d9a8ffbe54581cb92c7a9e0cd7b2dba730e14_medium.jpg" />
+        <td>
+          <div class="jackpot-player-photo">
+            <img class="deposits-player-photo" src="{{player.avatar}}" />
           </div>
+          <div id="deposits-player">{{player.displayName}}</div>
+        </td>
+        <td>
+          <div class="deposits-item">
+            <img popover id="deposits-item" ng-repeat="item in player.items" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+          </div>
+        </td>
+        <td>
+          <div class="deposits-value">{{player.itemsValue}}</div>
         </td>
       </tr>
     </table>
   </div>
 
-  <div class="progress-container col-md-6">
-    <div class="progress-text" ng-style="getStyle()">{{jackRef.jackpotQuantity}}/50</div>
+  <div class="progress-container col-md-5">
+    <div class="progress-text" ng-style="getStyle()">{{jackRef.itemsCount}}/50</div>
     <div
     round-progress
     max="50"
-    current="jackRef.jackpotQuantity"
+    current="jackRef.itemsCount"
     color="#5FB760"
     bgcolor="#eaeaea"
     radius="175"
@@ -52,10 +42,12 @@
     duration="800"
     animation="easeOutCubic"></div>
     <table class="table table-bordered panel" id="jackpot-table">
+      <thead>
+        <th id="jackpot-header">Jackpot</th>
+      </thead>
       <tr>
         <td>
-          <div class="main-table-cell-header">Jackpot</div>
-          <span class="main-table-cell-text">1,629</span>
+          <span id="jackpot-value">{{jackRef.jackpotValue}}</span>
         </td>
       </tr>
     </table>
@@ -75,3 +67,4 @@
     </irontec-simple-chat>
   </div>
 </div>
+

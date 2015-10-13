@@ -11,9 +11,9 @@
 
     <title>SnipeGo - Win CS:GO Skins</title>
 
-    <link href="css/style.css" rel="stylesheet">
-
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet'>
 
@@ -31,15 +31,9 @@
       <div ui-view="nav"></div>
     </div>
 
-    <snap-drawer class="snap-drawer">
-      <div ui-view="deposit"></div>
-    </snap-drawer>
-
-    <snap-content class="main-content">
-      <div class="container-fluid fill">
-        <div ui-view></div>
-      </div>
-    </snap-content>
+    <div class="main-content container-fluid fill">
+      <div ui-view></div>
+    </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
 

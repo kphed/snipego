@@ -8,8 +8,8 @@ var BackpackLogger = require('steam_backpack');
 var winston = require('winston');
 var randomstring = require('randomstring');
 var express = require('express');
-var body_parser = require('body-parser');
-var FireBase = require("firebase");
+var bodyParser = require('body-parser');
+var FireBase = require('firebase');
 
 // == setup winston logger interfaces == //
 var logger = new (winston.Logger)({
@@ -32,18 +32,19 @@ var context = {
 
 // == BOT INFO == //
 var bot_info = {
-	username : 'khoa_phan',
-	password : 'snipego123$',
-	api_key : '5763057DCDBBE10EEE1B2E26FEA61939',
-	id : 1,
-	name : "khoa_phan",
-	port : process.env.PORT,
-	sentry : function() {
+	username: 'khoa_phan',
+	password: 'snipego123$',
+	api_key: '6C95A22EBF8BB2513FE729CD75F15A77',
+	id: 1,
+	name: 'khoa_phan',
+	port: process.env.PORT,
+	sentry: function() {
 		if(fs.existsSync(__dirname+'/sentry/ssfn/'+bot_info.username+'.ssfn')) {
 			var sha = require('crypto').createHash('sha1');
 			sha.update(fs.readFileSync(__dirname+'/sentry/ssfn/'+bot_info.username+'.ssfn'));
 			return new Buffer(sha.digest(), 'binary');
-		} else if(fs.existsSync(__dirname+'/sentry/'+bot_info.username+'_sentryfile.hash')) {
+		}
+		else if (fs.existsSync(__dirname+'/sentry/'+bot_info.username+'_sentryfile.hash')) {
 			return fs.readFileSync(__dirname+'/sentry/'+bot_info.username+'_sentryfile.hash');
 		} else {
 			return null;
@@ -53,7 +54,7 @@ var bot_info = {
 
 // == db db_info and table whhere we will be storing our user data/backpack == //
 var db_info = {
-	firebaseRef : new FireBase("https://snipego.firebaseio.com/")
+	firebaseRef : new FireBase('https://snipego.firebaseio.com/')
 };
 
 // == Define Our Core Objects == //
@@ -67,8 +68,8 @@ var backpack_logger = new BackpackLogger({
 
 // == define offer server == //
 var offer_server = express();
-offer_server.use( body_parser.json() ); // == to support JSON-encoded bodies == //
-offer_server.use(body_parser.urlencoded({ extended: true})); // == To support URL-encoded bodies == //
+offer_server.use(bodyParser.json()); // == to support JSON-encoded bodies == //
+offer_server.use(bodyParser.urlencoded({ extended: true})); // == To support URL-encoded bodies == //
 
 // == if we have a updated server list use it == //
 if(fs.existsSync('servers.json')) {
@@ -76,11 +77,11 @@ if(fs.existsSync('servers.json')) {
 }
 
 // == set steamUser options == //
-bot.setOption('dataDirectory',null);
+bot.setOption('dataDirectory', null);
 bot.setSentry(bot_info.sentry());
 
 // == the lesser relavant events == //
-bot.on('servers', function(servers){
+bot.on('servers', function(servers) {
 	fs.writeFile('servers.json', JSON.stringify(servers));
 });
 
@@ -100,7 +101,7 @@ bot.on('loggedOn', function(details) {
 });
 
 bot.on('webSession', function(sessionID, cookies) {
-	logger.log('info', "Got web session");
+	logger.log('info', 'Got web session');
 	tradeoffers_api.setup({
 		sessionID: sessionID,
 		webCookie: cookies,
@@ -112,11 +113,11 @@ bot.on('webSession', function(sessionID, cookies) {
 
 // == our main start funciton to run when steam is all set up == //
 function init_app() {
-  logger.log("info", 'Bot is now fully logged in');
+  logger.log('info', 'Bot is now fully logged in');
   bot.friends.setPersonaState(Steam.EPersonaState.Online);
 
 	// == init app can be called when we relogin and in that case we dont wanna start over our logger or offer server == //
-	if(bot_info.state !== 'running') {
+	if (bot_info.state !== 'running') {
 		backpack_logger.start();
 
 		var offer_server_handle = start_offer_server();
@@ -145,11 +146,11 @@ function start_offer_server() {
 
 // == send a request to deposit items to inventory == //
 offer_server.post('/add', function(req, resp) {
-	console.log('CALLING BOT ADD METHOD 2', req.body, resp.body);
+	console.log('CALLING BOT ADD METHOD 2', req.body);
 	var user_info = req.body;
 
 	function send_deposit_offer() {
-		logger.log("info", 'Sending trade offer to user : '+ user_info.id + ' trade_token : ' + user_info.trade_token);
+		logger.log('info', 'Sending trade offer to user: ' + user_info.id + ' trade_token: ' + user_info.trade_token);
 		var protection_code = randomstring.generate(5).toUpperCase();
 
 		tradeoffers_api.makeOffer({
@@ -159,9 +160,9 @@ offer_server.post('/add', function(req, resp) {
 			accessToken : user_info.trade_token,
 			message : protection_code
 		}, function(err, response) {
-			if(err) {
-				logger.log("info", err);
-				resp.json({"error" : "There was an error sending your request. Please try again"});
+			if (err) {
+				logger.log('info', err);
+				resp.json({'error' : 'There was an error sending your request. Please try again'});
 				resp.end();
 				make_offer_error(err);
 				return;
@@ -169,18 +170,16 @@ offer_server.post('/add', function(req, resp) {
 
 			// == tell the backpacklogger to watch this trade offer == //
 			backpack_logger.que.push(response.tradeofferid);
-			resp.json({"success": "trade offer sent. PROTECTION CODE : "+protection_code, "protection_code" : protection_code});
-			resp.end();
+			resp.json({'success': 'trade offer sent. PROTECTION CODE : ' + protection_code + 'trade offer id: ' + response.tradeofferid});
 		});
 	}
-
 	send_deposit_offer();
 });
 
 // [if we dont receive a route we can handle]
 offer_server.all('*', function(req, resp) {
 	resp.type('application/json');
-	resp.json({"error" : "server error"});
+	resp.json({'error' : 'server error'});
 	resp.end();
 });
 
@@ -191,7 +190,7 @@ function make_offer_error(err) {
   err = String(err);
 
 	// == cookies expired. just relogon == //
-	if(err.indexOf("401") > -1) {
+	if(err.indexOf('401') > -1) {
 		bot.webLogOn();
 	}
 }

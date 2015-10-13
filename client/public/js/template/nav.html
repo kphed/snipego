@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <button class="btn btn-{{successDanger}} navbar-btn play-button nav-popover" ng-show="isAuth && hasTradeUrl" ng-click="togglePlay()" snap-toggle="" data-toggle="popover" data-container="body" data-content="Play & Win Skins"><i class="glyphicon glyphicon-{{playStop}} play-button-text"></i></button>
+      <button class="btn btn-{{successDanger}} navbar-btn play-button nav-popover" ng-show="isAuth && hasTradeUrl" data-toggle="modal" data-target="#deposit" data-toggle="popover" data-container="body" data-content="Play & Win Skins"><i class="glyphicon glyphicon-play play-button-text"></i></button>
       <div class="tradeUrl" ng-show="isAuth && !hasTradeUrl">
         <form class="navbar-form navbar-left" role="search">
           <div>
@@ -46,11 +46,44 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button class="btn btn-danger modal-close-btn" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
         <h4 class="modal-title" id="myModalLabel">How To Play</h4>
       </div>
       <div class="modal-body">
-        ...
+        <div ui-view="deposit"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deposit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="DepositCtrl">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="deposit-header">
+        <button class="btn btn-danger modal-close-btn" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="deposit-buttons">
+
+          <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Bet Selected Items" ng-click="betItems()" ng-disabled="depositingItems"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
+
+          <button class="btn btn-info btn-popover" id="inventory-refresh-btn" data-toggle="popover" data-container="body" data-content="Refresh Inventory" ng-click="fetchInventory()" ng-disabled="inventoryLoading"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
+
+        </div>
+        <div id="total-value-text">
+          <span>Total Value: {{totalValue()}} | Mininum 5 Value Total | 20 Items Max</span>
+          <div class="items-shown" ng-show="!items.length">Get your up-to-date inventory with the refresh button!</div>
+          <div class="items-shown" ng-show="items.length">If you are missing any items, please refresh again!</div>
+        </div>
+
+        <div class="userItems">
+          <div class="itemContainer" popover toggle-class ng-repeat="item in items" ng-click="selectItem(item)">
+            <img class="itemBox" rel="popover" data-trigger="hover" data-content="{{item.market_hash_name}}" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+            <div class="itemPrice">{{item.market_price}}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -60,7 +93,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button class="btn btn-danger modal-close-btn" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
         <h4 class="modal-title" id="myModalLabel">Need Help or Have Questions/Suggestions?</h4>
       </div>
       <div class="modal-body">
@@ -74,7 +107,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button class="btn btn-danger modal-close-btn" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
         <h4 class="modal-title" id="myModalLabel">Earn Free Spins!</h4>
       </div>
       <div class="modal-body">
