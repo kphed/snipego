@@ -4,6 +4,7 @@
     <table class="table table-responsive table-bordered panel" id="deposits-table">
       <thead>
         <th id="deposits-header" colspan="2">Jackpot Deposits</th>
+        <th id="deposits-header" colspan="1">Chance</th>
         <th id="deposits-header" colspan="1">Value</th>
       </thead>
       <tr ng-repeat="player in jackpotPlayers">
@@ -17,6 +18,9 @@
           <div class="deposits-item">
             <img popover id="deposits-item" ng-repeat="item in player.items" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
           </div>
+        </td>
+        <td>
+          <div class="deposits-value">{{player.itemsValue}}</div>
         </td>
         <td>
           <div class="deposits-value">{{player.itemsValue}}</div>
