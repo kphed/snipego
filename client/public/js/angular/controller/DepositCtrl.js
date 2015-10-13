@@ -45,6 +45,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       } else {
         $scope.depositingItems = true;
         var depositData = {
+          tradeUrl: $rootScope.user.tradeUrl,
           displayName: $rootScope.user.displayName,
           avatar: $rootScope.user.photos[1],
           id: $rootScope.user.id,

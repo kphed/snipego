@@ -9,7 +9,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var Firebase = require('firebase');
 
-var waitingRef = new Firebase('https://snipego.firebaseio.com/pending_offers');
+var pendingRef = new Firebase('https://snipego.firebaseio.com/pending_offers');
 
 var queueRef = new Firebase('https://snipego.firebaseio.com/queue');
 
@@ -133,7 +133,7 @@ offers.on('sentOfferChanged', function (offer, oldState) {
   // Alert us when one of our offers is accepted
   if (offer.state == TradeOfferManager.ETradeOfferState.Accepted) {
     logger.info("Our sent offer # " + offer.id + " has been accepted.");
-    waitingRef.child(offer.id).once('value', function(trade) {
+    pendingRef.child(offer.id).once('value', function(trade) {
       var tradeData = trade.val();
       if (tradeData) {
         queueRef.once('value', function(queue) {
@@ -195,7 +195,6 @@ function start_offer_server() {
   return offer_server_handle;
 }
 
-// == send a request to deposit items to inventory == //
 offer_server.post('/user-deposit', function(req, res) {
   console.log('CALLING BOT DEPOSIT', req.body);
   var userInfo = req.body;
@@ -203,13 +202,13 @@ offer_server.post('/user-deposit', function(req, res) {
   var protectionCode = randomstring.generate(7).toUpperCase();
 
   trade.addTheirItems(userInfo.items);
-  trade.send('Deposit for SnipeGo jackpot, could be a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
+  trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
     if (err) {
       logger.log('info', err);
       offerError(err);
       res.json({'error' : 'There was an error sending your request. Please try again'});
     } else {
-      waitingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue});
+      pendingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue});
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });

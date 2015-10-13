@@ -10,10 +10,12 @@ router.post('/', function(req, res) {
   console.log('depositing items', req.body);
   jackpotRef.once('value', function(data) {
     var jackpotData = data.val();
-    for (var i = 0; i < jackpotData.players.length; i++) {
-      if (jackpotData.players[i][req.body.id]) {
-        console.log('You are already in the jackpot!');
-        return;
+    if (jackpotData.players) {
+      for (var i = 0; i < jackpotData.players.length; i++) {
+        if (jackpotData.players[i][req.body.id]) {
+          console.log('You are already in the jackpot!');
+          res.json({'error': 'User is already in jackpot'});
+        }
       }
     }
     console.log('You are not in the jackpot, but we are checking your items first');
@@ -34,19 +36,13 @@ router.post('/', function(req, res) {
         for (var item in req.body.items) {
           items.push(req.body.items[item]);
         }
-        var botTradeObj = {};
-        var tradeUrl = req.session.passport.user.tradeUrl;
+        var botTradeObj = req.body;
+        var tradeUrl = req.body.tradeUrl;
         var p = tradeUrl.indexOf('&');
         var accessToken = tradeUrl.substr(p + '&token='.length);
-        botTradeObj.id = req.body.id;
-        botTradeObj.displayName = req.body.displayName;
-        botTradeObj.avatar = req.body.avatar;
         botTradeObj.items = items;
         botTradeObj.trade_token = accessToken;
-        botTradeObj.itemsValue = req.body.itemsValue;
-        botTradeObj.itemsCount = req.body.itemsCount;
         console.log('botTradeObj ', botTradeObj);
-        res.json(botTradeObj);
         request.post({
           url: 'https://snipego3.herokuapp.com/user-deposit',
           body: botTradeObj,
@@ -54,9 +50,10 @@ router.post('/', function(req, res) {
         }, function(error, response, body) {
           if (error) {
             console.log(error);
+            res.json({'error': error});
           } else {
             console.log('Trade posted successfully, here is the body: ', body);
-            res.json(body);
+            res.json({'success': body});
           }
         });
       } else {
