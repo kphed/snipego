@@ -14,7 +14,7 @@ module.exports = function(passport) {
   passport.use(new SteamStrategy({
     returnURL: 'http://localhost:3000/auth/steam-callback',
     realm: 'http://localhost:3000/',
-    apiKey: '6C95A22EBF8BB2513FE729CD75F15A77'
+    apiKey: 'E31FAD47183885249D0F8312EC2319B0'
   }, function(identifier, profile, done) {
       console.log('Steam profile data: ', profile);
       var steam = {

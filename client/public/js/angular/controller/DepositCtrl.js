@@ -39,12 +39,15 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.depositItems = function() {
+      console.log('$root scope', $rootScope.user);
       if ($scope.totalValue() < 5) {
         $window.alert('You need at least 5 value in skins to play');
       } else {
         $scope.depositingItems = true;
         var depositData = {
-          steamid: $rootScope.user.id,
+          displayName: $rootScope.user.displayName,
+          avatar: $rootScope.user.photos[1],
+          id: $rootScope.user.id,
           items: $scope.selectedItems,
           itemsValue: $scope.totalValue(),
           itemsCount: $rootScope.itemsSelected,

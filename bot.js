@@ -9,6 +9,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var FireBase = require('firebase');
 
+var waitingRef = new Firebase('https://snipego.firebaseio.com/pending_offers');
+
+var queueRef = new Firebase('https://snipego.firebaseio.com/queue');
+
 // == setup winston logger interfaces == //
 var logger = new (Winston.Logger)({
         transports: [
@@ -140,6 +144,16 @@ offers.on('sentOfferChanged', function (offer, oldState) {
   // Alert us when one of our offers is accepted
   if (offer.state == TradeOfferManager.ETradeOfferState.Accepted) {
     logger.info("Our sent offer # " + offer.id + " has been accepted.");
+    waitingRef.child(offer.id).once('value', function(trade) {
+      var tradeData = trade.val();
+      if (tradeData) {
+        queueRef.once('value', function(queue) {
+          var queueData = queue.val();
+          queueData.push(tradeData);
+          queueRef.update(queueData);
+        });
+      }
+    });
   }
 });
 
@@ -206,6 +220,7 @@ offer_server.post('/user-deposit', function(req, res) {
       offerError(err);
       res.json({'error' : 'There was an error sending your request. Please try again'});
     } else {
+      waitingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue});
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });
