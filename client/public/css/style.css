@@ -156,7 +156,7 @@ html, body {
 }
 
 #tradeUrlInput {
-  width: 22em;
+  width: 35em;
 }
 
 /* Snap.js */
@@ -211,7 +211,7 @@ html, body {
 }
 
 .userItems {
-  margin-left: 25px;
+  margin-left: 30px;
 }
 
 .highlightSelected {
@@ -250,6 +250,10 @@ html, body {
 
 .deposit-header {
   height: 30px;
+}
+
+.modal-title {
+  padding-top: 10px;
 }
 
 /* Chat */

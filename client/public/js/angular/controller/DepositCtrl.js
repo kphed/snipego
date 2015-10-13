@@ -11,6 +11,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.selectedItems = {};
 
+
     $scope.selectedQuantity = function() {
       $rootScope.itemsSelected = Object.keys($scope.selectedItems).length;
       return ' ' + $rootScope.itemsSelected + ' Skins';
@@ -102,7 +103,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
         .success(function(resp) {
           $scope.fetchItems(resp.rgInventory, resp.rgDescriptions);
-        });
+      });
     };
+
   }]
 );

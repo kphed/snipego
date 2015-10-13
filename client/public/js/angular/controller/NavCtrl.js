@@ -3,8 +3,6 @@
 angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
   .controller('NavCtrl', ['$scope', '$rootScope', 'Auth', '$http', function($scope, $rootScope, Auth, $http) {
 
-    $scope.playStop = 'play';
-
     $scope.successDanger = 'success';
 
     $scope.isAuth = false;
@@ -13,19 +11,20 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.tradeUrl = 'Add trade URL to unlock jackpot deposits';
 
-    $scope.hasTradeUrl = false;
+    $scope.hasTradeUrl = '#tradeurl';
 
     $scope.clearPlaceholder = function() {
       $scope.tradeUrl = '';
     };
 
     $scope.updateTradeUrl = function() {
+      console.log('update trade url');
       if ($scope.tradeUrl.length < 60 || !$scope.tradeUrl.match(/partner/i) || !$scope.tradeUrl.match(/token/i)) {
         $scope.tradeUrl = 'Invalid trade Url, please try again';
       } else {
       $http.post('/users/update-trade-url', {tradeUrl: $scope.tradeUrl})
         .success(function(resp) {
-          $scope.hasTradeUrl = true;
+          $scope.hasTradeUrl = '#deposit';
         });
       }
     };
@@ -37,22 +36,12 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
           $scope.isAuth = true;
           $rootScope.user = resp;
           if (resp.tradeUrl) {
-            $scope.hasTradeUrl = true;
+            $scope.hasTradeUrl = '#deposit';
           }
         } else {
           console.log('there was no resp???');
         }
       });
-    };
-
-    $scope.togglePlay = function() {
-      if ($scope.playStop === 'play') {
-        $scope.playStop = 'stop';
-        $scope.successDanger = 'danger';
-      } else {
-        $scope.playStop = 'play';
-        $scope.successDanger = 'success';
-      }
     };
 
     $scope.checkAuth();
