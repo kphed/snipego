@@ -39,7 +39,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.depositItems = function() {
-      console.log('$root scope', $rootScope.user);
+      console.log('$rootScope', $rootScope.user);
       if ($scope.totalValue() < 5) {
         $window.alert('You need at least 5 value in skins to play, please select more skins');
       } else {
@@ -55,7 +55,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         };
         console.log('depositData is ', depositData);
         $http.post('/deposit/', depositData).success(function(resp) {
-          console.log('Posted data to backend... and here is the response ', resp);
+          console.log('Posted data to backend... here is the response ', resp);
         });
       }
     };
