@@ -27,6 +27,13 @@ html, body {
 
 /* Deposits Table */
 
+
+.deposits-player-photo {
+  height: 50px;
+  width: 50px;
+  margin-left: 5px;
+}
+
 #deposits-table td {
   border-color: black;
   border-width: 5px;
@@ -44,12 +51,6 @@ html, body {
 #deposits-player {
   color: #5FB760;
   font-size: 12px;
-}
-
-.deposits-player-photo {
-  height: 50px;
-  width: 50px;
-  margin-left: 5px;
 }
 
 #deposits-item {
@@ -159,21 +160,6 @@ html, body {
   width: 35em;
 }
 
-/* Snap.js */
-
-.sidebar-content {
-  margin-top: 8em;
-  margin-left: 0.5em;
-}
-
-.main-content {
-  margin-top: 5em;
-}
-
-.snap-drawer {
-  background-color: black;
-  width: 365px;
-}
 
 /* Deposit View Buttons */
 
