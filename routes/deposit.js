@@ -47,18 +47,18 @@ router.post('/', function(req, res) {
         botTradeObj.itemsCount = req.body.itemsCount;
         console.log('botTradeObj ', botTradeObj);
         res.json(botTradeObj);
-        // request.post({
-        //   url: 'http://localhost:3017/user-deposit',
-        //   body: botTradeObj,
-        //   json: true,
-        // }, function(error, response, body) {
-        //   if (error) {
-        //     console.log(error);
-        //   } else {
-        //     console.log('Trade posted successfully, here is the body: ', body);
-        //     res.json(body);
-        //   }
-        // });
+        request.post({
+          url: 'https://snipego3.herokuapp.com/user-deposit',
+          body: botTradeObj,
+          json: true,
+        }, function(error, response, body) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Trade posted successfully, here is the body: ', body);
+            res.json(body);
+          }
+        });
       } else {
         console.log('There was an error: ', err);
         res.json({'error': err});

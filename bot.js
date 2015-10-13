@@ -44,7 +44,7 @@ var contextid = {
 var client = new SteamUser();
 var offers = new TradeOfferManager({
     steam:        client,
-    domain:       'localhost:3000',
+    domain:       'https://snipego2.herokuapp.com',
     language:     "en", // English item descriptions
     pollInterval: 10000, // (Poll every 10 seconds (10,000 ms)
     cancelTime:   300000 // Expire any outgoing trade offers that have been up for 5+ minutes (300,000 ms)
@@ -54,10 +54,9 @@ var offers = new TradeOfferManager({
 var botInfo = {
   username: 'khoa_phan',
   password: 'snipego123$',
-  api_key: '6C95A22EBF8BB2513FE729CD75F15A77',
   id: 1,
   name: 'supremekp',
-  port: 3017,
+  port: process.env.port,
   sentry: function() {
     if(fs.existsSync(__dirname + '/sentry/ssfn/' + botInfo.username + '.ssfn')) {
       var sha = require('crypto').createHash('sha1');
