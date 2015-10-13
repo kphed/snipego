@@ -56,7 +56,7 @@ var botInfo = {
   password: 'snipego123$',
   id: 1,
   name: 'supremekp',
-  port: process.env.PORT,
+  port: process.env.PORTg,
   sentry: function() {
     if(fs.existsSync(__dirname + '/sentry/ssfn/' + botInfo.username + '.ssfn')) {
       var sha = require('crypto').createHash('sha1');
@@ -212,17 +212,31 @@ offer_server.post('/user-deposit', function(req, res) {
   var trade = offers.createOffer(userInfo.id);
   var protectionCode = randomstring.generate(7).toUpperCase();
 
-  trade.addTheirItems(userInfo.items);
-  trade.send('Deposit for SnipeGo jackpot, could be a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
+  trade.loadPartnerInventory(730, 2, function() {
+
     if (err) {
+
       logger.log('info', err);
       offerError(err);
       res.json({'error' : 'There was an error sending your request. Please try again'});
+
     } else {
-      waitingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue});
-      res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
+
+      trade.addTheirItems(userInfo.items);
+      trade.send('Deposit for SnipeGo jackpot, could be a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
+        if (err) {
+          logger.log('info', err);
+          offerError(err);
+          res.json({'error' : 'There was an error sending your request. Please try again'});
+        } else {
+          waitingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue});
+          res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
+        }
+      });
+
     }
   });
+
 });
 
 offer_server.post('/user-withdraw', function(req, res) {
