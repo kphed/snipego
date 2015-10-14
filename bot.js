@@ -45,7 +45,7 @@ var botInfo = {
   password: 'snipego123$',
   id: 1,
   name: 'supremekp',
-  port: 3017,
+  port: process.env.PORT,
   sentry: function() {
     if(fs.existsSync(__dirname + '/sentry/ssfn/' + botInfo.username + '.ssfn')) {
       var sha = require('crypto').createHash('sha1');
