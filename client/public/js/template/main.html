@@ -7,7 +7,7 @@
     max="50"
     current="jackRef.itemsCount"
     color="#5FB760"
-    bgcolor="#eaeaea"
+    bgcolor="#E5E5E5"
     radius="175"
     stroke="50"
     semi="false"
@@ -16,20 +16,20 @@
     responsive="false"
     duration="800"
     animation="easeOutCubic"></div>
-    <table class="table table-bordered panel" id="jackpot-table">
+    <table class="table table-bordered panel" id="progress-table">
       <tr>
         <thead>
-          <th id="jackpot-header">Current Jackpot Value</th>
+          <th id="progress-header">Current Jackpot Value</th>
         </thead>
         <td>
-          <span id="jackpot-value">{{jackRef.jackpotValue}}</span>
+          <span id="progress-value">${{jackRef.jackpotValue}}</span>
         </td>
       </tr>
     </table>
   </div>
 
-  <div class="col-md-5 jackpots">
-    <div class="current-jackpot">
+  <div class="col-md-5">
+    <div>
       <table class="table table-responsive table-bordered panel" id="deposits-table">
         <thead>
           <th id="deposits-header" colspan="2">
@@ -39,13 +39,12 @@
         </thead>
         <tr ng-repeat="player in jackpotPlayers">
           <td class="deposits-player">
-            <div>
               <img class="deposits-player-photo" src="{{player.avatar}}" />
-            </div>
           </td>
           <td>
-            <div class="deposits-item">
-              <img popover id="deposits-item" ng-repeat="item in player.items" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+            <div class="deposits-item" ng-repeat="item in player.items">
+              <img popover id="deposits-item" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+              <span>{{item.market_price}}</span>
             </div>
           </td>
         </tr>
@@ -57,22 +56,18 @@
       <table class="table table-responsive table-bordered panel" id="deposits-table">
         <thead>
           <th id="deposits-header" colspan="2">
-          Round #1 Ended
+          Round #2 Started
           <i class="glyphicon glyphicon-question-sign"></i>
           </th>
         </thead>
         <tr ng-repeat="player in jackpotPlayers">
           <td class="deposits-player">
-            <div>
               <img class="deposits-player-photo" src="{{player.avatar}}" />
-            </div>
-            <div id="deposits-player">{{player.displayName}}</div>
-            <div class="deposits-value">{{player.itemsValue}}</div>
-            <div class="deposits-value">26%</div>
           </td>
           <td>
-            <div class="deposits-item">
-              <img popover id="deposits-item" ng-repeat="item in player.items" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+            <div class="deposits-item" ng-repeat="item in player.items">
+              <img popover id="deposits-item" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+              <span>{{item.market_price}}</span>
             </div>
           </td>
         </tr>

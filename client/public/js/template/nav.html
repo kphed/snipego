@@ -66,7 +66,7 @@
           </div>
 
           <div class="userItems">
-            <div class="itemContainer" popover toggle-class ng-animate="'animate'" ng-repeat="item in items" ng-click="selectItem(item)">
+            <div class="itemContainer" popover toggle-class ng-repeat="item in items" ng-click="selectItem(item)">
               <img class="itemBox" rel="popover" data-trigger="hover" data-content="{{item.market_hash_name}}" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
               <div class="itemPrice">{{item.market_price}}</div>
             </div>
@@ -93,7 +93,10 @@
           <div class="form-group">
             <input type="text" id="tradeUrlInput" class="form-control" ng-click="clearPlaceholder()" ng-model="tradeUrl" placeholder="{{tradeUrl}}">
           </div>
-          <button type="submit" class="btn btn-success" ng-click="updateTradeUrl()" data-dismiss="modal">Submit</button>
+          <button type="submit" class="btn btn-success" ng-click="updateTradeUrl()">Submit</button>
+          <div class="trade-url-success" ng-show="tradeUrlSuccess">
+            <p>You've successfully entered in your trade URL! Please close this window and press play again to deposit your items into the jackpot.</p>
+          </div>
         </div>
       </div>
     </div>

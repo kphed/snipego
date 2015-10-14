@@ -7,6 +7,8 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.isAuth = false;
 
+    $scope.tradeUrlSuccess = false;
+
     $scope.profilePic = '';
 
     $scope.tradeUrl = 'Add trade URL to unlock jackpot deposits';
@@ -25,6 +27,7 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
       $http.post('/users/update-trade-url', {tradeUrl: $scope.tradeUrl})
         .success(function(resp) {
           $scope.hasTradeUrl = '#deposit';
+          $scope.tradeUrlSuccess = true;
         });
       }
     };

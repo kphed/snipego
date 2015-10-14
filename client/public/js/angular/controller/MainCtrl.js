@@ -7,25 +7,29 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
-    $scope.messages = $firebaseArray(messagesRef);
     $scope.visible = true;
+
     $scope.expandOnNew = true;
+
+    var query = messagesRef.orderByChild("timestamp").limitToLast(10);
+
+    $scope.messages = $firebaseArray(query);
 
     $scope.jackpotPlayers = {};
 
     $scope.jackRef = $firebaseObject(jackpotRef);
 
     $scope.handleJackpotPlayers = function(players) {
-      $scope.jackpotPlayers = players;
+      $scope.jackpotPlayers = players.reverse();
     };
 
-    $scope.jackRef.$watch(function(qwe, web) {
+    $scope.jackRef.$watch(function(err, data) {
       $scope.jackRef.$loaded().then(function() {
-        var obj = {};
+        var players = [];
         for (var key in $scope.jackRef.players) {
-          obj[key] = $scope.jackRef.players[key];
+          players.push($scope.jackRef.players[key]);
         }
-        $scope.handleJackpotPlayers(obj);
+        $scope.handleJackpotPlayers(players);
       });
     });
 
@@ -49,9 +53,9 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           'content': message
         });
       } else {
-        $window.alert('There was an error sending your message. Please sign in or try again later.');
+        $window.alert('Please sign in to send a message or try again later.');
       }
     };
 
-    }]
+  }]
 );

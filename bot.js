@@ -33,7 +33,7 @@ var logger = new (Winston.Logger)({
 var client = new SteamUser();
 var offers = new TradeOfferManager({
     steam:        client,
-    domain:       'https://snipego2.herokuapp.com',
+    domain:       'https://snipego3.herokuapp.com',
     language:     "en", // English item descriptions
     pollInterval: 10000, // (Poll every 10 seconds (10,000 ms)
     cancelTime:   300000 // Expire any outgoing trade offers that have been up for 5+ minutes (300,000 ms)
@@ -45,7 +45,7 @@ var botInfo = {
   password: 'snipego123$',
   id: 1,
   name: 'supremekp',
-  port: process.env.PORT,
+  port: 3017,
   sentry: function() {
     if(fs.existsSync(__dirname + '/sentry/ssfn/' + botInfo.username + '.ssfn')) {
       var sha = require('crypto').createHash('sha1');
