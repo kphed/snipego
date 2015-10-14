@@ -5,31 +5,43 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 
-    var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
+    var currentJackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
+
+    var endedJackpotRef = new Firebase('https://snipego.firebaseio.com/endedJackpots');
+
+    var messagesQuery = messagesRef.orderByChild("timestamp").limitToLast(10);
 
     $scope.visible = true;
 
     $scope.expandOnNew = true;
 
-    var query = messagesRef.orderByChild("timestamp").limitToLast(10);
+    $scope.messages = $firebaseArray(messagesQuery);
 
-    $scope.messages = $firebaseArray(query);
+    $scope.jackpotPlayers = [];
 
-    $scope.jackpotPlayers = {};
+    $scope.ended = [];
 
-    $scope.jackRef = $firebaseObject(jackpotRef);
+    $scope.currentJackpot = $firebaseObject(currentJackpotRef);
+
+    $scope.endedJackpots = $firebaseArray(endedJackpotRef);
 
     $scope.handleJackpotPlayers = function(players) {
       $scope.jackpotPlayers = players.reverse();
     };
 
-    $scope.jackRef.$watch(function(err, data) {
-      $scope.jackRef.$loaded().then(function() {
+    $scope.currentJackpot.$watch(function() {
+      $scope.currentJackpot.$loaded().then(function() {
         var players = [];
-        for (var key in $scope.jackRef.players) {
-          players.push($scope.jackRef.players[key]);
+        for (var key in $scope.currentJackpot.players) {
+          players.push($scope.currentJackpot.players[key]);
         }
         $scope.handleJackpotPlayers(players);
+      });
+    });
+
+    $scope.endedJackpots.$watch(function() {
+      $scope.endedJackpots.$loaded().then(function() {
+        $scope.ended = $scope.endedJackpots.slice(-3);
       });
     });
 

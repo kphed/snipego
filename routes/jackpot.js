@@ -49,10 +49,19 @@ var pollFirebaseQueue = function() {
               //end current jackpot game, display salt & %
               //add winner to last jackpot & figure item to keep & send out trade
               //set-up new jackpot
-              ref.child('currentJackpot').update({
-                itemsCount: 0,
-                jackpotValue: 0,
-                roundHash: '',
+              ref.child('currentJackpot').once('value', function(data) {
+                var currentJackpot = data.val();
+                ref.child('jackpots').once('value', function(data) {
+                  var oldJackpots = data.val();
+                  oldJackpots.unshift(currentJackpot);
+                  ref.child('jackpots').set(oldJackpots, function() {
+                    ref.child('currentJackpot').update({
+                      itemsCount: 0,
+                      jackpotValue: 0,
+                      roundHash: '',
+                    });
+                  });
+                });
               });
             }
           });

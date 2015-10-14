@@ -55,6 +55,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         };
         console.log('depositData is ', depositData);
         $http.post('/deposit/', depositData).success(function(resp) {
+          $scope.depositingItems = false;
           console.log('Posted data to backend... here is the response ', resp);
         });
       }

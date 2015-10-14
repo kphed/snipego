@@ -22,7 +22,7 @@
           <th id="progress-header">Current Jackpot Value</th>
         </thead>
         <td>
-          <span id="progress-value">${{jackRef.jackpotValue}}</span>
+          <span id="progress-value">${{currentJackpot.jackpotValue}}</span>
         </td>
       </tr>
     </table>
@@ -51,8 +51,8 @@
       </table>
     </div>
 
-    <div class="ended-jackpots">
-      <div class="winner">&#x2606 Winner! <img class="winner-photo" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/62/626d9a8ffbe54581cb92c7a9e0cd7b2dba730e14_medium.jpg" /> Won 1,509 with 79% &#x2606 </div>
+    <div class="ended-jackpots" ng-repeat="jackpot in ended">
+      <div class="winner">&#x2606 Winner! <img class="winner-photo" src="{{jackpot.winner.avatar}}" /> Won 1,509 with 79% &#x2606 </div>
       <table class="table table-responsive table-bordered panel" id="deposits-table">
         <thead>
           <th id="deposits-header" colspan="2">
@@ -60,14 +60,14 @@
           <i class="glyphicon glyphicon-question-sign"></i>
           </th>
         </thead>
-        <tr ng-repeat="player in jackpotPlayers">
+        <tr ng-repeat="player in jackpot.players">
           <td class="deposits-player">
               <img class="deposits-player-photo" src="{{player.avatar}}" />
           </td>
           <td>
             <div class="deposits-item" ng-repeat="item in player.items">
               <img popover id="deposits-item" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-              <span>{{item.market_price}}</span>
+              <span>${{item.market_price}}</span>
             </div>
           </td>
         </tr>
