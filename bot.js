@@ -137,9 +137,16 @@ offers.on('sentOfferChanged', function (offer, oldState) {
       var tradeData = trade.val();
       if (tradeData) {
         queueRef.once('value', function(queue) {
-          var queueData = queue.val();
-          queueData.push(tradeData);
-          queueRef.update(queueData);
+          if (queue.val()) {
+            var queueData = queue.val();
+            queueData.push(tradeData);
+            queueRef.update(queueData);
+          } else {
+            var queueData = [tradeData];
+            queueRef.set(queueData, function() {
+              console.log('Successfully added pending offer to queue');
+            });
+          }
         });
       }
     });
