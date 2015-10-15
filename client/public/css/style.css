@@ -3,34 +3,7 @@ html, body {
   height: 100%;
 }
 
-.navbar {
-  padding: 0 40px;
-}
-
-.btn {
-  font-family: "Open Sans" !important;
-}
-
-.panel {
-  background-color: #212121 !important;
-  border-bottom-left-radius: 35px;
-  border-bottom-right-radius: 35px;
-}
-
-.modal-body {
-  background-color: #212121;
-}
-
-.modal-header {
-  background-color: #212121;
-  color: white;
-}
-
-.modal-close-btn {
-  float: right;
-}
-
-/* Jackpot Progress */
+/* Main View - Jackpot Progress */
 
 .progress-container {
   text-align: center;
@@ -42,14 +15,8 @@ html, body {
   text-align: center;
 }
 
-/* Jackpot Table */
-
 #progress-table {
   margin-top: 25px;
-  font-family: "Open Sans";
-}
-
-#progress-table td {
   border: 5px solid black;
 }
 
@@ -66,13 +33,48 @@ html, body {
   font-size: 36px;
 }
 
-/* Deposits Table */
+/* Main View - Jackpots */
 
-.deposits-player-photo {
-  margin-top: 10px;
+.current-jackpot {
+  width: 100%;
+  background-color: #212121;
+  margin-bottom: 25px;
+}
+
+.current-jackpot-header {
+  padding-top: 10px;
+  text-align: center;
+  height: 60px;
+  color: white;
+}
+
+.current-jackpot-player {
+  min-height: 80px;
+  padding-top: 10px;
+  border: 5px solid black;
+  overflow: hidden;
+}
+
+.current-jackpot-player-photo {
   height: 50px;
   width: 50px;
+  margin-top: 10px;
+  margin-left: 15px;
+  float: left;
 }
+
+.current-jackpot-player-deposit {
+  width: 80%;
+  float: right;
+  display: inline-block;
+}
+
+.current-jackpot-player-deposit-item {
+  height: 43px;
+  width: 64px;
+  margin: 3px;
+}
+
 
 #deposits-table td {
   border-color: black;
@@ -123,6 +125,39 @@ html, body {
   font-size: 12px;
   font-family: "Open Sans";
 }
+
+.navbar {
+  padding: 0 40px;
+}
+
+.btn {
+  font-family: "Open Sans" !important;
+}
+
+.panel {
+  background-color: #212121 !important;
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+
+.modal-body {
+  background-color: #212121;
+}
+
+.modal-header {
+  background-color: #212121;
+  color: white;
+}
+
+.modal-close-btn {
+  float: right;
+}
+
+/* Jackpot Progress */
+
+/* Jackpot Table */
+
+/* Deposits Table */
 
 /* General */
 
