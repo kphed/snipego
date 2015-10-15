@@ -3,7 +3,7 @@
 angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
   .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', '$firebaseObject', function($scope, $http, $rootScope, $window, $firebase, $firebaseObject) {
 
-    var userRef = new Firebase('https://snipego.firebaseio.com/users' + $rootScope.user.id);
+    var userRef = new Firebase('https://snipego.firebaseio.com/users');
 
     $scope.inventoryLoading = false;
 
@@ -20,7 +20,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     $scope.tradeID = '';
 
     $scope.user.$watch(function() {
-      $scope.user.$loaded().then(function() {
+      $scope.user.child($rootScope.user.id).$loaded().then(function() {
         if ($scope.user.tradeID) {
           $scope.tradePending = true;
           $scope.tradeID = $scope.user.tradeID;
