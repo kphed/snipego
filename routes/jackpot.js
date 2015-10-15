@@ -85,6 +85,11 @@ var queueJackpot = function(queueData) {
     } else {
       jackpotData.players = [firstQueueItem];
     }
+    ref.child('users').child(fireQueueItem.id).update({
+      tradeID: '',
+      protectionCode: '',
+      tradePending: false,
+    });
     ref.child('queue').set(queueData, function() {
       console.log('Jackpot Data is ', jackpotData);
       ref.child('currentJackpot').update({

@@ -38,7 +38,7 @@ var offers = new TradeOfferManager({
     domain:       'https://snipego3.herokuapp.com',
     language:     "en", // English item descriptions
     pollInterval: 10000, // (Poll every 10 seconds (10,000 ms)
-    cancelTime:   300000 // Expire any outgoing trade offers that have been up for 5+ minutes (300,000 ms)
+    cancelTime:   3600000 // Expire any outgoing trade offers that have been up for 5+ minutes (300,000 ms)
 });
 
 // == BOT INFO == //
@@ -131,7 +131,6 @@ offers.on('newOffer', function (offer) {
 });
 
 offers.on('sentOfferChanged', function (offer, oldState) {
-  // Alert us when one of our offers is accepted
   if (offer.state == TradeOfferManager.ETradeOfferState.Accepted) {
     logger.info("Our sent offer # " + offer.id + " has been accepted.");
     pendingRef.child(offer.id).once('value', function(trade) {
@@ -209,7 +208,7 @@ var userDeposit = function(userInfo, res) {
   var protectionCode = randomstring.generate(7).toUpperCase();
 
   trade.addTheirItems(userInfo.items);
-  trade.send('Deposit into SnipeGo jackpot, seems like a lucky one! Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
+  trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
     if (err) {
       logger.log('info', err);
       offerError(err, userInfo, res, false);
@@ -217,6 +216,8 @@ var userDeposit = function(userInfo, res) {
       pendingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue, tradeToken: userInfo.tradeToken});
       userRef.child(userInfo.id).update({
         tradeID: trade.id,
+        protectionCode: protectionCode,
+        tradePending: true,
       });
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }

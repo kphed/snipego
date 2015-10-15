@@ -1,32 +1,43 @@
 'use strict';
 
 angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
-  .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', '$firebaseObject', function($scope, $http, $rootScope, $window, $firebase, $firebaseObject) {
+  .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', '$firebaseObject', function($scope, $http, $rootScope, $window, $firebaseObject) {
 
     var userRef = new Firebase('https://snipego.firebaseio.com/users');
 
-    $scope.inventoryLoading = false;
+    $scope.users = $firebaseObject(userRef);
 
-    $scope.depositingItems = false;
+    $scope.inventoryLoading = false;
 
     $scope.items = [];
 
     $scope.selectedItems = {};
 
-    $scope.user = $firebaseObject(userRef);
-
-    $scope.tradePending = true;
-
     $scope.tradeID = '';
 
-    $scope.user.$watch(function() {
-      $scope.user.child($rootScope.user.id).$loaded().then(function() {
-        if ($scope.user.tradeID) {
-          $scope.tradePending = true;
-          $scope.tradeID = $scope.user.tradeID;
-        }
+    $scope.protectionCode = '';
+
+    $scope.tradePending = false;
+
+    $scope.loadingTrade = false;
+
+    $scope.users.$watch(function() {
+      $scope.users.$loaded().then(function() {
+        $scope.returnID();
       });
     });
+
+    $scope.returnID = function() {
+      if ($scope.users[$rootScope.user.id].tradeID === undefined || $scope.users[$rootScope.user.id].protectionCode === undefined || $scope.users[$rootScope.user.id].tradePending === false) {
+        $scope.tradeID = $scope.users[$rootScope.user.id].tradeID;
+        $scope.protectionCode = $scope.users[$rootScope.user.id].protectionCode;
+      } else {
+        $scope.tradePending = true;
+        $scope.loadingTrade = false;
+        $scope.tradeID = $scope.users[$rootScope.user.id].tradeID;
+        $scope.protectionCode = $scope.users[$rootScope.user.id].protectionCode;
+      }
+    };
 
     $scope.selectedQuantity = function() {
       $rootScope.itemsSelected = Object.keys($scope.selectedItems).length;
@@ -57,7 +68,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       if ($scope.totalValue() < 1) {
         $window.alert('You need at least $1 skins value to play, select more skins');
       } else {
-        $scope.depositingItems = true;
+        $scope.loadingTrade = true;
+        $scope.tradePending = true;
         var depositData = {
           tradeUrl: $rootScope.user.tradeUrl,
           displayName: $rootScope.user.displayName,
@@ -69,7 +81,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         };
         $http.post('/deposit/', depositData).success(function(resp) {
           $scope.selectedItems = {};
-          $scope.depositingItems = false;
         });
       }
     };
@@ -111,11 +122,15 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.fetchInventory = function() {
       $scope.items = [];
-      $scope.inventoryLoading = true;
-      $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
-        .success(function(resp) {
-          $scope.fetchItems(resp.rgInventory, resp.rgDescriptions);
-      });
+      if ($scope.inventoryLoading) {
+        console.log('Inventory is already loading');
+      } else {
+        $scope.inventoryLoading = true;
+        $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
+          .success(function(resp) {
+            $scope.fetchItems(resp.rgInventory, resp.rgDescriptions);
+        });
+      }
     };
 
   }]

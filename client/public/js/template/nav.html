@@ -52,14 +52,19 @@
         </div>
       </div>
       <div class="modal-body">
-        <div ng-show="{{tradePending}}">
-          Trade offer page goes here.
+        <div class="accept-trade" ng-show="tradeID && protectionCode">
+          <p>We've sent you a trade offer. Accept it in order to deposit your items into the jackpot.</p>
+          <p>Protection Code: {{protectionCode}}</p>
+          <a href="https://steamcommunity.com/tradeoffer/{{tradeID}}"><button class="btn btn-success accept-trade-btn"><span>Accept Trade Offer</span></button></a>
+          <p>Notice: As soon as your offer is accepted, we'll deposit your items into the jackpot. This process may take seconds to minutes depending on the amount of load we're experiencing. Please be patient and good luck!</p>
+          <p>We will cancel any trade offers not accepted within 1 hour.</p>
         </div>
-        <div ng-show="!{{tradePending}}">
+        <div class="loader" ng-show="loadingTrade">Loading...</div>
+        <div ng-show="!tradeID && !protectionCode && !loadingTrade && !tradePending">
           <div class="deposit-buttons">
-            <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Deposit Selected Items Into Jackpot" ng-click="depositItems()" ng-disabled="depositingItems"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
+            <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Deposit Selected Items Into Jackpot" ng-click="depositItems()"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
 
-            <button class="btn btn-info btn-popover" id="inventory-refresh-btn" data-toggle="popover" data-container="body" data-content="Refresh Inventory" ng-click="fetchInventory()" ng-disabled="inventoryLoading"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
+            <button class="btn btn-info btn-popover" id="inventory-refresh-btn" data-toggle="popover" data-container="body" data-content="Refresh Inventory" ng-click="fetchInventory()"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
           </div>
           <div id="total-value-text">
             <span>Total Value: {{totalValue()}} | Mininum $1 Value Total | 10 Items Max</span>
