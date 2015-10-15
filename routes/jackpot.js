@@ -114,12 +114,9 @@ var endRound = function() {
     console.log('currentJackpot Winner is ', currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])]);
     console.log('currentJackpot players ', currentJackpot.players);
     console.log('winner array', winnerArray);
-    console.log('winnerObj', winnerObj);
     winnerObj.id = currentJackpot.winner.id;
-    var tradeUrl = currentJackpot.winner.tradeUrl;
-    var p = tradeUrl.indexOf('&');
-    var accessToken = tradeUrl.substr(p + '&token='.length);
-    winnerObj.tradeToken = accessToken;
+    winnerObj.tradeToken = currentJackpot.winner.trade_token;
+    console.log('winnerObj', winnerObj);
     currentJackpot.salt = salt;
     currentJackpot.winningNumber = rngStr;
     console.log('winnerObj is ', winnerObj);
