@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -25,12 +25,16 @@
 
   <body ng-app="SnipeGo">
 
-    <div>
-      <div ui-view="nav"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div ui-view="nav"></div>
+      </div>
     </div>
 
     <div class="container-fluid fill">
-      <div ui-view></div>
+      <div class="row">
+        <div ui-view></div>
+      </div>
     </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
