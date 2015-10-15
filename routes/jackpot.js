@@ -55,6 +55,7 @@ router.post('/hash-check', function(req, res) {
 });
 
 var pollFirebaseQueue = function() {
+  console.log('Calling firebase queue again');
   ref.child('queue').once('value', function(data) {
     var queueData = data.val();
     if (queueData) {
@@ -138,10 +139,8 @@ var endRound = function() {
           }, function(error, response, body) {
             if (error) {
               console.log(error);
-              res.json({'error': error});
             } else {
               console.log('Trade posted successfully, here is the body: ', body);
-              res.json({'success': body});
             }
           });
         });
