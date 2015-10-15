@@ -105,7 +105,8 @@ var endRound = function() {
     winnerObj.items = [];
     for (var i = 0; i < currentJackpot.players.length; i++) {
       winnerObj.items = winnerObj.items.concat(currentJackpot.players[i].items);
-      for (var j = 0; j < (currentJackpot.players[i].value * 100); j++) {
+      var playerValue = currentJackpot.players[i].itemsValue * 100;
+      for (var j = 0; j < playerValue; j++) {
         winnerArray.push(i);
       }
     }
