@@ -208,13 +208,13 @@ offer_server.post('/user-deposit', function(req, res) {
   var protectionCode = randomstring.generate(7).toUpperCase();
 
   trade.addTheirItems(userInfo.items);
-  trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! - Protection Code: ' + protectionCode, userInfo.trade_token, function(err, status) {
+  trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
     if (err) {
       logger.log('info', err);
       offerError(err);
       res.json({'error' : 'There was an error sending your request. Please try again'});
     } else {
-      pendingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue, trade_token: userInfo.trade_token});
+      pendingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue, tradeToken: userInfo.tradeToken});
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });

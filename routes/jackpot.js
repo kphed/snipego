@@ -14,7 +14,6 @@ var rngStr;
 
 var ref = new Firebase('https://snipego.firebaseio.com/');
 
-
 var pollTimeout = setTimeout(function() {
     pollFirebaseQueue();
 }, 10000);
@@ -64,7 +63,6 @@ var pollFirebaseQueue = function() {
       pollTimeout = setTimeout(function() {
         pollFirebaseQueue();
       }, 15000);
-      return;
     }
   });
 };
@@ -86,7 +84,7 @@ var queueJackpot = function(queueData) {
         jackpotValue: jackpotData.jackpotValue,
         players: jackpotData.players,
       }, function() {
-        if (jackpotData.itemsCount !== 1) {
+        if (jackpotData.itemsCount < 50) {
           pollTimeout = setTimeout(function() {
             pollFirebaseQueue();
           }, 5000);
@@ -124,9 +122,12 @@ var endRound = function() {
     ref.child('endedJackpots').push(currentJackpot);
     bcrypt.genSalt(10, function(err, data) {
       salt = data;
+      console.log('new salt is ', salt);
       rngStr = JSON.stringify(rng());
+      console.log('new # is ', rngStr);
       bcrypt.hash(rngStr, salt, function(err, data) {
         hash = data;
+        console.log('new hash is ', hash);
         ref.child('currentJackpot').update({
           itemsCount: 0,
           jackpotValue: 0,

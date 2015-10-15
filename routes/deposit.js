@@ -12,7 +12,7 @@ router.post('/', function(req, res) {
     var jackpotData = data.val();
     if (jackpotData.players) {
       for (var i = 0; i < jackpotData.players.length; i++) {
-        if (jackpotData.players[i][req.body.id]) {
+        if (jackpotData.players[i].id === "" + req.body.id + "") {
           console.log('You are already in the jackpot!');
           res.json({'error': 'User is already in jackpot'});
         }
@@ -41,7 +41,7 @@ router.post('/', function(req, res) {
         var p = tradeUrl.indexOf('&');
         var accessToken = tradeUrl.substr(p + '&token='.length);
         botTradeObj.items = items;
-        botTradeObj.trade_token = accessToken;
+        botTradeObj.tradeToken = accessToken;
         console.log('botTradeObj ', botTradeObj);
         request.post({
           url: 'https://snipego3.herokuapp.com/user-deposit',
