@@ -16,27 +16,34 @@ var ref = new Firebase('https://snipego.firebaseio.com/');
 
 var pollTimeout = setTimeout(function() {
     pollFirebaseQueue();
-}, 10000);
+}, 15000);
 
-// First and foremost, check to make sure there's a jackpot
-// when first starting up server
 var jackpotCheck = function() {
   console.log('Checking for jackpot');
   var jackpotRef = ref.child('currentJackpot');
   jackpotRef.once('value', function(data) {
     if (!data.val()) {
-      rngStr = JSON.stringify(rng());
-      salt = bcrypt.genSaltSync(10);
-      hash = bcrypt.hashSync(rngStr, salt);
-      jackpotRef.set({
-        roundHash: hash,
-        itemsCount: 0,
-        jackpotValue: 0,
+      console.log('No jackpot exists, making one...');
+      bcrypt.genSalt(10, function(err, data) {
+        salt = data;
+        console.log('new salt is ', salt);
+        rngStr = JSON.stringify(rng());
+        console.log('new # is ', rngStr);
+        bcrypt.hash(rngStr, salt, function(err, data) {
+          hash = data;
+          console.log('new hash is ', hash);
+          ref.child('currentJackpot').update({
+            itemsCount: 0,
+            jackpotValue: 0,
+            roundHash: hash,
+          }, function() {
+            console.log('salt is ', salt);
+            console.log('rngStr is ', rngStr);
+            console.log('hash is ', hash);
+            console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
+          });
+        });
       });
-      console.log('salt is ', salt);
-      console.log('rngStr is ', rngStr);
-      console.log('hash is ', hash);
-      console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
     } else {
       console.log('A current jackpot already exists!');
     }
@@ -54,7 +61,7 @@ router.post('/hash-check', function(req, res) {
 });
 
 var pollFirebaseQueue = function() {
-  console.log('Calling firebase queue again');
+  console.log('Polling queue again...');
   ref.child('queue').once('value', function(data) {
     var queueData = data.val();
     if (queueData) {
@@ -87,7 +94,7 @@ var queueJackpot = function(queueData) {
         if (jackpotData.itemsCount < 50) {
           pollTimeout = setTimeout(function() {
             pollFirebaseQueue();
-          }, 5000);
+          }, 10000);
         } else {
           endRound();
         }
@@ -114,7 +121,7 @@ var endRound = function() {
     console.log('currentJackpot players ', currentJackpot.players);
     console.log('winner array', winnerArray);
     winnerObj.id = currentJackpot.winner.id;
-    winnerObj.tradeToken = currentJackpot.winner.trade_token;
+    winnerObj.tradeToken = currentJackpot.winner.tradeToken;
     console.log('winnerObj', winnerObj);
     currentJackpot.salt = salt;
     currentJackpot.winningNumber = rngStr;

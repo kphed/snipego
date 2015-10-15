@@ -6,12 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
+var cookieSession = require('cookie-session');
 
 require('./passport/passport')(passport);
 
 var app = express();
 
-app.use(session({secret: 'csgo', resave: false, saveUninitialized: true}));
+app.use(cookieSession({
+  secret: 'csgo',
+  cookie: { maxAge: 60000 }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
