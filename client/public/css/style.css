@@ -3,6 +3,10 @@ html, body {
   height: 100%;
 }
 
+.navbar {
+  padding: 0 20px;
+}
+
 .btn {
   font-family: "Open Sans" !important;
 }
@@ -68,7 +72,6 @@ html, body {
   margin-top: 10px;
   height: 50px;
   width: 50px;
-  border-radius: 50%;
 }
 
 #deposits-table td {
@@ -91,14 +94,14 @@ html, body {
 }
 
 #deposits-item {
-  height: 55px;
-  width: 55px;
+  height: 48px;
+  width: 69px;
   background-color: #212121;
 }
 
 .deposits-item {
-  height: 80px;
-  width: 70px;
+  height: 60px;
+  width: 80px;
   margin-right: 2px;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
@@ -129,10 +132,9 @@ html, body {
 
 
 .fill {
-  padding-top: 100px;
   background: black;
   height: 100%;
-  min-height: 100%;
+  padding-top: 100px;
   overflow: auto;
 }
 
