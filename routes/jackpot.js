@@ -19,32 +19,32 @@ var pollTimeout = setTimeout(function() {
     pollFirebaseQueue();
 }, 10000);
 
-//First and foremost, check to make sure there's a jackpot
-//when first starting up server
-// var jackpotCheck = function() {
-//   console.log('Checking for jackpot');
-//   var jackpotRef = ref.child('currentJackpot');
-//   jackpotRef.once('value', function(data) {
-//     if (!data.val()) {
-//       rngStr = JSON.stringify(rng());
-//       salt = bcrypt.genSaltSync(10);
-//       hash = bcrypt.hashSync(rngStr, salt);
-//       jackpotRef.set({
-//         roundHash: hash,
-//         itemsCount: 0,
-//         jackpotValue: 0,
-//       });
-//       console.log('salt is ', salt);
-//       console.log('rngStr is ', rngStr);
-//       console.log('hash is ', hash);
-//       console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
-//     } else {
-//       console.log('A current jackpot already exists!');
-//     }
-//   });
-// };
+// First and foremost, check to make sure there's a jackpot
+// when first starting up server
+var jackpotCheck = function() {
+  console.log('Checking for jackpot');
+  var jackpotRef = ref.child('currentJackpot');
+  jackpotRef.once('value', function(data) {
+    if (!data.val()) {
+      rngStr = JSON.stringify(rng());
+      salt = bcrypt.genSaltSync(10);
+      hash = bcrypt.hashSync(rngStr, salt);
+      jackpotRef.set({
+        roundHash: hash,
+        itemsCount: 0,
+        jackpotValue: 0,
+      });
+      console.log('salt is ', salt);
+      console.log('rngStr is ', rngStr);
+      console.log('hash is ', hash);
+      console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
+    } else {
+      console.log('A current jackpot already exists!');
+    }
+  });
+};
 
-// jackpotCheck();
+jackpotCheck();
 
 router.post('/hash-check', function(req, res) {
   var hashData = req.body;
