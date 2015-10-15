@@ -29,7 +29,7 @@ hr {
   color: #E5E5E5;
   font-size: 22px;
   border-color: black;
-  border-width: 5px;
+  border-width: 2px;
   text-align: center;
 }
 
@@ -38,7 +38,7 @@ hr {
   font-size: 36px;
 }
 
-/* Main View - Jackpots */
+/* Main View - Current Jackpots */
 
 .current-jackpot {
   width: 100%;
@@ -47,21 +47,21 @@ hr {
   margin-top: 3px;
 }
 
-.current-jackpot-header {
+.jackpot-header {
   padding-top: 10px;
   text-align: center;
   height: 60px;
   color: white;
 }
 
-.current-jackpot-player {
+.jackpot-player {
   min-height: 80px;
   padding-top: 10px;
   border-top: 2px solid black;
   overflow: hidden;
 }
 
-.current-jackpot-player-photo {
+.jackpot-player-photo {
   height: 50px;
   width: 50px;
   margin-top: 10px;
@@ -69,13 +69,13 @@ hr {
   float: left;
 }
 
-.current-jackpot-player-deposit {
+.jackpot-player-deposit {
   width: 80%;
   height: 100px;
   float: right;
 }
 
-.current-jackpot-player-deposit-item {
+.jackpot-player-deposit-item {
   height: 43px;
   width: 64px;
   margin: 3px;
@@ -87,6 +87,37 @@ hr {
   font-size: 10px;
 }
 
+/* Ended Jackpots */
+
+.ended-jackpots {
+  width: 100%;
+  background-color: #212121;
+  margin-bottom: 25px;
+  margin-top: 3px;
+}
+
+.round-winner {
+  height: 60px;
+  background-color: #5FB760;
+  color: white;
+  font-size: 14px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.winner-photo {
+  height: 40px;
+  width: 40px;
+}
+
+.winner-glyphicon {
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+
 .navbar {
   padding: 0 40px;
 }
@@ -97,8 +128,8 @@ hr {
 
 .panel {
   background-color: #212121 !important;
-  border-bottom-left-radius: 35px;
-  border-bottom-right-radius: 35px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
 .modal-body {
@@ -273,28 +304,6 @@ hr {
   height: 500px;
   border: 3px solid black;
 
-}
-
-/* Ended Jackpots */
-
-.winner {
-  width: 100%;
-  height: 60px;
-  padding-top: 10px;
-  padding-left: 5px;
-  background-color: #5FB760;
-  color: #E5E5E5;
-  font-size: 20px;
-  border: 3px solid black;
-  text-align: center;
-  border-top-right-radius: 35px;
-  border-top-left-radius: 35px;
-}
-
-.winner-photo {
-  height: 35px;
-  width: 35px;
-  border: 1px solid #E5E5E5;
 }
 
 
