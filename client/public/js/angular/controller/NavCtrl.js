@@ -3,6 +3,8 @@
 angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
   .controller('NavCtrl', ['$scope', '$rootScope', 'Auth', '$http', function($scope, $rootScope, Auth, $http) {
 
+    $scope.successDanger = 'danger';
+
     $scope.isAuth = false;
 
     $scope.tradeUrlSuccess = false;
@@ -20,6 +22,7 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
       $http.post('/users/update-trade-url', {tradeUrl: $scope.tradeUrl})
         .success(function(resp) {
           $scope.playDestination = '#deposit';
+          $scope.successDanger = 'success';
           $scope.tradeUrlSuccess = true;
         });
       }
@@ -36,6 +39,7 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
           $scope.isAuth = true;
           $rootScope.user = resp;
           if (resp.tradeUrl) {
+            $scope.successDanger = 'success';
             $scope.playDestination = '#deposit';
           }
         }
