@@ -136,12 +136,12 @@ offers.on('sentOfferChanged', function (offer, oldState) {
       var tradeData = trade.val();
       if (tradeData) {
         queueRef.once('value', function(queue) {
-          if (queue.val()) {
-            var queueData = queue.val();
+          var queueData = queue.val();
+          if (queueData) {
             queueData.push(tradeData);
             queueRef.update(queueData);
           } else {
-            var queueData = [tradeData];
+            queueData = [tradeData];
             queueRef.set(queueData, function() {
               console.log('Successfully added pending offer to queue');
             });
@@ -226,7 +226,7 @@ offer_server.post('/user-deposit', function(req, res) {
 });
 
 var userWithdraw = function(userInfo, res) {
-  var trade = offers.createOffer(userInfo.id);
+  var trade = offers.createOffer(userInfo.winner.id);
 
   trade.addMyItems(userInfo.items);
   trade.send('Thanks for playing, here are your winnings! Still feeling lucky?', userInfo.tradeToken, function(err, status) {

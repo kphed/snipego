@@ -32,7 +32,7 @@ var jackpotCheck = function() {
         bcrypt.hash(rngStr, salt, function(err, data) {
           hash = data;
           console.log('new hash is ', hash);
-          ref.child('currentJackpot').update({
+          ref.child('currentJackpot').set({
             itemsCount: 0,
             jackpotValue: 0,
             roundHash: hash,
@@ -86,6 +86,7 @@ var queueJackpot = function(queueData) {
       jackpotData.players = [firstQueueItem];
     }
     ref.child('queue').set(queueData, function() {
+      console.log('Jackpot Data is ', jackpotData);
       ref.child('currentJackpot').update({
         itemsCount: jackpotData.itemsCount,
         jackpotValue: jackpotData.jackpotValue,
@@ -120,7 +121,8 @@ var endRound = function() {
     console.log('currentJackpot Winner is ', currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])]);
     console.log('currentJackpot players ', currentJackpot.players);
     console.log('winner array', winnerArray);
-    winnerObj.id = currentJackpot.winner.id;
+    winnerObj.winner = currentJackpot.winner;
+    winnerObj.chance = (currentJackpot.jackpotValue / currentJackpot.winner.itemsValue) * 100;
     winnerObj.tradeToken = currentJackpot.winner.tradeToken;
     console.log('winnerObj', winnerObj);
     currentJackpot.salt = salt;

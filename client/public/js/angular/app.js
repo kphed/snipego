@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('SnipeGo',
-  ['SnipeGo.MainCtrl',
+  ['SnipeGo.Directives.Popover',
+  'SnipeGo.Directives.ToggleClass',
+  'SnipeGo.MainCtrl',
   'SnipeGo.NavCtrl',
   'SnipeGo.DepositCtrl',
   'SnipeGo.Services',
-  'SnipeGo.Directives.Popover',
-  'SnipeGo.Directives.ToggleClass',
   'ui.router',
   'firebase',
   'angular-svg-round-progress',
@@ -30,3 +30,4 @@ angular.module('SnipeGo',
         }
       });
   });
+

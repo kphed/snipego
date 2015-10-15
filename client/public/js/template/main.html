@@ -34,19 +34,12 @@
         </div>
         <div class="row current-jackpot-player" ng-repeat="player in jackpotPlayers" popover>
           <div class="current-jackpot-player-photo">
-            <img class="img-circle current-jackpot-player-photo" ng-src="{{player.avatar}}" />
+            <img class="img-circle current-jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
           </div>
-          <div class="current-jackpot-player-deposit">
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" rel="popover" data-trigger="hover" data-content="Hi {{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items"ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            <img popover class="current-jackpot-player-deposit-item" ng-repeat="item in player.items" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+          <div class="current-jackpot-player-deposit" >
+            <span ng-repeat="item in player.items" popover>
+              <img class="current-jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: ${{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+            </span>
           </div>
         </div>
       </div>
