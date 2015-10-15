@@ -85,7 +85,7 @@ var queueJackpot = function(queueData) {
         jackpotValue: jackpotData.jackpotValue,
         players: jackpotData.players,
       }, function() {
-        if (jackpotData.itemsCount < 1) {
+        if (jackpotData.itemsCount !== 1) {
           pollTimeout = setTimeout(function() {
             pollFirebaseQueue();
           }, 5000);
@@ -110,6 +110,7 @@ var endRound = function() {
       }
     }
     currentJackpot.winner = currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])];
+    console.log('currentJackpot Winner is ', currentJackpot.winner);
     winnerObj.id = currentJackpot.winner.id;
     var tradeUrl = currentJackpot.winner.tradeUrl;
     var p = tradeUrl.indexOf('&');
