@@ -13,6 +13,8 @@ var pendingRef = new Firebase('https://snipego.firebaseio.com/pending_offers');
 
 var queueRef = new Firebase('https://snipego.firebaseio.com/queue');
 
+var userRef = new Firebase('https://snipego.firebaseio.com/users');
+
 // == setup winston logger interfaces == //
 var logger = new (Winston.Logger)({
   transports: [
@@ -213,6 +215,9 @@ var userDeposit = function(userInfo, res) {
       offerError(err, userInfo, res, false);
     } else {
       pendingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue, tradeToken: userInfo.tradeToken});
+      userRef.child(userInfo.id).update({
+        tradeID: trade.id,
+      });
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });
@@ -261,11 +266,13 @@ function offerError(err, userInfo, res, withdraw) {
   // == cookies expired. just relogon == //
   if (err.indexOf('401') > -1) {
     client.webLogOn();
-    if (withdraw) {
-      userWithdraw(userInfo, res);
-    } else {
-      userDeposit(userInfo, res);
-    }
+    client.on('webSession', function() {
+      if (withdraw) {
+        userWithdraw(userInfo, res);
+      } else {
+        userDeposit(userInfo, res);
+      }
+    });
   }
 }
 

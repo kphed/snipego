@@ -52,6 +52,10 @@
         </div>
       </div>
       <div class="modal-body">
+        <div ng-show="{{tradePending}}">
+          Trade offer page goes here.
+        </div>
+        <div ng-show="!{{tradePending}}">
           <div class="deposit-buttons">
             <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Deposit Selected Items Into Jackpot" ng-click="depositItems()" ng-disabled="depositingItems"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
 
@@ -69,6 +73,7 @@
               <div class="itemPrice">{{item.market_price}}</div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>

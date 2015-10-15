@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
-  .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', function($scope, $http, $rootScope, $window) {
+  .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', '$firebaseObject', function($scope, $http, $rootScope, $window, $firebase, $firebaseObject) {
+
+    var userRef = new Firebase('https://snipego.firebaseio.com/users' + $rootScope.user.id);
 
     $scope.inventoryLoading = false;
 
@@ -11,6 +13,20 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.selectedItems = {};
 
+    $scope.user = $firebaseObject(userRef);
+
+    $scope.tradePending = true;
+
+    $scope.tradeID = '';
+
+    $scope.user.$watch(function() {
+      $scope.user.$loaded().then(function() {
+        if ($scope.user.tradeID) {
+          $scope.tradePending = true;
+          $scope.tradeID = $scope.user.tradeID;
+        }
+      });
+    });
 
     $scope.selectedQuantity = function() {
       $rootScope.itemsSelected = Object.keys($scope.selectedItems).length;
@@ -26,7 +42,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.selectItem = function(item) {
-      console.log('item is ', item);
       if ($scope.selectedItems[item.assetid]) {
         delete $scope.selectedItems[item.assetid];
       } else {
@@ -52,11 +67,9 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           itemsValue: $scope.totalValue(),
           itemsCount: $rootScope.itemsSelected,
         };
-        console.log('depositData is ', depositData);
         $http.post('/deposit/', depositData).success(function(resp) {
           $scope.selectedItems = {};
           $scope.depositingItems = false;
-          console.log('Posted data to backend... here is the response ', resp);
         });
       }
     };
@@ -98,7 +111,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.fetchInventory = function() {
       $scope.items = [];
-      console.log('updating inventory for ', $rootScope.user.id);
       $scope.inventoryLoading = true;
       $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
         .success(function(resp) {
