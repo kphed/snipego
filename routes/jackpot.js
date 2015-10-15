@@ -110,7 +110,10 @@ var endRound = function() {
       }
     }
     currentJackpot.winner = currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])];
-    console.log('currentJackpot Winner is ', currentJackpot.winner);
+    console.log('currentJackpot Winner is ', currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])]);
+    console.log('currentJackpot players ', currentJackpot.players);
+    console.log('winner array', winnerArray);
+    console.log('winnerObj', winnerObj);
     winnerObj.id = currentJackpot.winner.id;
     var tradeUrl = currentJackpot.winner.tradeUrl;
     var p = tradeUrl.indexOf('&');
