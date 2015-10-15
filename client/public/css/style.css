@@ -5,6 +5,11 @@ html, body {
 
 /* Main View - Jackpot Progress */
 
+hr {
+  width: 90% !important;
+  margin: 0 0 0 25px !important;
+}
+
 .progress-container {
   text-align: center;
 }
@@ -39,6 +44,7 @@ html, body {
   width: 100%;
   background-color: #212121;
   margin-bottom: 25px;
+  margin-top: 3px;
 }
 
 .current-jackpot-header {
@@ -51,7 +57,7 @@ html, body {
 .current-jackpot-player {
   min-height: 80px;
   padding-top: 10px;
-  border: 5px solid black;
+  border-top: 2px solid black;
   overflow: hidden;
 }
 
@@ -75,55 +81,10 @@ html, body {
   margin: 3px;
 }
 
-
-#deposits-table td {
-  border-color: black;
-  border-width: 3px;
-  font-family: "Open Sans";
-}
-
-#deposits-header {
-  font-size: 16px;
-  color: #E5E5E5;
-  border: 3px solid black;
-  text-align: center;
-  font-family: "Open Sans";
-}
-
-.deposits-player {
-  text-align: center;
-  width: 50px;
-}
-
-#deposits-item {
-  height: 48px;
-  width: 69px;
-  background-color: #212121;
-}
-
-.deposits-item {
-  height: 60px;
-  width: 80px;
-  margin-right: 2px;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  margin-bottom: 7px;
-  text-align: center;
-  color: #5FB760;
-  display: inline-block;
-}
-
-#round-hash {
+.round-hash {
   margin-top: 3px;
   margin-bottom: 3px;
   font-size: 10px;
-}
-
-.deposits-value {
-  color: #E5E5E5;
-  margin-top: 5px;
-  font-size: 12px;
-  font-family: "Open Sans";
 }
 
 .navbar {

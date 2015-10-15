@@ -229,7 +229,7 @@ var userWithdraw = function(userInfo, res) {
   var trade = offers.createOffer(userInfo.winner.id);
 
   trade.addMyItems(userInfo.items);
-  trade.send('Thanks for playing, here are your winnings! Still feeling lucky?', userInfo.tradeToken, function(err, status) {
+  trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
     if (err) {
       logger.log('info', err);
       offerError(err, userInfo, res, true);

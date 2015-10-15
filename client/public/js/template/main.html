@@ -30,7 +30,7 @@
       <div class="current-jackpot">
         <div class="row current-jackpot-header">
           Round Hash:
-          <div id="round-hash">{{currentJackpot.roundHash}} <i class="glyphicon glyphicon-question-sign"></i></div>
+          <div class="round-hash">{{currentJackpot.roundHash}} <i class="glyphicon glyphicon-question-sign"></i></div>
         </div>
         <div class="row current-jackpot-player" ng-repeat="player in jackpotPlayers" popover>
           <div class="current-jackpot-player-photo">
@@ -43,46 +43,23 @@
           </div>
         </div>
       </div>
-      <!-- <table class="table table-responsive table-bordered panel" id="deposits-table">
-        <thead>
-          <th id="deposits-header" colspan="2">
-            Round Hash:
-            <div id="round-hash">{{currentJackpot.roundHash}} <i class="glyphicon glyphicon-question-sign"></i></div>
-          </th>
-        </thead>
-        <tr ng-repeat="player in jackpotPlayers">
-          <td class="deposits-player">
-              <img class="img-circle deposits-player-photo" ng-src="{{player.avatar}}" />
-          </td>
-          <td>
-            <div class="deposits-item" ng-repeat="item in player.items">
-              <img popover id="deposits-item" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            </div>
-          </td>
-        </tr>
-      </table> -->
 
-    <div class="ended-jackpots" ng-repeat="jackpot in ended">
-      <div class="winner">&#x2606 Winner! <img class="winner-photo" ng-src="{{jackpot.winner.avatar}}" /> Won $1,509 with 79% &#x2606 </div>
-      <table class="table table-responsive table-bordered panel" id="deposits-table">
-        <thead>
-          <th id="deposits-header" colspan="2">
-            Round Hash:
-            <div id="round-hash">{{currentJackpot.roundHash}} <i class="glyphicon glyphicon-question-sign"></i></div>
-          </th>
-        </thead>
-        <tr ng-repeat="player in jackpot.players">
-          <td class="deposits-player">
-              <img class="img-circle deposits-player-photo" ng-src="{{player.avatar}}" />
-          </td>
-          <td>
-            <div class="deposits-item img-responsive" ng-repeat="item in player.items">
-              <img popover id="deposits-item" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+      <div class="current-jackpot">
+        <div class="row current-jackpot-header">
+          Round Hash:
+          <div class="round-hash">{{currentJackpot.roundHash}} <i class="glyphicon glyphicon-question-sign"></i></div>
+        </div>
+        <div class="row current-jackpot-player" ng-repeat="player in jackpotPlayers" popover>
+          <div class="current-jackpot-player-photo">
+            <img class="img-circle current-jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
+          </div>
+          <div class="current-jackpot-player-deposit" >
+            <span ng-repeat="item in player.items" popover>
+              <img class="current-jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: ${{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+            </span>
+          </div>
+        </div>
+      </div>
   </div>
 
   <div class="chat col-md-3 col-lg-3">
