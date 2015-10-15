@@ -196,45 +196,53 @@ function init_app() {
 
 // =============== the offer server and its command routes ================ //
 
-function start_offer_server() {
+var start_offer_server = function() {
   var offer_server_handle = offer_server.listen(botInfo.port);
   return offer_server_handle;
-}
+};
 
-offer_server.post('/user-deposit', function(req, res) {
-  console.log('CALLING BOT DEPOSIT', req.body);
-  var userInfo = req.body;
+var userDeposit = function(userInfo, res) {
+
   var trade = offers.createOffer(userInfo.id);
   var protectionCode = randomstring.generate(7).toUpperCase();
 
   trade.addTheirItems(userInfo.items);
-  trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
+  trade.send('Deposit into SnipeGo jackpot, seems like a lucky one! Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
     if (err) {
       logger.log('info', err);
-      offerError(err);
-      res.json({'error' : 'There was an error sending your request. Please try again'});
+      offerError(err, userInfo, res, false);
     } else {
       pendingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue, tradeToken: userInfo.tradeToken});
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });
+};
+
+offer_server.post('/user-deposit', function(req, res) {
+  console.log('CALLING BOT DEPOSIT', req.body);
+  var userInfo = req.body;
+
+  userDeposit(userInfo, res);
 });
 
-offer_server.post('/user-withdraw', function(req, res) {
-  console.log('CALLING BOT WITHDRAW', req.body);
-  var userInfo = req.body;
+var userWithdraw = function(userInfo, res) {
   var trade = offers.createOffer(userInfo.id);
 
   trade.addMyItems(userInfo.items);
-  trade.send('Thanks for playing, we knew you were lucky!', userInfo.tradeToken, function(err, status) {
+  trade.send('Thanks for playing, here are your winnings! Still feeling lucky?', userInfo.tradeToken, function(err, status) {
     if (err) {
       logger.log('info', err);
-      offerError(err);
-      res.json({'error' : 'There was an error sending your request. Please try again'});
+      offerError(err, userInfo, res, true);
     } else {
       res.json({status: 'Trade offer status: ' + status + ' trade ID: ' + trade.id});
     }
   });
+};
+
+offer_server.post('/user-withdraw', function(req, res) {
+  console.log('CALLING BOT WITHDRAW', req.body);
+  var userInfo = req.body;
+  userWithdraw(userInfo, res);
 });
 
 // [if we dont receive a route we can handle]
@@ -247,12 +255,17 @@ offer_server.all('*', function(req, resp) {
 
 // ============================== UTILITY FUNCTIONS ====================================//
 
-function offerError(err) {
+function offerError(err, userInfo, res, withdraw) {
   err = String(err);
 
   // == cookies expired. just relogon == //
-  if(err.indexOf('401') > -1) {
+  if (err.indexOf('401') > -1) {
     client.webLogOn();
+    if (withdraw) {
+      userWithdraw(userInfo, res);
+    } else {
+      userDeposit(userInfo, res);
+    }
   }
 }
 
