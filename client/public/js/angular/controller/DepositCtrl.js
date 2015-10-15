@@ -30,7 +30,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       if ($scope.selectedItems[item.assetid]) {
         delete $scope.selectedItems[item.assetid];
       } else {
-        if ($rootScope.itemsSelected === 3) {
+        if ($rootScope.itemsSelected === 10) {
           $window.alert('You can\'t add more than 10 items');
         } else {
           $scope.selectedItems[item.assetid] = item;
@@ -39,10 +39,9 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.depositItems = function() {
-      console.log('$rootScope', $rootScope.user);
-      // if ($scope.totalValue() < 2) {
-      //   $window.alert('You need at least 5 value in skins to play, please select more skins');
-      // } else {
+      if ($scope.totalValue() < 1) {
+        $window.alert('You need at least $1 skins value to play, select more skins');
+      } else {
         $scope.depositingItems = true;
         var depositData = {
           tradeUrl: $rootScope.user.tradeUrl,
@@ -55,10 +54,11 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         };
         console.log('depositData is ', depositData);
         $http.post('/deposit/', depositData).success(function(resp) {
+          $scope.selectedItems = {};
           $scope.depositingItems = false;
           console.log('Posted data to backend... here is the response ', resp);
         });
-      // }
+      }
     };
 
     $scope.fetchItems = function(items, descriptions) {
@@ -83,15 +83,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           $scope.items.push(tempObj);
           tempObj = {};
         }
-        $scope.inventoryLoading = false;
-        $scope.items.sort(function(a, b) {
-          if (a.market_price < b.market_price) {
-            return 1;
-          } else {
-            return -1;
-          }
-          return 0;
-        });
         return item;
       });
       $scope.sortItems();

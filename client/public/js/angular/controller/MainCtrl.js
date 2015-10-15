@@ -17,17 +17,13 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.messages = $firebaseArray(messagesQuery);
 
-    $scope.jackpotPlayers = [];
-
-    $scope.ended = [];
-
     $scope.currentJackpot = $firebaseObject(currentJackpotRef);
 
     $scope.endedJackpots = $firebaseArray(endedJackpotRef);
 
-    $scope.handleJackpotPlayers = function(players) {
-      $scope.jackpotPlayers = players.reverse();
-    };
+    $scope.jackpotPlayers = [];
+
+    $scope.ended = [];
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
@@ -44,6 +40,10 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         $scope.ended = $scope.endedJackpots.slice(-3).reverse();
       });
     });
+
+    $scope.handleJackpotPlayers = function(players) {
+      $scope.jackpotPlayers = players.reverse();
+    };
 
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';

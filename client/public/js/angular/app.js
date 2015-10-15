@@ -23,10 +23,6 @@ angular.module('SnipeGo',
           templateUrl: 'js/template/main.html',
           controller: 'MainCtrl',
           },
-          'deposit': {
-            templateUrl: 'js/template/deposit.html',
-            controller: 'DepositCtrl'
-          },
           'nav': {
             templateUrl: 'js/template/nav.html',
             controller: 'NavCtrl'
