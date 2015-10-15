@@ -37,11 +37,11 @@
         </thead>
         <tr ng-repeat="player in jackpotPlayers">
           <td class="deposits-player">
-              <img class="img-circle deposits-player-photo" src="{{player.avatar}}" />
+              <img class="img-circle deposits-player-photo" ng-src="{{player.avatar}}" />
           </td>
           <td>
             <div class="deposits-item" ng-repeat="item in player.items">
-              <img popover id="deposits-item" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+              <img popover id="deposits-item" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
             </div>
           </td>
         </tr>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="ended-jackpots" ng-repeat="jackpot in ended">
-      <div class="winner">&#x2606 Winner! <img class="winner-photo" src="{{jackpot.winner.avatar}}" /> Won $1,509 with 79% &#x2606 </div>
+      <div class="winner">&#x2606 Winner! <img class="winner-photo" ng-src="{{jackpot.winner.avatar}}" /> Won $1,509 with 79% &#x2606 </div>
       <table class="table table-responsive table-bordered panel" id="deposits-table">
         <thead>
           <th id="deposits-header" colspan="2">
@@ -59,11 +59,11 @@
         </thead>
         <tr ng-repeat="player in jackpot.players">
           <td class="deposits-player">
-              <img class="img-circle deposits-player-photo" src="{{player.avatar}}" />
+              <img class="img-circle deposits-player-photo" ng-src="{{player.avatar}}" />
           </td>
           <td>
             <div class="deposits-item img-responsive" ng-repeat="item in player.items">
-              <img popover id="deposits-item" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+              <img popover id="deposits-item" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
             </div>
           </td>
         </tr>

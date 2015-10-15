@@ -13,7 +13,12 @@ router.get('/steam-callback', passport.authenticate('steam'), function(req, res)
 router.get('/is-authenticated', function(req, res) {
   var userRef = new Firebase('https://snipego.firebaseio.com/users/' + req.session.passport.user.id);
   userRef.once('value', function(data) {
-    res.json(data.val());
+    var user = data.val();
+    if (user) {
+      res.json(user);
+    } else {
+      res.end();
+    }
   });
 });
 

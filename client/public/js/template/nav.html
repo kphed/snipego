@@ -23,7 +23,7 @@
           <a href="/auth/steam"><img src="img/sits_large_border.png" /></a>
         </li>
         <li ng-show="isAuth">
-          <a href="" class="nav-popover" data-toggle="popover" data-container="body" data-content="Profile"><img id="profilePic" src="{{profilePic}}" /></a>
+          <a href="" class="nav-popover" data-toggle="popover" data-container="body" data-content="Profile"><img id="profilePic" ng-src="{{profilePic}}" /></a>
         </li>
       </ul>
     </div>
@@ -65,7 +65,7 @@
 
           <div class="userItems">
             <div class="itemContainer" popover toggle-class ng-repeat="item in items" ng-click="selectItem(item)">
-              <img class="itemBox" rel="popover" data-trigger="hover" data-content="{{item.market_hash_name}}" src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+              <img class="itemBox" rel="popover" data-trigger="hover" data-content="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
               <div class="itemPrice">{{item.market_price}}</div>
             </div>
           </div>
