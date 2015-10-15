@@ -41,7 +41,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.endedJackpots.$watch(function() {
       $scope.endedJackpots.$loaded().then(function() {
-        $scope.ended = $scope.endedJackpots.slice(-3);
+        $scope.ended = $scope.endedJackpots.slice(-3).reverse();
       });
     });
 

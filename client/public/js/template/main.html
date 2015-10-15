@@ -1,11 +1,11 @@
 <div class="container-fluid">
 
   <div class="progress-container col-md-4">
-    <div class="progress-text" ng-style="getStyle()">{{currentJackpot.itemsCount}}/50</div>
+    <div class="progress-text" ng-style="getStyle()">{{currentJackpot .itemsCount}}/50</div>
     <div
     round-progress
     max="50"
-    current="currentJackpot.itemsCount"
+    current="currentJackpot .itemsCount"
     color="#5FB760"
     bgcolor="#E5E5E5"
     radius="175"
@@ -33,8 +33,8 @@
       <table class="table table-responsive table-bordered panel" id="deposits-table">
         <thead>
           <th id="deposits-header" colspan="2">
-          Round #2 Started
-          <i class="glyphicon glyphicon-question-sign"></i>
+            Round Hash:
+            <div id="round-hash">{{currentJackpot.roundHash}} <i class="glyphicon glyphicon-question-sign"></i></div>
           </th>
         </thead>
         <tr ng-repeat="player in jackpotPlayers">
@@ -52,12 +52,12 @@
     </div>
 
     <div class="ended-jackpots" ng-repeat="jackpot in ended">
-      <div class="winner">&#x2606 Winner! <img class="winner-photo" src="{{jackpot.winner.avatar}}" /> Won 1,509 with 79% &#x2606 </div>
+      <div class="winner">&#x2606 Winner! <img class="winner-photo" src="{{jackpot.winner.avatar}}" /> Won $1,509 with 79% &#x2606 </div>
       <table class="table table-responsive table-bordered panel" id="deposits-table">
         <thead>
           <th id="deposits-header" colspan="2">
-          Round #2 Started
-          <i class="glyphicon glyphicon-question-sign"></i>
+            Round Hash:
+            <div id="round-hash">{{currentJackpot.roundHash}} <i class="glyphicon glyphicon-question-sign"></i></div>
           </th>
         </thead>
         <tr ng-repeat="player in jackpot.players">
@@ -81,7 +81,7 @@
       username="username"
       input-placeholder-text="Write message here..."
       submit-button-text="Send"
-      title="192 Users Online"
+      title="192 Users"
       theme="irontec"
       submit-function="sendMessage"
       visible="visible"

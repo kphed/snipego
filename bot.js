@@ -124,7 +124,6 @@ offers.on('newOffer', function (offer) {
       logger.error("Unable to decline offer "+ offer.id +": " + err.message);
     } else {
       logger.debug("Offer declined");
-      // Message the user
     }
   });
 });
@@ -219,7 +218,6 @@ offer_server.post('/user-deposit', function(req, res) {
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });
-
 });
 
 offer_server.post('/user-withdraw', function(req, res) {

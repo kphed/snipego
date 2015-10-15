@@ -3,77 +3,149 @@ var router = express.Router();
 var passport = require('passport');
 var request = require('request');
 var Firebase = require('firebase');
+var seedrandom = require('seedrandom');
+var bcrypt = require('bcrypt');
+var request = require('request');
 
-var pollTimeout = setTimeout(function() {
-  pollFirebaseQueue();
-}, 10000);
+var rng = seedrandom();
+var hash;
+var salt;
+var rngStr;
 
 var ref = new Firebase('https://snipego.firebaseio.com/');
 
+
+var pollTimeout = setTimeout(function() {
+    pollFirebaseQueue();
+}, 10000);
+
+//First and foremost, check to make sure there's a jackpot
+//when first starting up server
+var jackpotCheck = function() {
+  console.log('Checking for jackpot');
+  var jackpotRef = ref.child('currentJackpot');
+  jackpotRef.once('value', function(data) {
+    if (!data.val()) {
+      rngStr = JSON.stringify(rng());
+      salt = bcrypt.genSaltSync(10);
+      hash = bcrypt.hashSync(rngStr, salt);
+      jackpotRef.set({
+        roundHash: hash,
+        itemsCount: 0,
+        jackpotValue: 0,
+      });
+      console.log('salt is ', salt);
+      console.log('rngStr is ', rngStr);
+      console.log('hash is ', hash);
+      console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
+    } else {
+      console.log('A current jackpot already exists!');
+      endRound();
+    }
+  });
+};
+
+jackpotCheck();
+
+router.post('/hash-check', function(req, res) {
+  var hashData = req.body;
+  return bcrypt.compare(hashData.winningNumber, hashData.hash, function(err, res) {
+    console.log('Do these two match? ', res);
+    return res;
+  });
+});
+
 var pollFirebaseQueue = function() {
-  console.log('Running firebase queue check...');
   ref.child('queue').once('value', function(data) {
     var queueData = data.val();
     if (queueData) {
-      console.log('Here is the queue data: ', queueData);
-      ref.child('currentJackpot').once('value', function(data) {
-        var jackpotData = data.val();
-        console.log('Jackpot data is ', jackpotData);
-        var firstQueueItem = queueData.shift();
-        console.log('firstQueueItem item: ', firstQueueItem, ' original Queue', queueData);
-        jackpotData.itemsCount += firstQueueItem.itemsCount;
-        console.log('jackpotData itemsCount: ', jackpotData.itemsCount);
-        jackpotData.jackpotValue += firstQueueItem.itemsValue;
-        console.log('jackpotData jackpotValue: ', jackpotData.jackpotValue);
-        if (jackpotData.players) {
-          jackpotData.players.push(firstQueueItem);
-          console.log('jackpotData players: ', jackpotData.players);
-        } else {
-          jackpotData.players = [firstQueueItem];
-          console.log('jackpotData players: ', jackpotData.players);
-        }
-        //add queue item to jackpot, remove item from queue, set timeout
-        ref.child('queue').set(queueData, function() {
-          console.log('Queue callback', jackpotData);
-          ref.child('currentJackpot').update({
-            itemsCount: jackpotData.itemsCount,
-            jackpotValue: jackpotData.jackpotValue,
-            players: jackpotData.players,
-          }, function() {
-            if (jackpotData.itemsCount < 50) {
-              console.log('Resetting polling interval');
-              pollTimeout = setTimeout(function() {
-                pollFirebaseQueue();
-              }, 5000);
-            } else {
-              //end current jackpot game, display salt & %
-              //add winner to last jackpot & figure item to keep & send out trade
-              //set-up new jackpot
-              ref.child('currentJackpot').once('value', function(data) {
-                var currentJackpot = data.val();
-                ref.child('jackpots').once('value', function(data) {
-                  var oldJackpots = data.val();
-                  oldJackpots.unshift(currentJackpot);
-                  ref.child('jackpots').set(oldJackpots, function() {
-                    ref.child('currentJackpot').update({
-                      itemsCount: 0,
-                      jackpotValue: 0,
-                      roundHash: '',
-                    });
-                  });
-                });
-              });
-            }
-          });
-        });
-      });
+      queueJackpot(queueData);
     } else {
-      console.log('Nothing found in queue, resetting poll');
       pollTimeout = setTimeout(function() {
         pollFirebaseQueue();
       }, 15000);
       return;
     }
+  });
+};
+
+var queueJackpot = function(queueData) {
+  ref.child('currentJackpot').once('value', function(data) {
+    var jackpotData = data.val();
+    var firstQueueItem = queueData.shift();
+    jackpotData.itemsCount += firstQueueItem.itemsCount;
+    jackpotData.jackpotValue += firstQueueItem.itemsValue;
+    if (jackpotData.players) {
+      jackpotData.players.push(firstQueueItem);
+    } else {
+      jackpotData.players = [firstQueueItem];
+    }
+    ref.child('queue').set(queueData, function() {
+      ref.child('currentJackpot').update({
+        itemsCount: jackpotData.itemsCount,
+        jackpotValue: jackpotData.jackpotValue,
+        players: jackpotData.players,
+      }, function() {
+        if (jackpotData.itemsCount < 50) {
+          pollTimeout = setTimeout(function() {
+            pollFirebaseQueue();
+          }, 5000);
+        } else {
+          endRound();
+        }
+      });
+    });
+  });
+};
+
+var endRound = function() {
+  ref.child('currentJackpot').once('value', function(data) {
+    var currentJackpot = data.val();
+    var winnerArray = [];
+    var winnerObj = {};
+    winnerObj.items = [];
+    for (var i = 0; i < currentJackpot.players.length; i++) {
+      winnerObj.items = winnerObj.items.concat(currentJackpot.players[i].items);
+      for (var j = 0; j < (currentJackpot.players[i].value * 100); j++) {
+        winnerArray.push(i);
+      }
+    }
+    currentJackpot.winner = currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])];
+    winnerObj.id = currentJackpot.winner.id;
+    var tradeUrl = currentJackpot.winner.tradeUrl;
+    var p = tradeUrl.indexOf('&');
+    var accessToken = tradeUrl.substr(p + '&token='.length);
+    winnerObj.tradeToken = accessToken;
+    currentJackpot.salt = salt;
+    currentJackpot.winningNumber = rngStr;
+    console.log('winnerObj is ', winnerObj);
+    ref.child('endedJackpots').push(currentJackpot);
+    bcrypt.genSalt(10, function(err, data) {
+      salt = data;
+      rngStr = JSON.stringify(rng());
+      bcrypt.hash(rngStr, salt, function(err, data) {
+        hash = data;
+        ref.child('currentJackpot').update({
+          itemsCount: 0,
+          jackpotValue: 0,
+          roundHash: hash,
+        }, function() {
+          request.post({
+            url: 'https://snipego3.herokuapp.com/user-withdraw',
+            body: winnerObj,
+            json: true,
+          }, function(error, response, body) {
+            if (error) {
+              console.log(error);
+              res.json({'error': error});
+            } else {
+              console.log('Trade posted successfully, here is the body: ', body);
+              res.json({'success': body});
+            }
+          });
+        });
+      });
+    });
   });
 };
 
