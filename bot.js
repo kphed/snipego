@@ -208,7 +208,7 @@ offer_server.post('/user-deposit', function(req, res) {
   var protectionCode = randomstring.generate(7).toUpperCase();
 
   trade.addTheirItems(userInfo.items);
-  trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! - Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
+  trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! - Protection Code: ' + protectionCode, userInfo.trade_token, function(err, status) {
     if (err) {
       logger.log('info', err);
       offerError(err);
