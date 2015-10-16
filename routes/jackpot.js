@@ -21,13 +21,13 @@ var ref = new Firebase('https://snipego.firebaseio.com/');
 
 var sgRef = new Firebase('https://sgjackpot.firebaseio.com/');
 
-// sgRef.authWithCustomToken(token, function(error, authData) {
-//   if (error) {
-//     console.log('error! ', error);
-//   } else {
-//     console.log('Auth data: ', authData);
-//   }
-// });
+sgRef.authWithCustomToken(token, function(error, authData) {
+  if (error) {
+    console.log('error! ', error);
+  } else {
+    console.log('Auth data: ', authData);
+  }
+});
 
 var pollTimeout = setTimeout(function() {
     pollFirebaseQueue();
