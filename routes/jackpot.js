@@ -39,7 +39,8 @@ var jackpotCheck = function() {
             jackpotValue: 0,
             roundHash: hash,
           }, function() {
-            var sgJackpotRef = sgRef.child(hash);
+            formatted = hash.replace(/[.#$]/g, "");
+            var sgJackpotRef = sgRef.child(formatted);
             sgJackpotRef.set({
               salt: salt,
               rngStr: rngStr,
@@ -55,7 +56,8 @@ var jackpotCheck = function() {
       });
     } else {
       console.log('A current jackpot already exists, retrieving info');
-      var sgJackpotRef = sgRef.child(data.val().roundHash);
+      formatted = data.val().roundHash.replace(/[.#$]/g, "");
+      var sgJackpotRef = sgRef.child(formatted);
       sgJackpotRef.once('value', function(data) {
         salt = data.val().salt;
         rngStr = data.val().rngStr;
@@ -170,7 +172,8 @@ var endRound = function() {
           jackpotValue: 0,
           roundHash: hash,
         }, function() {
-          var sgJackpotRef = sgRef.child(hash);
+          var formatted = hash.replace(/[.#$]/g, "");
+          var sgJackpotRef = sgRef.child(formatted);
           sgJackpotRef.set({
             salt: salt,
             rngStr: rngStr,
