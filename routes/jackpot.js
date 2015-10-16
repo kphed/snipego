@@ -198,10 +198,10 @@ var endRound = function() {
           }, function(error, response, body) {
             if (error) {
               console.log(error);
-              res.json(error);
+              return;
             } else {
               console.log('Trade posted successfully, here is the body: ', body);
-              res.json(body);
+              return;
             }
           });
         });
