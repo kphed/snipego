@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt');
 var request = require('request');
 var rng = seedrandom();
 var FirebaseTokenGenerator = require("firebase-token-generator");
-var tokenGenerator = new FirebaseTokenGenerator('bOoHyC14TmkoYd6wqBQzzf7IGoCwdN53iVxVphll');
+var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
 var token = tokenGenerator.createToken(
    {uid: "snipego"}, {admin: true});
 
@@ -59,7 +59,6 @@ var jackpotCheck = function() {
       });
     } else {
       console.log('A current jackpot already exists, retrieving info from redundant backup');
-      console.log('Process env variables', typeof process.env.FIREBASE_SECRET, typeof process.env.FIREBASE_DATABASE);
       hash = data.val().roundHash;
       var formatted = data.val().roundHash.replace(/[.#$]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
