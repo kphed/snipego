@@ -9,8 +9,7 @@ var request = require('request');
 var rng = seedrandom();
 var FirebaseTokenGenerator = require("firebase-token-generator");
 var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
-var token = tokenGenerator.createToken(
-   {uid: "snipego"}, {admin: true});
+var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
 
 var hash;
 var salt;
@@ -24,7 +23,7 @@ sgRef.authWithCustomToken(token, function(error, authData) {
   if (error) {
     console.log('error! ', error);
   } else {
-    console.log('Auth data: ', authData);
+    console.log('Authenticated');
   }
 });
 
