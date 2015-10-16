@@ -41,7 +41,7 @@ router.post('/update-inventory', function(req, res) {
 
 var prepareItems = function() {
   var tempObj = {};
-  var items = [];
+  var itemsArray = [];
   Object.keys(items).map(function(id) {
     var item = items[id];
     var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
@@ -59,12 +59,13 @@ var prepareItems = function() {
       tempObj.market_hash_name = item.market_hash_name;
       tempObj.icon_url = item.icon_url;
       tempObj.market_price = item.market_price.slice(1);
-      items.push(tempObj);
+      itemsArray.push(tempObj);
       tempObj = {};
     }
     return item;
   });
-  return items;
+  console.log('itemsArray is ', itemsArray);
+  return itemsArray;
 };
 
 var getMarketPrice = function(market_hash_name) {
