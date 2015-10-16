@@ -8,10 +8,9 @@ var bcrypt = require('bcrypt');
 var request = require('request');
 var rng = seedrandom();
 var FirebaseTokenGenerator = require("firebase-token-generator");
-var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
+var tokenGenerator = new FirebaseTokenGenerator('bOoHyC14TmkoYd6wqBQzzf7IGoCwdN53iVxVphll');
 var token = tokenGenerator.createToken(
-   {uid: "snipego"},
-   { expires: 86400 });
+   {uid: "snipego"}, {admin: true});
 
 var hash;
 var salt;
