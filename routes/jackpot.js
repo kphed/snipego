@@ -17,7 +17,7 @@ var rngStr;
 
 var ref = new Firebase('https://snipego.firebaseio.com/');
 
-var sgRef = new Firebase('https://sgjackpot.firebaseio.com/');
+var sgRef = new Firebase(process.env.FIREBASE_DATABASE);
 
 sgRef.authWithCustomToken(token, function(error, authData) {
   if (error) {
