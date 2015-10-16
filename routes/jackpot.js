@@ -60,7 +60,7 @@ var jackpotCheck = function() {
       });
     } else {
       console.log('A current jackpot already exists, retrieving info from redundant backup');
-      console.log('Process env variables', process.env.FIREBASE_SECRET, process.env.FIREBASE_DATABASE);
+      console.log('Process env variables', typeof process.env.FIREBASE_SECRET, typeof process.env.FIREBASE_DATABASE);
       hash = data.val().roundHash;
       var formatted = data.val().roundHash.replace(/[.#$]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
