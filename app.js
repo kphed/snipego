@@ -6,11 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var cookieSession = require('cookie-session');
-var FirebaseTokenGenerator = require("firebase-token-generator");
-var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
-var token = tokenGenerator.createToken(
-   {uid: "snipego"},
-   { expires: 86400000 });
 
 require('./passport/passport')(passport);
 

@@ -161,7 +161,7 @@ var endRound = function() {
     console.log('currentJackpot Winner is ', currentJackpot.winner);
     //Add winner to winner property and their chance/trade token
     winnerObj.winner = currentJackpot.winner;
-    winnerObj.chance = (currentJackpot.jackpotValue / currentJackpot.winner.itemsValue) * 100;
+    currentJackpot.winner.chance = (currentJackpot.jackpotValue / currentJackpot.winner.itemsValue) * 100;
     winnerObj.tradeToken = currentJackpot.winner.tradeToken;
     console.log('winnerObj ', winnerObj);
     //Push the current jackpot to ended jackpots
