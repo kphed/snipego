@@ -33,14 +33,13 @@ router.post('/update-inventory', function(req, res) {
             body.rgDescriptions[key].market_price = marketPricesObj[formatted].market_price;
           }
         }
-        res.json(prepareItems(body.rgInventory, body.rgDescriptions));
+        res.json(fetchItems(body.rgInventory, body.rgDescriptions));
       }
     });
   });
 });
 
-var prepareItems = function(items, descriptions) {
-  console.log('items???', items);
+var fetchItems = function(items, descriptions) {
   var tempObj = {};
   var itemsArray = [];
   Object.keys(items).map(function(id) {
@@ -65,7 +64,6 @@ var prepareItems = function(items, descriptions) {
     }
     return item;
   });
-  console.log('itemsArray is ', itemsArray);
   return itemsArray;
 };
 
