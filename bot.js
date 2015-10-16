@@ -227,8 +227,9 @@ var userDeposit = function(userInfo, res) {
     if (err) {
       logger.log('info', err);
     } else {
-      console.log('inventory is ', inventory);
-      logger.log('Inventory is ', inventory);
+      for (var i = 0; i < inventory.length; i++) {
+        console.log('here are the inventory items', iventory[i].market_hash_name);
+      }
     }
   });
 };
