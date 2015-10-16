@@ -149,14 +149,16 @@ var endRound = function() {
       }
     }
     //The winner is at the index of the winner array
+    console.log('currentJackpot players ', currentJackpot.players);
+    console.log('winner array', winnerArray);
+    console.log('currentJackpot winner ticket ', Math.ceil((parseFloat(rngStr, 2) * currentJackpot.tickets)));
+    console.log('currentJackpot tickets ', currentJackpot.tickets);
     currentJackpot.tickets = currentJackpot.jackpotValue * 100;
     currentJackpot.winningTicket = Math.ceil((parseFloat(rngStr, 2) * currentJackpot.tickets));
-    currentJackpot.winner = currentJackpot.players[(winnerArray[currentJackpot.winningTicket])];
+    currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
     currentJackpot.salt = salt;
     currentJackpot.rngStr = rngStr;
     console.log('currentJackpot Winner is ', currentJackpot.winner);
-    console.log('currentJackpot players ', currentJackpot.players);
-    console.log('winner array', winnerArray);
     //Add winner to winner property and their chance/trade token
     winnerObj.winner = currentJackpot.winner;
     winnerObj.chance = (currentJackpot.jackpotValue / currentJackpot.winner.itemsValue) * 100;
