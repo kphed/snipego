@@ -268,9 +268,12 @@ function offerError(err, userInfo, res, withdraw) {
   if (err.indexOf('401') > -1) {
     client.webLogOn();
     client.on('webSession', function() {
+      console.log('web session received');
       if (withdraw) {
+        console.log('continuing withdraw');
         userWithdraw(userInfo, res);
       } else {
+        console.log('continuing withdraw');
         userDeposit(userInfo, res);
       }
     });
