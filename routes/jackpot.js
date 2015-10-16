@@ -175,7 +175,7 @@ var endRound = function() {
       bcrypt.hash(rngStr, salt, function(err, data) {
         hash = data;
         console.log('new hash is ', hash);
-        ref.child('currentJackpot').update({
+        ref.child('currentJackpot').set({
           itemsCount: 0,
           jackpotValue: 0,
           roundHash: hash,
@@ -198,8 +198,10 @@ var endRound = function() {
           }, function(error, response, body) {
             if (error) {
               console.log(error);
+              res.json(error);
             } else {
               console.log('Trade posted successfully, here is the body: ', body);
+              res.json(body);
             }
           });
         });
