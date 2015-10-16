@@ -65,7 +65,6 @@ var jackpotCheck = function() {
         console.log('data ', data);
         salt = data.val().salt;
         rngStr = data.val().rngStr;
-        console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
       });
     }
   });
