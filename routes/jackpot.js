@@ -55,6 +55,7 @@ var jackpotCheck = function() {
         });
       });
     } else {
+      hash = data.val().roundHash;
       console.log('A current jackpot already exists, retrieving info');
       formatted = data.val().roundHash.replace(/[.#$]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
@@ -63,6 +64,7 @@ var jackpotCheck = function() {
         rngStr = data.val().rngStr;
         console.log('Jackpot exists, here is the salt', salt);
         console.log('Jackpot exists, here is the rngStr', rngStr);
+        console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
       });
     }
   });
