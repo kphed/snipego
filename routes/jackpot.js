@@ -14,12 +14,14 @@ var rngStr;
 
 var ref = new Firebase('https://snipego.firebaseio.com/');
 
+var sgRef = new Firebase('https://sgjackpot.firebaseio.com/');
+
 var pollTimeout = setTimeout(function() {
     pollFirebaseQueue();
 }, 15000);
 
 var jackpotCheck = function() {
-  console.log('Checking for jackpot');
+  console.log('Checking jackpot data');
   var jackpotRef = ref.child('currentJackpot');
   jackpotRef.once('value', function(data) {
     if (!data.val()) {
@@ -33,21 +35,33 @@ var jackpotCheck = function() {
           hash = data;
           console.log('new hash is ', hash);
           ref.child('currentJackpot').set({
-            salt: salt,
-            rngStr: rngStr,
             itemsCount: 0,
             jackpotValue: 0,
             roundHash: hash,
           }, function() {
-            console.log('salt is ', salt);
-            console.log('rngStr is ', rngStr);
-            console.log('hash is ', hash);
-            console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
+            var sgJackpotRef = sgRef.child(hash);
+            sgJackpotRef.set({
+              salt: salt,
+              rngStr: rngStr,
+            }, function() {
+              console.log('salt is ', salt);
+              console.log('rngStr is ', rngStr);
+              console.log('hash is ', hash);
+              console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
+            });
+
           });
         });
       });
     } else {
-      console.log('A current jackpot already exists!');
+      console.log('A current jackpot already exists, retrieving info');
+      var sgJackpotRef = sgRef.child(data.val().roundHash);
+      sgJackpotRef.once('value', function(data) {
+        salt = data.val().salt;
+        rngStr = data.val().rngStr;
+        console.log('Jackpot exists, here is the salt', salt);
+        console.log('Jackpot exists, here is the rngStr', rngStr);
+      });
     }
   });
 };
@@ -128,9 +142,11 @@ var endRound = function() {
         winnerArray.push(i);
       }
     }
-    //The winner lies at the index of the winner array
-    currentJackpot.winner = currentJackpot.players[(winnerArray[Math.ceil((parseFloat(currentJackpot.rngStr, 2) * (currentJackpot.jackpotValue * 100)))])];
-    console.log('currentJackpot Winner is ', currentJackpot.players[(winnerArray[Math.ceil((parseFloat(currentJackpot.rngStr, 2) * (currentJackpot.jackpotValue * 100)))])]);
+    //The winner is at the index of the winner array
+    currentJackpot.winner = currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])];
+    currentJackpot.salt = salt;
+    currentJackpot.rngStr = rngStr;
+    console.log('currentJackpot Winner is ', currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])]);
     console.log('currentJackpot players ', currentJackpot.players);
     console.log('winner array', winnerArray);
     //Add winner to winner property and their chance/trade token
@@ -150,12 +166,20 @@ var endRound = function() {
         hash = data;
         console.log('new hash is ', hash);
         ref.child('currentJackpot').update({
-          salt: salt,
-          rngStr: rngStr,
           itemsCount: 0,
           jackpotValue: 0,
           roundHash: hash,
         }, function() {
+          var sgJackpotRef = sgRef.child(hash);
+          sgJackpotRef.set({
+            salt: salt,
+            rngStr: rngStr,
+          }, function() {
+            console.log('salt is ', salt);
+            console.log('rngStr is ', rngStr);
+            console.log('hash is ', hash);
+            console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
+          });
           request.post({
             url: 'https://snipego3.herokuapp.com/user-withdraw',
             body: winnerObj,
