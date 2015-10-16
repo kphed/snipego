@@ -9,6 +9,10 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.inventoryLoading = false;
 
+    $scope.tradePending = false;
+
+    $scope.loadingTrade = false;
+
     $scope.items = [];
 
     $scope.selectedItems = {};
@@ -16,10 +20,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     $scope.tradeID = '';
 
     $scope.protectionCode = '';
-
-    $scope.tradePending = false;
-
-    $scope.loadingTrade = false;
 
     $scope.users.$watch(function() {
       $scope.users.$loaded().then(function() {
@@ -85,35 +85,36 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       }
     };
 
-    $scope.fetchItems = function(items, descriptions) {
-      var tempObj = {};
-      Object.keys(items).map(function(id) {
-        var item = items[id];
-        var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
-        for (var key in description) {
-          if (!description.market_price) {
-            continue;
-          }
-          item[key] = description[key];
-        }
-        if (item.icon_url) {
-          item.contextid = 2;
-          tempObj.assetid = item.id;
-          tempObj.appid = item.appid;
-          tempObj.contextid = item.contextid;
-          tempObj.market_hash_name = item.market_hash_name;
-          tempObj.icon_url = item.icon_url;
-          tempObj.market_price = item.market_price.slice(1);
-          $scope.items.push(tempObj);
-          tempObj = {};
-        }
-        return item;
-      });
-      $scope.sortItems();
-    };
+    // $scope.fetchItems = function(items, descriptions) {
+    //   var tempObj = {};
+    //   Object.keys(items).map(function(id) {
+    //     var item = items[id];
+    //     var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
+    //     for (var key in description) {
+    //       if (!description.market_price) {
+    //         continue;
+    //       }
+    //       item[key] = description[key];
+    //     }
+    //     if (item.icon_url) {
+    //       item.contextid = 2;
+    //       tempObj.assetid = item.id;
+    //       tempObj.appid = item.appid;
+    //       tempObj.contextid = item.contextid;
+    //       tempObj.market_hash_name = item.market_hash_name;
+    //       tempObj.icon_url = item.icon_url;
+    //       tempObj.market_price = item.market_price.slice(1);
+    //       $scope.items.push(tempObj);
+    //       tempObj = {};
+    //     }
+    //     return item;
+    //   });
+    //   $scope.sortItems();
+    // };
 
-    $scope.sortItems = function() {
-      $scope.items = $scope.items.sort(function(a, b) {
+    $scope.sortItems = function(resp) {
+      console.log('resp for sort ', resp);
+      $scope.items = resp.sort(function(a, b) {
         return b.market_price - a.market_price;
       });
       $scope.inventoryLoading = false;
@@ -128,7 +129,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         $scope.inventoryLoading = true;
         $http.post('/users/update-inventory', {steamid: $rootScope.user.id})
           .success(function(resp) {
-            $scope.fetchItems(resp.rgInventory, resp.rgDescriptions);
+            console.log('resp is ', resp);
+            $scope.sortItems(resp);
         });
       }
     };

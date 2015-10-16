@@ -1,32 +1,32 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="navbar-header nav-item">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <button class="btn btn-{{successDanger}} navbar-btn play-button nav-popover" ng-show="isAuth" data-toggle="modal" data-target="{{playDestination}}" data-toggle="popover" data-container="body" data-content="Play Now"><i class="glyphicon glyphicon-piggy-bank play-button-text"></i></button>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right" id="navbar-right">
-        <li class="nav-item">
-          <button class="btn btn-info navbar-btn nav-popover" data-toggle="modal" data-target="#info" data-toggle="popover" data-container="body" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-warning navbar-btn nav-popover" data-toggle="modal" data-target="#support" data-toggle="popover" data-container="body" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-danger navbar-btn nav-popover" data-toggle="modal" data-target="#free" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
-        </li>
-        <li class="nav-item" ng-show="!isAuth">
-          <a href="/auth/steam"><img src="img/sits_large_border.png" /></a>
-        </li>
-        <li ng-show="isAuth">
-          <a href="" class="nav-popover" data-toggle="popover" data-container="body" data-content="Profile"><img id="profilePic" ng-src="{{profilePic}}" /></a>
-        </li>
-      </ul>
-    </div>
+  <div class="navbar-header nav-item">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <button class="btn btn-{{successDanger}} navbar-btn play-button nav-popover" ng-show="isAuth" data-toggle="modal" data-target="{{playDestination}}" data-toggle="popover" data-container="body" data-content="Play Now"><i class="glyphicon glyphicon-piggy-bank play-button-text"></i></button>
+  </div>
+  <div id="navbar" class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right" id="navbar-right">
+      <li class="nav-item">
+        <button class="btn btn-info navbar-btn nav-popover" data-toggle="modal" data-target="#info" data-toggle="popover" data-container="body" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-warning navbar-btn nav-popover" data-toggle="modal" data-target="#support" data-toggle="popover" data-container="body" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-danger navbar-btn nav-popover" data-toggle="modal" data-target="#free" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
+      </li>
+      <li class="nav-item" ng-show="!isAuth">
+        <a href="/auth/steam"><img src="img/sits_large_border.png" /></a>
+      </li>
+      <li ng-show="isAuth">
+        <a href="" class="nav-popover"><img id="profilePic" ng-src="{{profilePic}}" /></a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -34,10 +34,22 @@
     <div class="modal-content">
       <div class="modal-header">
         <button class="btn btn-danger modal-close-btn" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
-        <h4 class="modal-title" id="myModalLabel">How To Play</h4>
+        <h4 class="modal-title" id="myModalLabel">How To Play/How Our Jackpot Works</h4>
       </div>
       <div class="modal-body">
-        <div ui-view="deposit"></div>
+        <ol><h3 style="color: white">How To Play</h3>
+          <li class="how-to-play">Sign into Steam <img style="height: 25px; width: 50px" src="../../img/sits_large_border.png" /></li>
+          <li class="how-to-play"> Set your Steam inventory privacy settings to public (in your Steam profile privacy settings), this way our bots can send you trade requests for deposits and your winnings.</li>
+          <li class="how-to-play">Click the deposit button <img style="height: 25px; width: 25px" src="../../favicon.ico" /> and set your trade URL. Press the deposit button again, refresh your inventory <img style="height: 25px; width: 30px" src="../../img/refresh.png" />, and select the items you want to deposit into the jackpot.</li>
+          <li class="how-to-play">You're on your way to a sweet inventory, good luck!</li>
+          <li class="how-to-play">If you have any questions, don't hesitate to contact us through support/help <img style="height: 25px; width: 30px" src="../../img/help.png" />, we'll try to get back to you within minutes</li>
+        </ol>
+        <ul><h3 style="color: white">How Our Jackpot Works</h3>
+          <li class="how-to-play">Select up to 10 skins to deposit into the jackpot, $1 value minimum. Once 50 items or more are in the jackpot, the winner is selected.</li>
+          <li class="how-to-play">Once items are deposited or won, you will receive a trade offer from our bots. This normally takes seconds, but may take up to 5 minutes if steam servers are down or we have a lot of deposits -- we will make sure you ALWAYS receive your winnings or deposit your items.</li>
+          <li class="how-to-play">NOTE: We will NEVER add you or ask you for your skins without you requesting a deposit. A protection code is generated with each trade request, please confirm before accepting.</li>
+          <li class="how-to-play">We take one skin from every pot, ranging from 2-10% of the jackpot value.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -67,9 +79,10 @@
             <button class="btn btn-info btn-popover" id="inventory-refresh-btn" data-toggle="popover" data-container="body" data-content="Refresh Inventory" ng-click="fetchInventory()"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
           </div>
           <div id="total-value-text">
-            <span>Total Value: {{totalValue()}} | Mininum $1 Value Total | 10 Items Max</span>
+            <span>Total Value: {{totalValue()}} | Mininum $1 Value Total | 10 Skins Max</span>
             <div class="items-shown" ng-show="!items.length">Get your up-to-date inventory with the refresh button!</div>
-            <div class="items-shown" ng-show="items.length">If you are missing any items, please refresh again!</div>
+            <div class="items-shown" ng-show="items.length">If you are missing any items, please refresh again! </div>
+            <div class="privacy-warning" ng-show="items.length">*Make sure your steam inventory privacy settings are set to public or you won't see your items*</div>
           </div>
 
           <div class="userItems">
@@ -120,7 +133,7 @@
         <h4 class="modal-title" id="myModalLabel">Need Help or Have Questions/Suggestions?</h4>
       </div>
       <div class="modal-body">
-        ...
+        <h5 style="color: white">Add us on steam to chat with us directly: [SteamURLGOESHERE]</h5>
       </div>
     </div>
   </div>
@@ -131,10 +144,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button class="btn btn-danger modal-close-btn" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i></button>
-        <h4 class="modal-title" id="myModalLabel">Earn Free Spins!</h4>
+        <h4 class="modal-title" id="myModalLabel">Earn Free Skins!</h4>
       </div>
       <div class="modal-body">
-        ...
+        <h5 style="color: white">Coming soon... have questions? Add us on steam to chat with us directly: [SteamURLGOESHERE]</h5>
       </div>
     </div>
   </div>

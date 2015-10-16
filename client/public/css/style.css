@@ -51,7 +51,6 @@ hr {
   padding-top: 10px;
   text-align: center;
   height: 60px;
-  color: white;
 }
 
 .jackpot-player {
@@ -85,6 +84,11 @@ hr {
   margin-top: 3px;
   margin-bottom: 3px;
   font-size: 10px;
+  color: white;
+}
+
+.round-hash-text {
+  color: white;
 }
 
 /* Ended Jackpots */
@@ -145,6 +149,11 @@ hr {
   float: right;
 }
 
+.how-to-play {
+  margin-bottom: 5px;
+  color: white;
+}
+
 /* Jackpot Progress */
 
 /* Jackpot Table */
@@ -195,6 +204,32 @@ hr {
   margin-left: 15px;
 }
 
+
+/* Deposit View Buttons */
+
+.inventory-btn {
+  font-size: 1.5em;
+}
+
+/*.deposit-buttons {
+  text-align: center;
+}*/
+
+#inventory-btn {
+  margin-top: 2px;
+}
+
+.inventory-refresh-btn {
+  font-size: 2.25em;
+  float: left;
+}
+
+#inventory-refresh-btn {
+  float: right;
+}
+
+/* Trade URL */
+
 #tradeUrlText {
   color: #E5E5E5;
 }
@@ -224,30 +259,6 @@ hr {
   width: 80%;
   height: 75px;
   font-size: 24px;
-}
-
-
-/* Deposit View Buttons */
-
-.inventory-btn {
-  font-size: 1.5em;
-}
-
-/*.deposit-buttons {
-  text-align: center;
-}*/
-
-#inventory-btn {
-  margin-top: 2px;
-}
-
-.inventory-refresh-btn {
-  font-size: 2.25em;
-  float: left;
-}
-
-#inventory-refresh-btn {
-  float: right;
 }
 
 /* Deposit View Items */
@@ -283,13 +294,16 @@ hr {
 .itemPrice {
   color: #5FB760;
   font-size: 14px;
-  font-family: "Open Sans";
 }
 
 .items-shown {
   color: #E5E5E5;
-  font-size: 12px;
-  font-family: "Open Sans";
+  font-size: 14px;
+}
+
+.privacy-warning {
+  color: #E5E5E5;
+  font-size: 10px;
 }
 
 #total-value-text {

@@ -33,6 +33,8 @@ var jackpotCheck = function() {
           hash = data;
           console.log('new hash is ', hash);
           ref.child('currentJackpot').set({
+            salt: salt,
+            rngStr: rngStr,
             itemsCount: 0,
             jackpotValue: 0,
             roundHash: hash,
@@ -110,11 +112,15 @@ var queueJackpot = function(queueData) {
 };
 
 var endRound = function() {
+  //Get current jackpot data, with players, data
   ref.child('currentJackpot').once('value', function(data) {
     var currentJackpot = data.val();
     var winnerArray = [];
     var winnerObj = {};
     winnerObj.items = [];
+    //Loop through jackpot players, add all items to one array for easy fetching
+    //Multiply the player's item value by 100 to get tickets
+    //Push to the winner array amount of times the player's value is
     for (var i = 0; i < currentJackpot.players.length; i++) {
       winnerObj.items = winnerObj.items.concat(currentJackpot.players[i].items);
       var playerValue = currentJackpot.players[i].itemsValue * 100;
@@ -122,18 +128,19 @@ var endRound = function() {
         winnerArray.push(i);
       }
     }
-    currentJackpot.winner = currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])];
-    console.log('currentJackpot Winner is ', currentJackpot.players[(winnerArray[Math.ceil((parseFloat(rngStr, 2) * (currentJackpot.jackpotValue * 100)))])]);
+    //The winner lies at the index of the winner array
+    currentJackpot.winner = currentJackpot.players[(winnerArray[Math.ceil((parseFloat(currentJackpot.rngStr, 2) * (currentJackpot.jackpotValue * 100)))])];
+    console.log('currentJackpot Winner is ', currentJackpot.players[(winnerArray[Math.ceil((parseFloat(currentJackpot.rngStr, 2) * (currentJackpot.jackpotValue * 100)))])]);
     console.log('currentJackpot players ', currentJackpot.players);
     console.log('winner array', winnerArray);
+    //Add winner to winner property and their chance/trade token
     winnerObj.winner = currentJackpot.winner;
     winnerObj.chance = (currentJackpot.jackpotValue / currentJackpot.winner.itemsValue) * 100;
     winnerObj.tradeToken = currentJackpot.winner.tradeToken;
-    console.log('winnerObj', winnerObj);
-    currentJackpot.salt = salt;
-    currentJackpot.winningNumber = rngStr;
-    console.log('winnerObj is ', winnerObj);
+    console.log('winnerObj ', winnerObj);
+    //Push the current jackpot to ended jackpots
     ref.child('endedJackpots').push(currentJackpot);
+    //Asynchronously fetch new winning data
     bcrypt.genSalt(10, function(err, data) {
       salt = data;
       console.log('new salt is ', salt);
@@ -143,6 +150,8 @@ var endRound = function() {
         hash = data;
         console.log('new hash is ', hash);
         ref.child('currentJackpot').update({
+          salt: salt,
+          rngStr: rngStr,
           itemsCount: 0,
           jackpotValue: 0,
           roundHash: hash,

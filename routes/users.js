@@ -33,11 +33,39 @@ router.post('/update-inventory', function(req, res) {
             body.rgDescriptions[key].market_price = marketPricesObj[formatted].market_price;
           }
         }
-        res.json(body);
+        res.json(prepareItems());
       }
     });
   });
 });
+
+var prepareItems = function() {
+  var tempObj = {};
+  var items = [];
+  Object.keys(items).map(function(id) {
+    var item = items[id];
+    var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
+    for (var key in description) {
+      if (!description.market_price) {
+        continue;
+      }
+      item[key] = description[key];
+    }
+    if (item.icon_url) {
+      item.contextid = 2;
+      tempObj.assetid = item.id;
+      tempObj.appid = item.appid;
+      tempObj.contextid = item.contextid;
+      tempObj.market_hash_name = item.market_hash_name;
+      tempObj.icon_url = item.icon_url;
+      tempObj.market_price = item.market_price.slice(1);
+      items.push(tempObj);
+      tempObj = {};
+    }
+    return item;
+  });
+  return items;
+};
 
 var getMarketPrice = function(market_hash_name) {
   console.log('Calling get market prices');
