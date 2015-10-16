@@ -81,7 +81,7 @@ router.post('/hash-check', function(req, res) {
 });
 
 var pollFirebaseQueue = function() {
-  console.log('Polling queue again...');
+  console.log('Polling queue again...', salt, hash, rngStr);
   ref.child('queue').once('value', function(data) {
     var queueData = data.val();
     if (queueData) {
