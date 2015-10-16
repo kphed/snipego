@@ -222,6 +222,14 @@ var userDeposit = function(userInfo, res) {
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });
+  offers.loadInventory(730, 2, true, function (err, inventory) {
+    console.log('Loading inventory');
+    if (err) {
+      logger.log('info', err);
+    } else {
+      logger.log('Inventory is ', inventory);
+    }
+  });
 };
 
 offer_server.post('/user-deposit', function(req, res) {
