@@ -13,14 +13,6 @@ var token = tokenGenerator.createToken(
    {uid: "snipego"},
    { expires: 86400 });
 
-var hash;
-var salt;
-var rngStr;
-
-var ref = new Firebase('https://snipego.firebaseio.com/');
-
-var sgRef = new Firebase('https://sgjackpot.firebaseio.com/');
-
 sgRef.authWithCustomToken(token, function(error, authData) {
   if (error) {
     console.log('error! ', error);
@@ -28,6 +20,14 @@ sgRef.authWithCustomToken(token, function(error, authData) {
     console.log('Auth data: ', authData);
   }
 });
+
+var hash;
+var salt;
+var rngStr;
+
+var ref = new Firebase('https://snipego.firebaseio.com/');
+
+var sgRef = new Firebase('https://sgjackpot.firebaseio.com/');
 
 var pollTimeout = setTimeout(function() {
     pollFirebaseQueue();
