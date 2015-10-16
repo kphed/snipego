@@ -11,7 +11,7 @@ var FirebaseTokenGenerator = require("firebase-token-generator");
 var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
 var token = tokenGenerator.createToken(
    {uid: "snipego"},
-   { expires: 86400000 });
+   { expires: 86400 });
 
 var hash;
 var salt;
@@ -60,6 +60,7 @@ var jackpotCheck = function() {
       });
     } else {
       console.log('A current jackpot already exists, retrieving info from redundant backup');
+      console.log('Process env variables', process.env.FIREBASE_SECRET, process.env.FIREBASE_DATABASE);
       hash = data.val().roundHash;
       var formatted = data.val().roundHash.replace(/[.#$]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
