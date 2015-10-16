@@ -6,7 +6,7 @@ angular.module('SnipeGo.Directives.ToggleClass', ['SnipeGo'])
         restrict: "A",
         link: function(scope, elem, attrs) {
             $(elem).click(function() {
-              if ($rootScope.itemsSelected < 20) {
+              if ($rootScope.itemsSelected < 10) {
                 $(elem).toggleClass("highlightSelected");
               } else {
                 $(elem).removeClass("highlightSelected");
