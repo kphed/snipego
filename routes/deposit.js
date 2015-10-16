@@ -52,7 +52,7 @@ router.post('/', function(req, res) {
             console.log(error);
             res.json({'error': error});
           } else {
-            console.log('Trade posted successfully, here is the body: ', body);
+            console.log('Trade posted successfully');
             res.json({'success': body});
           }
         });
