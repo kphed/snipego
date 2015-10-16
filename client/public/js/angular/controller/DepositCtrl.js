@@ -77,15 +77,15 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.depositItems = function() {
-      if ($scope.totalValue() < 2) {
-        $window.alert('You need at least $2 skins value to play, select more skins');
-      } else {
+      // if ($scope.totalValue() < 2) {
+      //   $window.alert('You need at least $2 skins value to play, select more skins');
+      // } else {
         $scope.loadingTrade = true;
         $scope.tradePending = true;
         $http.post('/deposit/', depositData()).success(function(resp) {
           $scope.selectedItems = {};
         });
-      }
+      // }
     };
 
     $scope.sortItems = function(resp) {

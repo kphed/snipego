@@ -118,7 +118,7 @@ var queueJackpot = function(queueData) {
         jackpotValue: jackpotData.jackpotValue,
         players: jackpotData.players,
       }, function() {
-        if (jackpotData.itemsCount < 50) {
+        if (jackpotData.itemsCount < 1) {
           pollTimeout = setTimeout(function() {
             pollFirebaseQueue();
           }, 10000);
@@ -131,6 +131,7 @@ var queueJackpot = function(queueData) {
 };
 
 var endRound = function() {
+  console.log('ending round');
   //Get current jackpot data, with players, data
   ref.child('currentJackpot').once('value', function(data) {
     var currentJackpot = data.val();
