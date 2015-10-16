@@ -207,29 +207,19 @@ var userDeposit = function(userInfo, res) {
   var trade = offers.createOffer(userInfo.id);
   var protectionCode = randomstring.generate(7).toUpperCase();
 
-  // trade.addTheirItems(userInfo.items);
-  // trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
-  //   if (err) {
-  //     logger.log('info', err);
-  //     offerError(err, userInfo, res, false);
-  //   } else {
-  //     pendingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue, tradeToken: userInfo.tradeToken});
-  //     userRef.child(userInfo.id).update({
-  //       tradeID: trade.id,
-  //       protectionCode: protectionCode,
-  //       tradePending: true,
-  //     });
-  //     res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
-  //   }
-  // });
-  offers.loadInventory(730, 2, true, function (err, inventory) {
-    console.log('Loading inventory');
+  trade.addTheirItems(userInfo.items);
+  trade.send('Deposit for SnipeGo jackpot, seems like a lucky one! Protection Code: ' + protectionCode, userInfo.tradeToken, function(err, status) {
     if (err) {
       logger.log('info', err);
+      offerError(err, userInfo, res, false);
     } else {
-      for (var i = 0; i < inventory.length; i++) {
-        console.log('here are the inventory items', inventory[i].market_hash_name);
-      }
+      pendingRef.child(trade.id).set({avatar: userInfo.avatar, displayName: userInfo.displayName, id: userInfo.id, items: userInfo.items, itemsCount: userInfo.itemsCount, itemsValue: userInfo.itemsValue, tradeToken: userInfo.tradeToken});
+      userRef.child(userInfo.id).update({
+        tradeID: trade.id,
+        protectionCode: protectionCode,
+        tradePending: true,
+      });
+      res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
   });
 };
@@ -243,14 +233,31 @@ offer_server.post('/user-deposit', function(req, res) {
 
 var userWithdraw = function(userInfo, res) {
   var trade = offers.createOffer(userInfo.winner.id);
+  var items = [];
 
-  trade.addMyItems(userInfo.items);
-  trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
+  offers.loadInventory(730, 2, true, function (err, inventory) {
+    console.log('Loading inventory');
     if (err) {
       logger.log('info', err);
-      offerError(err, userInfo, res, true);
     } else {
-      res.json({status: 'Trade offer status: ' + status + ' trade ID: ' + trade.id});
+      for (var i = 0; i < userInfo.items.length; i++) {
+        console.log('here are the inventory items', inventory[i].market_hash_name);
+        for (var j = 0; j < inventory.length; j++) {
+          if (inventory[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
+            items.push(inventory[j]);
+            break;
+          }
+        }
+      }
+      trade.addMyItems(items);
+      trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
+        if (err) {
+          logger.log('info', err);
+          offerError(err, userInfo, res, true);
+        } else {
+          res.json({status: 'Trade offer status: ' + status + ' trade ID: ' + trade.id});
+        }
+      });
     }
   });
 };
