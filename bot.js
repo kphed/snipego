@@ -241,7 +241,6 @@ var userWithdraw = function(userInfo, res) {
       logger.log('info', err);
     } else {
       for (var i = 0; i < userInfo.items.length; i++) {
-        console.log('here are the inventory items', inventory[i].market_hash_name);
         for (var j = 0; j < inventory.length; j++) {
           if (inventory[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
             items.push(inventory[j]);
