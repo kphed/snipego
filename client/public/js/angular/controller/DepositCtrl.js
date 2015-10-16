@@ -69,7 +69,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         delete $scope.selectedItems[item.assetid];
       } else {
         if ($rootScope.itemsSelected === 20) {
-          $window.alert('You can\'t add more than 10 items');
+          $window.alert('You can\'t add more than 20 items');
         } else {
           $scope.selectedItems[item.assetid] = item;
         }
