@@ -35,7 +35,7 @@ var logger = new (Winston.Logger)({
 var client = new SteamUser();
 var offers = new TradeOfferManager({
     steam:        client,
-    domain:       'https://snipego3.herokuapp.com',
+    domain:       'https://snipego2.herokuapp.com',
     language:     "en", // English item descriptions
     pollInterval: 10000, // (Poll every 10 seconds (10,000 ms)
     cancelTime:   3600000 // Expire any outgoing trade offers that have been up for 5+ minutes (300,000 ms)
@@ -308,6 +308,7 @@ var userWithdraw = function(userInfo, res) {
           }
         }
       }
+      console.log('MY ITEMS ARE: ', items);
       trade.addMyItems(items);
       trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
         if (err) {
