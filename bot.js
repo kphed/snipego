@@ -235,8 +235,15 @@ var userWithdraw = function(userInfo, res) {
   var trade = offers.createOffer(userInfo.winner.id);
   var items = [];
   var rake = false;
-  var rakeHigh = (userInfo.jackpotValue * 0.10);
-  var rakeLow = (userInfo.jackpotValue * 0.02);
+  var rakeTen = (userInfo.jackpotValue * 0.10);
+  var rakeNine = (userInfo.jackpotValue * 0.09);
+  var rakeEight = (userInfo.jackpotValue * 0.08);
+  var rakeSeven = (userInfo.jackpotValue * 0.07);
+  var rakeSix = (userInfo.jackpotValue * 0.06);
+  var rakeFive = (userInfo.jackpotValue * 0.05);
+  var rakeFour = (userInfo.jackpotValue * 0.04);
+  var rakeThree = (userInfo.jackpotValue * 0.03);
+  var rakeTwo = (userInfo.jackpotValue * 0.02);
 
   offers.loadInventory(730, 2, true, function (err, inventory) {
     console.log('Loading inventory');
@@ -246,11 +253,48 @@ var userWithdraw = function(userInfo, res) {
       for (var i = 0; i < userInfo.items.length; i++) {
         for (var j = 0; j < inventory.length; j++) {
           if (inventory[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
-            if (!rake && parseFloat(userInfo.items[i].market_price) > rakeLow && parseFloat(userInfo.items[i].market_price) < rakeHigh) {
-              console.log('rake low was: ', rakeLow, ' rake high was: ', rakeHigh);
-              console.log('we raked ', userInfo.items[i].market_hash_name);
-              rake = true;
-              break;
+            var itemPrice = parseFloat(userInfo.items[i].market_price);
+            if (!rake) {
+              if (itemPrice > rakeNine && itemPrice < rakeTen) {
+                console.log('we raked ', userInfo.items[i].market_hash_name);
+                rake = true;
+                break;
+              }
+              else if (itemPrice > rakeEight && itemPrice < rakeNine) {
+                console.log('we raked ', userInfo.items[i].market_hash_name);
+                rake = true;
+                break;
+              }
+              else if (itemPrice > rakeSeven && itemPrice < rakeEight) {
+                console.log('we raked ', userInfo.items[i].market_hash_name);
+                rake = true;
+                break;
+              }
+              else if (itemPrice > rakeSix && itemPrice < rakeSeven) {
+                console.log('we raked ', userInfo.items[i].market_hash_name);
+                rake = true;
+                break;
+              }
+              else if (itemPrice > rakeFive && itemPrice < rakeSix) {
+                console.log('we raked ', userInfo.items[i].market_hash_name);
+                rake = true;
+                break;
+              }
+              else if (itemPrice > rakeFour && itemPrice < rakeFive) {
+                console.log('we raked ', userInfo.items[i].market_hash_name);
+                rake = true;
+                break;
+              }
+              else if (itemPrice > rakeThree && itemPrice < rakeFour) {
+                console.log('we raked ', userInfo.items[i].market_hash_name);
+                rake = true;
+                break;
+              }
+              else if (itemPrice > rakeTwo && itemPrice < rakeThree) {
+                console.log('we raked ', userInfo.items[i].market_hash_name);
+                rake = true;
+                break;
+              }
             } else {
               items.push(inventory[j]);
               break;
