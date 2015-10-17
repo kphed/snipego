@@ -68,7 +68,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         if ($rootScope.itemsSelected === 20) {
           $window.alert('You can\'t add more than 20 items');
         }
-        else if (!$rootScope.itemsSelected) {
+        else if ($rootScope.itemsSelected === 0) {
           $window.alert('Please select at least one skin to deposit');
         } else {
           $scope.selectedItems[item.assetid] = item;

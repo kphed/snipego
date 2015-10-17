@@ -32,11 +32,9 @@ var pollTimeout = setTimeout(function() {
 }, 15000);
 
 var jackpotCheck = function() {
-  console.log('Checking jackpot data');
   var jackpotRef = ref.child('currentJackpot');
   jackpotRef.once('value', function(data) {
     if (!data.val()) {
-      console.log('No jackpot exists, making one...');
       bcrypt.genSalt(10, function(err, data) {
         salt = data;
         rngStr = JSON.stringify(rng());
@@ -57,7 +55,6 @@ var jackpotCheck = function() {
         });
       });
     } else {
-      console.log('A current jackpot already exists, retrieving info from redundant backup');
       hash = data.val().roundHash;
       var formatted = data.val().roundHash.replace(/[.#$]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
@@ -111,7 +108,6 @@ var queueJackpot = function(queueData) {
       protectionCode: '',
     });
     ref.child('queue').set(queueData, function() {
-      console.log('Jackpot Data is ', jackpotData);
       ref.child('currentJackpot').update({
         itemsCount: jackpotData.itemsCount,
         jackpotValue: jackpotData.jackpotValue,
@@ -130,16 +126,11 @@ var queueJackpot = function(queueData) {
 };
 
 var endRound = function() {
-  console.log('ending round');
-  //Get current jackpot data, with players, data
   ref.child('currentJackpot').once('value', function(data) {
     var currentJackpot = data.val();
     var winnerArray = [];
     var winnerObj = {};
     winnerObj.items = [];
-    //Loop through jackpot players, add all items to one array for easy fetching
-    //Multiply the player's item value by 100 to get tickets
-    //Push to the winner array amount of times the player's value is
     for (var i = 0; i < currentJackpot.players.length; i++) {
       winnerObj.items = winnerObj.items.concat(currentJackpot.players[i].items);
       var playerValue = currentJackpot.players[i].itemsValue * 100;
@@ -152,24 +143,16 @@ var endRound = function() {
     currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
     currentJackpot.salt = salt;
     currentJackpot.rngStr = rngStr;
-    console.log('currentJackpot Winner is ', currentJackpot.winner);
-    //Add winner to winner property and their chance/trade token
     winnerObj.jackpotValue = currentJackpot.jackpotValue;
     winnerObj.winner = currentJackpot.winner;
     currentJackpot.winner.chance = (currentJackpot.jackpotValue / currentJackpot.winner.itemsValue) * 100;
     winnerObj.tradeToken = currentJackpot.winner.tradeToken;
-    console.log('winnerObj ', winnerObj);
-    //Push the current jackpot to ended jackpots
     ref.child('endedJackpots').push(currentJackpot);
-    //Asynchronously fetch new winning data
     bcrypt.genSalt(10, function(err, data) {
       salt = data;
-      console.log('new salt is ', salt);
       rngStr = JSON.stringify(rng());
-      console.log('new # is ', rngStr);
       bcrypt.hash(rngStr, salt, function(err, data) {
         hash = data;
-        console.log('new hash is ', hash);
         ref.child('currentJackpot').set({
           itemsCount: 0,
           jackpotValue: 0,
@@ -180,11 +163,6 @@ var endRound = function() {
           sgJackpotRef.set({
             salt: salt,
             rngStr: rngStr,
-          }, function() {
-            console.log('salt is ', salt);
-            console.log('rngStr is ', rngStr);
-            console.log('hash is ', hash);
-            console.log('comparing number and hash', bcrypt.compareSync(rngStr, hash));
           });
           request.post({
             url: 'https://snipego3.herokuapp.com/user-withdraw',
