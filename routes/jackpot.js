@@ -109,7 +109,6 @@ var queueJackpot = function(queueData) {
     ref.child('users').child(firstQueueItem.id).update({
       tradeID: '',
       protectionCode: '',
-      tradePending: false,
     });
     ref.child('queue').set(queueData, function() {
       console.log('Jackpot Data is ', jackpotData);

@@ -21,8 +21,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.inventoryLoading = false;
 
-    $scope.tradePending = false;
-
     $scope.loadingTrade = false;
 
     $scope.items = [];
@@ -40,11 +38,10 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     });
 
     $scope.returnID = function() {
-      if ($scope.users[$rootScope.user.id].tradeID === undefined || $scope.users[$rootScope.user.id].protectionCode === undefined || $scope.users[$rootScope.user.id].tradePending === false) {
+      if ($scope.users[$rootScope.user.id].tradeID === undefined || $scope.users[$rootScope.user.id].protectionCode === undefined) {
         $scope.tradeID = $scope.users[$rootScope.user.id].tradeID;
         $scope.protectionCode = $scope.users[$rootScope.user.id].protectionCode;
       } else {
-        $scope.tradePending = true;
         $scope.loadingTrade = false;
         $scope.tradeID = $scope.users[$rootScope.user.id].tradeID;
         $scope.protectionCode = $scope.users[$rootScope.user.id].protectionCode;
@@ -70,6 +67,9 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       } else {
         if ($rootScope.itemsSelected === 20) {
           $window.alert('You can\'t add more than 20 items');
+        }
+        else if (!$rootScope.itemsSelected) {
+          $window.alert('Please select at least one skin to deposit');
         } else {
           $scope.selectedItems[item.assetid] = item;
         }
@@ -81,7 +81,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       //   $window.alert('You need at least $2 skins value to play, select more skins');
       // } else {
         $scope.loadingTrade = true;
-        $scope.tradePending = true;
         $http.post('/deposit/', depositData()).success(function(resp) {
           $scope.selectedItems = {};
         });

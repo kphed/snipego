@@ -217,7 +217,6 @@ var userDeposit = function(userInfo, res) {
       userRef.child(userInfo.id).update({
         tradeID: trade.id,
         protectionCode: protectionCode,
-        tradePending: true,
       });
       res.json({status: 'Trade offer status: ' + status + ', protection code: ' + protectionCode + ' trade ID: ' + trade.id});
     }
@@ -235,15 +234,15 @@ var userWithdraw = function(userInfo, res) {
   var trade = offers.createOffer(userInfo.winner.id);
   var items = [];
   var rake = false;
-  var rakeTen = (userInfo.jackpotValue * 0.10);
-  var rakeNine = (userInfo.jackpotValue * 0.09);
-  var rakeEight = (userInfo.jackpotValue * 0.08);
-  var rakeSeven = (userInfo.jackpotValue * 0.07);
-  var rakeSix = (userInfo.jackpotValue * 0.06);
-  var rakeFive = (userInfo.jackpotValue * 0.05);
-  var rakeFour = (userInfo.jackpotValue * 0.04);
-  var rakeThree = (userInfo.jackpotValue * 0.03);
-  var rakeTwo = (userInfo.jackpotValue * 0.02);
+  var rakeTen = userInfo.jackpotValue * 0.10;
+  var rakeNine = userInfo.jackpotValue * 0.09;
+  var rakeEight = userInfo.jackpotValue * 0.08;
+  var rakeSeven = userInfo.jackpotValue * 0.07;
+  var rakeSix = userInfo.jackpotValue * 0.06;
+  var rakeFive = userInfo.jackpotValue * 0.05;
+  var rakeFour = userInfo.jackpotValue * 0.04;
+  var rakeThree = userInfo.jackpotValue * 0.03;
+  var rakeTwo = userInfo.jackpotValue * 0.02;
 
   offers.loadInventory(730, 2, true, function (err, inventory) {
     console.log('Loading inventory');
@@ -255,60 +254,48 @@ var userWithdraw = function(userInfo, res) {
           if (inventory[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
             var itemPrice = parseFloat(userInfo.items[i].market_price);
             if (!rake) {
-              console.log('no items raked, checking for rake ', itemPrice, ' ', rakeNine, ' ', rakeTen);
               if (itemPrice > rakeNine && itemPrice < rakeTen) {
-                console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
               }
               else if (itemPrice > rakeEight && itemPrice < rakeNine) {
-                console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
               }
               else if (itemPrice > rakeSeven && itemPrice < rakeEight) {
-                console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
               }
               else if (itemPrice > rakeSix && itemPrice < rakeSeven) {
-                console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
               }
               else if (itemPrice > rakeFive && itemPrice < rakeSix) {
-                console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
               }
               else if (itemPrice > rakeFour && itemPrice < rakeFive) {
-                console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
               }
               else if (itemPrice > rakeThree && itemPrice < rakeFour) {
-                console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
               }
               else if (itemPrice > rakeTwo && itemPrice < rakeThree) {
-                console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
               } else {
-                console.log('no items to rake, pushing to inventory');
                 items.push(inventory[j]);
                 break;
               }
             } else {
-              console.log('item already raked, pushing to inventory');
               items.push(inventory[j]);
               break;
             }
           }
         }
       }
-      console.log('MY ITEMS ARE: ', items);
       trade.addMyItems(items);
       trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
         if (err) {
