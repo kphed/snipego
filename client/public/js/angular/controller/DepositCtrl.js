@@ -67,9 +67,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       } else {
         if ($rootScope.itemsSelected === 20) {
           $window.alert('You can\'t add more than 20 items');
-        }
-        else if ($rootScope.itemsSelected === 0) {
-          $window.alert('Please select at least one skin to deposit');
         } else {
           $scope.selectedItems[item.assetid] = item;
         }
@@ -80,6 +77,9 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       // if ($scope.totalValue() < 2) {
       //   $window.alert('You need at least $2 skins value to play, select more skins');
       // } else {
+        if ($rootScope.itemsSelected === 0) {
+          $window.alert('Please select at least one skin to deposit');
+        }
         $scope.loadingTrade = true;
         $http.post('/deposit/', depositData()).success(function(resp) {
           $scope.selectedItems = {};
