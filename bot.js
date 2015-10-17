@@ -234,6 +234,9 @@ offer_server.post('/user-deposit', function(req, res) {
 var userWithdraw = function(userInfo, res) {
   var trade = offers.createOffer(userInfo.winner.id);
   var items = [];
+  var rake = false;
+  var rakeHigh = (userInfo.jackpotValue * 0.10);
+  var rakeLow = (userInfo.jackpotValue * 0.02);
 
   offers.loadInventory(730, 2, true, function (err, inventory) {
     console.log('Loading inventory');
@@ -243,8 +246,15 @@ var userWithdraw = function(userInfo, res) {
       for (var i = 0; i < userInfo.items.length; i++) {
         for (var j = 0; j < inventory.length; j++) {
           if (inventory[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
-            items.push(inventory[j]);
-            break;
+            if (!rake && parseFloat(userInfo.items[i].market_price) > rakeLow && parseFloat(userInfo.items[i].market_price) < rakeHigh) {
+              console.log('rake low was: ', rakeLow, ' rake high was: ', rakeHigh);
+              console.log('we raked ', userInfo.items[i].market_hash_name);
+              rake = true;
+              break;
+            } else {
+              items.push(inventory[j]);
+              break;
+            }
           }
         }
       }
