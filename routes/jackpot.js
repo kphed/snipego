@@ -148,11 +148,6 @@ var endRound = function() {
         winnerArray.push(i);
       }
     }
-    //The winner is at the index of the winner array
-    console.log('currentJackpot players ', currentJackpot.players);
-    console.log('winner array', winnerArray);
-    console.log('currentJackpot winner ticket ', Math.ceil((parseFloat(rngStr, 2) * currentJackpot.tickets)));
-    console.log('currentJackpot tickets ', currentJackpot.tickets);
     currentJackpot.tickets = currentJackpot.jackpotValue * 100;
     currentJackpot.winningTicket = Math.ceil((parseFloat(rngStr, 2) * currentJackpot.tickets));
     currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
@@ -199,10 +194,14 @@ var endRound = function() {
           }, function(error, response, body) {
             if (error) {
               console.log(error);
-              return;
+              pollTimeout = setTimeout(function() {
+                pollFirebaseQueue();
+              }, 10000);
             } else {
               console.log('Trade posted successfully, here is the body: ', body);
-              return;
+              pollTimeout = setTimeout(function() {
+                pollFirebaseQueue();
+              }, 10000);
             }
           });
         });

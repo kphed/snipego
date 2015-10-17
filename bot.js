@@ -255,6 +255,7 @@ var userWithdraw = function(userInfo, res) {
           if (inventory[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
             var itemPrice = parseFloat(userInfo.items[i].market_price);
             if (!rake) {
+              console.log('no items raked, checking for rake ', itemPrice, ' ', rakeNine, ' ', rakeTen);
               if (itemPrice > rakeNine && itemPrice < rakeTen) {
                 console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
@@ -294,8 +295,13 @@ var userWithdraw = function(userInfo, res) {
                 console.log('we raked ', userInfo.items[i].market_hash_name);
                 rake = true;
                 break;
+              } else {
+                console.log('no items to rake, pushing to inventory');
+                items.push(inventory[j]);
+                break;
               }
             } else {
+              console.log('item already raked, pushing to inventory');
               items.push(inventory[j]);
               break;
             }
