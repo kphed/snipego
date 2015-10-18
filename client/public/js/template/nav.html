@@ -81,8 +81,8 @@
           <div id="total-value-text">
             <span>Total Value: {{totalValue()}} | Mininum $2 Value Total | 20 Skins Max</span>
             <div class="items-shown" ng-show="!items.length">Get your up-to-date inventory with the refresh button!</div>
-            <div class="items-shown" ng-show="items.length">If you are missing any items, please refresh again! </div>
-            <div class="privacy-warning" ng-show="items.length">*Make sure your steam inventory privacy settings are set to public or you won't see your items*</div>
+            <div class="items-shown" ng-show="items.length">If you are missing any items, please refresh inventory <img style="height: 25px; width: 30px" src="../../img/refresh.png" /> again! </div>
+            <div class="privacy-warning" ng-show="!items.length">*Make sure your steam inventory privacy settings are set to public or you won't see your items*</div>
           </div>
 
           <div class="userItems">

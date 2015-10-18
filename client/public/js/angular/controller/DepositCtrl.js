@@ -107,6 +107,5 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         });
       }
     };
-
   }]
 );
