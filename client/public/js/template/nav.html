@@ -76,7 +76,7 @@
           <div class="deposit-buttons">
             <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Deposit Selected Items Into Jackpot" ng-click="depositItems()"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
 
-            <button class="btn btn-info btn-popover" id="inventory-refresh-btn" data-toggle="popover" data-container="body" data-content="Refresh Inventory" ng-click="fetchInventory()"><span class="inventory-btn">Refresh Inventory</span><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
+            <button class="btn btn-info btn-popover" id="inventory-refresh-btn" data-toggle="popover" data-container="body" data-content="Refresh Inventory" ng-click="fetchInventory()"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
           </div>
           <div id="total-value-text">
             <span>Total Value: {{totalValue()}} | Mininum $2 Value Total | 20 Skins Max</span>
