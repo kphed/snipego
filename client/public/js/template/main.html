@@ -1,93 +1,93 @@
 <canvas id="world"; style="position:absolute; pointer-events: none"></canvas>
-<script src="js/confetti.js"></script>
-  <div class="progress-container col-md-4 col-lg-4">
-    <div class="progress-text" ng-style="getStyle()">{{currentJackpot.itemsCount}}/50</div>
-    <div
-    round-progress
-    max="50"
-    current="currentJackpot.itemsCount"
-    color="#5FB760"
-    bgcolor="#E5E5E5"
-    radius="175"
-    stroke="50"
-    semi="false"
-    rounded="true"
-    clockwise="true"
-    responsive="false"
-    duration="800"
-    animation="easeOutCubic"></div>
-    <table class="table table-bordered panel" id="progress-table">
-      <tr>
-        <thead>
-          <th id="progress-header">Current Jackpot Value</th>
-        </thead>
-        <td>
-          <span id="progress-value">${{currentJackpot.jackpotValue}}</span>
-        </td>
-      </tr>
-    </table>
-  </div>
+<div class="progress-container col-md-4 col-lg-4">
+  <div class="progress-text" ng-style="getStyle()">{{currentJackpot.itemsCount}}/50</div>
+  <div
+  round-progress
+  max="50"
+  current="currentJackpot.itemsCount"
+  color="#5FB760"
+  bgcolor="#E5E5E5"
+  radius="175"
+  stroke="50"
+  semi="false"
+  rounded="true"
+  clockwise="true"
+  responsive="false"
+  duration="800"
+  animation="easeOutCubic"></div>
+  <table class="table table-bordered panel" id="progress-table">
+    <tr>
+      <thead>
+        <th id="progress-header">Current Jackpot Value</th>
+      </thead>
+      <td>
+        <span id="progress-value">${{currentJackpot.jackpotValue}}</span>
+      </td>
+    </tr>
+  </table>
+</div>
 
-  <div class="col-md-5 col-lg-5">
-      <div class="current-jackpot">
-        <div class="row">
-        <div class="jackpot-header" popover>
-          <div class="round-hash-text">New Round Hash:</div>
-            <span class="round-hash"data-trigger="hover" rel="popover" data-title="Provably Fair" data-content="We use a provably fair system to ensure that numbers cannot be altered or changed by the end of the round. The hash is released at the beginning and the salt and winning number released at the end of the round, so that you can verify this.">{{currentJackpot.roundHash}}
-            <i class="glyphicon glyphicon-question-sign"></i>
-            </span>
-          </div>
-        </div>
-        <div class="row jackpot-player" ng-repeat="player in jackpotPlayers" popover>
-          <div class="jackpot-player-photo">
-            <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
-          </div>
-          <div class="jackpot-player-deposit" >
-            <span ng-repeat="item in player.items" popover>
-              <img class="jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: ${{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="ended-jackpots" ng-repeat="jackpots in ended" popover>
-        <div class="round-winner">
-          <i class="winner-glyphicon glyphicon glyphicon-piggy-bank"></i>
-          <img class="img-circle winner-photo" ng-src="{{jackpots.winner.avatar}}" /> {{jackpots.winner.displayName}} won ${{jackpots.jackpotValue}} with {{jackpots.winner.chance}}% chance!
-          <i class="winner-glyphicon glyphicon glyphicon-piggy-bank"></i>
-        </div>
-        <div class="row">
-        <div class="jackpot-header" popover>
-          <div class="round-hash-text">Ended Round Hash:</div>
-          <span class="round-hash"data-trigger="hover" rel="popover" data-title="Provably Fair" data-content="Salt: {{jackpots.salt}} Winning Number: {{jackpots.winningNumber}} <br />***Click round hash to check">{{jackpots.roundHash}}
+<div class="col-md-5 col-lg-5">
+    <div class="current-jackpot">
+      <div class="row">
+      <div class="jackpot-header" popover>
+        <div class="round-hash-text">New Round Hash:</div>
+          <span class="round-hash"data-trigger="hover" rel="popover" data-title="Provably Fair" data-content="We use a provably fair system to ensure that numbers cannot be altered or changed by the end of the round. The hash is released at the beginning and the salt and winning number released at the end of the round, so that you can verify this.">{{currentJackpot.roundHash}}
           <i class="glyphicon glyphicon-question-sign"></i>
           </span>
         </div>
+      </div>
+      <div class="row jackpot-player" ng-repeat="player in jackpotPlayers" popover>
+        <div class="jackpot-player-photo">
+          <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
         </div>
-        <div class="row jackpot-player" ng-repeat="player in jackpots.players" popover>
-          <div class="jackpot-player-photo">
-            <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
-          </div>
-          <div class="jackpot-player-deposit" >
-            <span ng-repeat="item in player.items" popover>
-              <img class="jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: ${{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-            </span>
-          </div>
+        <div class="jackpot-player-deposit" >
+          <span ng-repeat="item in player.items" popover>
+            <img class="jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: ${{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+          </span>
         </div>
       </div>
-  </div>
+    </div>
 
-  <div class="chat col-md-3 col-lg-3">
-    <irontec-simple-chat
-      messages="messages"
-      username="username"
-      input-placeholder-text="Write message here..."
-      submit-button-text="Send"
-      title="192 Users"
-      theme="irontec"
-      submit-function="sendMessage"
-      visible="visible"
-      expand-on-new="expandOnNew">
-    </irontec-simple-chat>
-  </div>
+    <div class="ended-jackpots" ng-repeat="jackpots in ended" popover>
+      <div class="round-winner">
+        <i class="winner-glyphicon glyphicon glyphicon-piggy-bank"></i>
+        <img class="img-circle winner-photo" ng-src="{{jackpots.winner.avatar}}" /> {{jackpots.winner.displayName}} won ${{jackpots.jackpotValue}} with {{jackpots.winner.chance}}% chance!
+        <i class="winner-glyphicon glyphicon glyphicon-piggy-bank"></i>
+      </div>
+      <div class="row">
+      <div class="jackpot-header" popover>
+        <div class="round-hash-text">Ended Round Hash:</div>
+        <span class="round-hash"data-trigger="hover" rel="popover" data-title="Provably Fair" data-content="Salt: {{jackpots.salt}} Winning Number: {{jackpots.winningNumber}} <br />***Click round hash to check">{{jackpots.roundHash}}
+        <i class="glyphicon glyphicon-question-sign"></i>
+        </span>
+      </div>
+      </div>
+      <div class="row jackpot-player" ng-repeat="player in jackpots.players" popover>
+        <div class="jackpot-player-photo">
+          <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
+        </div>
+        <div class="jackpot-player-deposit" >
+          <span ng-repeat="item in player.items" popover>
+            <img class="jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: ${{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+          </span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="chat col-md-3 col-lg-3">
+  <irontec-simple-chat
+    messages="messages"
+    username="username"
+    input-placeholder-text="Write message here..."
+    submit-button-text="Send"
+    title="192 Users"
+    theme="irontec"
+    submit-function="sendMessage"
+    visible="visible"
+    expand-on-new="expandOnNew">
+  </irontec-simple-chat>
+</div>
+<script src="js/confetti.js"></script>
 
