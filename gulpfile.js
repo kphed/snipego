@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
 
 gulp.task('scripts', function() {
   return gulp.src(['client/public/js/*.js',
@@ -8,6 +10,8 @@ gulp.task('scripts', function() {
     'client/public/js/angular/directives/*.js',
     'client/public/js/angular/services/*.js',])
     .pipe(concat('jquery.js'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
     .pipe(gulp.dest('client/public/js'));
 });
 
