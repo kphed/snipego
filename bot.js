@@ -268,7 +268,6 @@ var userWithdraw = function(userInfo, res) {
         for (var j = 0; j < inventory.length; j++) {
           if (inventory[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
             var itemPrice = parseFloat(userInfo.items[i].market_price);
-            console.log('item found: ', inventory[j]);
             if (!rake) {
               if (itemPrice > rakeNine && itemPrice < rakeTen) {
                 rake = true;
@@ -312,6 +311,7 @@ var userWithdraw = function(userInfo, res) {
           }
         }
       }
+      console.log('here are the items we are adding', items);
       trade.addMyItems(items);
       trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
         if (err) {
