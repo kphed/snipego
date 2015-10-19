@@ -113,6 +113,7 @@ var queueJackpot = function(queueData) {
 };
 
 var endRound = function() {
+  console.log('rngStr');
   ref.child('currentJackpot').once('value', function(data) {
     var currentJackpot = data.val();
     var winnerArray = [];
@@ -128,6 +129,7 @@ var endRound = function() {
     currentJackpot.tickets = currentJackpot.jackpotValue * 100;
     currentJackpot.winningTicket = Math.ceil((parseFloat(rngStr, 2) * currentJackpot.tickets));
     currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
+    console.log(currentJackpot.tickets, ' ', currentJackpot.winningTicket, ' ', currentJackpot.winner);
     currentJackpot.salt = salt;
     currentJackpot.rngStr = rngStr;
     currentJackpot.winner.chance = (currentJackpot.winner.itemsValue / currentJackpot.jackpotValue) * 100;
