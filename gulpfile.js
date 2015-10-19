@@ -11,7 +11,7 @@ gulp.task('scripts', function() {
     'client/public/js/angular/services/*.js',])
     .pipe(concat('jquery.js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify({mangle: false}))
+    .pipe(uglify())
     .pipe(gulp.dest('client/public/js'));
 });
 
