@@ -8,6 +8,19 @@ var randomstring = require('randomstring');
 var express = require('express');
 var bodyParser = require('body-parser');
 var Firebase = require('firebase');
+var FirebaseTokenGenerator = require("firebase-token-generator");
+var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
+var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
+
+var ref = new Firebase('https://snipego.firebaseio.com/');
+
+ref.authWithCustomToken(token, function(error, authData) {
+  if (error) {
+    console.log('error! ', error);
+  } else {
+    console.log('Authenticated');
+  }
+});
 
 var pendingRef = new Firebase('https://snipego.firebaseio.com/pending_offers');
 
