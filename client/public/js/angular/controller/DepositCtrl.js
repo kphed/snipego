@@ -78,6 +78,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       // } else {
         if ($rootScope.itemsSelected === 0) {
           $window.alert('Please select at least one skin to deposit');
+          return;
         }
         $scope.loadingTrade = true;
         $http.post('/deposit/', depositData()).success(function(resp) {
