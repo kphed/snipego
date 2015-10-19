@@ -357,10 +357,17 @@ function offerError(err, userInfo, res, withdraw) {
       }
     });
   } else {
-    setTimeout(function() {
-      console.log('Tryin again in 5 seconds');
-      userWithdraw(userInfo, res);
-    }, 5000);
+    if (withdraw) {
+      setTimeout(function() {
+        console.log('Tryin again in 5 seconds');
+        userWithdraw(userInfo, res);
+      }, 5000);
+    } else {
+      setTimeout(function() {
+        console.log('Tryin again in 5 seconds');
+        userDeposit(userInfo, res);
+      }, 5000);
+    }
   }
 }
 
