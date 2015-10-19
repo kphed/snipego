@@ -156,6 +156,7 @@
 <script>
   $(document).ready(function() {
     $('.nav-popover').on('mouseenter', function(e) {
+      console.log('this is ? ', this);
       $(this).popover('show');
     });
 
