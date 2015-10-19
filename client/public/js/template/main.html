@@ -34,9 +34,8 @@
           <div class="round-hash" data-trigger="hover" rel="popover" data-title="Provably Fair" data-content="We use a provably fair system to ensure that numbers cannot be altered or changed by the end of the round. The hash is released at the beginning and the salt and winning number released at the end of the round, so that you can verify this.">{{currentJackpot.roundHash}}
           <i class="glyphicon glyphicon-question-sign"></i>
           </div>
-        </div>
       </div>
-      <div class="row jackpot-player" ng-repeat="player in jackpotPlayers" popover>
+      <div class="jackpot-player" ng-repeat="player in jackpotPlayers" popover>
         <div class="jackpot-player-photo">
           <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
         </div>
@@ -46,6 +45,7 @@
           </span>
         </div>
     </div>
+    </div>
 
     <div class="ended-jackpots" ng-repeat="jackpots in ended" popover>
       <div class="round-winner">
@@ -53,15 +53,13 @@
         <img class="img-circle winner-photo" ng-src="{{jackpots.winner.avatar}}" /> {{jackpots.winner.displayName}} won ${{jackpots.jackpotValue}} with {{jackpots.winner.chance}}% chance!
         <i class="winner-glyphicon glyphicon glyphicon-piggy-bank"></i>
       </div>
-      <div class="row">
       <div class="jackpot-header" popover>
         <div class="round-hash-text">Ended Round Hash:</div>
         <div class="round-hash"data-trigger="hover" rel="popover" data-title="Provably Fair" data-content="Salt: {{jackpots.salt}} Winning Number: {{jackpots.winningNumber}} <br />***Click round hash to check">{{jackpots.roundHash}}
         <i class="glyphicon glyphicon-question-sign"></i>
         </div>
       </div>
-      </div>
-      <div class="row jackpot-player" ng-repeat="player in jackpots.players" popover>
+      <div class="jackpot-player" ng-repeat="player in jackpots.players" popover>
         <div class="jackpot-player-photo">
           <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
         </div>
