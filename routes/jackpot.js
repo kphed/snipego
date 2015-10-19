@@ -113,7 +113,7 @@ var queueJackpot = function(queueData) {
         jackpotValue: jackpotData.jackpotValue,
         players: jackpotData.players,
       }, function() {
-        if (jackpotData.itemsCount < 1) {
+        if (jackpotData.itemsCount < 3) {
           pollTimeout = setTimeout(function() {
             pollFirebaseQueue();
           }, 10000);
@@ -145,7 +145,7 @@ var endRound = function() {
     currentJackpot.rngStr = rngStr;
     winnerObj.jackpotValue = currentJackpot.jackpotValue;
     winnerObj.winner = currentJackpot.winner;
-    currentJackpot.winner.chance = (currentJackpot.jackpotValue / currentJackpot.winner.itemsValue) * 100;
+    currentJackpot.winner.chance = (currentJackpot.winner.itemsValue / currentJackpot.jackpotValue) * 100;
     winnerObj.tradeToken = currentJackpot.winner.tradeToken;
     ref.child('endedJackpots').push(currentJackpot);
     bcrypt.genSalt(10, function(err, data) {
