@@ -160,6 +160,10 @@ offers.on('sentOfferChanged', function (offer, oldState) {
               console.log('Successfully added pending offer to queue');
             });
           }
+          delete tradeData[offer.id];
+          pendingRef.set(tradeData, function() {
+            console.log('Cleared item from pending queue');
+          });
         });
       }
     });
@@ -246,6 +250,8 @@ offer_server.post('/user-deposit', function(req, res) {
 });
 
 var userWithdraw = function(userInfo, res) {
+
+  console.log('User winner ID is ', userInfo.winner.id);
   var trade = offers.createOffer(userInfo.winner.id);
   var items = [];
   var rake = false;
@@ -311,7 +317,7 @@ var userWithdraw = function(userInfo, res) {
           }
         }
       }
-      console.log('here are the items i am trading', items);
+      console.log('Here are the items I am giving the user', items);
       trade.addMyItems(items);
       trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
         if (err) {
@@ -346,12 +352,12 @@ function offerError(err, userInfo, res, withdraw) {
 
   client.webLogOn();
   client.on('webSession', function() {
-    console.log('web session received');
+    console.log('There was an error, we reset the web session, it is received');
     if (withdraw) {
-      console.log('continuing withdraw');
+      console.log('Re-trying withdrawal');
       userWithdraw(userInfo, res);
     } else {
-      console.log('continuing withdraw');
+      console.log('Re-trying deposit');
       userDeposit(userInfo, res);
     }
   });

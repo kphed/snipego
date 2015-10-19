@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var cookieSession = require('cookie-session');
+
 var Firebase = require('firebase');
 var FirebaseTokenGenerator = require("firebase-token-generator");
 var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
@@ -13,9 +14,18 @@ var tokenGenerator2 = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET2);
 var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
 var token2 = tokenGenerator2.createToken({uid: "snipego"}, {admin: true});
 
-var ref = new Firebase('https://snipego.firebaseio.com/');
 
 var sgRef = new Firebase(process.env.FIREBASE_DATABASE);
+
+sgRef.authWithCustomToken(token, function(error, authData) {
+  if (error) {
+    console.log('error! ', error);
+  } else {
+    console.log('Authenticated');
+  }
+});
+
+var ref = new Firebase('https://snipego.firebaseio.com/');
 
 ref.authWithCustomToken(token2, function(error, authData) {
   if (error) {
@@ -25,13 +35,6 @@ ref.authWithCustomToken(token2, function(error, authData) {
   }
 });
 
-sgRef.authWithCustomToken(token, function(error, authData) {
-  if (error) {
-    console.log('error! ', error);
-  } else {
-    console.log('Authenticated');
-  }
-});
 
 require('./passport/passport')(passport);
 

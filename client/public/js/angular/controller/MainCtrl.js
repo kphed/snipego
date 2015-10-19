@@ -71,13 +71,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.sendMessage = function(message) {
       if (message && message !== '' && $rootScope.user) {
-        $http.post('/users/messages', {username: $rootScope.user.photos[0], content: message}).then(function(resp) {
-          console.log('Resp is ', resp);
-        });
-        // $scope.messages.$add({
-        //   'username': $rootScope.user.photos[0],
-        //   'content': message
-        // });
+        $http.post('/users/messages', {username: $rootScope.user.photos[0], content: message});
       } else {
         $window.alert('Please sign in to send a message or try again later.');
       }

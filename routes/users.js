@@ -4,7 +4,6 @@ var passport = require('passport');
 var request = require('request');
 var Firebase = require('firebase');
 
-
 var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 var marketPricesRef = new Firebase('https://snipego.firebaseio.com/market_prices');
 

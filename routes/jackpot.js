@@ -34,7 +34,7 @@ var jackpotCheck = function() {
             jackpotValue: 0,
             roundHash: hash,
           }, function() {
-            var formatted = hash.replace(/[.#$]/g, "");
+            var formatted = hash.replace(/[.#$/]/g, "");
             var sgJackpotRef = sgRef.child(formatted);
             sgJackpotRef.set({
               salt: salt,
@@ -45,10 +45,10 @@ var jackpotCheck = function() {
       });
     } else {
       hash = data.val().roundHash;
-      var formatted = data.val().roundHash.replace(/[.#$]/g, "");
+      var formatted = data.val().roundHash.replace(/[.#$/]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
       sgJackpotRef.once('value', function(data) {
-        console.log('data ', data);
+        console.log('hash salt rngStr ', data.val());
         salt = data.val().salt;
         rngStr = data.val().rngStr;
       });
@@ -67,7 +67,6 @@ router.post('/hash-check', function(req, res) {
 });
 
 var pollFirebaseQueue = function() {
-  console.log('Polling queue again...');
   ref.child('queue').once('value', function(data) {
     var queueData = data.val();
     if (queueData) {
@@ -147,7 +146,7 @@ var endRound = function() {
           jackpotValue: 0,
           roundHash: hash,
         }, function() {
-          var formatted = hash.replace(/[.#$]/g, "");
+          var formatted = hash.replace(/[.#$/]/g, "");
           var sgJackpotRef = sgRef.child(formatted);
           sgJackpotRef.set({
             salt: salt,
