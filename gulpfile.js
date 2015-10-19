@@ -22,9 +22,9 @@ gulp.task('css', function() {
     'client/public/css/styles.css',
     'client/bower_components/angular-bootstrap-simple-chat/src/css/style.css',
     'client/bower_components/angular-bootstrap-simple-chat/src/css/themes.css'])
-    .pipe(purify(['client/public/js/*.html', 'client/public/js/template/*.html']))
+    .pipe(minifyCSS())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('client/public/css/mini-css'));
+    .pipe(gulp.dest('client/public/css/'));
 })
 
 gulp.task('default', ['scripts', 'css']);
