@@ -39,8 +39,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.returnID = function() {
       if ($scope.users[$rootScope.user.id].tradeID === undefined || $scope.users[$rootScope.user.id].protectionCode === undefined) {
-        $scope.tradeID = $scope.users[$rootScope.user.id].tradeID;
-        $scope.protectionCode = $scope.users[$rootScope.user.id].protectionCode;
+        return;
       } else {
         $scope.loadingTrade = false;
         $scope.tradeID = $scope.users[$rootScope.user.id].tradeID;

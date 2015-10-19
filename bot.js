@@ -245,13 +245,11 @@ var userDeposit = function(userInfo, res) {
 offer_server.post('/user-deposit', function(req, res) {
   console.log('CALLING BOT DEPOSIT', req.body);
   var userInfo = req.body;
-
   userDeposit(userInfo, res);
 });
 
 var userWithdraw = function(userInfo, res) {
 
-  console.log('User winner ID is ', userInfo.winner.id);
   var items = [];
   var rake = false;
   var rakeTen = userInfo.jackpotValue * 0.10;
@@ -265,13 +263,14 @@ var userWithdraw = function(userInfo, res) {
   var rakeTwo = userInfo.jackpotValue * 0.02;
 
   offers.loadInventory(730, 2, true, function (err, inventory) {
+    var inventoryData = inventory;
     console.log('Loading inventory');
     if (err) {
       logger.log('info', err);
     } else {
       for (var i = 0; i < userInfo.items.length; i++) {
-        for (var j = 0; j < inventory.length; j++) {
-          if (inventory[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
+        for (var j = 0; j < inventoryData.length; j++) {
+          if (inventoryData[j].market_hash_name.replace(/[.#$]/g, "") === userInfo.items[i].market_hash_name) {
             var itemPrice = parseFloat(userInfo.items[i].market_price);
             if (!rake) {
               if (itemPrice > rakeNine && itemPrice < rakeTen) {
@@ -306,13 +305,13 @@ var userWithdraw = function(userInfo, res) {
                 rake = true;
                 break;
               } else {
-                console.log(inventory[j].assetid);
-                items.push(inventory[j]);
+                items.push(inventoryData[j]);
+                inventoryData.splice(j, 1);
                 break;
               }
             } else {
-              console.log(inventory[j].assetid);
-              items.push(inventory[j]);
+              items.push(inventoryData[j]);
+              inventoryData.splice(j, 1);
               break;
             }
           }

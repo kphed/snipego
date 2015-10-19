@@ -71,7 +71,7 @@
           <p>Notice: As soon as your offer is accepted, we'll deposit your items into the jackpot. This process may take seconds to minutes depending on the amount of load we're experiencing. Please be patient and good luck!</p>
           <p>We will cancel any trade offers not accepted within 1 hour.</p>
         </div>
-        <div class="loader" ng-show="loadingTrade">Loading...</div>
+        <div class="loader" ng-show="loadingTrade"></div>
         <div ng-show="!tradeID && !protectionCode && !loadingTrade">
           <div class="deposit-buttons">
             <button class="btn btn-success btn-popover" id="inventory-btn" data-toggle="popover" data-container="body" data-content="Deposit Selected Items Into Jackpot" ng-click="depositItems()"><span class="inventory-btn">Deposit{{selectedQuantity()}}</span></button>
