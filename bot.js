@@ -311,6 +311,7 @@ var userWithdraw = function(userInfo, res) {
           }
         }
       }
+      console.log('here are the items i am trading', items);
       trade.addMyItems(items);
       trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
         if (err) {
@@ -343,20 +344,17 @@ offer_server.all('*', function(req, resp) {
 function offerError(err, userInfo, res, withdraw) {
   err = String(err);
 
-  // == cookies expired. just relogon == //
-  if (err.indexOf('401') > -1) {
-    client.webLogOn();
-    client.on('webSession', function() {
-      console.log('web session received');
-      if (withdraw) {
-        console.log('continuing withdraw');
-        userWithdraw(userInfo, res);
-      } else {
-        console.log('continuing withdraw');
-        userDeposit(userInfo, res);
-      }
-    });
-  }
+  client.webLogOn();
+  client.on('webSession', function() {
+    console.log('web session received');
+    if (withdraw) {
+      console.log('continuing withdraw');
+      userWithdraw(userInfo, res);
+    } else {
+      console.log('continuing withdraw');
+      userDeposit(userInfo, res);
+    }
+  });
 }
 
 // ============================== Handle Fatal sudden termination ============================== //
