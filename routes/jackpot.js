@@ -7,9 +7,6 @@ var seedrandom = require('seedrandom');
 var bcrypt = require('bcrypt');
 var request = require('request');
 var rng = seedrandom();
-// var FirebaseTokenGenerator = require("firebase-token-generator");
-// var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
-// var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
 
 var hash;
 var salt;

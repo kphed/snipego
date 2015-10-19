@@ -4,6 +4,8 @@ var passport = require('passport');
 var request = require('request');
 var Firebase = require('firebase');
 
+
+var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 var marketPricesRef = new Firebase('https://snipego.firebaseio.com/market_prices');
 
 router.post('/update-trade-url', function(req, res) {
@@ -36,6 +38,12 @@ router.post('/update-inventory', function(req, res) {
         res.json(fetchItems(body.rgInventory, body.rgDescriptions));
       }
     });
+  });
+});
+
+router.post('/messages', function(req, res) {
+  messagesRef.push(req.body, function() {
+    res.end('message posted successfully');
   });
 });
 
