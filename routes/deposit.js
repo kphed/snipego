@@ -7,11 +7,9 @@ var request = require('request');
 var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
 router.post('/', function(req, res) {
-  console.log(' the body is ', req.body);
   jackpotRef.once('value', function(data) {
     var jackpotData = data.val();
     var url = 'http://steamcommunity.com/profiles/' + req.body.id + '/inventory/json/730/2';
-    console.log('url is ', url);
     request.get({
     url: url,
     json: true
@@ -19,7 +17,7 @@ router.post('/', function(req, res) {
       console.log('boddyyy ', body);
       if (!err) {
         for (var key in req.body.items) {
-          console.log('req.body.items ', req.body.items[key], key, req.body.items, body.rgInventory[key]);
+          console.log('req.body.items KEY: ', key, ' bodyRGINVENTORYKEY ', body.rgInventory[key]);
           if (!body.rgInventory[key]) {
             res.json({'error': 'User is missing an item from their inventory'});
             return;
