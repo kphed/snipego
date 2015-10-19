@@ -363,6 +363,12 @@ function offerError(err, userInfo, res, withdraw) {
       }
     }, 10000);
   }
+  else if (err.indexOf('20') > -1) {
+    setTimeout(function() {
+      console.log('Steam is down/delayed, trying to send offer again in 10 seconds');
+      userWithdraw(userInfo, res);
+    }, 10000);
+  }
 }
 
 // ============================== Handle Fatal sudden termination ============================== //
