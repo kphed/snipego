@@ -150,6 +150,8 @@ offers.on('sentOfferChanged', function (offer, oldState) {
         });
       }
     });
+  } else {
+    console.log('Hey there was an issue', TradeOfferManager.ETradeOfferState);
   }
 });
 
