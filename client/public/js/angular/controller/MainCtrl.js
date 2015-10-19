@@ -32,7 +32,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           $scope.currentJackpot.players[key].chance = ($scope.currentJackpot.players[key].itemsValue / $scope.currentJackpot.jackpotValue) * 100;
           players.push($scope.currentJackpot.players[key]);
         }
-        $scope.handleJackpotPlayers(players);
+        $scope.currentJackpot.players = $scope.currentJackpot.players.reverse();
       });
     });
 

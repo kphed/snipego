@@ -35,7 +35,7 @@
           <i class="glyphicon glyphicon-question-sign"></i>
           </div>
       </div>
-      <div class="jackpot-player" ng-repeat="player in jackpotPlayers" popover>
+      <div class="jackpot-player" ng-repeat="player in currentJackpot.players" popover>
         <div class="jackpot-player-photo">
           <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
         </div>
