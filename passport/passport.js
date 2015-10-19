@@ -14,7 +14,7 @@ module.exports = function(passport) {
   passport.use(new SteamStrategy({
     returnURL: 'https://snipego2.herokuapp.com/auth/steam-callback',
     realm: 'https://snipego2.herokuapp.com',
-    apiKey: process.env.API_KEY
+    apiKey: '7E042B411857A318C6FBCFC52EEC9374'
   }, function(identifier, profile, done) {
       var steam = {
         id: profile.id,
