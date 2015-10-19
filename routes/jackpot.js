@@ -7,9 +7,9 @@ var seedrandom = require('seedrandom');
 var bcrypt = require('bcrypt');
 var request = require('request');
 var rng = seedrandom();
-var FirebaseTokenGenerator = require("firebase-token-generator");
-var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
-var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
+// var FirebaseTokenGenerator = require("firebase-token-generator");
+// var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
+// var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
 
 var hash;
 var salt;
@@ -18,14 +18,6 @@ var rngStr;
 var ref = new Firebase('https://snipego.firebaseio.com/');
 
 var sgRef = new Firebase(process.env.FIREBASE_DATABASE);
-
-sgRef.authWithCustomToken(token, function(error, authData) {
-  if (error) {
-    console.log('error! ', error);
-  } else {
-    console.log('Authenticated');
-  }
-});
 
 var pollTimeout = setTimeout(function() {
     pollFirebaseQueue();
