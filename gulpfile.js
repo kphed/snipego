@@ -16,9 +16,9 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('dependencies', function() {
-  return gulp.src(['client/bower_components/jquery/dist/jquery.min.js',
+  return gulp.src(['client/public/bower_components/angular/angular.js',
+    'client/bower_components/jquery/dist/jquery.min.js',
     'client/public/bower_components/underscore/underscore-min.js',
-    'client/public/bower_components/angular/angular.js',
     'client/public/bower_components/angular-ui-router/release/angular-ui-router.min.js',
     'client/public/bower_components/angular-svg-round-progressbar/build/roundProgress.min.js',
     'client/public/bower_components/angular-bootstrap-simple-chat/src/scripts/index.js'])
