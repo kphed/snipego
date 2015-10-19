@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt');
 var request = require('request');
 var rng = seedrandom();
 var FirebaseTokenGenerator = require("firebase-token-generator");
-var tokenGenerator = new FirebaseTokenGenerator('bOoHyC14TmkoYd6wqBQzzf7IGoCwdN53iVxVphll');
+var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
 var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
 
 var hash;
@@ -17,7 +17,7 @@ var rngStr;
 
 var ref = new Firebase('https://snipego.firebaseio.com/');
 
-var sgRef = new Firebase('https://sgjackpot.firebaseio.com');
+var sgRef = new Firebase(process.env.FIREBASE_DATABASE);
 
 sgRef.authWithCustomToken(token, function(error, authData) {
   if (error) {
@@ -113,7 +113,7 @@ var queueJackpot = function(queueData) {
         jackpotValue: jackpotData.jackpotValue,
         players: jackpotData.players,
       }, function() {
-        if (jackpotData.itemsCount < 3) {
+        if (jackpotData.itemsCount < 1) {
           pollTimeout = setTimeout(function() {
             pollFirebaseQueue();
           }, 10000);
