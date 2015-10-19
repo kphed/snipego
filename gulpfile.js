@@ -18,10 +18,10 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('css', function() {
-  return gulp.src(['client/public/bower_components/bootstrap/dist/css/bootstrap.css',
+  return gulp.src(['client/bower_components/bootstrap/dist/css/bootstrap.css',
     'client/public/css/style.css',
-    'client/public/bower_components/angular-bootstrap-simple-chat/src/css/style.css',
-    'client/public/bower_components/angular-bootstrap-simple-chat/src/css/themes.css'])
+    'client/bower_components/angular-bootstrap-simple-chat/src/css/style.css',
+    'client/bower_components/angular-bootstrap-simple-chat/src/css/themes.css'])
     .pipe(purify(['client/public/js/*.html', 'client/public/js/template/*.html']))
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('client/public/css/mini-css'));
