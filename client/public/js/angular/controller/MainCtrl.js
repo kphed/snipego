@@ -9,7 +9,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     var endedJackpotRef = new Firebase('https://snipego.firebaseio.com/endedJackpots');
 
-    var messagesQuery = messagesRef.orderByChild("timestamp").limitToLast(10);
+    var messagesQuery = messagesRef.orderByChild('timestamp').limitToLast(10);
 
     $scope.visible = true;
 

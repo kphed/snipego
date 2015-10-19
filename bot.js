@@ -356,18 +356,6 @@ function offerError(err, userInfo, res, withdraw) {
         userDeposit(userInfo, res);
       }
     });
-  } else {
-    if (withdraw) {
-      setTimeout(function() {
-        console.log('Tryin again in 5 seconds');
-        userWithdraw(userInfo, res);
-      }, 5000);
-    } else {
-      setTimeout(function() {
-        console.log('Tryin again in 5 seconds');
-        userDeposit(userInfo, res);
-      }, 5000);
-    }
   }
 }
 
