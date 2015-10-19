@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SnipeGo.Directives.ToggleClass', ['SnipeGo'])
-  .directive("toggleClass", function($rootScope) {
+  .directive("toggleClass", ['$rootScope', function($rootScope) {
     return {
         restrict: "A",
         link: function(scope, elem, attrs) {
@@ -14,4 +14,4 @@ angular.module('SnipeGo.Directives.ToggleClass', ['SnipeGo'])
             });
         }
     };
-});
+}]);
