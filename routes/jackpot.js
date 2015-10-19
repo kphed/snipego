@@ -128,10 +128,9 @@ var endRound = function() {
     currentJackpot.tickets = currentJackpot.jackpotValue * 100;
     currentJackpot.winningTicket = Math.floor((parseFloat(rngStr, 2) * currentJackpot.tickets));
     currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
-    console.log(currentJackpot.tickets, 'tock ', currentJackpot.winningTicket, ' tock', currentJackpot.winner, ' tick', winnerArray, ' ', currentJackpot);
     currentJackpot.salt = salt;
     currentJackpot.rngStr = rngStr;
-    currentJackpot.winner.chance = (currentJackpot.winner.itemsValue / currentJackpot.jackpotValue) * 100;
+    currentJackpot.winner.chance = ((currentJackpot.winner.itemsValue / currentJackpot.jackpotValue) * 100).toFixed(2);
     winnerObj.jackpotValue = currentJackpot.jackpotValue;
     currentJackpot.jackpotValue = currentJackpot.jackpotValue.toFixed(2);
     winnerObj.winner = currentJackpot.winner;
