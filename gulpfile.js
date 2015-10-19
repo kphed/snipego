@@ -25,7 +25,6 @@ gulp.task('css', function() {
     'client/bower_components/angular-bootstrap-simple-chat/src/css/themes.css'])
     .pipe(concat('style.css'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(purify(['client/public/index.html', 'client/public/js/template/*.html']))
     .pipe(minifyCSS())
     .pipe(gulp.dest('client/public/css/'));
 })
