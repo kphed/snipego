@@ -27,7 +27,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       $scope.currentJackpot.$loaded().then(function() {
         var players = [];
         for (var key in $scope.currentJackpot.players) {
-          $scope.currentJackpot.players[key].chance = ($scope.currentJackpot.players[key].itemsValue / $scope.currentJackpot.jackpotValue) * 100;
+          $scope.currentJackpot.players[key].chance = (($scope.currentJackpot.players[key].itemsValue / $scope.currentJackpot.jackpotValue) * 100).toFixed(2);
           players.push($scope.currentJackpot.players[key]);
         }
         $scope.currentJackpot.players = $scope.currentJackpot.players.reverse();
@@ -40,7 +40,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         $scope.ended = $scope.endedJackpots.slice(-3).reverse();
         for (var i = 0; i < $scope.ended.length; i++) {
           for (var j = 0; j < $scope.ended[i].players.length; j++) {
-            $scope.ended[i].players[j].chance = ($scope.ended[i].players[j].itemsValue / $scope.ended[i].jackpotValue) * 100;
+            $scope.ended[i].players[j].chance = (($scope.ended[i].players[j].itemsValue / $scope.ended[i].jackpotValue) * 100).toFixed(2);
           }
           $scope.ended[i].players = $scope.ended[i].players.reverse();
         }
