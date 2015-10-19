@@ -12,8 +12,8 @@ module.exports = function(passport) {
   });
 
   passport.use(new SteamStrategy({
-    returnURL: 'https://snipego2.herokuapp.com/auth/steam-callback',
-    realm: 'https://snipego2.herokuapp.com',
+    returnURL: 'http://snipego.com/auth/steam-callback',
+    realm: 'http://snipego.com',
     apiKey: process.env.API_KEY
   }, function(identifier, profile, done) {
       var steam = {
