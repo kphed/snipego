@@ -231,6 +231,7 @@ html, body {
 
 #tradeUrlLink {
   color: red;
+  font-weight: bold;
 }
 
 #tradeUrlInput {
