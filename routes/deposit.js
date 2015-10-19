@@ -14,10 +14,9 @@ router.post('/', function(req, res) {
     url: url,
     json: true
     }, function(err, response, body) {
-      console.log('boddyyy ', body);
       if (!err) {
         for (var key in req.body.items) {
-          console.log('req.body.items KEY: ', key, ' bodyRGINVENTORYKEY ', body.rgInventory[key]);
+          console.log('req.body.items KEY: ', key, ' bodyRGINVENTORYKEY ', body.rgInventory[key], ' body INVENTORY: ', body.rgInventory);
           if (!body.rgInventory[key]) {
             res.json({'error': 'User is missing an item from their inventory'});
             return;
