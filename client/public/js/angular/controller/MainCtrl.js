@@ -31,6 +31,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           players.push($scope.currentJackpot.players[key]);
         }
         $scope.currentJackpot.players = $scope.currentJackpot.players.reverse();
+        $scope.currentJackpot.jackpotValue = $scope.currentJackpot.jackpotValue.toFixed(2);
       });
     });
 
