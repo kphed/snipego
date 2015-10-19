@@ -22,7 +22,7 @@ html, body {
 
 #progress-header {
   color: #E5E5E5;
-  font-size: 2em;
+  font-size: 1.5em;
   border: 3px solid black;
   text-align: center;
 }
@@ -99,7 +99,7 @@ html, body {
   background-color: #5FB760;
   color: white;
   font-size: 1em;
-  padding-top: 0.6em;
+  padding-top: 0.75em;
   text-align: center;
 }
 
