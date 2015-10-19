@@ -4,6 +4,8 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var minifyCSS = require('gulp-minify-css');
 var concatCSS = require('gulp-concat-css');
+var purify = require('gulp-purifycss');
+var minifyHTML = require('gulp-minify-html');
 
 gulp.task('scripts', function() {
   return gulp.src(['client/public/js/*.js',
@@ -23,8 +25,16 @@ gulp.task('css', function() {
     'client/bower_components/angular-bootstrap-simple-chat/src/css/themes.css'])
     .pipe(concat('style.css'))
     .pipe(rename({suffix: '.min'}))
+    .pipe(purify(['client/public/index.html', 'client/public/js/template/*.html']))
     .pipe(minifyCSS())
     .pipe(gulp.dest('client/public/css/'));
 })
 
-gulp.task('default', ['scripts', 'css']);
+gulp.task('html', function() {
+  return gulp.src(['client/public/index.html'])
+    .pipe(rename({suffix: '.min'}))
+    .pipe(minifyHTML())
+    .pipe(gulp.dest('client/public/'))
+})
+
+gulp.task('default', ['scripts', 'css', 'html']);
