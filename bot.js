@@ -136,7 +136,7 @@ offers.on('newOffer', function (offer) {
   logger.info("User " + offer.partner.getSteam3RenderedID() + " offered an invalid trade.  Declining offer.");
   offer.decline(function (err) {
     if (err) {
-      logger.error("Unable to decline offer "+ offer.id +": " + err.message);
+      logger.error("Unable to decline offer " + offer.id + " : " + err.message);
     } else {
       logger.debug("Offer declined");
     }
@@ -168,7 +168,7 @@ offers.on('sentOfferChanged', function (offer, oldState) {
       }
     });
   } else {
-    console.log('Hey there was an issue', TradeOfferManager.ETradeOfferState);
+    console.log('Hey there was an issue', TradeOfferManager.ETradeOfferState.Declined);
   }
 });
 
