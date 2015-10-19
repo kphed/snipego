@@ -252,7 +252,6 @@ offer_server.post('/user-deposit', function(req, res) {
 var userWithdraw = function(userInfo, res) {
 
   console.log('User winner ID is ', userInfo.winner.id);
-  var trade = offers.createOffer(userInfo.winner.id);
   var items = [];
   var rake = false;
   var rakeTen = userInfo.jackpotValue * 0.10;
@@ -307,16 +306,19 @@ var userWithdraw = function(userInfo, res) {
                 rake = true;
                 break;
               } else {
+                console.log(inventory[j].assetid);
                 items.push(inventory[j]);
                 break;
               }
             } else {
+              console.log(inventory[j].assetid);
               items.push(inventory[j]);
               break;
             }
           }
         }
       }
+      var trade = offers.createOffer(userInfo.winner.id);
       console.log('Here are the items I am giving the user', items);
       trade.addMyItems(items);
       trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
@@ -350,17 +352,18 @@ offer_server.all('*', function(req, resp) {
 function offerError(err, userInfo, res, withdraw) {
   err = String(err);
 
-  client.webLogOn();
-  client.on('webSession', function() {
-    console.log('There was an error, we reset the web session, it is received');
-    if (withdraw) {
-      console.log('Re-trying withdrawal');
-      userWithdraw(userInfo, res);
-    } else {
-      console.log('Re-trying deposit');
-      userDeposit(userInfo, res);
-    }
-  });
+  if (err.indexOf('401') > -1) {
+    client.webLogOn();
+    setTimeout(function() {
+      if (withdraw) {
+        console.log('Re-trying withdrawal');
+        userWithdraw(userInfo, res);
+      } else {
+        console.log('Re-trying deposit');
+        userDeposit(userInfo, res);
+      }
+    }, 10000);
+  }
 }
 
 // ============================== Handle Fatal sudden termination ============================== //
