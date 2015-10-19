@@ -311,7 +311,6 @@ var userWithdraw = function(userInfo, res) {
           }
         }
       }
-      console.log('here are the items we are adding', items);
       trade.addMyItems(items);
       trade.send('Thanks for playing, here are your winnings! Still feeling lucky? Play again!', userInfo.tradeToken, function(err, status) {
         if (err) {
@@ -357,6 +356,11 @@ function offerError(err, userInfo, res, withdraw) {
         userDeposit(userInfo, res);
       }
     });
+  } else {
+    setTimeout(function() {
+      console.log('Tryin again in 5 seconds');
+      userWithdraw(userInfo, res);
+    }, 5000);
   }
 }
 
