@@ -16,21 +16,20 @@ html, body {
 }
 
 #progress-table {
-  margin-top: 5em;
-  border: 5px solid black;
+  margin-top: 1.75em;
+  border: 3px solid black;
 }
 
 #progress-header {
   color: #E5E5E5;
-  font-size: 22px;
-  border-color: black;
-  border-width: 2px;
+  font-size: 2em;
+  border: 3px solid black;
   text-align: center;
 }
 
 #progress-value {
   color: #5FB760;
-  font-size: 36px;
+  font-size: 2em;
 }
 
 /* Main View - Current Jackpots */
@@ -38,47 +37,47 @@ html, body {
 .current-jackpot {
   width: 100%;
   background-color: #212121;
-  margin-bottom: 25px;
-  margin-top: 3px;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .jackpot-header {
-  padding-top: 10px;
+  padding-top: 1em;
   text-align: center;
-  height: 60px;
+  height: 4em;
 }
 
 .jackpot-player {
-  min-height: 80px;
-  padding-top: 10px;
+  min-height: 3em;
+  padding-top: 1em;
   border-top: 2px solid black;
   overflow: hidden;
 }
 
 .jackpot-player-photo {
-  height: 50px;
-  width: 50px;
-  margin-top: 10px;
-  margin-left: 15px;
+  height: 2.5em;
+  width: 2.5em;
+  margin-top: 0.75em;
+  margin-left: 1em;
   float: left;
 }
 
 .jackpot-player-deposit {
   width: 80%;
-  height: 100px;
+  height: 7em;
   float: right;
 }
 
 .jackpot-player-deposit-item {
   height: 43px;
   width: 64px;
-  margin: 3px;
+  margin: 0.25em;
 }
 
 .round-hash {
-  margin-top: 3px;
-  margin-bottom: 3px;
-  font-size: 10px;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  font-size: 0.65em;
   color: white;
 }
 
@@ -91,34 +90,34 @@ html, body {
 .ended-jackpots {
   width: 100%;
   background-color: #212121;
-  margin-bottom: 25px;
-  margin-top: 3px;
+  margin-bottom: 1em;
+  margin-top: 0.25em;
 }
 
 .round-winner {
-  height: 60px;
+  height: 4em;
   background-color: #5FB760;
   color: white;
-  font-size: 14px;
-  padding-top: 10px;
+  font-size: 1em;
+  padding-top: 0.6em;
   text-align: center;
 }
 
 .winner-photo {
-  height: 40px;
-  width: 40px;
+  height: 2.5em;
+  width: 2.5em;
 }
 
 .winner-glyphicon {
-  margin-right: 10px;
-  margin-left: 10px;
-  font-size: 20px;
+  margin-right: 0.25em;
+  margin-left: 0.25em;
+  font-size: 1em;
   color: white;
 }
 
 
 .navbar {
-  padding: 0 40px;
+  padding: 0 3em;
 }
 
 .btn {
@@ -195,8 +194,8 @@ html, body {
 }
 
 .nav-item {
-  margin-top: 5px;
-  margin-left: 15px;
+  margin-top: 0.5em;
+  margin-left: 1em;
 }
 
 
@@ -306,7 +305,7 @@ html, body {
 }
 
 #total-value-text {
-  font-size: 14px;
+  font-size: 1.25em;
   margin-top: 1em;
   margin-bottom: 1em;
   color: #E5E5E5;
@@ -314,7 +313,7 @@ html, body {
 }
 
 .deposit-header {
-  height: 30px;
+  height: 2em;
 }
 
 .modal-title {
@@ -324,8 +323,7 @@ html, body {
 /* Chat */
 
 .chat {
-  min-width: 100px;
-  height: 500px;
+  height: 35em;
   border: 3px solid black;
 }
 
