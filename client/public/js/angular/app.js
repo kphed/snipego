@@ -12,7 +12,7 @@ angular.module('SnipeGo',
   'angular-svg-round-progress',
   'irontec.simpleChat',
   'ngAnimate'])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
@@ -29,5 +29,5 @@ angular.module('SnipeGo',
           }
         }
       });
-  });
+  }]);
 
