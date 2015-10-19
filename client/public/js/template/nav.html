@@ -11,19 +11,19 @@
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav navbar-right" id="navbar-right">
       <li class="nav-item">
-        <button class="btn btn-info navbar-btn nav-popover" data-toggle="modal" data-target="#info" data-toggle="popover" data-container="body" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
+        <button class="btn btn-info navbar-btn" data-toggle="modal" data-target="#info" data-trigger="hover" rel="popover" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
       </li>
       <li class="nav-item">
-        <button class="btn btn-warning navbar-btn nav-popover" data-toggle="modal" data-target="#support" data-toggle="popover" data-container="body" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
+        <button class="btn btn-warning navbar-btn" data-toggle="modal" data-target="#support" data-trigger="hover" rel="popover" data-content="Questions & Support"><i class="glyphicon glyphicon-envelope nav-button"></i></button>
       </li>
       <li class="nav-item">
-        <button class="btn btn-danger navbar-btn nav-popover" data-toggle="modal" data-target="#free" data-toggle="popover" data-container="body" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
+        <button class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#free" data-trigger="hover" rel="popover" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
       </li>
       <li class="nav-item" ng-show="!isAuth">
         <a href="/auth/steam"><img src="img/sits_large_border.png" /></a>
       </li>
       <li ng-show="isAuth">
-        <a href="" class="nav-popover"><img id="profilePic" ng-src="{{profilePic}}" /></a>
+        <a href=""><img id="profilePic" ng-src="{{profilePic}}" /></a>
       </li>
     </ul>
   </div>
@@ -152,24 +152,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(document).ready(function() {
-    $('.nav-popover').on('mouseenter', function(e) {
-      console.log('this is ? ', this);
-      $(this).popover('show');
-    });
-
-    $('.nav-popover').on('mouseleave', function(e) {
-      $(this).popover('hide');
-    });
-
-    $('.btn-popover').on('mouseenter', function(e) {
-      $(this).popover('show');
-    });
-
-    $('.btn-popover').on('mouseleave', function(e) {
-      $(this).popover('hide');
-    });
-  });
-</script>
