@@ -38,6 +38,7 @@ html, body {
   width: 100%;
   background-color: #212121;
   margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .jackpot-header {
@@ -322,6 +323,7 @@ html, body {
 /* Chat */
 
 .chat {
+  margin-top: 1em;
   height: 35em;
   border: 3px solid black;
 }
