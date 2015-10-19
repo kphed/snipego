@@ -21,8 +21,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.endedJackpots = $firebaseArray(endedJackpotRef);
 
-    $scope.jackpotPlayers = [];
-
     $scope.ended = [];
 
     $scope.currentJackpot.$watch(function() {
@@ -47,14 +45,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         }
       });
     });
-
-    $scope.calculateChance = function(itemsValue, jackpotValue) {
-      return itemsValue / jackpotValue;
-    };
-
-    $scope.handleJackpotPlayers = function(players) {
-      $scope.jackpotPlayers = players.reverse();
-    };
 
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';
