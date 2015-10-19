@@ -25,5 +25,9 @@
     "steam-tradeoffer-manager": "^1.8.5",
     "steam-user": "^1.10.0",
     "winston": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0"
   }
 }
