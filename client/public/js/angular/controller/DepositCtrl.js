@@ -5,6 +5,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     var userRef = new Firebase('https://snipego.firebaseio.com/users');
 
+    $scope.users = $firebaseObject(userRef);
+
     var depositData = function() {
       return {
         tradeUrl: $rootScope.user.tradeUrl,
@@ -16,8 +18,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         itemsCount: $rootScope.itemsSelected,
       };
     };
-
-    $scope.users = $firebaseObject(userRef);
 
     $scope.inventoryLoading = false;
 
@@ -65,8 +65,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       if ($scope.selectedItems[item.assetid]) {
         delete $scope.selectedItems[item.assetid];
       } else {
-        if ($rootScope.itemsSelected === 20) {
-          $window.alert('You can\'t add more than 20 items');
+        if ($rootScope.itemsSelected === 10) {
+          $window.alert('You can\'t add more than 10 items');
         } else {
           $scope.selectedItems[item.assetid] = item;
         }

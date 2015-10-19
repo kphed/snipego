@@ -67,7 +67,6 @@ var jackpotCheck = function() {
   });
 };
 
-//Checks jackpot on server start-up
 jackpotCheck();
 
 router.post('/hash-check', function(req, res) {
@@ -143,9 +142,10 @@ var endRound = function() {
     currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
     currentJackpot.salt = salt;
     currentJackpot.rngStr = rngStr;
-    winnerObj.jackpotValue = currentJackpot.jackpotValue;
-    winnerObj.winner = currentJackpot.winner;
     currentJackpot.winner.chance = (currentJackpot.winner.itemsValue / currentJackpot.jackpotValue) * 100;
+    winnerObj.jackpotValue = currentJackpot.jackpotValue;
+    currentJackpot.jackpotValue = currentJackpot.jackpotValue.toFixed(2);
+    winnerObj.winner = currentJackpot.winner;
     winnerObj.tradeToken = currentJackpot.winner.tradeToken;
     ref.child('endedJackpots').push(currentJackpot);
     bcrypt.genSalt(10, function(err, data) {

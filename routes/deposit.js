@@ -7,18 +7,8 @@ var request = require('request');
 var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
 router.post('/', function(req, res) {
-  console.log('depositing items', req.body);
   jackpotRef.once('value', function(data) {
     var jackpotData = data.val();
-    if (jackpotData.players) {
-      for (var i = 0; i < jackpotData.players.length; i++) {
-        if (jackpotData.players[i].id === "" + req.body.id + "") {
-          console.log('You are already in the jackpot!');
-          res.json({'error': 'User is already in jackpot'});
-        }
-      }
-    }
-    console.log('You are not in the jackpot, but we are checking your items first');
     var url = 'http://steamcommunity.com/profiles/' + req.body.id + '/inventory/json/730/2';
     request({
     url: url,
@@ -27,11 +17,10 @@ router.post('/', function(req, res) {
       if (!err && response.statusCode === 200) {
         for (var key in req.body.items) {
           if (!body.rgInventory[key]) {
-            console.log('You are missing an item from your inventory!');
             res.json({'error': 'User is missing an item from their inventory'});
+            return;
           }
         }
-        console.log('You have all your items, sending your items to the bot now...');
         var items = [];
         for (var item in req.body.items) {
           items.push(req.body.items[item]);
