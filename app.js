@@ -17,13 +17,13 @@ var ref = new Firebase('https://snipego.firebaseio.com/');
 
 var sgRef = new Firebase(process.env.FIREBASE_DATABASE);
 
-ref.authWithCustomToken(token2, function(error, authData) {
-  if (error) {
-    console.log('error! ', error);
-  } else {
-    console.log('Authenticated');
-  }
-});
+// ref.authWithCustomToken(token2, function(error, authData) {
+//   if (error) {
+//     console.log('error! ', error);
+//   } else {
+//     console.log('Authenticated');
+//   }
+// });
 
 sgRef.authWithCustomToken(token, function(error, authData) {
   if (error) {
