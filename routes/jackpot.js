@@ -126,7 +126,7 @@ var endRound = function() {
       }
     }
     currentJackpot.tickets = currentJackpot.jackpotValue * 100;
-    currentJackpot.winningTicket = Math.ceil((parseFloat(rngStr, 2) * currentJackpot.tickets));
+    currentJackpot.winningTicket = Math.floor((parseFloat(rngStr, 2) * currentJackpot.tickets));
     currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
     console.log(currentJackpot.tickets, 'tock ', currentJackpot.winningTicket, ' tock', currentJackpot.winner, ' tick', winnerArray, ' ', currentJackpot);
     currentJackpot.salt = salt;
