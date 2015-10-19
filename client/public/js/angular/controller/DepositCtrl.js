@@ -81,6 +81,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         }
         $scope.loadingTrade = true;
         $http.post('/deposit/', depositData()).success(function(resp) {
+          console.log('resp isss ', resp);
           $scope.selectedItems = {};
           $scope.items = [];
         });
