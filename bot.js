@@ -58,10 +58,10 @@ var offers = new TradeOfferManager({
 
 // == BOT INFO == //
 var botInfo = {
-  username: process.env.USER,
-  password: process.env.PASS,
+  username: 'khoa_phan',
+  password: 'snipego123$',
   id: 1,
-  name: process.env.NAME,
+  name: 'supremeKP',
   port: process.env.PORT,
   sentry: function() {
     if(fs.existsSync(__dirname + '/sentry/ssfn/' + botInfo.username + '.ssfn')) {
