@@ -58,11 +58,11 @@ var offers = new TradeOfferManager({
 
 // == BOT INFO == //
 var botInfo = {
-  username: 'khoa_phan',
-  password: 'snipego123$',
+  username: process.env.STEAM_USER,
+  password: process.env.STEAM_PASS,
   id: 1,
-  name: 'supremeKP',
-  port: process.env.PORT,
+  name: process.env.STEAM_NAME,
+  port: 5000,
   sentry: function() {
     if(fs.existsSync(__dirname + '/sentry/ssfn/' + botInfo.username + '.ssfn')) {
       var sha = require('crypto').createHash('sha1');
