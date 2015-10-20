@@ -44,8 +44,6 @@ var logger = new (Winston.Logger)({
   ]
 });
 
-console.log('PORT IS ', process.env.PORT);
-
 // Initialize the Steam client and our trading library
 var client = new SteamUser();
 var offers = new TradeOfferManager({
