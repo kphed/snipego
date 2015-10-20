@@ -44,6 +44,8 @@ var logger = new (Winston.Logger)({
   ]
 });
 
+console.log('PORT IS ', process.env.PORT);
+
 // Initialize the Steam client and our trading library
 var client = new SteamUser();
 var offers = new TradeOfferManager({
@@ -56,10 +58,10 @@ var offers = new TradeOfferManager({
 
 // == BOT INFO == //
 var botInfo = {
-  username: 'steambot115',
-  password: 'fsdfAesf2315',
+  username: process.env.USER,
+  password: process.env.PASS,
   id: 1,
-  name: 'SnipeGo.com | Bot',
+  name: process.env.NAME,
   port: process.env.PORT,
   sentry: function() {
     if(fs.existsSync(__dirname + '/sentry/ssfn/' + botInfo.username + '.ssfn')) {
