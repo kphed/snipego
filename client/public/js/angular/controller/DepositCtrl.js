@@ -35,6 +35,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.users.$watch(function() {
       $scope.users.$loaded().then(function() {
+        console.log('HERRRO');
         $scope.returnID();
       });
     });

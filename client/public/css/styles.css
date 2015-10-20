@@ -126,6 +126,7 @@ html, body {
   height: 100px;
   color: red;
   padding: 20px;
+  text-align: center;
 }
 
 .navbar {
