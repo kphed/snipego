@@ -30,9 +30,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           $scope.currentJackpot.players[key].chance = (($scope.currentJackpot.players[key].itemsValue / $scope.currentJackpot.jackpotValue) * 100).toFixed(2);
           players.push($scope.currentJackpot.players[key]);
         }
-        if ($scope.currentJackpot.players) {
-          $scope.currentJackpot.players = $scope.currentJackpot.players.reverse();
-        }
         $scope.currentJackpot.jackpotValue = $scope.currentJackpot.jackpotValue.toFixed(2);
       });
     });
@@ -45,8 +42,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           for (var j = 0; j < $scope.ended[i].players.length; j++) {
             $scope.ended[i].players[j].chance = (($scope.ended[i].players[j].itemsValue / $scope.ended[i].jackpotValue) * 100).toFixed(2);
           }
-          console.log('before ', $scope.ended[i].players);
-          console.log('after ', $scope.ended[i].players.reverse());
         }
       });
     });
