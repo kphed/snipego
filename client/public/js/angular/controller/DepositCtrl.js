@@ -3,7 +3,7 @@
 angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
   .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', '$firebaseObject', function($scope, $http, $rootScope, $window, $firebaseObject) {
 
-    var userSpecific = 'https://snipego.firebaseio.com/users/' + $rootScope.user.id;
+    var userSpecific = 'https://snipego.firebaseio.com/users';
 
     var userRef = new Firebase(userSpecific);
 
