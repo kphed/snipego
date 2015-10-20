@@ -21,6 +21,8 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.endedJackpots = $firebaseArray(endedJackpotRef);
 
+    $scope.ended = [];
+
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
         var players = [];
@@ -37,14 +39,14 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.endedJackpots.$watch(function() {
       $scope.endedJackpots.$loaded().then(function() {
-        $scope.endedJackpots = $scope.endedJackpots.slice(-3).reverse();
-        for (var i = 0; i < $scope.endedJackpots.length; i++) {
-          $scope.endedJackpots[i].winningNumber = (parseFloat($scope.endedJackpots[i].rngStr) * 100).toFixed(2) + '%';
+        $scope.ended = $scope.endedJackpots.slice(-3).reverse();
+        for (var i = 0; i < $scope.ended.length; i++) {
+          $scope.ended[i].winningNumber = (parseFloat($scope.ended[i].rngStr) * 100).toFixed(2) + '%';
           for (var j = 0; j < $scope.ended[i].players.length; j++) {
-            $scope.endedJackpots[i].players[j].chance = (($scope.endedJackpots[i].players[j].itemsValue / $scope.endedJackpots[i].jackpotValue) * 100).toFixed(2);
+            $scope.ended[i].players[j].chance = (($scope.ended[i].players[j].itemsValue / $scope.ended[i].jackpotValue) * 100).toFixed(2);
           }
-          console.log('before ', $scope.endedJackpots[i].players);
-          console.log('after ', $scope.endedJackpots[i].players.reverse());
+          console.log('before ', $scope.ended[i].players);
+          console.log('after ', $scope.ended[i].players.reverse());
         }
       });
     });
