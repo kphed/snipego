@@ -48,7 +48,6 @@ var jackpotCheck = function() {
       var formatted = data.val().roundHash.replace(/[.#$/]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
       sgJackpotRef.once('value', function(data) {
-        console.log('hash salt rngStr ', data.val());
         salt = data.val().salt;
         rngStr = data.val().rngStr;
       });
@@ -61,7 +60,6 @@ jackpotCheck();
 router.post('/hash-check', function(req, res) {
   var hashData = req.body;
   return bcrypt.compare(hashData.winningNumber, hashData.hash, function(err, res) {
-    console.log('Do these two match? ', res);
     return res;
   });
 });
@@ -100,7 +98,7 @@ var queueJackpot = function(queueData) {
         jackpotValue: jackpotData.jackpotValue,
         players: jackpotData.players,
       }, function() {
-        if (jackpotData.itemsCount < 3) {
+        if (jackpotData.itemsCount < 50) {
           pollTimeout = setTimeout(function() {
             pollFirebaseQueue();
           }, 10000);
