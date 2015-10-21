@@ -38,21 +38,17 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
       $scope.users.$watch(function() {
         $scope.users.$loaded().then(function() {
-          console.log('HERRRO', $scope.users, $scope.users[$rootScope.user.id]);
-          $scope.returnID();
+          console.log('scope users ', $scope.users.tradeID, ' ', $scope.users.protectionCode);
+          if ($scope.users.tradeID === undefined || $scope.users.protectionCode === undefined) {
+            return;
+          } else {
+            $scope.loadingTrade = false;
+            $scope.tradeID = $scope.users.tradeID;
+            $scope.protectionCode = $scope.users.protectionCode;
+          }
         });
       });
 
-    };
-
-    $scope.returnID = function() {
-      if ($scope.users[$rootScope.user.id].tradeID === undefined || $scope.users[$rootScope.user.id].protectionCode === undefined) {
-        return;
-      } else {
-        $scope.loadingTrade = false;
-        $scope.tradeID = $scope.users[$rootScope.user.id].tradeID;
-        $scope.protectionCode = $scope.users[$rootScope.user.id].protectionCode;
-      }
     };
 
     $scope.selectedQuantity = function() {
