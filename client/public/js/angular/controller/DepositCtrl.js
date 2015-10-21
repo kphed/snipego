@@ -31,7 +31,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.protectionCode = '';
 
-    $scope.errorDetected = true;
+    $scope.errorDetected = false;
 
     $scope.setUser = function() {
       userRef = new Firebase('https://snipego.firebaseio.com/users/' + $rootScope.user.id);
@@ -42,7 +42,11 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         $scope.users.$loaded().then(function() {
           if ($scope.users.tradeID === undefined || $scope.users.protectionCode === undefined) {
             return;
-          } else {
+          }
+          if ($scope.users.errorDetected) {
+            $scope.errorDetected = true;
+          }
+          else {
             $scope.loadingTrade = false;
             $scope.tradeID = $scope.users.tradeID;
             $scope.protectionCode = $scope.users.protectionCode;

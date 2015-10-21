@@ -24,9 +24,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.ended = [];
 
     var x = String(/joshog/);
-    x = x.substring(1, x.length-1);
-
-    $scope.twitchChannel = x;
+    x = $scope.x.substring(1, $scope.x.length-1);
 
     $scope.twitchPlayer =  '<object bgcolor="#000000"' +
           'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
@@ -43,7 +41,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     '<param name="movie"' +
             'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
     '<param name="flashvars"' +
-            'value="channel=' + $scope.twitchChannel + '&auto_play=true&start_volume=25" />' +
+            'value="channel=' + x + '&auto_play=true&start_volume=25" />' +
   '</object>';
 
     $scope.getHtml = function(html){

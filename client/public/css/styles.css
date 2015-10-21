@@ -120,10 +120,10 @@ html, body {
 .error-message {
   width: 100%;
   background-color: white;
-  border: 5px solid red;
+  border: 3px dashed red;
   margin-bottom: 1em;
   margin-top: 0.2em;
-  height: 100px;
+  height: 750px;
   color: red;
   padding: 20px;
   text-align: center;
@@ -336,7 +336,7 @@ html, body {
 /* Chat */
 
 .chat {
-  height: 25em;
+  height: 35em;
   border: 3px solid black;
 }
 
