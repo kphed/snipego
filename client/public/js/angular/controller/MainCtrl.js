@@ -25,7 +25,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.twitchPlayer = '<object bgcolor="#000000"' +
         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
-        'height="250px"' +
+        'height="225px"' +
         'type="application/x-shockwave-flash"' +
         'width="100%"' +
         '>' +
@@ -65,7 +65,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
             '<param name="flashvars"' +
                     'value="channel=' + channelName + '&auto_play=true&start_volume=50" />' +
           '</object>' +
-          '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/' + channelName + '/chat" height="325" width="100%">' +
+          '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/' + channelName.toLowerCase() + '/chat" height="325" width="100%">' +
           '</iframe>';
         });
       });
