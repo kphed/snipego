@@ -3,9 +3,7 @@
 angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
   .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', '$firebaseObject', function($scope, $http, $rootScope, $window, $firebaseObject) {
 
-    var userSpecific = 'https://snipego.firebaseio.com/users';
-
-    var userRef = new Firebase(userSpecific);
+    var userRef = new Firebase('https://snipego.firebaseio.com/users');
 
     $scope.users = $firebaseObject(userRef);
 
@@ -33,12 +31,19 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.protectionCode = '';
 
-    $scope.users.$watch(function() {
-      $scope.users.$loaded().then(function() {
-        console.log('HERRRO');
-        $scope.returnID();
+    $scope.setUser = function() {
+      var userRef = new Firebase('https://snipego.firebaseio.com/users/' + $rootScope.user.id);
+
+      $scope.users = $firebaseObject(userRef);
+
+      $scope.users.$watch(function() {
+        $scope.users.$loaded().then(function() {
+          console.log('HERRRO');
+          $scope.returnID();
+        });
       });
-    });
+
+    };
 
     $scope.returnID = function() {
       if ($scope.users[$rootScope.user.id].tradeID === undefined || $scope.users[$rootScope.user.id].protectionCode === undefined) {
@@ -79,6 +84,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
       // if ($scope.totalValue() < 2) {
       //   $window.alert('You need at least $2 skins value to play, select more skins');
       // } else {
+        $scope.setUser();
         if ($rootScope.itemsSelected === 0) {
           $window.alert('Please select at least one skin to deposit');
           return;
