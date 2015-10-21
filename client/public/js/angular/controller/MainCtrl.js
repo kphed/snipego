@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
-  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce) {
+  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce', '$interpolate', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce, $interpolate) {
 
     var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 
@@ -23,7 +23,9 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.ended = [];
 
-          var twitchPlayer = '<object bgcolor="#000000"' +
+    $scope.channelName = String(/joshog/);
+
+    $scope.twitchPlayer = $interpolate('<object bgcolor="#000000"' +
         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
         'height="200px"' +
         'type="application/x-shockwave-flash"' +
@@ -38,8 +40,8 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         '<param name="movie"' +
                 'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
         '<param name="flashvars"' +
-                'value="channel=joshog&auto_play=true&start_volume=25" />' +
-      '</object>';
+                'value="channel={{channelName}}&auto_play=true&start_volume=25" />' +
+      '</object>')($scope);
 
     $scope.getHtml = function(html) {
       return $sce.trustAsHtml(html);
