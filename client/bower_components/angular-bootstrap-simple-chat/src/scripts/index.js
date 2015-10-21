@@ -9,15 +9,7 @@
 			'<div ng-show="visible" class="row chat-window col-xs-5 col-md-3 {{vm.theme}}" ng-class="{minimized: vm.isHidden}">' +
 			    '<div class="col-xs-12 col-md-12">' +
 			        '<div class="panel">' +
-			            '<div class="panel-heading chat-top-bar">' +
-				            '<div class="col-md-8 col-xs-8">' +
-				                '<h3 class="panel-title"><span class="fa fa-comment-o"></span> {{vm.title}}</h3>' +
-				            '</div>' +
-				            '<div class="col-md-4 col-xs-4 window-actions" style="text-align: right;">' +
-				                '<span class="fa" ng-class="vm.chatButtonClass" ng-click="vm.toggle()"></span>' +
-				                '<span class="fa fa-close" ng-click="vm.close()"></span>' +
-			                '</div>' +
-			            '</div>' +
+
 						'<div class="panel-body msg-container-base" ng-style="vm.panelStyle">' +
 							'<div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = vm.myUserId == message.fromUserId">' +
 			'<div class="col-md-12 col-xs-12">' +
