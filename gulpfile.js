@@ -33,7 +33,7 @@ gulp.task('html', function() {
   return gulp.src(['client/public/index.html'])
     .pipe(rename({suffix: '.min'}))
     .pipe(minifyHTML())
-    .pipe(gulp.dest('client/public/'))
-})
+    .pipe(gulp.dest('client/public/'));
+});
 
 gulp.task('default', ['scripts', 'css', 'html']);
