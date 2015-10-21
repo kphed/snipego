@@ -333,13 +333,6 @@ html, body {
   padding-top: 10px;
 }
 
-/* Chat */
-
-.chat {
-  height: 35em;
-  border: 3px solid black;
-}
-
 .loader {
   margin: 60px auto;
   font-size: 10px;

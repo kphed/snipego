@@ -4,7 +4,6 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var minifyCSS = require('gulp-minify-css');
 var concatCSS = require('gulp-concat-css');
-var purify = require('gulp-purifycss');
 var minifyHTML = require('gulp-minify-html');
 
 gulp.task('scripts', function() {
@@ -20,9 +19,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('css', function() {
-  return gulp.src(['client/public/css/styles.css',
-    'client/bower_components/angular-bootstrap-simple-chat/src/css/style.css',
-    'client/bower_components/angular-bootstrap-simple-chat/src/css/themes.css'])
+  return gulp.src(['client/public/css/styles.css'])
     .pipe(concat('style.css'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifyCSS())
