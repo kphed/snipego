@@ -40,6 +40,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
       $scope.users.$watch(function() {
         $scope.users.$loaded().then(function() {
+          console.log('There was a change');
           if ($scope.users.tradeID === undefined || $scope.users.protectionCode === undefined) {
             return;
           }
