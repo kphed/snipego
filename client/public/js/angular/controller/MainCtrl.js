@@ -23,12 +23,16 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.ended = [];
 
+    $scope.getHtml = function(html) {
+      return $sce.trustAsHtml(html);
+    };
+
     $scope.getTwitch = function() {
       return $http.get('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1').success(function(resp) {
       var channelName = resp.streams[0].channel.display_name;
       channelName = channelName.replace(/['"]+/g, '');
 
-      var twitchPlayer =  '<object bgcolor="#000000"' +
+      var twitchPlayer = '<object bgcolor="#000000"' +
         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
         'height="200px"' +
         'type="application/x-shockwave-flash"' +
@@ -46,11 +50,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
                 'value="channel=' + channelName + '&auto_play=true&start_volume=25" />' +
       '</object>';
 
-      var getHtml = function(html) {
-        return $sce.trustAsHtml(html);
-      };
-
-      return getHtml(twitchPlayer);
+      return twitchPlayer;
 
       });
     };
