@@ -83,8 +83,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.depositItems = function() {
-      // if ($scope.totalValue() < 2) {
-      //   $window.alert('You need at least $2 skins value to play, select more skins');
+      // if ($scope.totalValue() < 5) {
+      //   $window.alert('You need at least $5 skins value to play, select more skins');
       // } else {
         $scope.setUser();
         if ($rootScope.itemsSelected === 0) {
@@ -96,6 +96,9 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           console.log('resp isss ', resp);
           $scope.selectedItems = {};
           $scope.items = [];
+        }).error(function() {
+          console.log('There was an error');
+          $scope.errorDetected = true;
         });
       // }
     };
