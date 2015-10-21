@@ -23,30 +23,30 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.ended = [];
 
-    var x = String(/joshog/);
-    x = $scope.x.substring(1, $scope.x.length-1);
+  //   var x = String(/joshog/);
+  //   x = x.substring(1, x.length-1);
 
-    $scope.twitchPlayer =  '<object bgcolor="#000000"' +
-          'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
-          'height="200px"' +
-          'type="application/x-shockwave-flash"' +
-          'width="100%"' +
-          '>' +
-    '<param name="allowFullScreen"' +
-            'value="true" />' +
-    '<param name="allowNetworking"' +
-            'value="all" />' +
-    '<param name="allowScriptAccess"' +
-            'value="always" />' +
-    '<param name="movie"' +
-            'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
-    '<param name="flashvars"' +
-            'value="channel=' + x + '&auto_play=true&start_volume=25" />' +
-  '</object>';
+  //   $scope.twitchPlayer =  '<object bgcolor="#000000"' +
+  //         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
+  //         'height="200px"' +
+  //         'type="application/x-shockwave-flash"' +
+  //         'width="100%"' +
+  //         '>' +
+  //   '<param name="allowFullScreen"' +
+  //           'value="true" />' +
+  //   '<param name="allowNetworking"' +
+  //           'value="all" />' +
+  //   '<param name="allowScriptAccess"' +
+  //           'value="always" />' +
+  //   '<param name="movie"' +
+  //           'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
+  //   '<param name="flashvars"' +
+  //           'value="channel=' + x + '&auto_play=true&start_volume=25" />' +
+  // '</object>';
 
-    $scope.getHtml = function(html){
-      return $sce.trustAsHtml(html);
-    };
+  //   $scope.getHtml = function(html){
+  //     return $sce.trustAsHtml(html);
+  //   };
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
