@@ -28,6 +28,24 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.twitchChannel = x;
 
+    $scope.twitchPlayer =   '<object bgcolor="#000000"' +
+          'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
+          'height="200px"' +
+          'type="application/x-shockwave-flash"' +
+          'width="100%"' +
+          '>' +
+    '<param name="allowFullScreen"' +
+            'value="true" />' +
+    '<param name="allowNetworking"' +
+            'value="all" />' +
+    '<param name="allowScriptAccess"' +
+            'value="always" />' +
+    '<param name="movie"' +
+            'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
+    '<param name="flashvars"' +
+            'value="channel=joshog&auto_play=true&start_volume=25" />' +
+  '</object>';
+
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
         var players = [];
