@@ -73,34 +73,39 @@
 </div>
 
 <div class="chat col-sm-2 col-md-3 col-lg-3">
-<object bgcolor="#000000"
-        data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"
-        height="200px"
-        type="application/x-shockwave-flash"
-        width="100%"
-        >
-  <param name="allowFullScreen"
-          value="true" />
-  <param name="allowNetworking"
-          value="all" />
-  <param name="allowScriptAccess"
-          value="always" />
-  <param name="movie"
-          value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />
-  <param name="flashvars"
-          value="channel=joshog&auto_play=true&start_volume=25" />
-</object>
-    <irontec-simple-chat
-      messages="messages"
-      username="username"
-      input-placeholder-text="Write message here..."
-      submit-button-text="Send"
-      title=""
-      theme="irontec"
-      submit-function="sendMessage"
-      visible="visible"
-      expand-on-new="expandOnNew">
-    </irontec-simple-chat>
+  <form role="form">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Enter Twitch Channel Here" ng-model="twitchChannel">
+    </div>
+  </form>
+  <object bgcolor="#000000"
+          data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"
+          height="200px"
+          type="application/x-shockwave-flash"
+          width="100%"
+          >
+    <param name="allowFullScreen"
+            value="true" />
+    <param name="allowNetworking"
+            value="all" />
+    <param name="allowScriptAccess"
+            value="always" />
+    <param name="movie"
+            value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />
+    <param name="flashvars"
+            value="channel=twitchChannel&auto_play=true&start_volume=25" />
+  </object>
+  <irontec-simple-chat
+    messages="messages"
+    username="username"
+    input-placeholder-text="Write message here..."
+    submit-button-text="Send"
+    title=""
+    theme="irontec"
+    submit-function="sendMessage"
+    visible="visible"
+    expand-on-new="expandOnNew">
+  </irontec-simple-chat>
 </div>
 <script src="js/confetti.js"></script>
 

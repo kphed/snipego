@@ -23,6 +23,8 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.ended = [];
 
+    $scope.twitchChannel = "joshog";
+
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
         var players = [];
