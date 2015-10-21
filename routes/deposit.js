@@ -8,7 +8,6 @@ var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
 router.post('/', function(req, res) {
   if (!req.body.items) {
-    console.log('YOU DONE FUGGED UP');
     res.json({'error': 'User is putting in invalid items'});
   } else {
     jackpotRef.once('value', function(data) {
@@ -20,10 +19,8 @@ router.post('/', function(req, res) {
       }, function(err, response, body) {
         if (!err) {
           for (var key in req.body.items) {
-            console.log('req.body.items KEY: ', key, ' bodyRGINVENTORYKEY ', body.rgInventory[key], ' body INVENTORY: ', body.rgInventory);
             if (!body.rgInventory[key]) {
               res.json({'error': 'User is missing an item from their inventory'});
-              return;
             }
           }
           var items = [];
