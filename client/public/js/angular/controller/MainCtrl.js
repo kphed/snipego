@@ -28,7 +28,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         '<param name="movie"' +
                 'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
         '<param name="flashvars"' +
-                'value="channel=joshog&auto_play=false&start_volume=50" />' +
+                'value="channel=joshog&auto_play=true&start_volume=50" />' +
       '</object>' +
       '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/joshog/chat" height="325" width="100%">' +
       '</iframe>';
@@ -53,7 +53,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
             '<param name="movie"' +
                     'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
             '<param name="flashvars"' +
-                    'value="channel=' + channelName + '&auto_play=false&start_volume=50" />' +
+                    'value="channel=' + channelName + '&auto_play=true&start_volume=50" />' +
           '</object>' +
           '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/' + channelName.toLowerCase() + '/chat" height="325" width="100%">' +
           '</iframe>';
