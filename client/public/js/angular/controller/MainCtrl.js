@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
-  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http) {
+  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce) {
 
     var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 
@@ -45,6 +45,10 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     '<param name="flashvars"' +
             'value="channel=joshog&auto_play=true&start_volume=25" />' +
   '</object>';
+
+    $scope.getHtml = function(html){
+      return $sce.trustAsHtml(html);
+    };
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
