@@ -25,6 +25,16 @@
 								'</div>' +
 							'</div>' +
 						'</div>' +
+						'<div class="panel-footer chat-bottom-bar">' +
+							'<form style="display:inherit" ng-submit="vm.submitFunction()">' +
+								'<div class="input-group" >' +
+									'<input type="text" class="form-control input-sm chat-input" placeholder="{{vm.inputPlaceholderText}}" ng-model="vm.writingMessage" />' +
+									'<span class="input-group-btn">' +
+										'<input type="submit" class="btn btn-sm chat-submit-button" value="{{vm.submitButtonText}}" />' +
+									'</span>' +
+								'</div>' +
+							'</form>' +
+						'</div>' +
 					'</div>' +
 				'</div>' +
 			'</div>';
