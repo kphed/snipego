@@ -89,12 +89,11 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         }
         $scope.loadingTrade = true;
         $http.post('/deposit/', depositData()).success(function(resp) {
-          console.log('resp isss ', resp);
           $scope.selectedItems = {};
           $scope.items = [];
         }).error(function() {
-          console.log('There was an error');
           $scope.errorDetected = true;
+          $scope.loadingTrade = false;
         });
       // }
     };
