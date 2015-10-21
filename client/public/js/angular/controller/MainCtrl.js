@@ -23,17 +23,19 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.ended = [];
 
-    $scope.channelName = "joshog";
-
-    $scope.channelName = $scope.channelName.replace(/['"]+/g, '');
+    $scope.channelName = "";
 
     $scope.getTwitch = function() {
       $http.get('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1').success(function(resp) {
         var channelName = resp.streams[0].channel.display_name;
         channelName = channelName.replace(/['"]+/g, '');
+        console.log('channelName is ', channelName);
         $scope.channelName = channelName;
+        console.log('channelName isss ', $scope.channelName);
       });
     };
+
+    $scope.getTwitch();
 
     $scope.twitchPlayer = $interpolate('<object bgcolor="#000000"' +
         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
@@ -56,8 +58,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.getHtml = function(html) {
       return $sce.trustAsHtml(html);
     };
-
-    $scope.getTwitch();
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
