@@ -37,7 +37,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     // $scope.getTwitch();
 
-    $scope.twitchPlayer = $interpolate('<object bgcolor="#000000"' +
+    $scope.twitchPlayer = $interpolate('<p>{{channelName}}</p><object bgcolor="#000000"' +
         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
         'height="200px"' +
         'type="application/x-shockwave-flash"' +
