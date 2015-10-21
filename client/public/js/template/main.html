@@ -78,7 +78,8 @@
       <input type="text" class="form-control" placeholder="Enter Twitch Channel Here" ng-model="channelName">
     </div>
   </form>
-  <div contenteditable="true" ng-bind-html="getHtml(twitchPlayer)">
+  <div ng-bind-html="getHtml(twitchPlayer)" contenteditable="true"
+     ng-model="twitchPlayer">
   </div>
   <irontec-simple-chat
     messages="messages"
