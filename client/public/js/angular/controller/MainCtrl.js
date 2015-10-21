@@ -25,7 +25,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.twitchPlayer = '<object bgcolor="#000000"' +
         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
-        'height="225px"' +
+        'height="250px"' +
         'type="application/x-shockwave-flash"' +
         'width="100%"' +
         '>' +
@@ -50,7 +50,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         $timeout(function() {
           $scope.twitchPlayer = '<object bgcolor="#000000"' +
             'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
-            'height="300px"' +
+            'height="250px"' +
             'type="application/x-shockwave-flash"' +
             'width="100%"' +
             '>' +
