@@ -40,7 +40,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         '<param name="flashvars"' +
                 'value="channel=joshog&auto_play=true&start_volume=50" />' +
       '</object>' +
-      '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/' + channelName + '/chat" height="325" width="100%">' +
+      '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/joshog/chat" height="325" width="100%">' +
       '</iframe>';
 
     $scope.getTwitch = function() {
