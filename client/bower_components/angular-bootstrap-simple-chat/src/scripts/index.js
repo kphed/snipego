@@ -9,7 +9,6 @@
 			'<div ng-show="visible" class="row chat-window col-xs-5 col-md-3 {{vm.theme}}" ng-class="{minimized: vm.isHidden}">' +
 			    '<div class="col-xs-12 col-md-12">' +
 			        '<div class="panel">' +
-
 						'<div class="panel-body msg-container-base" ng-style="vm.panelStyle">' +
 							'<div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = vm.myUserId == message.fromUserId">' +
 			'<div class="col-md-12 col-xs-12">' +
