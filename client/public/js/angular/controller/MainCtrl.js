@@ -3,19 +3,9 @@
 angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
   .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce','$timeout', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce, $timeout) {
 
-    var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
-
     var currentJackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
     var endedJackpotRef = new Firebase('https://snipego.firebaseio.com/endedJackpots');
-
-    var messagesQuery = messagesRef.orderByChild('timestamp').limitToLast(10);
-
-    $scope.visible = true;
-
-    $scope.expandOnNew = true;
-
-    $scope.messages = $firebaseArray(messagesQuery);
 
     $scope.currentJackpot = $firebaseObject(currentJackpotRef);
 
@@ -111,14 +101,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         '-webkit-transform': transform,
         'font-size': 65 + 'px',
       };
-    };
-
-    $scope.sendMessage = function(message) {
-      if (message && message !== '' && $rootScope.user) {
-        $http.post('/users/messages', {username: $rootScope.user.photos[0], content: message});
-      } else {
-        $window.alert('Please sign in to send a message or try again later.');
-      }
     };
 
   }]

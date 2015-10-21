@@ -40,12 +40,6 @@ router.post('/update-inventory', function(req, res) {
   });
 });
 
-router.post('/messages', function(req, res) {
-  messagesRef.push(req.body, function() {
-    res.end('message posted successfully');
-  });
-});
-
 var fetchItems = function(items, descriptions) {
   var tempObj = {};
   var itemsArray = [];
