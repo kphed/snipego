@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
-  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce', '$interpolate', '$timeout', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce, $interpolate, $timeout) {
+  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce','$timeout', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce, $timeout) {
 
     var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 
@@ -38,7 +38,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         '<param name="movie"' +
                 'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
         '<param name="flashvars"' +
-                'value="channel=joshog&auto_play=true&start_volume=25" />' +
+                'value="channel=joshog&auto_play=true&start_volume=50" />' +
       '</object>';
 
     $scope.getTwitch = function() {
@@ -46,7 +46,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         var channelName = resp.streams[0].channel.display_name;
         channelName = channelName.replace(/['"]+/g, '');
         $timeout(function() {
-          $scope.twitchPlayer = '<p>{{channelName}}</p><object bgcolor="#000000"' +
+          $scope.twitchPlayer = '<object bgcolor="#000000"' +
             'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
             'height="200px"' +
             'type="application/x-shockwave-flash"' +
@@ -61,8 +61,10 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
             '<param name="movie"' +
                     'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
             '<param name="flashvars"' +
-                    'value="channel=' + channelName + '&auto_play=true&start_volume=25" />' +
-          '</object>';
+                    'value="channel=' + channelName + '&auto_play=true&start_volume=50" />' +
+          '</object>' +
+          '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/hebo/' + channelName + '" height="300" width="100%">' +
+          '</iframe>';
         });
       });
     };
