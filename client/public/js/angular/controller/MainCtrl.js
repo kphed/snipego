@@ -25,7 +25,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.twitchPlayer = '<object bgcolor="#000000"' +
         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
-        'height="200px"' +
+        'height="250px"' +
         'type="application/x-shockwave-flash"' +
         'width="100%"' +
         '>' +
@@ -39,7 +39,9 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
                 'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
         '<param name="flashvars"' +
                 'value="channel=joshog&auto_play=true&start_volume=50" />' +
-      '</object>';
+      '</object>' +
+      '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/' + channelName + '/chat" height="325" width="100%">' +
+      '</iframe>';
 
     $scope.getTwitch = function() {
       $http.get('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1').success(function(resp) {
@@ -48,7 +50,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         $timeout(function() {
           $scope.twitchPlayer = '<object bgcolor="#000000"' +
             'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
-            'height="200px"' +
+            'height="300px"' +
             'type="application/x-shockwave-flash"' +
             'width="100%"' +
             '>' +
