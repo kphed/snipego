@@ -95,7 +95,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           $scope.errorDetected = true;
           $scope.loadingTrade = false;
           $scope.selectedItems = {};
-          $scope.items = [];
         });
       // }
     };
