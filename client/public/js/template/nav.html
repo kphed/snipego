@@ -14,13 +14,13 @@
         <button class="btn btn-info navbar-btn" data-toggle="modal" data-target="#info" data-trigger="hover" rel="popover" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
       </li>
       <li class="nav-item">
-        <button class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#free" data-trigger="hover" rel="popover" data-content="Earn Free Spins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
+        <button class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#free" data-trigger="hover" rel="popover" data-content="Get Free Skins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
       </li>
       <li class="nav-item" ng-show="!isAuth">
         <a href="/auth/steam"><img src="img/sits_large_border.png" /></a>
       </li>
       <li ng-show="isAuth">
-        <a href=""><img id="profilePic" ng-src="{{profilePic}}" /></a>
+        <a href=""><img id="profilePic" ng-src="{{profilePic}}" data-trigger="hover" rel="popover" data-content="Profile Stats (Coming Soon)" /></a>
       </li>
     </ul>
   </div>
