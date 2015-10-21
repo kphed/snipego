@@ -3,9 +3,9 @@
 angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
   .controller('DepositCtrl', ['$scope', '$http', '$rootScope', '$window', '$firebaseObject', function($scope, $http, $rootScope, $window, $firebaseObject) {
 
-    var userRef = new Firebase('https://snipego.firebaseio.com/users');
+    var userRef;
 
-    $scope.users = $firebaseObject(userRef);
+    $scope.users = {};
 
     var depositData = function() {
       return {
@@ -32,7 +32,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     $scope.protectionCode = '';
 
     $scope.setUser = function() {
-      var userRef = new Firebase('https://snipego.firebaseio.com/users/' + $rootScope.user.id);
+      userRef = new Firebase('https://snipego.firebaseio.com/users/' + $rootScope.user.id);
 
       $scope.users = $firebaseObject(userRef);
 
