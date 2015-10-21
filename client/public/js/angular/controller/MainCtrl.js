@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
-  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce', '$interpolate', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce, $interpolate) {
+  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce', '$interpolate', '$timeout', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce, $interpolate, $timeout) {
 
     var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 
@@ -25,19 +25,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.channelName = "joshog";
 
-    // $scope.getTwitch = function() {
-    //   $http.get('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1').success(function(resp) {
-    //     var channelName = resp.streams[0].channel.display_name;
-    //     channelName = channelName.replace(/['"]+/g, '');
-    //     console.log('channelName is ', channelName);
-    //     $scope.channelName = channelName;
-    //     console.log('channelName isss ', $scope.channelName);
-    //   });
-    // };
-
-    // $scope.getTwitch();
-
-    $scope.twitchPlayer = $interpolate('<p>{{channelName}}</p><object bgcolor="#000000"' +
+    $scope.twitchPlayer = '<p>{{channelName}}</p><object bgcolor="#000000"' +
         'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
         'height="200px"' +
         'type="application/x-shockwave-flash"' +
@@ -52,8 +40,36 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         '<param name="movie"' +
                 'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
         '<param name="flashvars"' +
-                'value="channel={{channelName}}&auto_play=true&start_volume=25" />' +
-      '</object>')($scope);
+                'value="channel=joshog&auto_play=true&start_volume=25" />' +
+      '</object>';
+
+    $scope.getTwitch = function() {
+      $http.get('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1').success(function(resp) {
+        var channelName = resp.streams[0].channel.display_name;
+        channelName = channelName.replace(/['"]+/g, '');
+        $timeout(function() {
+          $scope.twitchPlayer = '<p>{{channelName}}</p><object bgcolor="#000000"' +
+            'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
+            'height="200px"' +
+            'type="application/x-shockwave-flash"' +
+            'width="100%"' +
+            '>' +
+            '<param name="allowFullScreen"' +
+                    'value="true" />' +
+            '<param name="allowNetworking"' +
+                    'value="all" />' +
+            '<param name="allowScriptAccess"' +
+                    'value="always" />' +
+            '<param name="movie"' +
+                    'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
+            '<param name="flashvars"' +
+                    'value="channel=' + channelName + '&auto_play=true&start_volume=25" />' +
+          '</object>';
+        });
+      });
+    };
+
+    $scope.getTwitch();
 
     $scope.getHtml = function(html) {
       return $sce.trustAsHtml(html);
