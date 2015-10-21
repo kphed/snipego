@@ -10,8 +10,7 @@ angular.module('SnipeGo',
   'ui.router',
   'firebase',
   'angular-svg-round-progress',
-  'irontec.simpleChat',
-  'ngSanitize'])
+  'irontec.simpleChat'])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 
