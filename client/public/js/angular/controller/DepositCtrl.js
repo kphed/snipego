@@ -44,10 +44,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           if ($scope.users.tradeID === undefined || $scope.users.protectionCode === undefined) {
             return;
           }
-          if ($scope.users.errorDetected) {
-            console.log('Error was detected');
-            $scope.errorDetected = true;
-          }
           else {
             $scope.loadingTrade = false;
             $scope.tradeID = $scope.users.tradeID;
