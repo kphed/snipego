@@ -44,6 +44,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
             return;
           }
           if ($scope.users.errorDetected) {
+            console.log('Error was detected');
             $scope.errorDetected = true;
           }
           else {
