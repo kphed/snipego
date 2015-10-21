@@ -63,7 +63,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
             '<param name="flashvars"' +
                     'value="channel=' + channelName + '&auto_play=true&start_volume=50" />' +
           '</object>' +
-          '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/hebo/' + channelName + '" height="300" width="100%">' +
+          '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/hebo/' + channelName + '" height="300" width="300">' +
           '</iframe>';
         });
       });
