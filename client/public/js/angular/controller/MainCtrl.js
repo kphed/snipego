@@ -23,9 +23,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.ended = [];
 
-    var x = String(/joshog/);
-    x = x.substring(1, x.length-1);
-
     $scope.twitchPlayer =  '<object bgcolor="#000000"' +
           'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
           'height="200px"' +
@@ -51,8 +48,33 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.getTwitch = function() {
       $http.get('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1').success(function(resp) {
         console.log('resp is', resp.streams[0].channel.display_name);
-        var someStr = resp.streams[0].channel.display_name;
-        console.log(someStr.replace(/['"]+/g, ''));
+        var channelName = resp.streams[0].channel.display_name;
+        channelName = channelName.replace(/['"]+/g, '');
+
+      var twitchPlayer =  '<object bgcolor="#000000"' +
+        'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
+        'height="200px"' +
+        'type="application/x-shockwave-flash"' +
+        'width="100%"' +
+        '>' +
+        '<param name="allowFullScreen"' +
+                'value="true" />' +
+        '<param name="allowNetworking"' +
+                'value="all" />' +
+        '<param name="allowScriptAccess"' +
+                'value="always" />' +
+        '<param name="movie"' +
+                'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
+        '<param name="flashvars"' +
+                'value="channel=' + channelName + '&auto_play=true&start_volume=25" />' +
+      '</object>';
+
+      var getHtml = function(html) {
+        return $sce.trustAsHtml(html);
+      };
+
+      return getHtml(twitchPlayer);
+
       });
     };
 
