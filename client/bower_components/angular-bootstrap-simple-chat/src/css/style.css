@@ -23,8 +23,8 @@
   overflow: hidden;
   padding: 10px;
   position: relative;
-  height: 20px;
-  max-height: 20px;
+  height: 70px;
+  max-height: 70px;
 }
 /* line 10, ../sass/components/chat-bottom-bar.scss */
 .chat-bottom-bar .icon-minim {

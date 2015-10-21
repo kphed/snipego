@@ -25,7 +25,7 @@
 								'</div>' +
 							'</div>' +
 						'</div>' +
-						'<div class="panel-footer chat-bottom-bar">' +
+						'<div class="chat-bottom-bar">' +
 							'<form style="display:inherit" ng-submit="vm.submitFunction()">' +
 								'<div class="input-group" >' +
 									'<input type="text" class="form-control input-sm chat-input" placeholder="{{vm.inputPlaceholderText}}" ng-model="vm.writingMessage" />' +
