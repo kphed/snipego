@@ -31,6 +31,8 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.protectionCode = '';
 
+    $scope.errorDetected = true;
+
     $scope.setUser = function() {
       userRef = new Firebase('https://snipego.firebaseio.com/users/' + $rootScope.user.id);
 
@@ -38,7 +40,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
       $scope.users.$watch(function() {
         $scope.users.$loaded().then(function() {
-          console.log('scope users ', $scope.users.tradeID, ' ', $scope.users.protectionCode);
           if ($scope.users.tradeID === undefined || $scope.users.protectionCode === undefined) {
             return;
           } else {
@@ -48,7 +49,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           }
         });
       });
-
     };
 
     $scope.selectedQuantity = function() {
