@@ -67,7 +67,7 @@ var addPrices = function(body, res) {
     else if (body.results[i].avg_price_30_days) {
       market_price = body.results[i].avg_price_30_days;
     } else {
-      market_price = body.results[i].suggested_amount_min;
+      market_price = body.results[i].current_price;
     }
     marketPricesRef.child(formatted).set({
       market_hash_name: formatted,
