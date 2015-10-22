@@ -61,18 +61,41 @@ var addPrices = function(body, res) {
     formatted = body.results[i].market_name.replace(/[.#$]/g, "");
     console.log('current result ', body.results[i]);
     console.log('this is formatted', formatted);
-    if (body.results[i].avg_price_7_days) {
+    if (body.results[i].suggested_amount_min) {
       market_price = body.results[i].avg_price_7_days;
+      if (formatted && market_price) {
+        marketPricesRef.child(formatted).set({
+          market_hash_name: formatted,
+          market_price: market_price,
+        });
+      }
+    }
+    else if (body.results[i].avg_price_7_days) {
+      market_price = body.results[i].avg_price_7_days;
+      if (formatted && market_price) {
+        marketPricesRef.child(formatted).set({
+          market_hash_name: formatted,
+          market_price: market_price,
+        });
+      }
     }
     else if (body.results[i].avg_price_30_days) {
       market_price = body.results[i].avg_price_30_days;
+      if (formatted && market_price) {
+        marketPricesRef.child(formatted).set({
+          market_hash_name: formatted,
+          market_price: market_price,
+        });
+      }
     } else {
       market_price = body.results[i].current_price;
+      if (formatted && market_price) {
+        marketPricesRef.child(formatted).set({
+          market_hash_name: formatted,
+          market_price: market_price,
+        });
+      }
     }
-    marketPricesRef.child(formatted).set({
-      market_hash_name: formatted,
-      market_price: market_price,
-    });
   }
   res.json(body);
 };
