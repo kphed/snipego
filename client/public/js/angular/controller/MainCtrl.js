@@ -93,6 +93,13 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       });
     });
 
+    $scope.getSteam = function() {
+      console.log('Calling get steam');
+      $http.get('/users/get-steam').success(function(data) {
+        console.log('here is the steam data', data);
+      });
+    };
+
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';
       return {

@@ -40,6 +40,42 @@ router.post('/update-inventory', function(req, res) {
   });
 });
 
+router.get('/get-steam', function(req, res) {
+  var options = {
+    proxy: process.env.QUOTAGUARDSTATIC_URL,
+    url: 'http://api.steamanalyst.com/apiV2.php?key=83411237971697719',
+    headers: {
+      'User-Agent': 'node.js'
+    }
+  };
+  var formatted;
+  var market_price;
+  request(options, function(err, response, body) {
+    if (err) {
+      console.log('err is ', err);
+    } else {
+      console.log('response is ', response);
+      console.log('body is ', body);
+      for (var i = 0; i < body.results.length; i++) {
+        formatted = body.results[i].market_name.replace(/[.#$]/g, "");
+        if (body.results[i].avg_price_7_days) {
+          market_price = body.results[i].avg_price_7_days;
+        }
+        else if (body.results[i].avg_price_30_days) {
+          market_price = body.results[i].avg_price_30_days;
+        } else {
+          market_price = body.results[i].suggested_amount_min;
+        }
+        marketPricesRef.child(formatted).set({
+          market_hash_name: formatted,
+          market_price: body.results[i].avg_price_7_days,
+        });
+      }
+      res.json(body);
+    }
+  });
+});
+
 var fetchItems = function(items, descriptions) {
   var tempObj = {};
   var itemsArray = [];

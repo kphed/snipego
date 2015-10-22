@@ -15,7 +15,7 @@ gulp.task('scripts', function() {
     .pipe(concat('jquery.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    .pipe(gulp.dest('client/public/js'));
+    .pipe(gulp.dest('client/public/js/mini'));
 });
 
 gulp.task('css', function() {
@@ -24,7 +24,7 @@ gulp.task('css', function() {
     .pipe(rename({suffix: '.min'}))
     .pipe(minifyCSS())
     .pipe(gulp.dest('client/public/css/'));
-})
+});
 
 gulp.task('html', function() {
   return gulp.src(['client/public/index.html'])
