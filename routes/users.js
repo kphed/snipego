@@ -59,11 +59,13 @@ router.get('/get-steam', function(req, res) {
     data += chunk.toString();
   });
   request.on('end', function() {
+    console.log('here is the data ', data);
     addPrices(data, res);
   });
 });
 
-var addPrices = function(body, res) {
+var addPrices = function(data, res) {
+  var body = JSON.parse(data);
   var formatted;
   var market_price;
   console.log('body length is ', body.results.length);
