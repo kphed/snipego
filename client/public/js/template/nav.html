@@ -88,7 +88,7 @@
           <div class="userItems">
             <div class="itemContainer" popover toggle-class ng-repeat="item in items" ng-click="selectItem(item)">
               <img class="itemBox" rel="popover" data-trigger="hover" data-content="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-              <div class="itemPrice">{{item.market_price}}</div>
+              <div class="itemPrice">${{item.market_price}}</div>
             </div>
           </div>
         </div>
