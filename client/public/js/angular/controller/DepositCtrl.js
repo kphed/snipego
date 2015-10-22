@@ -43,7 +43,6 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
           if ($scope.users.tradeID === undefined || $scope.users.protectionCode === undefined) {
             return;
           } else {
-            $scope.loadingTrade = false;
             $scope.tradeID = $scope.users.tradeID;
             $scope.protectionCode = $scope.users.protectionCode;
           }
@@ -89,6 +88,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         $http.post('/deposit/', depositData()).then(function(resp) {
           $scope.selectedItems = {};
           $scope.items = [];
+          $scope.loadingTrade = false;
         }, function(error) {
           $scope.errorDetected = true;
           $scope.loadingTrade = false;
