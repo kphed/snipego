@@ -71,7 +71,7 @@ var addPrices = function(body, res) {
     }
     marketPricesRef.child(formatted).set({
       market_hash_name: formatted,
-      market_price: body.results[i].avg_price_7_days,
+      market_price: market_price,
     });
   }
   res.json(body);
