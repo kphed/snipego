@@ -86,6 +86,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           for (var j = 0; j < $scope.ended[i].players.length; j++) {
             $scope.ended[i].players[j].chance = (($scope.ended[i].players[j].itemsValue / $scope.ended[i].jackpotValue) * 100).toFixed(2);
           }
+          $scope.ended[i].players = $scope.ended[i].players.reverse();
         }
       });
     });
