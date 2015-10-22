@@ -49,7 +49,7 @@ router.get('/get-steam', function(req, res) {
     }
   };
   request(options, function(err, response, body) {
-    console.log('body is ', body);
+    console.log('body is ', typeof body, body);
     addPrices(body, res);
   });
 });
