@@ -49,17 +49,18 @@ router.get('/get-steam', function(req, res) {
     }
   };
   request(options, function(err, response, body) {
-    console.log('body is ', typeof body, body);
-    addPrices(body, res);
+    var data = JSON.parse(body);
+    addPrices(data, res);
   });
 });
 
-var addPrices = function(data, res) {
-  var body = JSON.parse(data);
+var addPrices = function(body, res) {
   var formatted;
   var market_price;
   for (var i = 0; i < body.results.length; i++) {
     formatted = body.results[i].market_name.replace(/[.#$]/g, "");
+    console.log('current result ', body.results[i]);
+    console.log('this is formatted', formatted);
     if (body.results[i].avg_price_7_days) {
       market_price = body.results[i].avg_price_7_days;
     }
