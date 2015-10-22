@@ -119,7 +119,7 @@ var fetchItems = function(items, descriptions) {
       tempObj.contextid = item.contextid;
       tempObj.market_hash_name = item.market_hash_name;
       tempObj.icon_url = item.icon_url;
-      tempObj.market_price = item.market_price.slice(1);
+      tempObj.market_price = item.market_price;
       itemsArray.push(tempObj);
       tempObj = {};
     }
