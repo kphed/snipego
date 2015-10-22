@@ -49,7 +49,7 @@ router.get('/get-steam', function(req, res) {
     }
   };
   request(options, function(err, response, body) {
-    console.log(typeof body);
+    console.log('body is ', body);
     addPrices(body, res);
   });
 });
@@ -58,7 +58,6 @@ var addPrices = function(data, res) {
   var body = JSON.parse(data);
   var formatted;
   var market_price;
-  console.log('body length is ', body.results.length);
   for (var i = 0; i < body.results.length; i++) {
     formatted = body.results[i].market_name.replace(/[.#$]/g, "");
     if (body.results[i].avg_price_7_days) {
