@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var request = require('request');
 var Firebase = require('firebase');
+var http = require('http');
 
 var messagesRef = new Firebase('https://snipego.firebaseio.com/messages');
 var marketPricesRef = new Firebase('https://snipego.firebaseio.com/market_prices');
@@ -49,18 +50,23 @@ router.get('/get-steam', function(req, res) {
     }
   };
   var data = '';
-  request(options, function(err, response, body) {
-    if (err) {
-      console.log('err is ', err);
-    }
+  var request = http.request(options, function(res) {
+      res.setEncoding('utf8');
   });
-  request.on('data', function(chunk) {
-    console.log('adding data');
-    data += chunk.toString();
-  });
-  request.on('end', function() {
-    console.log('here is the data ', data);
-    addPrices(data, res);
+
+  request.on('response', function (response) {
+    response.on('data', function (chunk) {
+      data += chunk.toString();
+    });
+
+    request.on('error', function(e) {
+       console.log('e is ', e);
+    });
+
+    request.on('end', function() {
+      addPrices(data, res);
+    });
+
   });
 });
 
