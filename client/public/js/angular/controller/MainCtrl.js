@@ -34,7 +34,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       '</iframe>';
 
     $scope.getTwitch = function() {
-      $http.get('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1').success(function(resp) {
+      $http.jsonp('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1?callback=JSON_CALLBACK').success(function(resp) {
         var channelName = resp.streams[0].channel.display_name;
         channelName = channelName.replace(/['"]+/g, '');
         console.log('Channel Name is ', channelName);
