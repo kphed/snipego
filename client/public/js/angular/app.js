@@ -9,8 +9,7 @@ angular.module('SnipeGo',
   'SnipeGo.Services',
   'ui.router',
   'firebase',
-  'angular-svg-round-progress',
-  'ngAnimate'])
+  'angular-svg-round-progress'])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 
