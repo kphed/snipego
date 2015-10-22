@@ -37,6 +37,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       $http.get('https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1').success(function(resp) {
         var channelName = resp.streams[0].channel.display_name;
         channelName = channelName.replace(/['"]+/g, '');
+        console.log('Channel Name is ', channelName);
         $timeout(function() {
           $scope.twitchPlayer = '<object bgcolor="#000000"' +
             'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
