@@ -25,6 +25,7 @@ router.post('/update-inventory', function(req, res) {
     }, function(error, response, body) {
       if (!error && response.statusCode === 200) {
         for (var key in body.rgDescriptions) {
+          console.log('body issss', body);
           formatted = body.rgDescriptions[key].market_hash_name.replace(/[.#$]/g, "");
           if (!marketPricesObj || !marketPricesObj[formatted]) {
             body.rgDescriptions[key].market_price = getMarketPrice(formatted);
