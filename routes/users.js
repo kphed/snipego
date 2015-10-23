@@ -26,10 +26,12 @@ router.post('/update-inventory', function(req, res) {
       if (!error && response.statusCode === 200) {
         for (var key in body.rgDescriptions) {
           formatted = body.rgDescriptions[key].market_hash_name.replace(/[.#$]/g, "");
-          if (!marketPricesObj || !marketPricesObj[formatted]) {
-            body.rgDescriptions[key].market_price = getMarketPrice(formatted);
-          } else {
-            body.rgDescriptions[key].market_price = marketPricesObj[formatted].market_price;
+          if (body.rgDescriptions[key].tradable) {
+            if (!marketPricesObj || !marketPricesObj[formatted]) {
+              body.rgDescriptions[key].market_price = getMarketPrice(formatted);
+            } else {
+              body.rgDescriptions[key].market_price = marketPricesObj[formatted].market_price;
+            }
           }
         }
         res.json(fetchItems(body.rgInventory, body.rgDescriptions));
