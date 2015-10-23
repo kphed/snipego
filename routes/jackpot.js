@@ -161,7 +161,6 @@ var endRound = function() {
                 pollFirebaseQueue();
               }, 10000);
             } else {
-              console.log('Trade posted successfully, here is the body: ', body);
               pollTimeout = setTimeout(function() {
                 pollFirebaseQueue();
               }, 10000);

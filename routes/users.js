@@ -27,10 +27,8 @@ router.post('/update-inventory', function(req, res) {
         for (var key in body.rgDescriptions) {
           formatted = body.rgDescriptions[key].market_hash_name.replace(/[.#$]/g, "");
           if (!marketPricesObj || !marketPricesObj[formatted]) {
-            console.log('No price exists for: ', formatted, ' fetching it');
             body.rgDescriptions[key].market_price = getMarketPrice(formatted);
           } else {
-            console.log('Price exists for: ', formatted);
             body.rgDescriptions[key].market_price = marketPricesObj[formatted].market_price;
           }
         }
@@ -59,8 +57,6 @@ var addPrices = function(body, res) {
   var market_price;
   for (var i = 0; i < body.results.length; i++) {
     formatted = body.results[i].market_name.replace(/[.#$]/g, "");
-    console.log('current result ', body.results[i]);
-    console.log('this is formatted', formatted);
     if (body.results[i].suggested_amount_min) {
       market_price = body.results[i].avg_price_7_days;
       if (formatted && market_price) {
@@ -129,7 +125,6 @@ var fetchItems = function(items, descriptions) {
 };
 
 var getMarketPrice = function(market_hash_name) {
-  console.log('Calling get market prices');
   var url = 'http://steamcommunity.com/market/priceoverview/?currency=1&appid=730&market_hash_name=' + encodeURIComponent(market_hash_name);
   request({
     url: url,

@@ -43,12 +43,10 @@ router.post('/', function(req, res) {
               console.log(error);
               res.json({'error': error});
             } else {
-              console.log('Trade posted successfully');
               res.json({'success': body});
             }
           });
         } else {
-          console.log('There was an error: ', err);
           res.json({'error': err});
         }
       });

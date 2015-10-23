@@ -26,10 +26,8 @@ module.exports = function(passport) {
       userRef.child(steam.id).once('value', function(data) {
         var dataValue = data.val();
         if (dataValue) {
-          console.log('This user exists in firebase!');
           return done(null, dataValue);
         } else {
-          console.log('User does not exist, adding to database');
           userRef.child(steam.id).set({
             id: steam.id,
             displayName: steam.displayName,
