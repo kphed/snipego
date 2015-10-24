@@ -26,11 +26,11 @@ var jackpotCheck = function() {
   jackpotRef.once('value', function(data) {
     if (!data.val()) {
       bcrypt.genSalt(10, function(err, data) {
-        console.log('salt is ', salt, ' hash is ', hash);
         salt = data;
         rngStr = JSON.stringify(rng());
         bcrypt.hash(rngStr, salt, function(err, data) {
           hash = data;
+          console.log('salt is ', salt, ' hash is ', hash);
           ref.child('currentJackpot').set({
             itemsCount: 0,
             jackpotValue: 0,
@@ -51,7 +51,7 @@ var jackpotCheck = function() {
       var formatted = data.val().roundHash.replace(/[.#$/]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
       sgJackpotRef.once('value', function(data) {
-        console.log('salt is ', data.val().salt, ' hash is ', data.val().hash);
+        console.log('salt is ', data.val().salt, ' hash is ', hash);
         salt = data.val().salt;
         rngStr = data.val().rngStr;
       });
