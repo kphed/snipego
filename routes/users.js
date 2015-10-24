@@ -86,6 +86,7 @@ var addPrices = function(body, res) {
         });
       }
     } else if (body.results[i].suggested_amount_min) {
+      console.log('formatted is ', formatted);
       market_price = body.results[i].suggested_amount_min;
       if (formatted && market_price) {
         marketPricesRef.child(formatted).set({
