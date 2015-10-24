@@ -21,10 +21,12 @@ var pollTimeout = setTimeout(function() {
 }, 15000);
 
 var jackpotCheck = function() {
+  console.log('checking jackpot');
   var jackpotRef = ref.child('currentJackpot');
   jackpotRef.once('value', function(data) {
     if (!data.val()) {
       bcrypt.genSalt(10, function(err, data) {
+        console.log('salt is ', salt, ' hash is ', hash);
         salt = data;
         rngStr = JSON.stringify(rng());
         bcrypt.hash(rngStr, salt, function(err, data) {
@@ -35,6 +37,7 @@ var jackpotCheck = function() {
             roundHash: hash,
           }, function() {
             var formatted = hash.replace(/[.#$/]/g, "");
+            console.log('salt is ', salt, ' hash is ', hash);
             var sgJackpotRef = sgRef.child(formatted);
             sgJackpotRef.set({
               salt: salt,
@@ -48,6 +51,7 @@ var jackpotCheck = function() {
       var formatted = data.val().roundHash.replace(/[.#$/]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
       sgJackpotRef.once('value', function(data) {
+        console.log('salt is ', data.val().salt, ' hash is ', data.val().hash);
         salt = data.val().salt;
         rngStr = data.val().rngStr;
       });
