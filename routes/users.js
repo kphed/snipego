@@ -59,6 +59,7 @@ var addPrices = function(body, res) {
   var market_price;
   for (var i = 0; i < body.results.length; i++) {
     formatted = body.results[i].market_name.replace(/[.#$]/g, "");
+    console.log('formatted is ', body.results[i]);
     if (body.results[i].suggested_amount_min) {
       market_price = body.results[i].avg_price_7_days;
       if (formatted && market_price) {
@@ -85,7 +86,8 @@ var addPrices = function(body, res) {
           market_price: market_price,
         });
       }
-    } else if (body.results[i].suggested_amount_min) {
+    }
+    else if (body.results[i].suggested_amount_min) {
       console.log('formatted is ', formatted);
       market_price = body.results[i].suggested_amount_min;
       if (formatted && market_price) {
