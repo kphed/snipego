@@ -51,7 +51,7 @@ var jackpotCheck = function() {
       var formatted = data.val().roundHash.replace(/[.#$/]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
       sgJackpotRef.once('value', function(data) {
-        console.log('salt is ', data.val().salt, ' hash is ', hash);
+        console.log('salt is ', data.val().salt, ' hash is ', hash, 'rngStr is ', data.val().rngStr);
         salt = data.val().salt;
         rngStr = data.val().rngStr;
       });
