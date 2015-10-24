@@ -1,5 +1,3 @@
-var express = require('express');
-var router = express.Router();
 var passport = require('passport');
 var request = require('request');
 var Firebase = require('firebase');
@@ -30,7 +28,7 @@ var jackpotCheck = function() {
         rngStr = JSON.stringify(rng());
         bcrypt.hash(rngStr, salt, function(err, data) {
           hash = data;
-          console.log('salt is ', salt, ' hash is ', hash);
+          console.log('JACKPOT DOES NOT EXIST salt is ', salt, ' hash is ', hash, 'rngStr is ', rngStr);
           ref.child('currentJackpot').set({
             itemsCount: 0,
             jackpotValue: 0,
@@ -51,7 +49,7 @@ var jackpotCheck = function() {
       var formatted = data.val().roundHash.replace(/[.#$/]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
       sgJackpotRef.once('value', function(data) {
-        console.log('salt is ', data.val().salt, ' hash is ', hash, 'rngStr is ', data.val().rngStr);
+        console.log('JACKPOT EXISTS: salt is ', data.val().salt, ' hash is ', hash, 'rngStr is ', data.val().rngStr);
         salt = data.val().salt;
         rngStr = data.val().rngStr;
       });
@@ -115,6 +113,7 @@ var queueJackpot = function(queueData) {
 };
 
 var endRound = function() {
+  console.log('ROUND ENDED: salt is ', salt, ' hash is ', hash, 'rngStr is ', rngStr);
   ref.child('currentJackpot').once('value', function(data) {
     var currentJackpot = data.val();
     var winnerArray = [];
@@ -148,6 +147,7 @@ var endRound = function() {
           jackpotValue: 0,
           roundHash: hash,
         }, function() {
+          console.log('NEW ROUND: salt is ', salt, ' hash is ', hash, 'rngStr is ', rngStr);
           var formatted = hash.replace(/[.#$/]/g, "");
           var sgJackpotRef = sgRef.child(formatted);
           sgJackpotRef.set({
