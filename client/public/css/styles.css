@@ -45,6 +45,7 @@ html, body {
   padding-top: 1em;
   text-align: center;
   height: 4em;
+  overflow: auto;
 }
 
 .jackpot-player {
@@ -102,6 +103,7 @@ html, body {
   font-size: 1em;
   padding-top: 0.75em;
   text-align: center;
+  overflow: auto;
 }
 
 .winner-photo {
