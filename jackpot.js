@@ -59,12 +59,12 @@ var jackpotCheck = function() {
 
 jackpotCheck();
 
-router.post('/hash-check', function(req, res) {
-  var hashData = req.body;
-  return bcrypt.compare(hashData.winningNumber, hashData.hash, function(err, res) {
-    return res;
-  });
-});
+// router.post('/hash-check', function(req, res) {
+//   var hashData = req.body;
+//   return bcrypt.compare(hashData.winningNumber, hashData.hash, function(err, res) {
+//     return res;
+//   });
+// });
 
 var pollFirebaseQueue = function() {
   ref.child('queue').once('value', function(data) {
@@ -175,5 +175,3 @@ var endRound = function() {
     });
   });
 };
-
-module.exports = router;
