@@ -59,7 +59,7 @@ var addPrices = function(body, res) {
   var market_price;
   for (var i = 0; i < body.results.length; i++) {
     formatted = body.results[i].market_name.replace(/[.#$]/g, "");
-    console.log('formatted is ', body.results[i]);
+    console.log('formatted is ', body.results[i].suggested_amount_min);
     if (body.results[i].suggested_amount_min) {
       market_price = body.results[i].avg_price_7_days;
       if (formatted && market_price) {
