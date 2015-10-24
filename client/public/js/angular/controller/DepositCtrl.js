@@ -110,6 +110,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
     };
 
     $scope.fetchInventory = function() {
+      $scope.selectedItems = {};
       $scope.items = [];
       if ($scope.inventoryLoading) {
         $window.alert('Your inventory is already loading, please be patient');
