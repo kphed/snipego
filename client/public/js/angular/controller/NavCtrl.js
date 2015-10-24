@@ -25,9 +25,7 @@ angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
       } else {
       $http.post('/users/update-trade-url', {tradeUrl: $scope.tradeUrl})
         .success(function(resp) {
-          console.log('$root scope', $rootScope.user.tradeUrl, $scope.tradeUrl);
           $rootScope.user.tradeUrl = $scope.tradeUrl;
-          console.log('$root scope', $rootScope.user.tradeUrl, $scope.tradeUrl);
           $scope.successDanger = 'success';
           $scope.playDestination = '#deposit';
           $scope.tradeUrlSuccess = true;
