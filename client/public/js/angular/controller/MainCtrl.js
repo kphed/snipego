@@ -108,7 +108,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         'transform': transform,
         '-moz-transform': transform,
         '-webkit-transform': transform,
-        'font-size': 65 + 'px',
+        'font-size': 80 + 'px',
       };
     };
 
