@@ -1,3 +1,5 @@
+'use strict';
+
 var passport = require('passport');
 var request = require('request');
 var Firebase = require('firebase');

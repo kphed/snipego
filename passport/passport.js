@@ -1,3 +1,5 @@
+'use strict';
+
 var SteamStrategy = require('passport-steam').Strategy;
 var Firebase = require('firebase');
 
