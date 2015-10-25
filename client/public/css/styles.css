@@ -45,7 +45,7 @@ html, body {
 #progress-value {
   color: #5FB760;
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-top: -10px;
 }
 
 /* Main View - Current Jackpots */
