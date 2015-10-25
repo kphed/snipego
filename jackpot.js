@@ -152,22 +152,24 @@ var endRound = function() {
             sgJackpotRef.set({
               salt: salt,
               rngStr: rngStr,
-            });
-            request.post({
-              url: 'https://snipego3.herokuapp.com/user-withdraw',
-              body: winnerObj,
-              json: true,
-            }, function(error, response, body) {
-              if (error) {
-                console.log(error);
-                pollTimeout = setTimeout(function() {
-                  pollFirebaseQueue();
-                }, 10000);
-              } else {
-                pollTimeout = setTimeout(function() {
-                  pollFirebaseQueue();
-                }, 10000);
-              }
+            }, function() {
+              request.post({
+                url: 'https://snipego3.herokuapp.com/user-withdraw',
+                body: winnerObj,
+                json: true,
+              }, function(error, response, body) {
+                if (error) {
+                  console.log(error);
+                  pollTimeout = setTimeout(function() {
+                    pollFirebaseQueue();
+                  }, 10000);
+                } else {
+                  console.log('Making a withdraw request now to bot');
+                  pollTimeout = setTimeout(function() {
+                    pollFirebaseQueue();
+                  }, 10000);
+                }
+              });
             });
           });
         });
