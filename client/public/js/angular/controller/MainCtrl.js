@@ -102,7 +102,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';
       return {
-        'top': '32%',
+        'top': '33%',
         'bottom': 'auto',
         'left': '50%',
         'transform': transform,
@@ -111,6 +111,5 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         'font-size': 100 + 'px',
       };
     };
-
   }]
 );

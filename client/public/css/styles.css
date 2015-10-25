@@ -12,7 +12,6 @@ html, body {
 .progress-text {
   position: absolute;
   color: #5FB760;
-  text-align: center;
 }
 
 #progress-table {
