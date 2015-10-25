@@ -119,7 +119,8 @@ var endRound = function() {
         winnerArray.push(i);
       }
     }
-    sgRef.child(currentJackpot.roundHash).once('value', function(data) {
+    var formatted = currentJackpot.roundHash.replace(/[.#$/]/g, "");
+    sgRef.child(formatted).once('value', function(data) {
       var sgData = data.val();
       salt = sgData.salt;
       rngStr = sgData.rngStr;
