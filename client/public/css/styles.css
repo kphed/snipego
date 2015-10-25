@@ -15,7 +15,7 @@ html, body {
 }
 
 #progress-table {
-  opacity: 0.85;
+  opacity: 0.80;
   margin-top: 25px;
   border: 3px solid transparent;
 }
@@ -23,7 +23,7 @@ html, body {
 #progress-header {
   color: #E5E5E5;
   font-size: 1.5em;
-  border: 3px solid transparent;
+  border: 3px solid black;
   text-align: center;
 }
 
@@ -57,8 +57,8 @@ html, body {
 }
 
 .jackpot-player-photo {
-  height: 3em;
-  width: 3em;
+  height: 3.5em;
+  width: 3.5em;
   margin-top: 0.75em;
   margin-left: 1em;
   float: left;
