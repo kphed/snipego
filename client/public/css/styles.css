@@ -178,10 +178,6 @@ html, body {
 
 
 .fill {
-  background-image: url('../img/background.jpg');
-  background-repeat:no-repeat;
-  background-size:contain;
-  background-position:center;
   height: 100%;
   padding-top: 100px;
   overflow: auto;
