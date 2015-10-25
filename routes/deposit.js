@@ -17,7 +17,7 @@ router.post('/', function(req, res) {
       var jackpotData = data.val();
       for (var i = 0; i < jackpotData.players.length; i++) {
         if (req.body.displayName === jackpotData.players[i].displayName) {
-          res.json({'error': 'User is already in the pot'});
+          res.json({'error': 'You are already in the pot, please wait!'});
           return;
         }
       }
@@ -29,7 +29,7 @@ router.post('/', function(req, res) {
         if (!err) {
           for (var key in req.body.items) {
             if (!body.rgInventory[key]) {
-              res.json({'error': 'User is missing an item from their inventory'});
+              res.json({'error': 'You are missing an item you are trying to deposit. Please refresh inventory and try again.'});
               return;
             }
           }
