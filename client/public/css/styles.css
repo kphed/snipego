@@ -3,10 +3,6 @@ html, body {
   height: 100%;
 }
 
-body {
-  background-image: url('../img/background.jpg');
-}
-
 /* Main View - Jackpot Progress */
 
 .progress-container {
@@ -182,7 +178,7 @@ body {
 
 
 .fill {
-  background: white;
+  background-image: url('../img/background.jpg');
   height: 100%;
   padding-top: 100px;
   overflow: auto;
