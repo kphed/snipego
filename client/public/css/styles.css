@@ -21,7 +21,6 @@ html, body {
 
 #progress-table {
   opacity: 0.80;
-  margin-top: 25px;
   border-collapse:collapse;
 }
 
@@ -39,7 +38,6 @@ html, body {
   color: #E5E5E5;
   font-size: 2em;
   text-align: center;
-  margin-top: 5px;
 }
 
 #progress-value {
@@ -162,10 +160,6 @@ html, body {
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   opacity: 0.8;
-}
-
-.modal-backdrop {
-  opacity: 0.8 !important;
 }
 
 .modal-body {
