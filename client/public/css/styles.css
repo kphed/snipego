@@ -3,6 +3,10 @@ html, body {
   height: 100%;
 }
 
+.navbar.navbar-fixed-top .navbar-inner{
+  background: rgba(255, 255, 255, 0.3);
+}
+
 /* Main View - Jackpot Progress */
 
 .progress-container {
