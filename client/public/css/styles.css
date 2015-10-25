@@ -3,7 +3,7 @@ html, body {
   height: 100%;
 }
 
-.navbar.navbar-fixed-top .navbar-inner{
+.navbar.navbar-fixed-top {
   background: rgba(255, 255, 255, 0.3);
 }
 
@@ -42,7 +42,8 @@ html, body {
 
 #progress-value {
   color: #5FB760;
-  font-size: 2em;
+  font-size: 2.5em;
+  margin-bottom: 5px;
 }
 
 /* Main View - Current Jackpots */
