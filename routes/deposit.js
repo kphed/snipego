@@ -18,7 +18,7 @@ router.post('/', function(req, res) {
       if (jackpotData.players) {
         for (var i = 0; i < jackpotData.players.length; i++) {
           if (req.body.displayName === jackpotData.players[i].displayName) {
-            res.json({'error': 'You are already in the pot, please wait!'});
+            res.json({'error': 'You are already in the pot, please wait for the next one!'});
             return;
           }
         }
