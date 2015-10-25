@@ -9,11 +9,17 @@ var request = require('request');
 var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
 router.post('/', function(req, res) {
+  console.log('The body is ', req.body);
   if (!req.body.items) {
     res.json({'error': 'User is putting in invalid items'});
   } else {
     jackpotRef.once('value', function(data) {
       var jackpotData = data.val();
+      for (var i = 0; i < jackpotData.players.length; i++) {
+        if (req.body.displayName === jackpotData.players[i].displayName) {
+          res.json({'error': 'User is already in the pot'});
+        }
+      }
       var url = 'http://steamcommunity.com/profiles/' + req.body.id + '/inventory/json/730/2';
       request.get({
       url: url,
