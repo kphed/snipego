@@ -15,12 +15,12 @@ router.post('/', function(req, res) {
   } else {
     jackpotRef.once('value', function(data) {
       var jackpotData = data.val();
-      // for (var i = 0; i < jackpotData.players.length; i++) {
-      //   if (req.body.displayName === jackpotData.players[i].displayName) {
-      //     res.json({'error': 'You are already in the pot, please wait!'});
-      //     return;
-      //   }
-      // }
+      for (var i = 0; i < jackpotData.players.length; i++) {
+        if (req.body.displayName === jackpotData.players[i].displayName) {
+          res.json({'error': 'You are already in the pot, please wait!'});
+          return;
+        }
+      }
       var url = 'http://steamcommunity.com/profiles/' + req.body.id + '/inventory/json/730/2';
       request.get({
       url: url,
