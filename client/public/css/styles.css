@@ -4,7 +4,7 @@ html, body {
 }
 
 .navbar.navbar-fixed-top {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Main View - Jackpot Progress */
@@ -36,8 +36,9 @@ html, body {
 
 #progress-header {
   color: #E5E5E5;
-  font-size: 1.5em;
+  font-size: 2em;
   text-align: center;
+  margin-top: 5px;
 }
 
 #progress-value {
