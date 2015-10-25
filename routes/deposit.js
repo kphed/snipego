@@ -18,6 +18,7 @@ router.post('/', function(req, res) {
       for (var i = 0; i < jackpotData.players.length; i++) {
         if (req.body.displayName === jackpotData.players[i].displayName) {
           res.json({'error': 'User is already in the pot'});
+          return;
         }
       }
       var url = 'http://steamcommunity.com/profiles/' + req.body.id + '/inventory/json/730/2';
@@ -29,6 +30,7 @@ router.post('/', function(req, res) {
           for (var key in req.body.items) {
             if (!body.rgInventory[key]) {
               res.json({'error': 'User is missing an item from their inventory'});
+              return;
             }
           }
           var items = [];
