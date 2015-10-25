@@ -102,13 +102,13 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.getStyle = function() {
       var transform = 'translateY(-50%) ' + 'translateX(-50%)';
       return {
-        'top': '35%',
+        'top': '33%',
         'bottom': 'auto',
         'left': '50%',
         'transform': transform,
         '-moz-transform': transform,
         '-webkit-transform': transform,
-        'font-size': 80 + 'px',
+        'font-size': 100 + 'px',
       };
     };
 
