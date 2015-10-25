@@ -5,6 +5,7 @@ html, body {
 
 .navbar.navbar-fixed-top {
   background: rgba(33, 33, 33, 0.8);
+  border: 1px solid transparent !important;
 }
 
 /* Main View - Jackpot Progress */
