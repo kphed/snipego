@@ -17,6 +17,7 @@ html, body {
 #progress-table {
   opacity: 0.80;
   margin-top: 25px;
+  border: none;
 }
 
 #progress-header {
