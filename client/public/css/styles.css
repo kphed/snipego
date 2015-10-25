@@ -22,11 +22,14 @@ html, body {
   opacity: 0.80;
   margin-top: 25px;
   border-collapse:collapse;
-  border:none;
-  outline:none;
 }
 
 #progress-table td {
+   border:none;
+   outline:none;
+}
+
+#progress-table th {
    border:none;
    outline:none;
 }
