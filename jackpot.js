@@ -26,28 +26,42 @@ var jackpotCheck = function() {
   jackpotRef.once('value', function(data) {
     if (!data.val()) {
       bcrypt.genSalt(10, function(err, data) {
-        salt = data;
-        rngStr = JSON.stringify(rng());
-        bcrypt.hash(rngStr, salt, function(err, data) {
-          hash = data;
-          console.log('JACKPOT DOES NOT EXIST! salt: ', salt, ' hash: ', hash, 'rngStr: ', rngStr);
-          ref.child('currentJackpot').set({
-            itemsCount: 0,
-            jackpotValue: 0,
-            roundHash: hash,
-          }, function() {
-            var formatted = hash.replace(/[.#$/]/g, "");
-            var sgJackpotRef = sgRef.child(formatted);
-            sgJackpotRef.set({
-              salt: salt,
-              rngStr: rngStr,
-            });
+        if (err) {
+          console.log('There was an error getting salt ', err);
+          jackpotCheck();
+          return;
+        } else {
+          salt = data;
+          rngStr = JSON.stringify(rng());
+          bcrypt.hash(rngStr, salt, function(err, data) {
+            if (err) {
+              console.log('There was an error getting hash ', err);
+              jackpotCheck();
+              return;
+            } else {
+              hash = data;
+              console.log('JACKPOT DOES NOT EXIST! salt: ', salt, ' hash: ', hash, 'rngStr: ', rngStr);
+              ref.child('currentJackpot').set({
+                itemsCount: 0,
+                jackpotValue: 0,
+                roundHash: hash,
+              }, function() {
+                var formatted = hash.replace(/[.#$/]/g, "");
+                var sgJackpotRef = sgRef.child(formatted);
+                sgRef.set({}, function() {
+                  sgJackpotRef.set({
+                    salt: salt,
+                    rngStr: rngStr,
+                  });
+                });
+              });
+            }
           });
-        });
+        }
       });
     } else {
       hash = data.val().roundHash;
-      var formatted = data.val().roundHash.replace(/[.#$/]/g, "");
+      var formatted = hash.replace(/[.#$/]/g, "");
       var sgJackpotRef = sgRef.child(formatted);
       sgJackpotRef.once('value', function(data) {
         console.log('JACKPOT EXISTS! salt: ', data.val().salt, ' hash: ', hash, 'rngStr: ', data.val().rngStr);
@@ -149,26 +163,28 @@ var endRound = function() {
             console.log('NEW ROUND! hash: ', hash, 'salt: ', salt, 'rngStr: ', rngStr);
             var formatted = hash.replace(/[.#$/]/g, "");
             var sgJackpotRef = sgRef.child(formatted);
-            sgJackpotRef.set({
-              salt: salt,
-              rngStr: rngStr,
-            }, function() {
-              request.post({
-                url: 'https://snipego3.herokuapp.com/user-withdraw',
-                body: winnerObj,
-                json: true,
-              }, function(error, response, body) {
-                if (error) {
-                  console.log(error);
-                  pollTimeout = setTimeout(function() {
-                    pollFirebaseQueue();
-                  }, 10000);
-                } else {
-                  console.log('Making a withdraw request now to bot');
-                  pollTimeout = setTimeout(function() {
-                    pollFirebaseQueue();
-                  }, 10000);
-                }
+            sgRef.set({}, function() {
+              sgJackpotRef.set({
+                salt: salt,
+                rngStr: rngStr,
+              }, function() {
+                request.post({
+                  url: 'https://snipego3.herokuapp.com/user-withdraw',
+                  body: winnerObj,
+                  json: true,
+                }, function(error, response, body) {
+                  if (error) {
+                    console.log(error);
+                    pollTimeout = setTimeout(function() {
+                      pollFirebaseQueue();
+                    }, 10000);
+                  } else {
+                    console.log('Making a withdraw request now to bot');
+                    pollTimeout = setTimeout(function() {
+                      pollFirebaseQueue();
+                    }, 10000);
+                  }
+                });
               });
             });
           });
