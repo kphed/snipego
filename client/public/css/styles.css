@@ -161,14 +161,17 @@ html, body {
   background-color: #212121 !important;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+  opacity: 0.8;
 }
 
 .modal-body {
   background-color: #212121;
+  opacity: 0.8;
 }
 
 .modal-header {
   background-color: #212121;
+  opacity: 0.8;
   color: white;
 }
 
