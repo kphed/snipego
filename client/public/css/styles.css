@@ -370,8 +370,7 @@ html, body {
 
 .chat {
   margin-top: 5px;
-  min-height: 30em;
-  max-height: 30em;
+  height: 30em;
 }
 
 .loader,
