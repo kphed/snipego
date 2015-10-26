@@ -29,8 +29,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('html', function() {
-  return gulp.src(['client/public/index.html'])
-    .pipe(rename({suffix: '.min'}))
+  return gulp.src(['client/public/index-unminified.html'])
     .pipe(minifyHTML())
     .pipe(gulp.dest('client/public/'));
 });
