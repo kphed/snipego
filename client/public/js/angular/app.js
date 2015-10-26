@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('SnipeGo',
-  ['irontec.simpleChat',
-  'SnipeGo.Directives.Popover',
+  ['SnipeGo.Directives.Popover',
   'SnipeGo.Directives.ToggleClass',
   'SnipeGo.MainCtrl',
   'SnipeGo.NavCtrl',
