@@ -367,6 +367,12 @@ html, body {
   -webkit-animation: load8 1.1s infinite linear;
   animation: load8 1.1s infinite linear;
 }
+
+.chat {
+  margin-top: 5px;
+  opacity: 1.0;
+}
+
 .loader,
 .loader:after {
   border-radius: 50%;
