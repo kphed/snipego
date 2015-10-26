@@ -23,6 +23,7 @@
 									'<div class="chat-msg" ng-class="{\'chat-msg-sent\': selfAuthored, \'chat-msg-recieved\': !selfAuthored}">' +
 										'<span class="hide">myUserId:{{vm.myUserId}}</span>' +
 										'<img ng-if="message.imageUrl" class="profile" ng-class="{\'pull-right\': selfAuthored, \'pull-left\': !selfAuthored}" ng-src="{{message.imageUrl}}" />' +
+										'<div>{{message.username}}</div>' +
 										'<p>{{message.content}}</p>' +
 										'<div class="chat-msg-author">' +
 											'{{message.username}}' +
