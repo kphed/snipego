@@ -13,7 +13,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.endedJackpots = $firebaseArray(endedJackpotRef);
 
-    var query = messageRef.orderByChild("timestamp").limitToLast(25);
+    var query = messageRef.orderByChild("timestamp").limitToLast(15);
 
     $scope.messages = $firebaseArray(query);
 
