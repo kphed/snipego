@@ -9,18 +9,18 @@
 }
 /* line 23, ../sass/themes.scss */
 .chat-th-irontec .chat-input:focus {
-  border-color: #5FB760;
-  box-shadow: 0 1px 1px #fff inset, 0 0 8px #5FB760;
+  border-color: #2E3E57;
+  box-shadow: 0 1px 1px #fff inset, 0 0 8px #2E3E57;
   outline: 0 none;
 }
 /* line 30, ../sass/themes.scss */
 .chat-th-irontec .chat-submit-button {
-  background: #5FB760;
+  background: #2E3E57;
   color: #fff;
 }
 /* line 34, ../sass/themes.scss */
 .chat-th-irontec .chat-submit-button:focus {
-  border-color: #5FB760;
+  border-color: #2E3E57;
   outline: 0 none;
 }
 
