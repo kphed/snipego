@@ -74,7 +74,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           msg.staff = $rootScope.user.staff;
         }
         msg.imageUrl = $rootScope.user.photos[0];
-        $http.post('/user/send-message', msg).success(function() {
+        $http.post('/users/send-message', msg).success(function() {
           console.log('Posted message successfully');
         });
       }
