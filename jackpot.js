@@ -95,7 +95,7 @@ var timerCheck = function() {
   ref.child('currentJackpot').once('value', function(data) {
     var jackpotData = data.val();
     if (jackpotData.timer === undefined || jackpotData.timer > 0) {
-      if (!jackpotData.timer && jackpotData.players.length > 1) {
+      if (!jackpotData.timer && jackpotData.players && jackpotData.players.length > 1) {
         ref.child('currentJackpot').update({
           timer: 120
         }, function() {
