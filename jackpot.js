@@ -118,7 +118,7 @@ var timerCheck = function() {
       } else {
         timeoutTimer = setTimeout(function() {
           timerCheck();
-        }, 1100);
+        }, 5000);
       }
     } else {
       console.log('Calling endround');
