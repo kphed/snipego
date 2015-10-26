@@ -18,7 +18,7 @@ html, body {
 
 .progress-text {
   position: absolute;
-  color: #2E3E57;
+  color: #E5E5E5;
 }
 
 #progress-table {
@@ -43,7 +43,7 @@ html, body {
 }
 
 #progress-value {
-  color: #E5E5E5;
+  color: #5FB760;
   font-size: 2.5em;
   padding-top: -10px;
 }
