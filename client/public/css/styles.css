@@ -21,7 +21,6 @@ html, body {
 }
 
 #progress-table {
-  opacity: 0.6;
   margin-top: 25px;
   border-collapse:collapse;
 }
