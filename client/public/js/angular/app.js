@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('SnipeGo',
-  ['SnipeGo.Directives.Popover',
+  ['irontec.simpleChat',
+  'SnipeGo.Directives.Popover',
   'SnipeGo.Directives.ToggleClass',
   'SnipeGo.MainCtrl',
   'SnipeGo.NavCtrl',
@@ -9,8 +10,7 @@ angular.module('SnipeGo',
   'SnipeGo.Services',
   'ui.router',
   'firebase',
-  'angular-svg-round-progress',
-  'irontec.simpleChat'])
+  'angular-svg-round-progress'])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 

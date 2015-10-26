@@ -1,7 +1,6 @@
-(function() {
-	'use strict';
+'use strict';
 
-	angular.module('irontec.simpleChat', []);
+	angular.module('irontec.simpleChat', ['SnipeGo']);
 	angular.module('irontec.simpleChat').directive('irontecSimpleChat', ['$timeout', SimpleChat]);
 
 	function SimpleChat($timeout) {
@@ -163,4 +162,3 @@
 			}
 		}
 	}
-})();
