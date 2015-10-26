@@ -56,7 +56,7 @@ html, body {
   margin-bottom: 1em;
   margin-top: 0.2em;
   opacity: 0.9;
-  position: absolute;
+  position: relative;
 }
 
 .jackpot-header {
