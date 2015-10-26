@@ -21,7 +21,7 @@
 							'<div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = vm.myUserId == message.fromUserId">' +
 			'<div class="col-md-12 col-xs-12">' +
 									'<div class="chat-msg" ng-class="{\'chat-msg-sent\': selfAuthored, \'chat-msg-recieved\': !selfAuthored}">' +
-										'<img ng-if="message.imageUrl" class="profile" ng-src="{{message.imageUrl}}" />' +
+										'<span><img ng-if="message.imageUrl"ng-src="{{message.imageUrl}}" /></span>' +
 										'<span class="hide">myUserId:{{vm.myUserId}}</span>' +
 										'<div>{{message.username}}</div>' +
 										'<p>{{message.content}}</p>' +
