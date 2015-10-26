@@ -25,7 +25,7 @@
 										'<img ng-if="message.imageUrl" class="profile" ng-class="{\'pull-right\': selfAuthored, \'pull-left\': !selfAuthored}" ng-src="{{message.imageUrl}}" />' +
 										'<div>{{message.username}}</div>' +
 										'<p>{{message.content}}</p>' +
-										'<div class="chat-msg-author">' +
+										'<div style="color: red" class="chat-msg-author">' +
 											'{{message.staff}}' +
 										'</div>' +
 									'</div>' +
