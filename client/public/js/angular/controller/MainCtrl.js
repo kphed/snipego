@@ -7,67 +7,15 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     var endedJackpotRef = new Firebase('https://snipego.firebaseio.com/endedJackpots');
 
+    var messageRef = new Firebase('https://snipego.firebaseio.com/messages');
+
     $scope.currentJackpot = $firebaseObject(currentJackpotRef);
 
     $scope.endedJackpots = $firebaseArray(endedJackpotRef);
 
+    $scope.messages = $firebaseArray(messageRef);
+
     $scope.ended = [];
-
-    $scope.twitchPlayer = '<object bgcolor="#000000"' +
-        'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
-        'height="250px"' +
-        'type="application/x-shockwave-flash"' +
-        'width="100%"' +
-        '>' +
-        '<param name="allowFullScreen"' +
-                'value="true" />' +
-        '<param name="allowNetworking"' +
-                'value="all" />' +
-        '<param name="allowScriptAccess"' +
-                'value="always" />' +
-        '<param name="movie"' +
-                'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
-        '<param name="flashvars"' +
-                'value="channel=joshog&auto_play=true&start_volume=50" />' +
-      '</object>' +
-      '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/joshog/chat" height="325" width="100%">' +
-      '</iframe>';
-
-    $scope.getTwitch = function() {
-      var url = 'https://api.twitch.tv/kraken/streams?game=Counter-Strike%3A%20Global%20Offensive&limit=1&callback=JSON_CALLBACK';
-      $http.defaults.headers.common["X-Custom-Header"] = "Angular.js";
-      $http.jsonp(url).success(function(resp) {
-        var channelName = resp.streams[0].channel.display_name;
-        channelName = channelName.replace(/['"]+/g, '');
-        $timeout(function() {
-          $scope.twitchPlayer = '<object bgcolor="#000000"' +
-            'data="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf"' +
-            'height="250px"' +
-            'type="application/x-shockwave-flash"' +
-            'width="100%"' +
-            '>' +
-            '<param name="allowFullScreen"' +
-                    'value="true" />' +
-            '<param name="allowNetworking"' +
-                    'value="all" />' +
-            '<param name="allowScriptAccess"' +
-                    'value="always" />' +
-            '<param name="movie"' +
-                    'value="//www-cdn.jtvnw.net/swflibs/TwitchPlayer.swf" />' +
-            '<param name="flashvars"' +
-                    'value="channel=' + channelName + '&auto_play=true&start_volume=50" />' +
-          '</object>' +
-          '<iframe frameborder="0" scrolling="no" id="chat_embed" src="http://www.twitch.tv/' + channelName.toLowerCase() + '/chat" height="325" width="100%">' +
-          '</iframe>';
-        });
-      });
-    };
-
-    $scope.getTwitch();
-
-    $scope.getHtml = function(html) {
-      return $sce.trustAsHtml(html);
-    };
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {

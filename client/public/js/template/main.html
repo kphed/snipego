@@ -76,4 +76,15 @@
 <div class="chat col-sm-2 col-md-3 col-lg-3" popover>
 <!--   <div contenteditable="true" ng-bind-html="getHtml(twitchPlayer)">
   </div> -->
+  <irontec-simple-chat
+  messages="messages"
+  username="username"
+  input-placeholder-text="Write message here"
+  submit-button-text="Send"
+  title="SnipeGo Chat"
+  theme="irontec"
+  submit-function="sendMessage"
+  visible="true"
+  expand-on-new="true">
+  </irontec-simple-chat>
 </div>
