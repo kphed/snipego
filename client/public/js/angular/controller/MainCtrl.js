@@ -13,7 +13,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.endedJackpots = $firebaseArray(endedJackpotRef);
 
-    $scope.messages = $firebaseArray(messageRef);
+    $scope.messages = $firebaseArray(messageRef).orderByChild("timestamp").limitToLast(10);
 
     $scope.ended = [];
 
