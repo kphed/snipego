@@ -1,6 +1,6 @@
 /* line 11, ../sass/themes.scss */
 .chat-th-irontec .chat-top-bar {
-  background: #c33;
+  background: #212121;
   color: #fff;
 }
 /* line 17, ../sass/themes.scss */
@@ -9,18 +9,18 @@
 }
 /* line 23, ../sass/themes.scss */
 .chat-th-irontec .chat-input:focus {
-  border-color: #c33;
-  box-shadow: 0 1px 1px #fff inset, 0 0 8px #c33;
+  border-color: #5FB760;
+  box-shadow: 0 1px 1px #fff inset, 0 0 8px #5FB760;
   outline: 0 none;
 }
 /* line 30, ../sass/themes.scss */
 .chat-th-irontec .chat-submit-button {
-  background: #c33;
+  background: #;
   color: #fff;
 }
 /* line 34, ../sass/themes.scss */
 .chat-th-irontec .chat-submit-button:focus {
-  border-color: #c33;
+  border-color: #5FB760;
   outline: 0 none;
 }
 
