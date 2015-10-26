@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
-  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', '$sce','$timeout', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http, $sce, $timeout) {
+  .controller('MainCtrl', ['$scope', '$firebaseArray', '$firebaseObject', '$rootScope', '$window', '$http', function($scope, $firebaseArray, $firebaseObject, $rootScope, $window, $http) {
 
     var currentJackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
