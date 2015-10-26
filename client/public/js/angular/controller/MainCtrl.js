@@ -59,5 +59,25 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         'font-size': 100 + 'px',
       };
     };
+
+    $scope.sendMessage = function(message, username) {
+      if (!message) {
+        $window.alert('Enter in a message to chat!');
+      } else if (!$rootScope.user.id) {
+        $window.alert('Sign in to chat!');
+      } else {
+        var msg = {};
+        msg.message = message;
+        msg.username = username;
+        if ($rootScope.user.staff) {
+          msg.staff = $rootScope.user.staff;
+        }
+        msg.imageUrl = $rootScope.user.photos[0];
+        $http.post('/user/send-message', msg).success(function() {
+          console.log('Posted message successfully');
+        });
+      }
+    };
+
   }]
 );
