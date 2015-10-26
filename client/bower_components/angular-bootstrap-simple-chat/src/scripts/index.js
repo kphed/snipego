@@ -22,10 +22,10 @@
 			'<div class="col-md-12 col-xs-12">' +
 									'<div class="chat-msg" ng-class="{\'chat-msg-sent\': selfAuthored, \'chat-msg-recieved\': !selfAuthored}">' +
 										'<div style="color: red">' +
+										'<img ng-if="message.imageUrl" style="float: right" ng-src="{{message.imageUrl}}" />' +
 											'{{message.staff}}' +
 										'</div>' +
 										'<div>{{message.username}}</div>' +
-										'<img ng-if="message.imageUrl" style="float: right" ng-src="{{message.imageUrl}}" />' +
 										'<p>{{message.content}}</p>' +
 									'</div>' +
 								'</div>' +
