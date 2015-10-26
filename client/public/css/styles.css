@@ -23,6 +23,7 @@ html, body {
 #progress-table {
   margin-top: 25px;
   border-collapse:collapse;
+  opacity: 0.6;
 }
 
 #progress-table td {
@@ -160,7 +161,6 @@ html, body {
   background-color: #212121 !important;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  opacity: 0.6;
 }
 
 .modal-body {
