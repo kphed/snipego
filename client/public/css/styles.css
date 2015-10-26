@@ -107,7 +107,7 @@ html, body {
 
 .ended-jackpots {
   width: 100%;
-  background: rgba(33, 33, 33, 0.7);
+  background: rgba(33, 33, 33, 0.5);
   margin-bottom: 1em;
   margin-top: 0.25em;
 }
