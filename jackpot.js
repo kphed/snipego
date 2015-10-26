@@ -148,7 +148,7 @@ var queueJackpot = function(queueData) {
         jackpotValue: jackpotData.jackpotValue,
         players: jackpotData.players,
       }, function() {
-        if (jackpotData.itemsCount < 30) {
+        if (jackpotData.itemsCount < 50) {
           pollTimeout = setTimeout(function() {
             pollFirebaseQueue();
           }, 10000);

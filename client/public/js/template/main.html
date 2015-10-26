@@ -3,7 +3,7 @@
     <div class="progress-text" ng-style="getStyle()">{{currentJackpot.itemsCount}}</div>
     <div
     round-progress
-    max="30"
+    max="50"
     current="currentJackpot.itemsCount"
     color="#2E3E57"
     bgcolor="transparent"
@@ -14,7 +14,7 @@
     clockwise="true"
     responsive="responsive"
     duration="800"
-    animation="easeOutCubic" data-trigger="hover" rel="popover" data-content="If the pot has at least 30 items or the timer has ended, the winner will be chosen. The timer is triggered after two players have entered the pot">
+    animation="easeOutCubic" data-trigger="hover" rel="popover" data-content="If the pot has at least 50 items or the timer has ended, the winner will be chosen. The timer is triggered after two players have entered the pot">
       <div ng-show="currentJackpot.timer"
       round-progress
       max="120"
