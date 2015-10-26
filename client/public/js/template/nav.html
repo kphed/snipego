@@ -6,10 +6,13 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <button class="btn btn-{{successDanger}} navbar-btn play-button" ng-show="isAuth" data-toggle="modal" data-target="{{playDestination}}" data-trigger="hover" rel="popover" data-content="Play Now"><i class="glyphicon glyphicon-piggy-bank play-button-text"></i></button>
+
   </div>
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav navbar-right" id="navbar-right">
+      <li class="nav-item">
+        <button class="btn btn-{{successDanger}} navbar-btn play-button" ng-show="isAuth" data-toggle="modal" data-target="{{playDestination}}" data-trigger="hover" rel="popover" data-content="Play Now"><i class="glyphicon glyphicon-piggy-bank play-button-text"></i></button>
+      </li>
       <li class="nav-item">
         <button class="btn btn-info navbar-btn" data-toggle="modal" data-target="#info" data-trigger="hover" rel="popover" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
       </li>
