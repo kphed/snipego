@@ -55,8 +55,6 @@ html, body {
   background-color: #212121;
   margin-bottom: 1em;
   margin-top: 0.2em;
-  opacity: 0.9;
-  position: relative;
 }
 
 .jackpot-header {
@@ -112,7 +110,7 @@ html, body {
   background-color: #212121;
   margin-bottom: 1em;
   margin-top: 0.25em;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 .round-winner {
