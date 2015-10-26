@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Angular SVG round progressbar demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <style>
         *{
@@ -16,8 +17,8 @@
 
         .cf:before,
         .cf:after {
-            content: " "; /* 1 */
-            display: table; /* 2 */
+            content: " ";
+            display: table;
         }
 
         .cf:after {
@@ -40,7 +41,7 @@
         .container{
             width: 100%;
             max-width: 960px;
-            margin:100px auto;
+            margin:50px auto 100px;
             text-align: center;
         }
 
@@ -54,11 +55,12 @@
             cursor: pointer;
             border-radius: 4px;
             text-align: center;
+            margin: 0 5px 5px 0;
         }
 
         form{
             text-align: left;
-            width: 350px;
+            max-width: 350px;
             margin: 30px auto;
         }
 
@@ -85,6 +87,24 @@
             top:5px;
             right:5px;
         }
+
+        @media(max-width: 480px){
+            .back{
+                position: static;
+                display: block;
+                text-align: center;
+            }
+
+            input, select{
+                width: 100%;
+                margin-top: 5px;
+                float:none;
+            }
+
+            .container{
+                margin-top: 25px;
+            }
+        }
     </style>
 </head>
 <body ng-controller="demoCtrl">
@@ -107,7 +127,8 @@
                 clockwise="clockwise"
                 responsive="responsive"
                 duration="{{ duration }}"
-                animation="{{ currentAnimation }}">
+                animation="{{ currentAnimation }}"
+                offset="{{ offset }}">
 
                 <svg>
                     <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
@@ -173,6 +194,11 @@
             </div>
 
             <div class="cf">
+                <label for="offset">Offset:</label>
+                <input id="offset" type="number" ng-model="offset"/>
+            </div>
+
+            <div class="cf">
                 <label for="duration">Duration:</label>
                 <input id="duration" type="number" ng-model="duration"/>
             </div>
@@ -200,17 +226,50 @@
             <div class="progress ng-cloak" ng-style="getStyle()">{{ time }}</div>
             <div
                 round-progress
-                max="59"
-                current="timerCurrent"
-                color="{{ getColor() }}"
-                bgcolor="{{ bgColor }}"
-                radius="{{ radius }}"
+                max="24"
+                current="hours"
+                color="#45ccce"
+                bgcolor="transparent"
+                radius="{{ radius*1.5 }}"
                 semi="isSemi"
                 rounded="rounded"
                 clockwise="clockwise"
                 responsive="responsive"
-                stroke="{{ stroke }}"
-                animation="{{ currentAnimation }}"></div>
+                stroke="{{ stroke*1.5 }}"
+                animation="{{ currentAnimation }}">
+
+                <div
+                    round-progress
+                    max="59"
+                    current="minutes"
+                    color="#0971B2"
+                    bgcolor="transparent"
+                    radius="{{ radius*1.5 }}"
+                    semi="isSemi"
+                    rounded="rounded"
+                    clockwise="clockwise"
+                    responsive="responsive"
+                    stroke="{{ stroke*1.5 }}"
+                    animation="{{ currentAnimation }}"
+                    offset="inherit">
+
+
+                    <div
+                        round-progress
+                        max="59"
+                        current="seconds"
+                        color="#1485CC"
+                        bgcolor="transparent"
+                        radius="{{ radius*1.5 }}"
+                        semi="isSemi"
+                        rounded="rounded"
+                        clockwise="clockwise"
+                        responsive="responsive"
+                        stroke="{{ stroke*1.5 }}"
+                        animation="{{ currentAnimation }}"
+                        offset="inherit"></div>
+                    </div>
+            </div>
         </div>
     </div>
 
@@ -219,11 +278,11 @@
     <script>
         'use strict';
 
-        angular.module('demo', ['angular-svg-round-progress'])
-        .controller('demoCtrl', ['$scope', '$interval', 'roundProgressService', function($scope, $interval, roundProgressService){
+        angular.module('demo', ['angular-svg-round-progress']).controller('demoCtrl', ['$scope', '$interval', 'roundProgressService', function($scope, $interval, roundProgressService){
 
             $scope.current =        27;
             $scope.max =            50;
+            $scope.offset =         0;
             $scope.timerCurrent =   0;
             $scope.uploadCurrent =  0;
             $scope.stroke =         15;
@@ -275,10 +334,14 @@
 
             $interval(function(){
                 var date = new Date();
-                var secs = date.getSeconds();
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                var seconds = date.getSeconds();
 
-                $scope.timerCurrent = secs;
-                $scope.time = getPadded(date.getHours()) + ':' + getPadded(date.getMinutes()) + ':' + getPadded(secs);
+                $scope.hours = hours;
+                $scope.minutes = minutes;
+                $scope.seconds = seconds;
+                $scope.time = getPadded(hours) + ':' + getPadded(minutes) + ':' + getPadded(seconds);
             }, 1000);
         }]);
     </script>

@@ -1,6 +1,6 @@
 {
   "name": "angular-svg-round-progressbar",
-  "version": "0.3.5",
+  "version": "0.3.8",
   "homepage": "https://github.com/crisbeto/angular-svg-round-progressbar",
   "authors": [
     "crisbeto"
@@ -22,14 +22,14 @@
     "angular": ">=1.3.0"
   },
   "main": "build/roundProgress.min.js",
-  "_release": "0.3.5",
+  "_release": "0.3.8",
   "_resolution": {
     "type": "version",
-    "tag": "0.3.5",
-    "commit": "0ae4addb8b140ef1d9eb90a15104b61832359854"
+    "tag": "0.3.8",
+    "commit": "ca9b7360b7c368e67b5110fa078f2298bf6c25da"
   },
   "_source": "git://github.com/crisbeto/angular-svg-round-progressbar.git",
-  "_target": "~0.3.5",
+  "_target": "~0.3.8",
   "_originalSource": "angular-svg-round-progressbar",
   "_direct": true
 }
