@@ -26,7 +26,7 @@
 										'<div>{{message.username}}</div>' +
 										'<p>{{message.content}}</p>' +
 										'<div class="chat-msg-author">' +
-											'{{message.username}}' +
+											'{{message.staff}}' +
 										'</div>' +
 									'</div>' +
 								'</div>' +
