@@ -19,10 +19,10 @@
       round-progress
       max="30"
       current="10"
-      color="red"
+      color="#C9302B"
       bgcolor="transparent"
       radius="175"
-      stroke="50"
+      stroke="25"
       semi="false"
       rounded="true"
       clockwise="true"
@@ -34,9 +34,9 @@
     </div>
     <table cellspacing="0" cellpadding="0" class="table table-bordered panel" id="progress-table">
       <tr>
-<!--         <thead>
-          <th id="progress-header">Current Jackpot Value</th>
-        </thead> -->
+        <thead>
+          <th id="progress-header">{{currentJackpot.timer}}</th>
+        </thead>
         <td>
           <div id="progress-value">${{currentJackpot.jackpotValue}}</div>
         </td>
