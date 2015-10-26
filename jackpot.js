@@ -95,7 +95,8 @@ var timeoutTimer = setTimeout(function() {
 var timerCheck = function() {
   ref.child('currentJackpot').once('value', function(data) {
     var jackpotData = data.val();
-    if (jackpotData.timer < 120) {
+    if (!jackpotData.timer || jackpotData.timer < 120) {
+      console.log('creating a timer or updating it ');
       if (!jackpotData.timer && jackpotData.players) {
         ref.child('currentJackpot').update({
           timer: 1
@@ -120,6 +121,7 @@ var timerCheck = function() {
         }, 1100);
       }
     } else {
+      console.log('Calling endround');
       endRound();
       timeoutTimer = setTimeout(function() {
         timerCheck();
