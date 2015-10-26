@@ -87,6 +87,47 @@ var pollFirebaseQueue = function() {
   });
 };
 
+var timeoutTimer = setTimeout(function() {
+  console.log('calling the timer check');
+    timerCheck();
+  }, 1100);
+
+var timerCheck = function() {
+  ref.child('currentJackpot').once('value', function(data) {
+    var jackpotData = data.val();
+    if (jackpotData.timer < 120) {
+      if (!jackpotData.timer && jackpotData.players) {
+        ref.child('currentJackpot').update({
+          timer: 1
+        }, function() {
+          timeoutTimer = setTimeout(function() {
+            timerCheck();
+          }, 1100);
+        });
+      }
+      else if (jackpotData.players) {
+        jackpotData.timer++;
+        ref.child('currentJackpot').update({
+          timer: jackpotData.timer
+        }, function() {
+          timeoutTimer = setTimeout(function() {
+            timerCheck();
+          }, 1100);
+        });
+      } else {
+        timeoutTimer = setTimeout(function() {
+          timerCheck();
+        }, 1100);
+      }
+    } else {
+      endRound();
+      timeoutTimer = setTimeout(function() {
+        timerCheck();
+      }, 1100);
+    }
+  });
+};
+
 var queueJackpot = function(queueData) {
   ref.child('currentJackpot').once('value', function(data) {
     var jackpotData = data.val();
