@@ -25,7 +25,7 @@
 											'{{message.staff}}' +
 										'</div>' +
 										'<div>{{message.username}}</div>' +
-										'<img ng-if="message.imageUrl" style="float: right" class="profile" ng-src="{{message.imageUrl}}" />' +
+										'<img ng-if="message.imageUrl" style="float: right" ng-src="{{message.imageUrl}}" />' +
 										'<p>{{message.content}}</p>' +
 									'</div>' +
 								'</div>' +
