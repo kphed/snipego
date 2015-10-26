@@ -35,7 +35,7 @@
     <table cellspacing="0" cellpadding="0" class="table table-bordered panel" id="progress-table">
       <tr>
         <thead>
-          <th id="progress-header">Jackpot Ending in {{currentJackpot.timer}}s</th>
+          <th ng-show="currentJackpot.timer" id="progress-header">Jackpot Ending in {{currentJackpot.timer}}s</th>
         </thead>
         <td>
           <div id="progress-value">${{currentJackpot.jackpotValue}}</div>
