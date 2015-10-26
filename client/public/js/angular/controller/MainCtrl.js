@@ -61,6 +61,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     };
 
     $scope.sendMessage = function(message, username) {
+      console.log('Calling send message', message, username, $rootScope.user);
       if (!message) {
         $window.alert('Enter in a message to chat!');
       } else if (!$rootScope.user.id) {
