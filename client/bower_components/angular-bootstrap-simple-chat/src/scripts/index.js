@@ -21,12 +21,12 @@
 							'<div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = vm.myUserId == message.fromUserId">' +
 			'<div class="col-md-12 col-xs-12">' +
 									'<div class="chat-msg" ng-class="{\'chat-msg-sent\': selfAuthored, \'chat-msg-recieved\': !selfAuthored}">' +
-										'<div>{{message.username}}</div>' +
-										'<img ng-if="message.imageUrl" class="profile" ng-src="{{message.imageUrl}}" />' +
-										'<p>{{message.content}}</p>' +
-										'<span style="color: red" class="profile" ng-class="{\'pull-right\': selfAuthored, \'pull-left\': !selfAuthored}">' +
+										'<div style="color: red">' +
 											'{{message.staff}}' +
-										'</span>' +
+										'</div>' +
+										'<div>{{message.username}}</div>' +
+										'<img ng-if="message.imageUrl" style="float: right" class="profile" ng-src="{{message.imageUrl}}" />' +
+										'<p>{{message.content}}</p>' +
 									'</div>' +
 								'</div>' +
 							'</div>' +
