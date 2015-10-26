@@ -13,6 +13,7 @@ html, body {
 .progress-container {
   margin-top: 5px;
   text-align: center;
+  opacity: 0.8;
 }
 
 .progress-text {
