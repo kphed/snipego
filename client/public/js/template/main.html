@@ -38,7 +38,7 @@
           <th ng-show="currentJackpot.timer" id="progress-header">Jackpot Ending in {{currentJackpot.timer}}s</th>
         </thead>
         <td>
-          <div id="progress-value">${{currentJackpot.jackpotValue}}</div>
+          <div id="progress-value">{{currentJackpot.jackpotValue}}</div>
         </td>
       </tr>
     </table>
@@ -55,11 +55,11 @@
       </div>
       <div class="jackpot-player" ng-repeat="player in currentJackpot.players" popover>
         <div class="jackpot-player-photo">
-          <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
+          <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: {{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
         </div>
         <div class="jackpot-player-deposit" >
           <span ng-repeat="item in player.items" popover>
-            <img class="jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: ${{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+            <img class="jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: {{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
           </span>
         </div>
       </div>
@@ -68,7 +68,7 @@
     <div class="ended-jackpots" ng-repeat="jackpots in ended" popover>
       <div class="round-winner">
         <i class="winner-glyphicon glyphicon glyphicon-piggy-bank"></i>
-        <img class="img-circle winner-photo" ng-src="{{jackpots.winner.avatar}}" /> {{jackpots.winner.displayName}} won ${{jackpots.jackpotValue}} with {{jackpots.winner.chance}}% chance!
+        <img class="img-circle winner-photo" ng-src="{{jackpots.winner.avatar}}" /> {{jackpots.winner.displayName}} won {{jackpots.jackpotValue}} with {{jackpots.winner.chance}}% chance!
         <i class="winner-glyphicon glyphicon glyphicon-piggy-bank"></i>
       </div>
       <div class="jackpot-header" popover>
@@ -79,11 +79,11 @@
       </div>
       <div class="jackpot-player" ng-repeat="player in jackpots.players" popover>
         <div class="jackpot-player-photo">
-          <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: ${{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
+          <img class="img-circle jackpot-player-photo" data-trigger="hover" rel="popover" data-content="Deposit: {{player.itemsValue}} <br />Chance To Win: {{player.chance}}%" data-original-title="{{player.displayName}}" ng-src="{{player.avatar}}" />
         </div>
         <div class="jackpot-player-deposit" >
           <span ng-repeat="item in player.items" popover>
-            <img class="jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: ${{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+            <img class="jackpot-player-deposit-item" data-trigger="hover" rel="popover" data-content="Steam Value: {{item.market_price}}" data-original-title="{{item.market_hash_name}}" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
           </span>
         </div>
       </div>
