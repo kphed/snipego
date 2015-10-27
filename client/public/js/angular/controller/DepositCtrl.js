@@ -77,7 +77,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
 
     $scope.depositItems = function() {
       if ($scope.totalValue() < 1) {
-        $window.alert('You need at least $1 skins value to play, select more skins');
+        $window.alert('You need at least 1 skins value to play, select more skins');
       } else {
         $scope.setUser();
         if ($rootScope.itemsSelected === 0) {
