@@ -77,7 +77,6 @@ jackpotCheck();
 var pollFirebaseQueue = function() {
   ref.child('queue').once('value', function(data) {
     var queueData = data.val();
-    console.log('QUEUE DATA IS ', queueData);
     if (queueData) {
       queueJackpot(queueData);
     } else {
@@ -132,7 +131,7 @@ var queueJackpot = function(queueData) {
   ref.child('currentJackpot').once('value', function(data) {
     var jackpotData = data.val();
     var keyDelete;
-    var firstQueueItem
+    var firstQueueItem;
     for (var key in queueData) {
       firstQueueItem = queueData[key];
       keyDelete = key;
