@@ -141,20 +141,21 @@ var queueJackpot = function(queueData) {
     ref.child('users').child(firstQueueItem.id).update({
       tradeID: '',
       protectionCode: '',
-    });
-    ref.child('queue').set(queueData, function() {
-      ref.child('currentJackpot').update({
-        itemsCount: jackpotData.itemsCount,
-        jackpotValue: jackpotData.jackpotValue,
-        players: jackpotData.players,
-      }, function() {
-        if (jackpotData.itemsCount < 50) {
-          pollTimeout = setTimeout(function() {
-            pollFirebaseQueue();
-          }, 10000);
-        } else {
-          endRound();
-        }
+    }, function() {
+      ref.child('queue').set(queueData, function() {
+        ref.child('currentJackpot').update({
+          itemsCount: jackpotData.itemsCount,
+          jackpotValue: jackpotData.jackpotValue,
+          players: jackpotData.players,
+        }, function() {
+          if (jackpotData.itemsCount < 50) {
+            pollTimeout = setTimeout(function() {
+              pollFirebaseQueue();
+            }, 5000);
+          } else {
+            endRound();
+          }
+        });
       });
     });
   });
