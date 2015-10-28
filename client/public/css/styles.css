@@ -372,6 +372,11 @@ html, body {
   height: 35em;
 }
 
+.fixed {
+  position: fixed;
+  width: 25%;
+}
+
 .loader,
 .loader:after {
   border-radius: 50%;
