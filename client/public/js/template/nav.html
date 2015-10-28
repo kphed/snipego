@@ -10,11 +10,6 @@
   </div>
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav navbar-right" id="navbar-right">
-      <li class="nav-status-text" ng-show="isAuth">
-          <span style="color: white"><a href="https://steamstat.us/" target="_blank">Check Steam Status</a></span><br />
-          <span style="color: #30B0D7">Your Deposits: {{$root.user.deposit}}</span><br />
-          <span style="color: #5FB760">Your Winnings: {{$root.user.won}}</span>
-      </li>
       <li class="nav-item">
         <button class="btn btn-{{successDanger}} navbar-btn play-button" ng-show="isAuth" data-toggle="modal" data-target="{{playDestination}}" data-trigger="hover" rel="popover" data-content="Play Now"><i class="glyphicon glyphicon-piggy-bank play-button-text"></i></button>
       </li>
@@ -29,6 +24,11 @@
       </li>
       <li ng-show="isAuth">
         <a href=""><img id="profilePic" ng-src="{{profilePic}}" /></a>
+      </li>
+      <li class="nav-status-text" ng-show="isAuth">
+          <span style="color: white"><a href="https://steamstat.us/" target="_blank">Check Steam Status</a></span><br />
+          <span style="color: #30B0D7">Your Deposits: {{$root.user.deposit}}</span><br />
+          <span style="color: #5FB760">Your Winnings: {{$root.user.won}}</span>
       </li>
     </ul>
   </div>
