@@ -150,6 +150,7 @@ var queueJackpot = function(queueData) {
       protectionCode: '',
     }, function() {
       ref.child('queue').child(keyDelete).remove(function() {
+        console.log('Removed key, in callback now');
         ref.child('currentJackpot').update({
           itemsCount: jackpotData.itemsCount,
           jackpotValue: jackpotData.jackpotValue,
