@@ -64,6 +64,7 @@ router.post('/', function(req, res) {
                 } else {
                   userData.deposit = req.body.itemsValue;
                 }
+                userData.deposit = Math.floor(userData.deposit);
                 userRef.child(req.body.id).update({
                   deposit: userData.deposit
                 }, function() {
