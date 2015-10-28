@@ -77,7 +77,7 @@ jackpotCheck();
 var pollFirebaseQueue = function() {
   ref.child('queue').once('value', function(data) {
     var queueData = data.val();
-    console.log('QUEUE DATA IS ', queueData, data, data.val());
+    console.log('QUEUE DATA IS ', data);
     if (queueData) {
       queueJackpot(queueData);
     } else {
