@@ -10,10 +10,11 @@
   </div>
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav navbar-right" id="navbar-right">
-      <li class="nav-item">
+      <li class="nav-item" ng-show="isAuth">
         <div style="margin: 5px">
           <span style="color: white">Steam Status: Up</span><br />
-          <span style="color: red">Total Deposits: {{$root.user.deposit}}</span>
+          <span style="color: red">You've Deposited: {{$root.user.deposit}}</span>
+          <span style="color: green">You've Won: {{$root.user.won}}</span>
         </div>
       </li>
       <li class="nav-item">
