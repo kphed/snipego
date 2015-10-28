@@ -234,6 +234,10 @@ html, body {
   margin-top: 1.5em;
 }
 
+a {
+  color: inherit;
+}
+
 /* Deposit View Buttons */
 
 .inventory-btn {
