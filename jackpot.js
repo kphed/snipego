@@ -227,19 +227,19 @@ var endRound = function() {
                       pollFirebaseQueue();
                     }, 10000);
                   } else {
-                    // ref.child('users').child(winnerObj.winner.id).once('value', function(data) {
-                    //   var userData = data.val();
-                    //   if (userData.won) {
-                    //     userData.won += Math.floor(parseFloat(winnerObj.winner.jackpotValue, 2));
-                    //   } else {
-                    //     userData.won = Math.floor(parseFloat(winnerObj.winner.jackpotValue, 2));
-                    //   }
-                    //   ref.child('users').child(winnerObj.winner.id).update({
-                    //     won: userData.won
-                    //   }, function() {
-                    //     console.log('Added winnings to user data');
-                    //   });
-                    // });
+                    ref.child('users').child(winnerObj.winner.id).once('value', function(data) {
+                      var userData = data.val();
+                      if (userData && userData.won) {
+                        userData.won += Math.floor(parseFloat(winnerObj.winner.jackpotValue, 2));
+                      } else {
+                        userData.won = Math.floor(parseFloat(winnerObj.winner.jackpotValue, 2));
+                      }
+                      ref.child('users').child(winnerObj.winner.id).update({
+                        won: userData.won
+                      }, function() {
+                        console.log('Added winnings to user data');
+                      });
+                    });
                     console.log('Making a withdraw request now to bot');
                     pollTimeout = setTimeout(function() {
                       pollFirebaseQueue();
