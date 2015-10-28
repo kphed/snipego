@@ -77,7 +77,7 @@ jackpotCheck();
 var pollFirebaseQueue = function() {
   ref.child('queue').once('value', function(data) {
     var queueData = data.val();
-    console.log('QUEUE DATA IS ', typeof data.val(), data.val(), 'queueData', queueData);
+    console.log('QUEUE DATA IS ', queueData);
     if (queueData) {
       queueJackpot(queueData);
     } else {
@@ -131,7 +131,13 @@ var timerCheck = function() {
 var queueJackpot = function(queueData) {
   ref.child('currentJackpot').once('value', function(data) {
     var jackpotData = data.val();
-    var firstQueueItem = queueData.shift();
+    var keyDelete;
+    var firstQueueItem
+    for (var key in queueData) {
+      firstQueueItem = queueData[key];
+      keyDelete = key;
+      break;
+    }
     jackpotData.itemsCount += firstQueueItem.itemsCount;
     jackpotData.jackpotValue += firstQueueItem.itemsValue;
     if (jackpotData.players) {
@@ -143,7 +149,7 @@ var queueJackpot = function(queueData) {
       tradeID: '',
       protectionCode: '',
     }, function() {
-      ref.child('queue').set(queueData, function() {
+      ref.child('queue').child(keyDelete).remove(function() {
         ref.child('currentJackpot').update({
           itemsCount: jackpotData.itemsCount,
           jackpotValue: jackpotData.jackpotValue,
