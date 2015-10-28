@@ -22,7 +22,7 @@
       <li class="nav-item" ng-show="!isAuth">
         <a href="/auth/steam"><img src="img/sits_large_border.png" /></a>
       </li>
-      <li ng-show="nav-item isAuth">
+      <li ng-show="profile-pic isAuth">
         <img id="profilePic" data-trigger="hover" rel="popover" data-content="Deposit: {{$root.user.deposit}} <br />Won: {{$root.user.won}}" ng-src="{{profilePic}}" />
       </li>
     </ul>
