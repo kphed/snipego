@@ -6,6 +6,8 @@ var passport = require('passport');
 var Firebase = require('firebase');
 var request = require('request');
 
+var userRef = new Firebase('https://snipego.firebaseio.com/users');
+
 var jackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
 router.post('/', function(req, res) {
@@ -55,7 +57,19 @@ router.post('/', function(req, res) {
               console.log(error);
               res.json({'error': error});
             } else {
-              res.json({'success': body});
+              userRef.child(req.body.id).once('value', function(data) {
+                var userData = data.val();
+                if (userData.deposit) {
+                  userData.deposit += req.body.itemsValue;
+                } else {
+                  userData.deposit = req.body.itemsValue;
+                }
+                userRef.child(req.body.id).update({
+                  deposit: userData.deposit
+                }, function() {
+                  res.json({'success': body});
+                });
+              });
             }
           });
         } else {
