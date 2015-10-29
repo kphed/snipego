@@ -232,9 +232,9 @@ var endRound = function() {
                     usersRef.child(winnerObj.winner.id).once('value', function(data) {
                       var userData = data.val();
                       if (data.child('won').exists()) {
-                        userData.won += Math.floor(parseFloat(winnerObj.jackpotValue, 2));
+                        userData.won = (Math.floor(parseFloat(userData.won, 2)) + Math.floor(parseFloat(winnerObj.jackpotValue, 2))).toFixed(2);
                       } else {
-                        userData.won = Math.floor(parseFloat(winnerObj.jackpotValue, 2));
+                        userData.won = (Math.floor(parseFloat(winnerObj.jackpotValue, 2))).toFixed(2);
                       }
                       usersRef.child(winnerObj.winner.id).update({
                         won: userData.won
