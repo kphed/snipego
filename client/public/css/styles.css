@@ -8,6 +8,10 @@ html, body {
   border: 1px solid transparent !important;
 }
 
+.popover-content {
+    word-wrap: break-word;
+}
+
 /* Main View - Jackpot Progress */
 
 .progress-container {
