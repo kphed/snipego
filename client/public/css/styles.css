@@ -62,7 +62,7 @@ html, body {
 }
 
 .jackpot-header {
-  padding-top: 1em;
+  padding-top: 0.5em;
   text-align: center;
   height: 4em;
   overflow: auto;
