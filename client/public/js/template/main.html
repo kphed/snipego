@@ -48,10 +48,8 @@
 <div class="col-sm-4 col-md-5 col-lg-5">
     <div class="current-jackpot">
       <div class="jackpot-header" popover>
-        <div class="round-hash-text">New Round</div>
-          <div class="round-hash" data-trigger="hover" rel="popover" data-title="Provably Fair" data-content=" We use a provably fair system to ensure that numbers cannot be altered or changed by the end of the round. The hash is released at the beginning and the salt and winning number released at the end of the round, so that this can be verified. <p>Current Round Hash: {{currentJackpot.roundHash}}</p>">
-          <i class="glyphicon glyphicon-barcode"></i>
-          </div>
+        <div class="round-hash-text" data-trigger="hover" rel="popover" data-title="Provably Fair" data-content=" We use a provably fair system to ensure that numbers cannot be altered or changed by the end of the round. The hash is released at the beginning and the salt and winning number released at the end of the round, so that this can be verified. <p>Current Round Hash: {{currentJackpot.roundHash}}</p>">New Round <i class="glyphicon glyphicon-barcode"></i>
+        </div>
       </div>
       <div class="jackpot-player" ng-repeat="player in currentJackpot.players" popover>
         <div class="jackpot-player-photo">
@@ -72,10 +70,7 @@
         <i class="winner-glyphicon glyphicon glyphicon-piggy-bank"></i>
       </div>
       <div class="jackpot-header" popover>
-        <div class="round-hash-text">Ended Round</div>
-        <div class="round-hash" data-trigger="hover" rel="popover" data-title="Provably Fair" data-content="Hash: {{jackpots.roundHash}} Salt: {{jackpots.salt}} String: {{jackpots.rngStr}} <br />Winning Ticket At: {{jackpots.winningNumber}}">
-        <i class="glyphicon glyphicon-barcode"></i>
-        </div>
+        <div class="round-hash-text" data-trigger="hover" rel="popover" data-title="Provably Fair" data-content="Hash: {{jackpots.roundHash}} Salt: {{jackpots.salt}} String: {{jackpots.rngStr}} <br />Winning Ticket At: {{jackpots.winningNumber}}">Ended Round <i class="glyphicon glyphicon-barcode"></i></div>
       </div>
       <div class="jackpot-player" ng-repeat="player in jackpots.players" popover>
         <div class="jackpot-player-photo">
