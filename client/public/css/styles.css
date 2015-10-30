@@ -381,6 +381,7 @@ a {
 .chat {
   margin-top: 3px;
   height: 40em;
+  position: fixed;
 }
 
 .fixed {
