@@ -112,7 +112,7 @@ html, body {
   background: rgba(33, 33, 33, 0.65);
   margin-bottom: 1em;
   margin-top: 0.25em;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .round-winner {
