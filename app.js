@@ -38,6 +38,34 @@ ref.authWithCustomToken(token2, function(error, authData) {
   }
 });
 
+ref.onAuth(function(authData) {
+  if (authData) {
+    console.log('Successfully authenticated');
+  } else {
+    ref.authWithCustomToken(token, function(error, authData) {
+      if (error) {
+        console.log('error! ', error);
+      } else {
+        console.log('Authenticated');
+      }
+    });
+  }
+});
+
+sgRef.onAuth(function(authData) {
+  if (authData) {
+    console.log('Successfully authenticated');
+  } else {
+    sgRef.authWithCustomToken(token, function(error, authData) {
+      if (error) {
+        console.log('error! ', error);
+      } else {
+        console.log('Authenticated');
+      }
+    });
+  }
+});
+
 
 require('./passport/passport')(passport);
 
