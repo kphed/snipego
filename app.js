@@ -13,10 +13,11 @@ var jackpot = require('./jackpot');
 var Firebase = require('firebase');
 var FirebaseTokenGenerator = require("firebase-token-generator");
 var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
-var tokenGenerator2 = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET2);
+var tokenGenerator2 = new FirebaseTokenGenerator('MOTU2o7brEaAq9XdsiG2ajHG9qJEjEFM8nBWUYlG');
 var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
 var token2 = tokenGenerator2.createToken({uid: "snipego"}, {admin: true});
 
+var ref = new Firebase('https://snipego.firebaseio.com/');
 
 var sgRef = new Firebase(process.env.FIREBASE_DATABASE);
 
@@ -28,8 +29,6 @@ sgRef.authWithCustomToken(token, function(error, authData) {
   }
 });
 
-var ref = new Firebase('https://snipego.firebaseio.com/');
-
 ref.authWithCustomToken(token2, function(error, authData) {
   if (error) {
     console.log('error! ', error);
@@ -40,7 +39,7 @@ ref.authWithCustomToken(token2, function(error, authData) {
 
 ref.onAuth(function(authData) {
   if (authData) {
-    console.log('Successfully authenticated');
+    console.log('SnipeGo Successfully authenticated');
   } else {
     ref.authWithCustomToken(token, function(error, authData) {
       if (error) {
@@ -54,7 +53,7 @@ ref.onAuth(function(authData) {
 
 sgRef.onAuth(function(authData) {
   if (authData) {
-    console.log('Successfully authenticated');
+    console.log('SnipeGo2 Successfully authenticated');
   } else {
     sgRef.authWithCustomToken(token, function(error, authData) {
       if (error) {
@@ -65,7 +64,6 @@ sgRef.onAuth(function(authData) {
     });
   }
 });
-
 
 require('./passport/passport')(passport);
 
