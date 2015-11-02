@@ -111,28 +111,30 @@ var addPrices = function(body, res) {
 var fetchItems = function(items, descriptions) {
   var tempObj = {};
   var itemsArray = [];
-  Object.keys(items).map(function(id) {
-    var item = items[id];
-    var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
-    for (var key in description) {
-      if (!description.market_price) {
-        continue;
+  if (items) {
+    Object.keys(items).map(function(id) {
+      var item = items[id];
+      var description = descriptions[item.classid + '_' + (item.instanceid || '0')];
+      for (var key in description) {
+        if (!description.market_price) {
+          continue;
+        }
+        item[key] = description[key];
       }
-      item[key] = description[key];
-    }
-    if (item.icon_url) {
-      item.contextid = 2;
-      tempObj.assetid = item.id;
-      tempObj.appid = item.appid;
-      tempObj.contextid = item.contextid;
-      tempObj.market_hash_name = item.market_hash_name;
-      tempObj.icon_url = item.icon_url;
-      tempObj.market_price = item.market_price;
-      itemsArray.push(tempObj);
-      tempObj = {};
-    }
-    return item;
-  });
+      if (item.icon_url) {
+        item.contextid = 2;
+        tempObj.assetid = item.id;
+        tempObj.appid = item.appid;
+        tempObj.contextid = item.contextid;
+        tempObj.market_hash_name = item.market_hash_name;
+        tempObj.icon_url = item.icon_url;
+        tempObj.market_price = item.market_price;
+        itemsArray.push(tempObj);
+        tempObj = {};
+      }
+      return item;
+    });
+  }
   return itemsArray;
 };
 
