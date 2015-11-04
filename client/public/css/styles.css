@@ -74,6 +74,10 @@ html, body {
   padding-top: 1em;
   border-top: 2px solid transparent;
   overflow: hidden;
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 1s;
+  animation: slide 0.5s forwards;
+  animation-delay: 1s;
 }
 
 .jackpot-player-photo {
