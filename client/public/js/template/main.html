@@ -1,4 +1,3 @@
-<div class="row">Testing</div>
 <div class="progress-container col-sm-6 col-md-4 col-lg-4" popover>
     <div class="progress-text" ng-style="getStyle()">{{currentJackpot.itemsCount}}</div>
     <div
@@ -46,6 +45,11 @@
 </div>
 
 <div class="col-sm-4 col-md-5 col-lg-5 col-sm-offset-6 col-md-offset-4 col-lg-offset-4">
+    <div class="current-items">
+      <span ng-repeat="item in currentItems">
+      <img class="jackpot-player-deposit-item" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+      </span>
+    </div>
     <div class="current-jackpot">
       <div class="jackpot-header" popover>
         <div class="round-hash-text">New Round</div>
