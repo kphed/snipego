@@ -23,7 +23,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.messages = $firebaseArray(query);
 
-    // $scope.ended = [];
+    console.log('what ', $scope.endedJackpots);
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
