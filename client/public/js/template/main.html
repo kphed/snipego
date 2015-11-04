@@ -46,10 +46,10 @@
 
 <div class="col-sm-4 col-md-5 col-lg-5 col-sm-offset-6 col-md-offset-4 col-lg-offset-4">
     <div class="current-items">
-      <span ng-repeat="item in currentItems">
-        <img class="jackpot-player-deposit-item" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
-        <span>{{item.market_price}}</span>
-      </span>
+      <div class="itemContainer" ng-repeat="item in currentItems">
+        <img class="itemBox" ng-src="https://steamcommunity-a.akamaihd.net/economy/image/{{item.icon_url}}" />
+        <div class="itemPrice">{{item.market_price}}</div>
+      </div>
     </div>
     <div class="current-jackpot">
       <div class="jackpot-header" popover>
