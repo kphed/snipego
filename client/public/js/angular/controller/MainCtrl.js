@@ -11,19 +11,15 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.currentJackpot = $firebaseObject(currentJackpotRef);
 
-    // $scope.endedJackpots = $firebaseArray(endedJackpotRef);
-
     var query = messageRef.orderByChild("timestamp").limitToLast(15);
 
-    var ended = endedJackpotRef.limitToLast(5);
+    var ended = endedJackpotRef.orderByChild('timestamp').limitToLast(5);
 
     $scope.ended = $firebaseArray(ended);
 
-    $scope.endedJackpots = $scope.ended;
+    $scope.endedJackpots = [];
 
     $scope.messages = $firebaseArray(query);
-
-    console.log('what ', $scope.endedJackpots);
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
@@ -36,17 +32,14 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       });
     });
 
-    // $scope.endedJackpots.$watch(function() {
-    //   $scope.endedJackpots.$loaded().then(function() {
-    //     $scope.ended = $scope.endedJackpots.slice(-5).reverse();
-    //     for (var i = 0; i < $scope.ended.length; i++) {
-    //       $scope.ended[i].winningNumber = (parseFloat($scope.ended[i].rngStr) * 100).toFixed(2) + '%';
-    //       for (var j = 0; j < $scope.ended[i].players.length; j++) {
-    //         $scope.ended[i].players[j].chance = (($scope.ended[i].players[j].itemsValue / $scope.ended[i].jackpotValue) * 100).toFixed(2);
-    //       }
-    //     }
-    //   });
-    // });
+    $scope.ended.$watch(function() {
+      $scope.ended.$loaded().then(function() {
+        for (var i = $scope.ended.length - 1; i >= 0; i--) {
+          console.log('ended items ', $scope.ended[i]);
+          $scope.endedJackpots.push($scope.ended[i]);
+        }
+      });
+    });
 
     $scope.getSteam = function() {
       console.log('Calling get steam');
