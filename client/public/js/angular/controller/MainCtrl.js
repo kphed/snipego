@@ -19,7 +19,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.ended = $firebaseArray(ended);
 
-    $scope.endedJackpots = $scope.ended.reverse();
+    $scope.endedJackpots = $scope.ended;
 
     $scope.messages = $firebaseArray(query);
 
