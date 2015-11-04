@@ -31,9 +31,8 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     });
 
     $scope.getSteam = function() {
-      console.log('Calling get steam');
       $http.get('/users/get-steam').success(function(data) {
-        console.log('here is the steam data', data);
+        console.log('done');
       });
     };
 

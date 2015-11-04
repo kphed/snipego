@@ -3,10 +3,6 @@
 angular.module('SnipeGo.NavCtrl', ['SnipeGo', 'SnipeGo.Services'])
   .controller('NavCtrl', ['$scope', '$rootScope', 'Auth', '$http', '$firebaseObject', function($scope, $rootScope, Auth, $http, $firebaseObject) {
 
-    var dailyGiveawayRef = new Firebase('https://snipego.firebaseio.com/dailyGiveaway');
-
-    $scope.dailyGiveaway = $firebaseObject(dailyGiveawayRef);
-
     $scope.successDanger = 'danger';
 
     $scope.isAuth = false;
