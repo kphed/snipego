@@ -23,6 +23,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
+        $scope.currentItems = [];
         var players = [];
         for (var key in $scope.currentJackpot.players) {
           $scope.currentJackpot.players[key].chance = (($scope.currentJackpot.players[key].itemsValue / $scope.currentJackpot.jackpotValue) * 100).toFixed(2);
