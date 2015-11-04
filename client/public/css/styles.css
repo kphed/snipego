@@ -65,8 +65,10 @@ html, body {
 .current-items {
   width: 100%;
   background: rgba(33, 33, 33, 0.9);
-  padding-top: 10px;
-  padding-bottom: 20px;
+  display: inline-block;
+  text-align: center;
+  height: 84px;
+  width: 74px;
 }
 
 .jackpot-header {
