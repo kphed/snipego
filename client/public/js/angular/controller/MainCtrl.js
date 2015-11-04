@@ -11,7 +11,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.currentJackpot = $firebaseObject(currentJackpotRef);
 
-    $scope.endedJackpots = $firebaseArray(endedJackpotRef);
+    // $scope.endedJackpots = $firebaseArray(endedJackpotRef);
 
     var query = messageRef.orderByChild("timestamp").limitToLast(15);
 
@@ -19,11 +19,11 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.ended = $firebaseArray(ended);
 
-    console.log('ended isss ', $scope.ended);
+    $scope.endedJackpots = $scope.ended.reverse();
 
     $scope.messages = $firebaseArray(query);
 
-    $scope.ended = [];
+    // $scope.ended = [];
 
     $scope.currentJackpot.$watch(function() {
       $scope.currentJackpot.$loaded().then(function() {
@@ -36,17 +36,17 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       });
     });
 
-    $scope.endedJackpots.$watch(function() {
-      $scope.endedJackpots.$loaded().then(function() {
-        $scope.ended = $scope.endedJackpots.slice(-5).reverse();
-        for (var i = 0; i < $scope.ended.length; i++) {
-          $scope.ended[i].winningNumber = (parseFloat($scope.ended[i].rngStr) * 100).toFixed(2) + '%';
-          for (var j = 0; j < $scope.ended[i].players.length; j++) {
-            $scope.ended[i].players[j].chance = (($scope.ended[i].players[j].itemsValue / $scope.ended[i].jackpotValue) * 100).toFixed(2);
-          }
-        }
-      });
-    });
+    // $scope.endedJackpots.$watch(function() {
+    //   $scope.endedJackpots.$loaded().then(function() {
+    //     $scope.ended = $scope.endedJackpots.slice(-5).reverse();
+    //     for (var i = 0; i < $scope.ended.length; i++) {
+    //       $scope.ended[i].winningNumber = (parseFloat($scope.ended[i].rngStr) * 100).toFixed(2) + '%';
+    //       for (var j = 0; j < $scope.ended[i].players.length; j++) {
+    //         $scope.ended[i].players[j].chance = (($scope.ended[i].players[j].itemsValue / $scope.ended[i].jackpotValue) * 100).toFixed(2);
+    //       }
+    //     }
+    //   });
+    // });
 
     $scope.getSteam = function() {
       console.log('Calling get steam');
