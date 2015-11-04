@@ -93,6 +93,18 @@ var timeoutTimer = setTimeout(function() {
     timerCheck();
   }, 1100);
 
+var setTimeoutTimer = function(milli) {
+  timeoutTimer = setTimeout(function() {
+    timerCheck();
+  }, milli);
+};
+
+var setPollTimer = function(milli) {
+  pollTimeout = setTimeout(function() {
+    pollFirebaseQueue();
+  }, milli);
+};
+
 var timerCheck = function() {
   ref.child('currentJackpot').once('value', function(data) {
     var jackpotData = data.val();
@@ -111,20 +123,14 @@ var timerCheck = function() {
         ref.child('currentJackpot').update({
           timer: jackpotData.timer
         }, function() {
-          timeoutTimer = setTimeout(function() {
-            timerCheck();
-          }, 1000);
+          setTimeoutTimer(1000);
         });
       } else {
-        timeoutTimer = setTimeout(function() {
-          timerCheck();
-        }, 10000);
+        setTimeoutTimer(10000);
       }
     } else {
       endRound();
-      timeoutTimer = setTimeout(function() {
-        timerCheck();
-      }, 10000);
+      setTimeoutTimer(10000);
     }
   });
 };
@@ -158,9 +164,7 @@ var queueJackpot = function(queueData) {
           players: jackpotData.players,
         }, function() {
           if (jackpotData.itemsCount < 50) {
-            pollTimeout = setTimeout(function() {
-              pollFirebaseQueue();
-            }, 5000);
+            setPollTimer(5000);
           } else {
             endRound();
           }
@@ -225,9 +229,7 @@ var endRound = function() {
                 }, function(error, response, body) {
                   if (error) {
                     console.log(error);
-                    pollTimeout = setTimeout(function() {
-                      pollFirebaseQueue();
-                    }, 10000);
+                    setPollTimer(10000);
                   } else {
                     usersRef.child(winnerObj.winner.id).once('value', function(data) {
                       var userData = data.val();
@@ -243,9 +245,7 @@ var endRound = function() {
                       });
                     });
                     console.log('Making a withdraw request now to bot');
-                    pollTimeout = setTimeout(function() {
-                      pollFirebaseQueue();
-                    }, 10000);
+                    setPollTimer(10000);
                   }
                 });
               });
