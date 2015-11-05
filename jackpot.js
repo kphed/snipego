@@ -195,7 +195,7 @@ var endRound = function() {
       rngStr = sgData.rngStr;
       console.log('ROUND ENDED! hash: ', hash, ' salt: ', salt, ' rngStr: ', rngStr);
       currentJackpot.tickets = currentJackpot.jackpotValue * 100;
-      currentJackpot.winningTicket = Math.floor((parseFloat(rngStr, 2) * currentJackpot.tickets));
+      currentJackpot.winningNumber = Math.floor((parseFloat(rngStr, 2) * 100));
       currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
       currentJackpot.salt = salt;
       currentJackpot.rngStr = rngStr;
