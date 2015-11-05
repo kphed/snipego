@@ -199,7 +199,6 @@ var endRound = function() {
       currentJackpot.winner = currentJackpot.players[winnerArray[currentJackpot.winningTicket]];
       currentJackpot.salt = salt;
       currentJackpot.rngStr = rngStr;
-      currentJackpot.winner.chance = ((currentJackpot.winner.itemsValue / currentJackpot.jackpotValue) * 100).toFixed(2);
       winnerObj.jackpotValue = currentJackpot.jackpotValue;
       currentJackpot.jackpotValue = currentJackpot.jackpotValue.toFixed(2);
       winnerObj.winner = currentJackpot.winner;
