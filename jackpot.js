@@ -183,6 +183,7 @@ var endRound = function() {
     for (var i = 0; i < currentJackpot.players.length; i++) {
       winnerObj.items = winnerObj.items.concat(currentJackpot.players[i].items);
       var playerValue = currentJackpot.players[i].itemsValue * 100;
+      currentJackpot.players[i].chance = ((currentJackpot.players[i].itemsValue / currentJackpot.jackpotValue) * 100).toFixed(2);
       for (var j = 0; j < playerValue; j++) {
         winnerArray.push(i);
       }
