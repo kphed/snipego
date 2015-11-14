@@ -10,12 +10,13 @@ var passport = require('passport');
 var cookieSession = require('cookie-session');
 var jackpot = require('./jackpot');
 
+var expiry = (new Date().getTime()/1000) + 10 * 365 * 24 * 60 * 60;
 var Firebase = require('firebase');
 var FirebaseTokenGenerator = require("firebase-token-generator");
 var tokenGenerator = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET);
 var tokenGenerator2 = new FirebaseTokenGenerator(process.env.FIREBASE_SECRET2);
-var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true});
-var token2 = tokenGenerator2.createToken({uid: "snipego"}, {admin: true});
+var token = tokenGenerator.createToken({uid: "snipego"}, {admin: true, expires: expiry});
+var token2 = tokenGenerator2.createToken({uid: "snipego"}, {admin: true, expires: expiry});
 
 var ref = new Firebase('https://snipego.firebaseio.com/');
 
