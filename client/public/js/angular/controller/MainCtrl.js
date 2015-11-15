@@ -63,6 +63,9 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           if (string.slice(i, 5) === "csgo-") {
             return "I am spammer. Report me to Steam. Here is my info: " + JSON.stringify(user);
           }
+          else if (string.slice(i, 8) === "csgonova") {
+            return "I am spammer. Report me to Steam. Here is my info: " + JSON.stringify(user);
+          }
         }
       }
       return string;
