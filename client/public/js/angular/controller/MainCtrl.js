@@ -57,6 +57,17 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       };
     };
 
+    var spamCheck = function(string, user) {
+      for (var i = 0; i < string.length; i++) {
+        if (string[i] === 'c') {
+          if (string.slice(i, 5) === "csgo-") {
+            return "I am spammer. Report me to Steam. Here is my info: " + JSON.stringify(user);
+          }
+        }
+      }
+      return string;
+    };
+
     $scope.sendMessage = function(message, username) {
       if (!message) {
         $window.alert('Enter in a message to chat!');
@@ -64,7 +75,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         $window.alert('Sign in to chat!');
       } else {
         var msg = {};
-        msg.content = message;
+        msg.content = spamCheck(message, $rootScope.user);
         msg.username = $rootScope.user.displayName;
         if ($rootScope.user.staff) {
           msg.staff = $rootScope.user.staff;
