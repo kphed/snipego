@@ -60,10 +60,10 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     var spamCheck = function(string, user) {
       for (var i = 0; i < string.length; i++) {
         if (string[i].toLowercase() === 'c') {
-          if (string.slice(i, 5).toLowercase() === "csgo-") {
+          if (string.slice(i, 5).toLowerCase() === "csgo-") {
             return "I am spammer. Report me to Steam. Here is my info: " + JSON.stringify(user);
           }
-          else if (string.slice(i, 8).toLowercase() === "csgonova") {
+          else if (string.slice(i, 8).toLowerCase() === "csgonova") {
             return "I am spammer. Report me to Steam. Here is my info: " + JSON.stringify(user);
           }
         }
