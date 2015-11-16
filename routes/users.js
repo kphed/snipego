@@ -59,6 +59,7 @@ router.get('/get-steam', function(req, res) {
 router.post('/send-message', function(req, res) {
   console.log('req body is ', req.body);
   if (req.body.username === 'CSGO-FIGHT.COM') {
+    console.log('SPAMMER');
     res.json({'error': 'Spammer'});
   } else {
     messagesRef.push(req.body, function() {
