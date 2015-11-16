@@ -66,7 +66,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
           else if (string.slice(i, 8).toLowerCase() === "csgonova" || string.slice(i, 8).toLowerCase() === "csg0nova" || string.slice(i, 8).toLowerCase() === "csgon0va" || string.slice(i, 8).toLowerCase() === "csg0n0va") {
             return "";
           }
-          else if (user.displayName === "CSGO-FIGHT.COM") {
+          else if (user === "CSGO-FIGHT.COM") {
             return "";
           }
         }
@@ -81,7 +81,7 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         $window.alert('Sign in to chat!');
       } else {
         var msg = {};
-        msg.content = spamCheck(message, $rootScope.user);
+        msg.content = spamCheck(message, username);
         msg.username = $rootScope.user.displayName;
         if ($rootScope.user.staff) {
           msg.staff = $rootScope.user.staff;
