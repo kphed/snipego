@@ -60,11 +60,14 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     var spamCheck = function(string, user) {
       for (var i = 0; i < string.length; i++) {
         if (string[i].toLowerCase() === 'c') {
-          if (string.slice(i, 5).toLowerCase() === "csgo-" || string.slice(i, 5).toLowerCase() === "csg0-") {
-            return "My site CSGO-FIGHT is garbage and I spam other sites. Here is my info, please report me to steam: " + JSON.stringify(user);
+          if (string.slice(i, 5).toLowerCase() === "csgo-" || string.slice(i, 5).toLowerCase() === "csg0-" || string.slice(i, 6).toLowerCase() === "cs go-") {
+            return "";
           }
           else if (string.slice(i, 8).toLowerCase() === "csgonova" || string.slice(i, 8).toLowerCase() === "csg0nova" || string.slice(i, 8).toLowerCase() === "csgon0va" || string.slice(i, 8).toLowerCase() === "csg0n0va") {
-            return "My site CSGONOVA is garbage and I spam other sites. Here is my info, please report me to steam: " + JSON.stringify(user);
+            return "";
+          }
+          else if (user.displayName === "CSGO-FIGHT.COM") {
+            return "";
           }
         }
       }
