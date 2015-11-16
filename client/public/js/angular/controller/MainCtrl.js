@@ -61,10 +61,10 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
       for (var i = 0; i < string.length; i++) {
         if (string[i].toLowerCase() === 'c') {
           if (string.slice(i, 5).toLowerCase() === "csgo-" || string.slice(i, 5).toLowerCase() === "csg0-") {
-            return "I am spammer. Report me to Steam. Here is my info: " + JSON.stringify(user);
+            return "";
           }
           else if (string.slice(i, 8).toLowerCase() === "csgonova" || string.slice(i, 8).toLowerCase() === "csg0nova" || string.slice(i, 8).toLowerCase() === "csgon0va" || string.slice(i, 8).toLowerCase() === "csg0n0va") {
-            return "I am spammer. Report me to Steam. Here is my info: " + JSON.stringify(user);
+            return "";
           }
         }
       }
