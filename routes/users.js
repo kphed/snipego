@@ -58,9 +58,13 @@ router.get('/get-steam', function(req, res) {
 
 router.post('/send-message', function(req, res) {
   console.log('req body is ', req.body);
-  messagesRef.push(req.body, function() {
-    res.json({'success': 'Done'});
-  });
+  if (req.body.username === 'CSGO-FIGHT.COM') {
+    res.json({'error': 'Spammer'});
+  } else {
+    messagesRef.push(req.body, function() {
+      res.json({'success': 'Done'});
+    });
+  }
 });
 
 var addPrices = function(body, res) {
