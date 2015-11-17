@@ -12,6 +12,7 @@ angular.module('SnipeGo.DepositCtrl', ['SnipeGo', 'SnipeGo.Services'])
         tradeUrl: $rootScope.user.tradeUrl,
         displayName: $rootScope.user.displayName,
         avatar: $rootScope.user.photos[1],
+        full_avatar: $rootScope.user.photos[2],
         id: $rootScope.user.id,
         items: $scope.selectedItems,
         itemsValue: $scope.totalValue(),
