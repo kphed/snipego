@@ -18,7 +18,6 @@ module.exports = function(passport) {
     realm: 'http://www.snipego.com',
     apiKey: process.env.API_KEY
   }, function(identifier, profile, done) {
-    console.log('profile is ', profile);
       var steam = {
         id: profile.id,
         displayName: profile.displayName,
