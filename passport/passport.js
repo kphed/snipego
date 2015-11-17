@@ -18,10 +18,11 @@ module.exports = function(passport) {
     realm: 'http://www.snipego.com',
     apiKey: process.env.API_KEY
   }, function(identifier, profile, done) {
+    console.log('profile is ', profile);
       var steam = {
         id: profile.id,
         displayName: profile.displayName,
-        photos: [profile.photos[0].value, profile.photos[1].value],
+        photos: [profile.photos[0].value, profile.photos[1].value, profile.photos[2].value],
         tradeUrl: '',
       };
       var userRef = new Firebase('https://snipego.firebaseio.com/users');
