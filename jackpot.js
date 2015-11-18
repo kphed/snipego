@@ -110,7 +110,10 @@ var timerCheck = function() {
       var timerData = data.val();
     ref.child('currentJackpot').once('value', function(data) {
       var jackpotData = data.val();
-      if (!timerData) {
+      console.log('Timer data is ', !timerData);
+      console.log('Timer data undefined? ', timerData.timer === undefined);
+      console.log('Timer data ? ', timerData.timer > 0);
+      if (!timerData || timerData.timer > 0) {
         if (!timerData && jackpotData.players && jackpotData.players.length > 1) {
           ref.child('timer').update({
             timer: 120
