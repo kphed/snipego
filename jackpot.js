@@ -106,32 +106,35 @@ var setPollTimer = function(milli) {
 };
 
 var timerCheck = function() {
-  ref.child('currentJackpot').once('value', function(data) {
-    var jackpotData = data.val();
-    if (jackpotData.timer === undefined || jackpotData.timer > 0) {
-      if (!jackpotData.timer && jackpotData.players && jackpotData.players.length > 1) {
-        ref.child('currentJackpot').update({
-          timer: 120
-        }, function() {
-          timeoutTimer = setTimeout(function() {
-            timerCheck();
-          }, 1000);
-        });
-      }
-      else if (jackpotData.timer && jackpotData.players) {
-        jackpotData.timer--;
-        ref.child('currentJackpot').update({
-          timer: jackpotData.timer
-        }, function() {
-          setTimeoutTimer(1000);
-        });
+  ref.child('timer').once('value', function(data) {
+      var timerData = data.val();
+    ref.child('currentJackpot').once('value', function(data) {
+      var jackpotData = data.val();
+      if (timerData.timer === undefined || timerData.timer > 0) {
+        if (!timerData.timer && jackpotData.players && jackpotData.players.length > 1) {
+          ref.child('timer').update({
+            timer: 120
+          }, function() {
+            timeoutTimer = setTimeout(function() {
+              timerCheck();
+            }, 1000);
+          });
+        }
+        else if (timerData.timer && jackpotData.players) {
+          timerData.timer--;
+          ref.child('timer').update({
+            timer: timerData.timer
+          }, function() {
+            setTimeoutTimer(1000);
+          });
+        } else {
+          setTimeoutTimer(10000);
+        }
       } else {
+        endRound();
         setTimeoutTimer(10000);
       }
-    } else {
-      endRound();
-      setTimeoutTimer(10000);
-    }
+    });
   });
 };
 

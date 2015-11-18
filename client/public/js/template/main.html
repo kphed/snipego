@@ -14,7 +14,7 @@
     responsive="false"
     duration="800"
     animation="easeOutCubic" data-trigger="hover" rel="popover" data-content="If the pot has at least 50 items or the timer has ended, the winner will be chosen. The timer is triggered after two players have entered the pot">
-      <div ng-show="currentJackpot.timer"
+      <div ng-show="timer"
       round-progress
       max="120"
       current="currentJackpot.timer"
@@ -34,7 +34,7 @@
     <table cellspacing="0" cellpadding="0" class="table table-bordered panel" id="progress-table">
       <tr>
         <thead>
-          <th ng-show="currentJackpot.timer" id="progress-header">Jackpot Ending in {{currentJackpot.timer}}s</th>
+          <th ng-show="timer" id="progress-header">Jackpot Ending in {{timer}}s</th>
         </thead>
         <td>
           <div id="progress-value">{{currentJackpot.jackpotValue}}</div>

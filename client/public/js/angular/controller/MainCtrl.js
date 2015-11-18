@@ -5,6 +5,8 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     var currentJackpotRef = new Firebase('https://snipego.firebaseio.com/currentJackpot');
 
+    var timerRef = new Firebase('https://snipego.firebaseio.com/timer');
+
     var endedJackpotRef = new Firebase('https://snipego.firebaseio.com/endedJackpots');
 
     var messageRef = new Firebase('https://snipego.firebaseio.com/messages');
@@ -14,6 +16,8 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     var ended = endedJackpotRef.orderByChild('timestamp').limitToLast(5);
 
     $scope.currentJackpot = $firebaseObject(currentJackpotRef);
+
+    $scope.timer = $firebaseObject(timerRef);
 
     $scope.currentItems = [];
 
@@ -34,7 +38,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         $scope.currentItems = $scope.currentItems.sort(function(a, b) {
           return parseInt(b.market_price) - parseInt(a.market_price);
         });
-        console.log('current items in pot ', $scope.currentItems);
       });
     });
 
