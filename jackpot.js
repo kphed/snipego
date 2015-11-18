@@ -113,8 +113,8 @@ var timerCheck = function() {
       console.log('Timer data is ', !timerData);
       console.log('Timer data undefined? ', timerData.timer === undefined);
       console.log('Timer data ? ', timerData.timer > 0);
-      if (!timerData || timerData === null || timerData.timer === undefined) {
-        if (!timerData.timer && jackpotData.players && jackpotData.players.length > 1) {
+      if (!timerData) {
+        if (!timerData && jackpotData.players && jackpotData.players.length > 1) {
           ref.child('timer').update({
             timer: 120
           }, function() {
@@ -135,7 +135,7 @@ var timerCheck = function() {
         }
       } else {
         endRound();
-        ref.child('timer').child('timer').remove();
+        ref.child('timer').remove();
         setTimeoutTimer(10000);
       }
     });
