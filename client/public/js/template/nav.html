@@ -88,7 +88,7 @@
             <button class="btn btn-info btn-popover" id="inventory-refresh-btn" data-toggle="popover" data-container="body" data-content="Refresh Inventory" ng-click="fetchInventory()"><i class="glyphicon glyphicon-refresh inventory-refresh-btn" ng-class="{true: 'glyphicon-refresh-animate'}[inventoryLoading]"></i></button>
           </div>
           <div id="total-value-text">
-            <span>Total Value: {{totalValue()}} | Mininum 1 Value Total | 10 Skins Max</span>
+            <span>Total Value: {{totalValue()}} | No Minimum | 10 Skins Max</span>
             <div class="items-shown" ng-show="!items.length">Get your up-to-date inventory by refreshing <img style="height: 25px; width: 30px" src="../../img/refresh.png" /></div>
             <div class="items-shown" ng-show="items.length">If you are missing any items, please refresh your inventory <img style="height: 25px; width: 30px" src="../../img/refresh.png" /> again </div>
             <div class="privacy-warning" ng-show="!items.length">*Make sure your steam inventory privacy settings are set to public or you won't see your items*</div>
