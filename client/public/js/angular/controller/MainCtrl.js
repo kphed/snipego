@@ -26,7 +26,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
     $scope.messages = $firebaseArray(query);
 
     $scope.currentJackpot.$watch(function() {
-      $scope.currentJackpot.$loaded().then(function() {
         $scope.currentItems = [];
         var players = [];
         for (var key in $scope.currentJackpot.players) {
@@ -38,7 +37,6 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
         $scope.currentItems = $scope.currentItems.sort(function(a, b) {
           return parseInt(b.market_price) - parseInt(a.market_price);
         });
-      });
     });
 
     $scope.getSteam = function() {

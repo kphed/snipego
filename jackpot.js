@@ -154,8 +154,13 @@ var queueJackpot = function(queueData) {
     jackpotData.jackpotValue += firstQueueItem.itemsValue;
     if (jackpotData.players) {
       jackpotData.players.push(firstQueueItem);
+      jackpotData.items = [];
+      for (var i = 0; i < jackpotData.players.length; i++) {
+        jackpotData.items = jackpotData.items.concat(jackpotData.players[i].items);
+      }
     } else {
       jackpotData.players = [firstQueueItem];
+      jackpotData.items = firstQueueItem.items;
     }
     ref.child('users').child(firstQueueItem.id).update({
       tradeID: '',
@@ -164,6 +169,7 @@ var queueJackpot = function(queueData) {
       ref.child('queue').child(keyDelete).remove(function() {
         console.log('Removed key, in callback now');
         ref.child('currentJackpot').update({
+          items: jackpotData.items,
           itemsCount: jackpotData.itemsCount,
           jackpotValue: jackpotData.jackpotValue,
           players: jackpotData.players,
