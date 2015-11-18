@@ -112,8 +112,8 @@ var timerCheck = function() {
       var jackpotData = data.val();
       console.log('Timer data is ', !timerData);
       console.log('Timer data undefined? ', timerData.timer === undefined);
-      console.log('Timer data zero? ', timerData.timer > 0);
-      if (!timerData || timerData.timer === undefined || timerData.timer > 0) {
+      console.log('Timer data ? ', timerData.timer > 0);
+      if (!timerData || timerData.timer === undefined) {
         if (!timerData.timer && jackpotData.players && jackpotData.players.length > 1) {
           ref.child('timer').update({
             timer: 120
@@ -135,6 +135,7 @@ var timerCheck = function() {
         }
       } else {
         endRound();
+        ref.child('timer').child('timer').remove();
         setTimeoutTimer(10000);
       }
     });
