@@ -120,7 +120,7 @@ var timerCheck = function() {
             }, 1000);
           });
         }
-        else if (timerData.timer && jackpotData.players) {
+        else if (timerData && jackpotData.players) {
           timerData.timer--;
           ref.child('timer').update({
             timer: timerData.timer
