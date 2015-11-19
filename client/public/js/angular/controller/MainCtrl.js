@@ -19,22 +19,18 @@ angular.module('SnipeGo.MainCtrl', ['SnipeGo'])
 
     $scope.timer = $firebaseObject(timerRef);
 
-    $scope.currentItems = [];
-
     $scope.ended = $firebaseArray(ended);
 
     $scope.messages = $firebaseArray(query);
 
     $scope.currentJackpot.$watch(function() {
-        $scope.currentItems = [];
         var players = [];
         for (var key in $scope.currentJackpot.players) {
           $scope.currentJackpot.players[key].chance = (($scope.currentJackpot.players[key].itemsValue / $scope.currentJackpot.jackpotValue) * 100).toFixed(2);
           players.push($scope.currentJackpot.players[key]);
-          $scope.currentItems = $scope.currentItems.concat($scope.currentJackpot.players[key].items);
         }
         $scope.currentJackpot.jackpotValue = $scope.currentJackpot.jackpotValue.toFixed(2);
-        $scope.currentItems = $scope.currentItems.sort(function(a, b) {
+        $scope.currentJackpot.items = $scope.currentJackpot.items.sort(function(a, b) {
           return parseInt(b.market_price) - parseInt(a.market_price);
         });
     });

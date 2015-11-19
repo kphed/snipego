@@ -140,6 +140,25 @@ var timerCheck = function() {
   });
 };
 
+var inThrees = function(array) {
+  var result = [];
+  var temp = [];
+  for (var i = 0; i < array.length; i++) {
+    if (temp.length < 3) {
+      temp.push(array[i]);
+      if (temp.length === 3 || !array[i + 1]) {
+        result.push(temp);
+        temp = [];
+      }
+    } else if (!array[i + 1]) {
+      temp.push(array[i]);
+      result.push(temp);
+      return result;
+    }
+  }
+  return result;
+};
+
 var queueJackpot = function(queueData) {
   ref.child('currentJackpot').once('value', function(data) {
     var jackpotData = data.val();
@@ -167,6 +186,7 @@ var queueJackpot = function(queueData) {
       protectionCode: '',
     }, function() {
       ref.child('queue').child(keyDelete).remove(function() {
+        jackpotData.items = inThrees(jackpotData.items);
         console.log('Removed key, in callback now');
         ref.child('currentJackpot').update({
           items: jackpotData.items,
