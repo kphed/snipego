@@ -58,7 +58,7 @@ router.get('/get-steam', function(req, res) {
 
 router.post('/send-message', function(req, res) {
   console.log('req body is ', req.body);
-  if (req.body.username === 'CSGO-FIGHT.COM' || req.body.username === 'CSGO-EASY' || req.body.username === 'STAY FROSTY!' || req.body.username === 'CSGOResort.com NO MIN BET') {
+  if (req.body.username === 'CSGO-FIGHT.COM' || req.body.username === 'CSGO-EASY' || req.body.username === 'STAY FROSTY!' || req.body.username === 'CSGOResort.com NO MIN BET' || req.body.username === 'KEy StakeCSGO.com') {
     console.log('SPAMMER');
     res.json({'error': 'Spammer'});
   } else {
