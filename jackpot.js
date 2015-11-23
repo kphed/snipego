@@ -194,11 +194,7 @@ var queueJackpot = function(queueData) {
           jackpotValue: jackpotData.jackpotValue,
           players: jackpotData.players,
         }, function() {
-          if (jackpotData.itemsCount < 50) {
-            setPollTimer(5000);
-          } else {
-            endRound();
-          }
+          setPollTimer(5000);
         });
       });
     });
