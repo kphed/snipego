@@ -38,34 +38,6 @@ ref.authWithCustomToken(token2, function(error, authData) {
   }
 });
 
-// ref.onAuth(function(authData) {
-//   if (authData) {
-//     console.log('SnipeGo Successfully authenticated');
-//   } else {
-//     ref.authWithCustomToken(token, function(error, authData) {
-//       if (error) {
-//         console.log('error! ', error);
-//       } else {
-//         console.log('Authenticated');
-//       }
-//     });
-//   }
-// });
-
-// sgRef.onAuth(function(authData) {
-//   if (authData) {
-//     console.log('SnipeGo2 Successfully authenticated');
-//   } else {
-//     sgRef.authWithCustomToken(token, function(error, authData) {
-//       if (error) {
-//         console.log('error! ', error);
-//       } else {
-//         console.log('Authenticated');
-//       }
-//     });
-//   }
-// });
-
 require('./passport/passport')(passport);
 
 var app = express();
@@ -101,20 +73,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-// if (app.get('env') === 'development') {
-//   app.use(function(err, req, res, next) {
-//     res.status(err.status || 500);
-//     res.render('error', {
-//       message: err.message,
-//       error: err
-//     });
-//   });
-// }
 
 // production error handler
 // no stacktraces leaked to user
