@@ -1,5 +1,19 @@
 <div class="progress-container col-sm-6-push col-md-4 col-lg-4" popover>
     <div class="progress-text" ng-style="getStyle()">{{currentJackpot.itemsCount}}</div>
+    <div
+    round-progress
+    max="50"
+    current="currentJackpot.itemsCount"
+    color="transparent"
+    bgcolor="transparent"
+    radius="175"
+    stroke="50"
+    semi="false"
+    rounded="true"
+    clockwise="true"
+    responsive="false"
+    duration="800"
+    animation="easeOutCubic">
       <div ng-show="timer.timer"
       round-progress
       max="120"
@@ -7,7 +21,7 @@
       color="#C9302B"
       bgcolor="transparent"
       radius="175"
-      stroke="25"
+      stroke="50"
       semi="false"
       rounded="true"
       clockwise="true"
