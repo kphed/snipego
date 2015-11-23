@@ -16,9 +16,9 @@
       <li class="nav-item">
         <button class="btn btn-info navbar-btn" data-toggle="modal" data-target="#info" data-trigger="hover" rel="popover" data-content="How To Play"><i class="glyphicon glyphicon-info-sign nav-button"></i></button>
       </li>
-      <li class="nav-item">
+<!--       <li class="nav-item">
         <button class="btn btn-danger navbar-btn" data-toggle="modal" data-target="#free" data-trigger="hover" rel="popover" data-content="Get Free Skins"><i class="glyphicon glyphicon-gift nav-button"></i></button>
-      </li>
+      </li> -->
       <li class="nav-item" ng-show="!isAuth">
         <a href="/auth/steam"><img src="img/sits_large_border.png" /></a>
       </li>
@@ -50,11 +50,11 @@
           <li class="how-to-play">If you have any questions, don't hesitate to contact us through support (bottom-right of our site), we'll try to get back to you within minutes</li>
         </ol>
         <ul><span class="how-to-play"><u>How Our Jackpot Works</u></span>
-          <li class="how-to-play">Select up to 10 skins to deposit into the jackpot, 1 value minimum. Once 50 items or more are in the jackpot, the winner is selected.</li>
+          <li class="how-to-play">Select up to 10 skins to deposit into the jackpot. Once at least two players are in the pot, the countdown timer will start and the winner will be announced at the end.</li>
           <li class="how-to-play">Once items are deposited or won, you will receive a trade offer from our bots. This normally takes seconds, but may take up to 5 minutes if steam servers are down or we have a lot of deposits -- we will make sure you ALWAYS receive your winnings or deposit your items.</li>
           <li class="how-to-play">NOTE: We will NEVER add you or ask you for your skins without you requesting a deposit. A protection code is generated with each trade request, please confirm before accepting.</li>
           <li class="how-to-play">Please be patient with us, we are still working on building out the features and functionality of the site. If you have any questions, suggestions, or issues, please contact us via the chat/support button on the bottom right of the site.</li>
-          <li class="how-to-play">We take one skin from every pot, ranging from 2-10% of the jackpot value. We will tell you what item we raked when we send you your winnings (in the trade message).</li>
+          <li class="how-to-play">We usually take one skin from every pot (sometimes we take nothing!), ranging from 2-10% of the jackpot value. We will tell you what item we raked when we send you your winnings (in the trade message).</li>
         </ul>
       </div>
     </div>
@@ -133,7 +133,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="free" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- <div class="modal fade" id="free" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -142,13 +142,13 @@
       </div>
       <div class="modal-body" style="text-align: center; color: white">
       <h6>Please check back later, we're trying to come up with a better way to reward our users</h6>
-        <!-- <h1>Today's Free Skin</h1>
+        <h1>Today's Free Skin</h1>
         <h6><i>Deposit into the jackpot once a day to be entered into our daily skin giveaway.</i></h6>
         <div><img style="width: 400px; height: 300px" src="{{dailyGiveaway.start}}" /></div>
         <h1>Yesterday's Skin Giveaway</h1>
         <h6><i>Congrats {{dailyGiveaway.winner}}!</i></h6>
-        <div><img style="width: 400px; height: 300px" src="{{dailyGiveaway.end}}" /></div> -->
+        <div><img style="width: 400px; height: 300px" src="{{dailyGiveaway.end}}" /></div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
