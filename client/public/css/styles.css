@@ -73,7 +73,8 @@ html, body {
 .jackpot-header {
   padding-top: 0.5em;
   text-align: center;
-  height: 4em;
+  height: 30%;
+  min-height: 4em;
   overflow: auto;
 }
 
@@ -85,8 +86,10 @@ html, body {
 }
 
 .jackpot-player-photo {
-  height: 3.5em;
-  width: 3.5em;
+  height: 10%;
+  width: 10%;
+  min-height: 3.5em;
+  min-width: 3.5em;
   margin-top: 0.75em;
   margin-left: 1em;
   float: left;
