@@ -95,6 +95,7 @@ html, body {
 .jackpot-player-deposit {
   width: 80%;
   height: 35%;
+  min-height: 8em;
   float: right;
   overflow: auto;
 }
