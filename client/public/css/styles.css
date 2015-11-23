@@ -56,14 +56,14 @@ html, body {
 
 .current-jackpot {
   width: 100%;
-  background: rgba(33, 33, 33, 0.9);
+  background: rgba(33, 33, 33, 0.65);
   margin-bottom: 1em;
   margin-top: 0.2em;
 }
 
 .current-items {
   width: 100%;
-  background: rgba(33, 33, 33, 0.9);
+  background: rgba(33, 33, 33, 0.65);
   display: inline-block;
   text-align: center;
   height: 84px;
@@ -94,7 +94,7 @@ html, body {
 
 .jackpot-player-deposit {
   width: 80%;
-  height: 20%;
+  height: 35%;
   float: right;
   overflow: auto;
 }
