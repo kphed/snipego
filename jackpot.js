@@ -144,9 +144,9 @@ var inFours = function(array) {
   var result = [];
   var temp = [];
   for (var i = 0; i < array.length; i++) {
-    if (temp.length < 8) {
+    if (temp.length < 6) {
       temp.push(array[i]);
-      if (temp.length === 8 || !array[i + 1]) {
+      if (temp.length === 6 || !array[i + 1]) {
         result.push(temp);
         temp = [];
       }
