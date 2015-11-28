@@ -58,7 +58,7 @@ router.get('/get-steam', function(req, res) {
 
 router.post('/send-message', function(req, res) {
   console.log('req body is ', req.body);
-  if (req.body.username === 'CSGO-FIGHT.COM' || req.body.username === 'CSGO-EASY' || req.body.username === 'STAY FROSTY!' || req.body.username === 'CSGOResort.com NO MIN BET' || req.body.username === 'KEy StakeCSGO.com' || req.body.username === 'SKINGABEN .com' || req.body.username === 'IceCream' || req.body.username === 'W4tchYourB4ck CSGODiceGame.com' || req.body.username === 'dELiciousz.!') {
+  if (req.body.username === 'CSGO-FIGHT.COM' || req.body.username === 'CSGO-EASY' || req.body.username === 'STAY FROSTY!' || req.body.username === 'CSGOResort.com NO MIN BET' || req.body.username === 'KEy StakeCSGO.com' || req.body.username === 'SKINGABEN .com' || req.body.username === 'IceCream' || req.body.username === 'W4tchYourB4ck CSGODiceGame.com' || req.body.username === 'dELiciousz.!' || req.body.username === 'BOT Slayer') {
     console.log('SPAMMER');
     res.json({'error': 'Spammer'});
   } else {
